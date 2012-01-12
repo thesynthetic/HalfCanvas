@@ -1,0 +1,340 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7062EAD714BA47290055A979 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7062EAD614BA47290055A979 /* UIKit.framework */; };
+		7062EAD914BA47290055A979 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7062EAD814BA47290055A979 /* Foundation.framework */; };
+		7062EADB14BA47290055A979 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7062EADA14BA47290055A979 /* CoreGraphics.framework */; };
+		7062EAE114BA47290055A979 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7062EADF14BA47290055A979 /* InfoPlist.strings */; };
+		7062EAE314BA47290055A979 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7062EAE214BA47290055A979 /* main.m */; };
+		7062EAE714BA47290055A979 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7062EAE614BA47290055A979 /* AppDelegate.m */; };
+		7062EAEA14BA47290055A979 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7062EAE814BA47290055A979 /* MainStoryboard.storyboard */; };
+		7062EAED14BA47290055A979 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7062EAEC14BA47290055A979 /* FirstViewController.m */; };
+		7062EAEF14BA47290055A979 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 7062EAEE14BA47290055A979 /* first.png */; };
+		7062EAF114BA47290055A979 /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7062EAF014BA47290055A979 /* first@2x.png */; };
+		7062EAF414BA47290055A979 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7062EAF314BA47290055A979 /* SecondViewController.m */; };
+		7062EAF614BA47290055A979 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 7062EAF514BA47290055A979 /* second.png */; };
+		7062EAF814BA47290055A979 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7062EAF714BA47290055A979 /* second@2x.png */; };
+		708E060D14BA4ECD000C1876 /* profile_picture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 708E060C14BA4ECD000C1876 /* profile_picture.jpg */; };
+		708E061114BA4FA0000C1876 /* FeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 708E061014BA4FA0000C1876 /* FeedCell.m */; };
+		708E061314BA5017000C1876 /* photo.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 708E061214BA5017000C1876 /* photo.JPG */; };
+		708E061614BA8DC0000C1876 /* FeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 708E061514BA8DC0000C1876 /* FeedController.m */; };
+		708E061814BA93FF000C1876 /* 168-upload-photo-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 708E061714BA93FF000C1876 /* 168-upload-photo-2.png */; };
+		708E061A14BA94E6000C1876 /* blank-canvas.png in Resources */ = {isa = PBXBuildFile; fileRef = 708E061914BA94E6000C1876 /* blank-canvas.png */; };
+		708E061C14BA950A000C1876 /* gears.png in Resources */ = {isa = PBXBuildFile; fileRef = 708E061B14BA950A000C1876 /* gears.png */; };
+		708E061E14BA9524000C1876 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 708E061D14BA9524000C1876 /* home.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7062EAD214BA47280055A979 /* HalfCanvas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HalfCanvas.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7062EAD614BA47290055A979 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		7062EAD814BA47290055A979 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7062EADA14BA47290055A979 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7062EADE14BA47290055A979 /* HalfCanvas-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HalfCanvas-Info.plist"; sourceTree = "<group>"; };
+		7062EAE014BA47290055A979 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7062EAE214BA47290055A979 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7062EAE414BA47290055A979 /* HalfCanvas-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HalfCanvas-Prefix.pch"; sourceTree = "<group>"; };
+		7062EAE514BA47290055A979 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7062EAE614BA47290055A979 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7062EAE914BA47290055A979 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		7062EAEB14BA47290055A979 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		7062EAEC14BA47290055A979 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		7062EAEE14BA47290055A979 /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
+		7062EAF014BA47290055A979 /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
+		7062EAF214BA47290055A979 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		7062EAF314BA47290055A979 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		7062EAF514BA47290055A979 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
+		7062EAF714BA47290055A979 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		708E060C14BA4ECD000C1876 /* profile_picture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = profile_picture.jpg; sourceTree = "<group>"; };
+		708E060F14BA4FA0000C1876 /* FeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedCell.h; sourceTree = "<group>"; };
+		708E061014BA4FA0000C1876 /* FeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedCell.m; sourceTree = "<group>"; };
+		708E061214BA5017000C1876 /* photo.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = photo.JPG; sourceTree = "<group>"; };
+		708E061414BA8DC0000C1876 /* FeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedController.h; sourceTree = "<group>"; };
+		708E061514BA8DC0000C1876 /* FeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedController.m; sourceTree = "<group>"; };
+		708E061714BA93FF000C1876 /* 168-upload-photo-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "168-upload-photo-2.png"; sourceTree = "<group>"; };
+		708E061914BA94E6000C1876 /* blank-canvas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blank-canvas.png"; sourceTree = "<group>"; };
+		708E061B14BA950A000C1876 /* gears.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gears.png; sourceTree = "<group>"; };
+		708E061D14BA9524000C1876 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7062EACF14BA47280055A979 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7062EAD714BA47290055A979 /* UIKit.framework in Frameworks */,
+				7062EAD914BA47290055A979 /* Foundation.framework in Frameworks */,
+				7062EADB14BA47290055A979 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7062EAC714BA47280055A979 = {
+			isa = PBXGroup;
+			children = (
+				7062EADC14BA47290055A979 /* HalfCanvas */,
+				7062EAD514BA47280055A979 /* Frameworks */,
+				7062EAD314BA47280055A979 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7062EAD314BA47280055A979 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7062EAD214BA47280055A979 /* HalfCanvas.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7062EAD514BA47280055A979 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7062EAD614BA47290055A979 /* UIKit.framework */,
+				7062EAD814BA47290055A979 /* Foundation.framework */,
+				7062EADA14BA47290055A979 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7062EADC14BA47290055A979 /* HalfCanvas */ = {
+			isa = PBXGroup;
+			children = (
+				7062EAE814BA47290055A979 /* MainStoryboard.storyboard */,
+				708E060F14BA4FA0000C1876 /* FeedCell.h */,
+				708E061014BA4FA0000C1876 /* FeedCell.m */,
+				7062EAE514BA47290055A979 /* AppDelegate.h */,
+				7062EAE614BA47290055A979 /* AppDelegate.m */,
+				7062EAEB14BA47290055A979 /* FirstViewController.h */,
+				708E061414BA8DC0000C1876 /* FeedController.h */,
+				708E061514BA8DC0000C1876 /* FeedController.m */,
+				7062EAEC14BA47290055A979 /* FirstViewController.m */,
+				7062EAEE14BA47290055A979 /* first.png */,
+				7062EAF014BA47290055A979 /* first@2x.png */,
+				7062EAF214BA47290055A979 /* SecondViewController.h */,
+				7062EAF314BA47290055A979 /* SecondViewController.m */,
+				7062EAF514BA47290055A979 /* second.png */,
+				7062EAF714BA47290055A979 /* second@2x.png */,
+				7062EADD14BA47290055A979 /* Supporting Files */,
+			);
+			path = HalfCanvas;
+			sourceTree = "<group>";
+		};
+		7062EADD14BA47290055A979 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7062EADE14BA47290055A979 /* HalfCanvas-Info.plist */,
+				708E061D14BA9524000C1876 /* home.png */,
+				708E061914BA94E6000C1876 /* blank-canvas.png */,
+				708E061B14BA950A000C1876 /* gears.png */,
+				708E061214BA5017000C1876 /* photo.JPG */,
+				708E061714BA93FF000C1876 /* 168-upload-photo-2.png */,
+				708E060C14BA4ECD000C1876 /* profile_picture.jpg */,
+				7062EADF14BA47290055A979 /* InfoPlist.strings */,
+				7062EAE214BA47290055A979 /* main.m */,
+				7062EAE414BA47290055A979 /* HalfCanvas-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7062EAD114BA47280055A979 /* HalfCanvas */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7062EAFB14BA47290055A979 /* Build configuration list for PBXNativeTarget "HalfCanvas" */;
+			buildPhases = (
+				7062EACE14BA47280055A979 /* Sources */,
+				7062EACF14BA47280055A979 /* Frameworks */,
+				7062EAD014BA47280055A979 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HalfCanvas;
+			productName = HalfCanvas;
+			productReference = 7062EAD214BA47280055A979 /* HalfCanvas.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7062EAC914BA47280055A979 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 7062EACC14BA47280055A979 /* Build configuration list for PBXProject "HalfCanvas" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7062EAC714BA47280055A979;
+			productRefGroup = 7062EAD314BA47280055A979 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7062EAD114BA47280055A979 /* HalfCanvas */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7062EAD014BA47280055A979 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7062EAE114BA47290055A979 /* InfoPlist.strings in Resources */,
+				7062EAEA14BA47290055A979 /* MainStoryboard.storyboard in Resources */,
+				7062EAEF14BA47290055A979 /* first.png in Resources */,
+				7062EAF114BA47290055A979 /* first@2x.png in Resources */,
+				7062EAF614BA47290055A979 /* second.png in Resources */,
+				7062EAF814BA47290055A979 /* second@2x.png in Resources */,
+				708E060D14BA4ECD000C1876 /* profile_picture.jpg in Resources */,
+				708E061314BA5017000C1876 /* photo.JPG in Resources */,
+				708E061814BA93FF000C1876 /* 168-upload-photo-2.png in Resources */,
+				708E061A14BA94E6000C1876 /* blank-canvas.png in Resources */,
+				708E061C14BA950A000C1876 /* gears.png in Resources */,
+				708E061E14BA9524000C1876 /* home.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7062EACE14BA47280055A979 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7062EAE314BA47290055A979 /* main.m in Sources */,
+				7062EAE714BA47290055A979 /* AppDelegate.m in Sources */,
+				7062EAED14BA47290055A979 /* FirstViewController.m in Sources */,
+				7062EAF414BA47290055A979 /* SecondViewController.m in Sources */,
+				708E061114BA4FA0000C1876 /* FeedCell.m in Sources */,
+				708E061614BA8DC0000C1876 /* FeedController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7062EADF14BA47290055A979 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7062EAE014BA47290055A979 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7062EAE814BA47290055A979 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7062EAE914BA47290055A979 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7062EAF914BA47290055A979 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		7062EAFA14BA47290055A979 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7062EAFC14BA47290055A979 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HalfCanvas/HalfCanvas-Prefix.pch";
+				INFOPLIST_FILE = "HalfCanvas/HalfCanvas-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		7062EAFD14BA47290055A979 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HalfCanvas/HalfCanvas-Prefix.pch";
+				INFOPLIST_FILE = "HalfCanvas/HalfCanvas-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7062EACC14BA47280055A979 /* Build configuration list for PBXProject "HalfCanvas" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7062EAF914BA47290055A979 /* Debug */,
+				7062EAFA14BA47290055A979 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7062EAFB14BA47290055A979 /* Build configuration list for PBXNativeTarget "HalfCanvas" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7062EAFC14BA47290055A979 /* Debug */,
+				7062EAFD14BA47290055A979 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7062EAC914BA47280055A979 /* Project object */;
+}
