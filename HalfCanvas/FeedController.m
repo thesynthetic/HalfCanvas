@@ -11,6 +11,8 @@
 
 @implementation FeedController
 
+@synthesize headerView;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -87,6 +89,13 @@
 {
     // Return the number of rows in the section.
     return 5;
+}
+
+-  (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    
+    return headerView; 
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
