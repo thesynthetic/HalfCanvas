@@ -36,11 +36,8 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="HalfCanvas" id="G8b-Vr-Uej"/>
-                    <connections>
-                        <outlet property="headerView" destination="UnF-kM-yt5" id="mZp-bg-kla"/>
-                    </connections>
                 </tableViewController>
-                <view contentMode="scaleToFill" id="UnF-kM-yt5">
+                <view contentMode="scaleToFill" id="UnF-kM-yt5" customClass="FeedSectionHeader">
                     <rect key="frame" x="0.0" y="-1" width="320" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
@@ -64,6 +61,9 @@
                         </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="user" destination="phD-8O-cea" id="ZFf-Nw-EA3"/>
+                    </connections>
                 </view>
             </objects>
             <point key="canvasLocation" x="1102" y="-399"/>
@@ -130,7 +130,7 @@
         <scene sceneID="15">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
-                <tabBarController id="4" sceneMemberID="viewController">
+                <tabBarController id="4" customClass="MainTabBarController" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="5">
                         <rect key="frame" x="0.0" y="431" width="320" height="49"/>
@@ -162,9 +162,15 @@
         </class>
         <class className="FeedController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedController.h"/>
+        </class>
+        <class className="FeedSectionHeader" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedSectionHeader.h"/>
             <relationships>
-                <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="user" candidateClass="UILabel"/>
             </relationships>
+        </class>
+        <class className="MainTabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainTabBarController.h"/>
         </class>
         <class className="SecondViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SecondViewController.h"/>

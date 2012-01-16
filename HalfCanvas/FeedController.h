@@ -8,10 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "FeedCell.h"
-
+#import "SBJson.h"
+#import "Question.h"
+#import "QuestionCollection.h"
+#import "MBProgressHUD.h"
 
 @interface FeedController : UITableViewController
+{
+    MBProgressHUD *HUD;
+    NSMutableData *receivedData;   
+    BOOL questionsLoaded;
+}
 
-@property (retain) IBOutlet UIView *headerView;
 
 @end
