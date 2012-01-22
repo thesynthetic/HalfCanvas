@@ -10,9 +10,9 @@
 
 @implementation QuestionCollection
 
-@synthesize questions;
+@synthesize questionArray;
 
-+ (QuestionCollection *)sharedInstance
++ (NSMutableArray *)questions
 {
     // the instance of this class is stored here
     static QuestionCollection *myInstance = nil;
@@ -20,10 +20,10 @@
     // check to see if an instance already exists
     if (nil == myInstance) {
         myInstance  = [[[self class] alloc] init];
-        [myInstance setQuestions:[[NSMutableArray alloc] init]];
+        [myInstance setQuestionArray:[[NSMutableArray alloc] init]];
     }
     // return the instance of this class
-    return myInstance;
+    return myInstance.questionArray;
 }
 
 

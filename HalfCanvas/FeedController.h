@@ -12,13 +12,22 @@
 #import "Question.h"
 #import "QuestionCollection.h"
 #import "MBProgressHUD.h"
+#import "IconDownloader.h"
 
 @interface FeedController : UITableViewController
 {
+    NSArray *questions;
     MBProgressHUD *HUD;
     NSMutableData *receivedData;   
     BOOL questionsLoaded;
+    NSMutableDictionary *imageDownloadsInProgress;
 }
 
+-(IBAction)loadData;
+@property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
+@property (retain) NSArray *questions;
+
+- (void)startImageDownload:(Question *)question  forIndexPath:(NSIndexPath *)indexPath;
+- (void)loadImagesForOnscreenRows;
 
 @end

@@ -7,9 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QuestionCollection.h"
+#import "SBJson.h"
+#import "Question.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
+{
+    NSMutableData *receivedData;
+}
 
 @property (strong, nonatomic) UIWindow *window;
+@property (retain) NSMutableData *receivedData;
 
 @end

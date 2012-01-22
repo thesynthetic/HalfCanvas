@@ -10,12 +10,12 @@
 
 @interface QuestionCollection : NSObject
 {
-    NSMutableArray *questions;
+    NSMutableArray *questionsArray;
 }
 
-+ (QuestionCollection*) sharedInstance;
++ (NSMutableArray*) questions;
 
-@property (retain) NSMutableArray *questions;
+@property (retain) NSMutableArray *questionArray;
 
 @end
 

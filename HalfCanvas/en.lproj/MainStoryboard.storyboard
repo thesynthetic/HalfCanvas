@@ -28,6 +28,9 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <connections>
+                                    <outlet property="imageView" destination="zs1-gp-eLp" id="k4u-hZ-Qh5"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -35,7 +38,13 @@
                             <outlet property="delegate" destination="fFh-IO-q7y" id="CT9-NJ-1BZ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="HalfCanvas" id="G8b-Vr-Uej"/>
+                    <navigationItem key="navigationItem" title="Title" id="A9t-Of-WaZ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="u1M-I1-aiu">
+                            <connections>
+                                <action selector="loadData" destination="fFh-IO-q7y" id="Z60-W7-1tR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <view contentMode="scaleToFill" id="UnF-kM-yt5" customClass="FeedSectionHeader">
                     <rect key="frame" x="0.0" y="-1" width="320" height="40"/>
@@ -156,26 +165,6 @@
         <image name="photo.JPG" width="2448" height="3264"/>
         <image name="profile_picture.jpg" width="50" height="50"/>
     </resources>
-    <classes>
-        <class className="FeedCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedCell.h"/>
-        </class>
-        <class className="FeedController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedController.h"/>
-        </class>
-        <class className="FeedSectionHeader" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedSectionHeader.h"/>
-            <relationships>
-                <relationship kind="outlet" name="user" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="MainTabBarController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainTabBarController.h"/>
-        </class>
-        <class className="SecondViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SecondViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

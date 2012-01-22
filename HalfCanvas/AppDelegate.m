@@ -11,10 +11,22 @@
 @implementation AppDelegate
 
 @synthesize window = _window;
+@synthesize receivedData;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    NSURLRequest *theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://stripedcanvas.com:8000/questions/"] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+    NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    if (theConnection) {
+        receivedData = [NSMutableData data];
+    } else {
+        // Todo 2.0: Inform the user that the connection failed.
+    }
+    
+    
+    
+    
     return YES;
 }
 							
@@ -46,6 +58,10 @@
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
+    NSLog(@"AWAKE");
+    
+    
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -56,5 +72,52 @@
      See also applicationDidEnterBackground:.
      */
 }
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    // Append the new data to receivedData.
+    // receivedData is an instance variable declared elsewhere.
+    [receivedData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    NSLog(@"Connection failed! Error - %@ %@",
+          [error localizedDescription],
+          [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    [[QuestionCollection questions] removeAllObjects];
+    NSString *txt = [[NSString alloc] initWithData:receivedData encoding: NSASCIIStringEncoding];    
+    SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
+    NSError *error = nil;
+    id jsonObjects = [jsonParser objectWithString:txt error:&error];
+    
+    if ([jsonObjects isKindOfClass:[NSDictionary class]])
+    {
+        // treat as a dictionary, or reassign to a dictionary ivar
+    }
+    else if ([jsonObjects isKindOfClass:[NSArray class]])
+    {
+        // treat as an array or reassign to an array ivar.
+        
+        
+        for (NSDictionary *dict in jsonObjects)
+        {
+            Question *newQuestion = [[Question alloc] init];
+            NSDictionary *fieldDict = [dict objectForKey:@"fields"];
+            [newQuestion setDescription:[fieldDict objectForKey:@"description"]];
+            [newQuestion setImage_url:[fieldDict objectForKey:@"image_url"]];
+            [newQuestion setUser:[fieldDict objectForKey:@"user"]];
+            [[QuestionCollection   questions] addObject:newQuestion];
+        }
+    }
+}
+
+
+
+
 
 @end

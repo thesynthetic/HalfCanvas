@@ -13,5 +13,7 @@
 @synthesize description;
 @synthesize user;
 @synthesize image_url;
+@synthesize image;
+@synthesize beingDownloaded;
 
 @end
