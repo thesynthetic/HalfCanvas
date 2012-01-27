@@ -14,7 +14,7 @@
 #import "MBProgressHUD.h"
 #import "IconDownloader.h"
 
-@interface FeedController : UITableViewController
+@interface FeedController : UITableViewController <IconDownloaderDelegate>
 {
     NSArray *questions;
     MBProgressHUD *HUD;

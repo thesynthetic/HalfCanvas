@@ -124,7 +124,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"FeedCell";
-    NSLog(@"%d",indexPath.section);
+    
     FeedCell *feedCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (feedCell == nil) {
         feedCell = [[FeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -132,24 +132,23 @@
     
     // Configure the cell...
     
+    
+    
     if (![[[QuestionCollection questions] objectAtIndex:indexPath.section] image])
     {
+        
         NSLog(@"Index: %d",indexPath.section);
        if (self.tableView.decelerating == NO && self.tableView.dragging == NO )
         {
-            
             NSLog(@"Starting to load image: %d",indexPath.section);
             [self startImageDownload:[[QuestionCollection questions] objectAtIndex:indexPath.section] forIndexPath:indexPath];
-            
-        }
-        // if a download is deferred or in progress, return a placeholder image
-        //feedCell.imageView.image = [UIImage imageNamed:@"02-redo.png"];                
+        }  
+        [[feedCell imageView] setImage:nil];
     }
     else
     {
         
         [[feedCell imageView] setImage:[[[QuestionCollection questions] objectAtIndex:indexPath.section] image]];
-        [[feedCell imageView] setFrame:CGRectMake(feedCell.frame.origin.x, feedCell.frame.origin.y, 310, 240)];
     }
 
     
@@ -278,7 +277,7 @@
     IconDownloader *iconDownloader = [imageDownloadsInProgress objectForKey:indexPath];
     if (iconDownloader != nil)
     {
-        FeedCell *feedCell = [self.tableView cellForRowAtIndexPath:iconDownloader.indexPath];
+        FeedCell *feedCell = [self.tableView cellForRowAtIndexPath:indexPath];
         
         // Display the newly loaded image
         [[[QuestionCollection questions] objectAtIndex:indexPath.section] setImage:iconDownloader.question.image];
@@ -317,5 +316,6 @@
 {
     [self loadImagesForOnscreenRows];
 }
+
 
 @end

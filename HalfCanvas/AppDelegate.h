@@ -10,6 +10,7 @@
 #import "QuestionCollection.h"
 #import "SBJson.h"
 #import "Question.h"
+#import "FeedController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {

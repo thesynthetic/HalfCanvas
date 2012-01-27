@@ -114,6 +114,13 @@
             [[QuestionCollection   questions] addObject:newQuestion];
         }
     }
+    
+    //UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard"                                                           bundle: nil];
+    
+    
+    //FeedController *controller = (FeedController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"feedcontroller"];
+    //[controller test];
+    
 }
 
 
