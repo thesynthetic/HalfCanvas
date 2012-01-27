@@ -143,11 +143,13 @@
             
         }
         // if a download is deferred or in progress, return a placeholder image
-        feedCell.imageView.image = [UIImage imageNamed:@"02-redo.png"];                
+        //feedCell.imageView.image = [UIImage imageNamed:@"02-redo.png"];                
     }
     else
     {
+        
         [[feedCell imageView] setImage:[[[QuestionCollection questions] objectAtIndex:indexPath.section] image]];
+        [[feedCell imageView] setFrame:CGRectMake(feedCell.frame.origin.x, feedCell.frame.origin.y, 310, 240)];
     }
 
     
@@ -159,6 +161,12 @@
 {
     return  350;
 }
+-(IBAction)imageClick:(id)sender 
+{
+    NSLog(@"CLICKED!");
+}
+
+
 
 /*
 // Override to support conditional editing of the table view.

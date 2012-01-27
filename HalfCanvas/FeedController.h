@@ -21,9 +21,12 @@
     NSMutableData *receivedData;   
     BOOL questionsLoaded;
     NSMutableDictionary *imageDownloadsInProgress;
+    
 }
 
+-(IBAction)imageClick:(id)sender;
 -(IBAction)loadData;
+
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
 @property (retain) NSArray *questions;
 

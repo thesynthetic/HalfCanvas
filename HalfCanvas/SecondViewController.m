@@ -34,7 +34,12 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-}
+    //Open the Camera view
+    UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = true;
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    [self presentModalViewController:picker animated:YES];}
 
 - (void)viewDidAppear:(BOOL)animated
 {
