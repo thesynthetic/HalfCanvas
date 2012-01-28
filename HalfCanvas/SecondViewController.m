@@ -10,6 +10,8 @@
 
 @implementation SecondViewController
 
+@synthesize parentNavController;
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -35,11 +37,14 @@
 {
     [super viewWillAppear:animated];
     //Open the Camera view
-    UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+    NSLog(@"Starting Camera");
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.allowsEditing = true;
     picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    [self presentModalViewController:picker animated:YES];}
+    [self presentModalViewController:picker animated:YES];
+  
+    }
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -60,6 +65,23 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
+//UIImagePickerController Delegate Functions
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
+{
+    //Process the image data here, please dont release it
+    //Its an autoreleased item
+    [[picker parentViewController] dismissModalViewControllerAnimated:YES];
+    
+    
+}
+//Function to get rid of the picker
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissModalViewControllerAnimated:YES];
+    MainTabBarController *tabcontroller = self.navigationController.tabBarController;
+    [tabcontroller goToFirstTab];
 }
 
 @end

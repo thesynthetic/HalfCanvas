@@ -1,18 +1,14 @@
 //
-//  MainTabBarController.m
+//  UploadImageController.m
 //  HalfCanvas
 //
-//  Created by Ryan Hittner on 1/15/12.
+//  Created by Ryan Hittner on 1/28/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "MainTabBarController.h"
+#import "UploadImageController.h"
 
-
-
-@implementation MainTabBarController
-
-//@synthesize managedObjectModel;
+@implementation UploadImageController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -20,7 +16,6 @@
     if (self) {
         // Custom initialization
     }
-    
     return self;
 }
 
@@ -41,22 +36,19 @@
 }
 */
 
-
+/*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-         
-    
 }
-
+*/
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-   
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -64,12 +56,5 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-
--(void) goToFirstTab
-{
-    [self setSelectedIndex:0];
-    
-}
-
 
 @end
