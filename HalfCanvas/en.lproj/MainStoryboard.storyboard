@@ -110,7 +110,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1199" y="175"/>
+            <point key="canvasLocation" x="1499" y="180"/>
         </scene>
         <scene sceneID="lA3-y1-KiL">
             <objects>
@@ -180,7 +180,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1691" y="178"/>
+            <point key="canvasLocation" x="1907" y="180"/>
         </scene>
         <scene sceneID="8UI-E4-hJ4">
             <objects>
@@ -243,7 +243,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="3" kind="relationship" relationship="rootViewController" id="3DN-cu-Gsz"/>
+                        <segue destination="3" kind="relationship" relationship="rootViewController" id="IVQ-Qj-Lwr"/>
                     </connections>
                 </navigationController>
             </objects>
@@ -257,6 +257,47 @@
         <image name="home.png" width="22" height="22"/>
         <image name="profile_picture.jpg" width="50" height="50"/>
     </resources>
+    <classes>
+        <class className="FeedCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="FeedController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedController.h"/>
+            <relationships>
+                <relationship kind="action" name="imageClick:"/>
+                <relationship kind="action" name="loadData"/>
+            </relationships>
+        </class>
+        <class className="FeedSectionHeader" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedSectionHeader.h"/>
+            <relationships>
+                <relationship kind="outlet" name="user" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="MainTabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainTabBarController.h"/>
+        </class>
+        <class className="SecondViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SecondViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="parentNavController" candidateClass="UITabBarController"/>
+            </relationships>
+        </class>
+        <class className="UploadImageController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UploadImageController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="cancel" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="comments" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="post" candidateClass="UIBarItem"/>
+                <relationship kind="outlet" name="scroller" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="tags" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="viewer" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
