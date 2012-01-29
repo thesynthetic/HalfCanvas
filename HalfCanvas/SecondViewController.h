@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "MainTabBarController.h"
+#import "UploadImageController.h"
 
 @interface SecondViewController : UIViewController <UIImagePickerControllerDelegate>
 {
     UITabBarController *parentNavController;
+    UIImage *imageToPost;
 }
 
 @property (retain) IBOutlet UITabBarController *parentNavController;
+@property (retain) UIImage *imageToPost;
+
 @end

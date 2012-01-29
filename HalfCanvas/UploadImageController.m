@@ -10,6 +10,14 @@
 
 @implementation UploadImageController
 
+@synthesize tags;
+@synthesize comments;
+@synthesize post;
+@synthesize cancel;
+@synthesize imageToPost;
+@synthesize scroller;
+@synthesize viewer;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -36,13 +44,20 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
+    [scroller setScrollEnabled:true];
+    [scroller setContentSize:CGSizeMake(320,550)];
+    [comments.layer setBorderColor: [[UIColor grayColor] CGColor]];
+    [comments.layer setBorderWidth: 1.0];
+    [comments.layer setCornerRadius:5];
+    [comments.layer setMasksToBounds:YES];
+    
+    [viewer setImage:imageToPost];
     [super viewDidLoad];
 }
-*/
 
 - (void)viewDidUnload
 {
@@ -55,6 +70,12 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+    [theTextField resignFirstResponder];
+    return YES;
 }
 
 @end

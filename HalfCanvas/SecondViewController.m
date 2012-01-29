@@ -11,6 +11,7 @@
 @implementation SecondViewController
 
 @synthesize parentNavController;
+@synthesize imageToPost;
 
 - (void)didReceiveMemoryWarning
 {
@@ -72,9 +73,9 @@
 {
     //Process the image data here, please dont release it
     //Its an autoreleased item
-    [[picker parentViewController] dismissModalViewControllerAnimated:YES];
-    
-    
+    [self setImageToPost:image];
+    [picker dismissModalViewControllerAnimated:YES];
+    [self performSegueWithIdentifier:@"didcapturepicture" sender:self];
 }
 //Function to get rid of the picker
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -82,6 +83,19 @@
     [picker dismissModalViewControllerAnimated:YES];
     MainTabBarController *tabcontroller = self.navigationController.tabBarController;
     [tabcontroller goToFirstTab];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Make sure your segue name in storyboard is the same as this line
+    if ([[segue identifier] isEqualToString:@"didcapturepicture"])
+    {
+        // Get reference to the destination view controller
+        UploadImageController *vc = [segue destinationViewController];
+        
+        // Pass any objects to the view controller here, like...
+        [vc setImageToPost:[self imageToPost]];
+    }
 }
 
 @end
