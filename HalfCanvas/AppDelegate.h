@@ -11,6 +11,7 @@
 #import "SBJson.h"
 #import "Question.h"
 #import "FeedController.h"
+#import "MainTabBarController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
