@@ -115,11 +115,12 @@
         }
     }
     
-    //UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard"                                                           bundle: nil];
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard"                                                           bundle: nil];
     
+    UINavigationController *nav = (UINavigationController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"navigationcontroller"];
     
-    //FeedController *controller = (FeedController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"feedcontroller"];
-    //[controller test];
+    FeedController *fc = (FeedController*)[[nav viewControllers] objectAtIndex:0];
+    [[fc tableView] reloadData];
     
 }
 

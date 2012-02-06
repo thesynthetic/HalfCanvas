@@ -29,6 +29,7 @@
 		701D2CC514C4E63200C075A4 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 701D2CC314C4E63200C075A4 /* Icon.png */; };
 		701D2CC614C4E63200C075A4 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 701D2CC414C4E63200C075A4 /* Icon@2x.png */; };
 		701D2CC814C4E63B00C075A4 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 701D2CC714C4E63B00C075A4 /* 37x-Checkmark.png */; };
+		704431F314DF506F00537505 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 704431F214DF506F00537505 /* SettingsViewController.m */; };
 		7062EAD714BA47290055A979 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7062EAD614BA47290055A979 /* UIKit.framework */; };
 		7062EAD914BA47290055A979 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7062EAD814BA47290055A979 /* Foundation.framework */; };
 		7062EADB14BA47290055A979 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7062EADA14BA47290055A979 /* CoreGraphics.framework */; };
@@ -99,6 +100,8 @@
 		701D2CC314C4E63200C075A4 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		701D2CC414C4E63200C075A4 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		701D2CC714C4E63B00C075A4 /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark.png"; sourceTree = "<group>"; };
+		704431F114DF506F00537505 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		704431F214DF506F00537505 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		7062EAD214BA47280055A979 /* HalfCanvas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HalfCanvas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7062EAD614BA47290055A979 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7062EAD814BA47290055A979 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -162,6 +165,8 @@
 				708E061514BA8DC0000C1876 /* FeedController.m */,
 				7005AEBB14C47DB700CCE435 /* FeedSectionHeader.h */,
 				7005AEBC14C47DB700CCE435 /* FeedSectionHeader.m */,
+				70E2EF9414D4431A00F02216 /* UploadImageController.h */,
+				70E2EF9514D4431A00F02216 /* UploadImageController.m */,
 			);
 			name = FeedView;
 			sourceTree = "<group>";
@@ -196,6 +201,15 @@
 				701881A614C37D90002B07D8 /* SBJsonWriter.m */,
 			);
 			name = JSON;
+			sourceTree = "<group>";
+		};
+		704431F014DF502300537505 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				704431F114DF506F00537505 /* SettingsViewController.h */,
+				704431F214DF506F00537505 /* SettingsViewController.m */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		7062EAC714BA47280055A979 = {
@@ -239,15 +253,16 @@
 				7005AEB214C4602600CCE435 /* ComposeAnswerController.h */,
 				7005AEB314C4602600CCE435 /* ComposeAnswerController.m */,
 				7005AEBA14C47D8600CCE435 /* FeedView */,
+				70E2EF9214D442C300F02216 /* Snap a Picture */,
 				7062EAE514BA47290055A979 /* AppDelegate.h */,
 				7062EAE614BA47290055A979 /* AppDelegate.m */,
+				704431F014DF502300537505 /* Settings */,
 				70ECAA8C14CC79E700081EF3 /* IconDownloader.h */,
 				70ECAA8D14CC79E700081EF3 /* IconDownloader.m */,
 				7062EAEB14BA47290055A979 /* FirstViewController.h */,
 				7062EAEC14BA47290055A979 /* FirstViewController.m */,
 				7062EAEE14BA47290055A979 /* first.png */,
 				7062EAF014BA47290055A979 /* first@2x.png */,
-				70E2EF9214D442C300F02216 /* Snap a Picture */,
 				7062EAF514BA47290055A979 /* second.png */,
 				7062EAF714BA47290055A979 /* second@2x.png */,
 				70D0BEA014C4B7A000CBF56C /* MBProgress */,
@@ -293,8 +308,6 @@
 			children = (
 				7062EAF214BA47290055A979 /* SecondViewController.h */,
 				7062EAF314BA47290055A979 /* SecondViewController.m */,
-				70E2EF9414D4431A00F02216 /* UploadImageController.h */,
-				70E2EF9514D4431A00F02216 /* UploadImageController.m */,
 			);
 			name = "Snap a Picture";
 			sourceTree = "<group>";
@@ -403,6 +416,7 @@
 				701D2CC214C4E62500C075A4 /* MBProgressHUD.m in Sources */,
 				70ECAA8E14CC79E700081EF3 /* IconDownloader.m in Sources */,
 				70E2EF9614D4431A00F02216 /* UploadImageController.m in Sources */,
+				704431F314DF506F00537505 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

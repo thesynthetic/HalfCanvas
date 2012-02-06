@@ -13,6 +13,9 @@
 
 @synthesize imageDownloadsInProgress;
 @synthesize questions;
+@synthesize popup;
+@synthesize picker;
+@synthesize imageToPost;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -225,19 +228,6 @@
     
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if (segue.identifier.length > 0)
-    {        
-        if ([segue.identifier isEqualToString:@"QuestionToAnswer"])
-        {
-            //fdfad *viewControllerB = (ViewControllerB *)segue.destinationViewController;
-            //And you can pass data between the two controller.  
-            //viewControllerB.currentRow = self.selectedRow; 
-        }
-    }
-}
-
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     // Append the new data to receivedData.
@@ -315,6 +305,79 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     [self loadImagesForOnscreenRows];
+}
+
+#pragma mark - Popup Menu for Camera
+
+- (void)cameraButtonClick
+{
+    popup = [[UIActionSheet alloc] initWithTitle:@"Upload Photo" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"From album", nil];
+    [popup setActionSheetStyle:UIActionSheetStyleBlackOpaque];
+    [popup showInView:self.view];
+    
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if (buttonIndex == 0) {
+        [self startCamera];
+    } else if (buttonIndex == 1) {
+        [self startPictureChooser];
+    } else if (buttonIndex == 2) {
+        [popup dismissWithClickedButtonIndex:buttonIndex animated:true];  
+    }
+}
+
+-(void)actionSheetCancel:(UIActionSheet *)actionSheet   
+{
+    
+    
+}
+
+
+#pragma mark - Image Picker
+
+-(void) startCamera
+{
+    picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = true;
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    [self presentModalViewController:picker animated:YES];
+}
+
+- (void) startPictureChooser
+{
+    picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = true;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentModalViewController:picker animated:YES];
+}
+
+
+
+//UIImagePickerController Delegate Functions
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
+{
+    [self setImageToPost:image];
+    [picker dismissModalViewControllerAnimated:YES];
+    [self performSegueWithIdentifier:@"didcapturepicture" sender:self];
+}
+//Function to get rid of the picker
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissModalViewControllerAnimated:YES];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Make sure your segue name in storyboard is the same as this line
+    if ([[segue identifier] isEqualToString:@"didcapturepicture"])
+    {
+        UploadImageController *vc = [segue destinationViewController];
+        [vc setImageToPost:[self imageToPost]];
+    }
 }
 
 
