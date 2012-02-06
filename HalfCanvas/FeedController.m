@@ -141,11 +141,11 @@
     {
         
         NSLog(@"Index: %d",indexPath.section);
-       if (self.tableView.decelerating == NO && self.tableView.dragging == NO )
-        {
+       //if (self.tableView.decelerating == NO && self.tableView.dragging == NO )
+        //{
             NSLog(@"Starting to load image: %d",indexPath.section);
             [self startImageDownload:[[QuestionCollection questions] objectAtIndex:indexPath.section] forIndexPath:indexPath];
-        }  
+        //}  
         [[feedCell imageView] setImage:nil];
     }
     else
@@ -379,6 +379,8 @@
         [vc setImageToPost:[self imageToPost]];
     }
 }
+
+
 
 
 @end

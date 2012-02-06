@@ -115,12 +115,11 @@
         }
     }
     
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard"                                                           bundle: nil];
-    
-    UINavigationController *nav = (UINavigationController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"navigationcontroller"];
-    
-    FeedController *fc = (FeedController*)[[nav viewControllers] objectAtIndex:0];
-    [[fc tableView] reloadData];
+
+    MainTabBarController *mtbc = (MainTabBarController *)self.window.rootViewController;
+    UINavigationController *nc = (UINavigationController *)[[mtbc viewControllers] objectAtIndex:0];
+    FeedController *feed = (FeedController *)[[nc viewControllers] objectAtIndex:0];
+    [[feed tableView] reloadData];
     
 }
 
