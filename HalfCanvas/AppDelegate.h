@@ -7,9 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QuestionCollection.h"
+#import "SBJson.h"
+#import "Question.h"
+#import "FeedController.h"
+#import "MainTabBarController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
+{
+    NSMutableData *receivedData;
+}
 
 @property (strong, nonatomic) UIWindow *window;
+@property (retain) NSMutableData *receivedData;
 
 @end

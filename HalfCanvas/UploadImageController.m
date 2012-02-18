@@ -1,18 +1,22 @@
 //
-//  MainTabBarController.m
+//  UploadImageController.m
 //  HalfCanvas
 //
-//  Created by Ryan Hittner on 1/15/12.
+//  Created by Ryan Hittner on 1/28/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "MainTabBarController.h"
+#import "UploadImageController.h"
 
+@implementation UploadImageController
 
-
-@implementation MainTabBarController
-
-//@synthesize managedObjectModel;
+@synthesize tags;
+@synthesize comments;
+@synthesize post;
+@synthesize cancel;
+@synthesize imageToPost;
+@synthesize scroller;
+@synthesize viewer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -20,7 +24,6 @@
     if (self) {
         // Custom initialization
     }
-    
     return self;
 }
 
@@ -45,18 +48,22 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-         
+    [scroller setScrollEnabled:true];
+    [scroller setContentSize:CGSizeMake(320,550)];
+    [comments.layer setBorderColor: [[UIColor grayColor] CGColor]];
+    [comments.layer setBorderWidth: 1.0];
+    [comments.layer setCornerRadius:5];
+    [comments.layer setMasksToBounds:YES];
     
+    [viewer setImage:imageToPost];
+    [super viewDidLoad];
 }
-
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-   
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -65,11 +72,10 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
--(void) goToFirstTab
-{
-    [self setSelectedIndex:0];
-    
-}
 
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+    [theTextField resignFirstResponder];
+    return YES;
+}
 
 @end

@@ -11,8 +11,9 @@
 @interface FeedCell : UITableViewCell
 {
     
-    
+    UIImageView *imageView;
 }
 
+@property (nonatomic, retain) IBOutlet UIImageView *imageView;
 
 @end

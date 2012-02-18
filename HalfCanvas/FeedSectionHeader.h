@@ -11,9 +11,12 @@
 @interface FeedSectionHeader : UIView
 {
     UILabel *user;
+
     
 }
 
 @property (retain) IBOutlet UILabel *user;
+
+
 
 @end

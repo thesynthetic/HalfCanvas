@@ -631,3 +631,9 @@ Quit the server with CONTROL-C.
   import sha
 [18/Feb/2012 07:45:04] "POST /create_user/ HTTP/1.1" 200 80
 [18/Feb/2012 07:45:17] "POST /create_user/ HTTP/1.1" 200 99
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
