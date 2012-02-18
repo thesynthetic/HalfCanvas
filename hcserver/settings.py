@@ -12,7 +12,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/Users/Ryeguy/Documents/Projects/HalfCanvas/hcserver/halfcanvas.db',                      # Or path to database file if using sqlite3.
+        'NAME': './halfcanvas.db',                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -116,8 +116,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    'hcserver',
-    # Uncomment the next line to enable admin documentation:
+    'hcserver',   
+# Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
 

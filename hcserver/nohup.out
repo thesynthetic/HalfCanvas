@@ -1,0 +1,633 @@
+[19/Jan/2012 21:55:06] "GET /questions/ HTTP/1.1" 200 455
+[19/Jan/2012 21:55:13] "GET /questions/ HTTP/1.1" 200 455
+[19/Jan/2012 21:55:28] "GET /admin HTTP/1.1" 301 0
+[19/Jan/2012 21:55:29] "GET /admin/ HTTP/1.1" 200 2028
+[19/Jan/2012 21:55:32] "POST /admin/ HTTP/1.1" 302 0
+[19/Jan/2012 21:55:32] "GET /admin/ HTTP/1.1" 200 5532
+[19/Jan/2012 21:55:34] "GET /admin/hcserver/question/ HTTP/1.1" 200 4380
+[19/Jan/2012 21:55:34] "GET /admin/jsi18n/ HTTP/1.1" 200 2158
+[19/Jan/2012 21:55:37] "GET /admin/hcserver/question/add/ HTTP/1.1" 200 5307
+[19/Jan/2012 21:55:37] "GET /admin/jsi18n/ HTTP/1.1" 200 2158
+[19/Jan/2012 21:58:47] "POST /admin/hcserver/question/add/ HTTP/1.1" 302 0
+[19/Jan/2012 21:58:48] "GET /admin/hcserver/question/ HTTP/1.1" 200 4706
+[19/Jan/2012 21:58:48] "GET /admin/jsi18n/ HTTP/1.1" 200 2158
+[19/Jan/2012 21:59:02] "GET /questions/ HTTP/1.1" 200 697
+[20/Jan/2012 05:02:02] "GET /questions/ HTTP/1.1" 200 697
+[20/Jan/2012 06:20:14] "GET /questions/ HTTP/1.1" 200 697
+[20/Jan/2012 20:50:56] "GET /questions/ HTTP/1.1" 200 697
+[21/Jan/2012 11:46:10] "GET /questions/ HTTP/1.1" 200 697
+[21/Jan/2012 20:27:46] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 09:44:24] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 09:44:27] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 09:44:37] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 09:46:07] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 09:46:11] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 10:33:29] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 11:02:23] "GET /questions HTTP/1.1" 301 0
+[22/Jan/2012 11:02:24] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 11:27:00] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 11:28:35] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 11:28:59] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 11:29:08] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 11:29:25] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 11:33:07] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 11:34:40] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 11:37:15] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 12:00:44] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 12:01:21] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 12:02:21] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 14:07:19] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 16:30:21] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 16:31:33] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 16:44:29] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 16:45:11] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 16:45:29] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 17:08:36] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 17:09:30] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 17:11:34] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 17:12:34] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 17:17:15] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 17:18:41] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 17:19:39] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 17:21:17] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 17:21:55] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 17:22:55] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 17:23:42] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 17:26:10] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 17:26:42] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 17:26:49] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 17:28:22] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 17:33:04] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 17:34:00] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 17:35:58] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 17:47:36] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 17:48:23] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 17:49:40] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 17:50:50] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 17:54:21] "GET /questions/ HTTP/1.1" 200 697
+[22/Jan/2012 18:00:42] "GET /questions/ HTTP/1.1" 200 697
+[23/Jan/2012 06:46:31] "GET /admin HTTP/1.1" 301 0
+[23/Jan/2012 06:46:31] "GET /admin/ HTTP/1.1" 200 5818
+[23/Jan/2012 06:46:33] "GET /admin/hcserver/question/ HTTP/1.1" 200 4560
+[23/Jan/2012 06:46:33] "GET /admin/jsi18n/ HTTP/1.1" 200 2158
+[23/Jan/2012 06:46:35] "GET /admin/hcserver/question/add/ HTTP/1.1" 200 5307
+[23/Jan/2012 06:46:35] "GET /admin/jsi18n/ HTTP/1.1" 200 2158
+[23/Jan/2012 06:46:48] "POST /admin/hcserver/question/add/ HTTP/1.1" 302 0
+[23/Jan/2012 06:46:48] "GET /admin/hcserver/question/ HTTP/1.1" 200 4886
+[23/Jan/2012 06:46:48] "GET /admin/jsi18n/ HTTP/1.1" 200 2158
+[23/Jan/2012 06:47:10] "GET /questions/ HTTP/1.1" 200 911
+[23/Jan/2012 08:06:25] "GET /questions/ HTTP/1.1" 200 911
+[23/Jan/2012 08:08:31] "GET / HTTP/1.1" 404 2103
+[23/Jan/2012 08:08:36] "GET /admin HTTP/1.1" 301 0
+[23/Jan/2012 08:08:36] "GET /admin/ HTTP/1.1" 200 2028
+[23/Jan/2012 08:08:39] "POST /admin/ HTTP/1.1" 302 0
+[23/Jan/2012 08:08:39] "GET /admin/ HTTP/1.1" 200 6104
+[23/Jan/2012 08:08:42] "GET /admin/hcserver/question/ HTTP/1.1" 200 4740
+[23/Jan/2012 08:08:42] "GET /admin/jsi18n/ HTTP/1.1" 200 2158
+[23/Jan/2012 08:08:43] "GET /admin/hcserver/question/4/ HTTP/1.1" 200 5555
+[23/Jan/2012 08:08:43] "GET /admin/jsi18n/ HTTP/1.1" 200 2158
+[23/Jan/2012 08:09:07] "GET /admin/hcserver/question/ HTTP/1.1" 200 4740
+[23/Jan/2012 08:09:07] "GET /admin/jsi18n/ HTTP/1.1" 200 2158
+[24/Jan/2012 07:29:48] "GET /questions/ HTTP/1.1" 200 911
+[24/Jan/2012 07:30:23] "GET /questions/ HTTP/1.1" 200 911
+[24/Jan/2012 07:31:00] "GET /questions/ HTTP/1.1" 200 911
+[24/Jan/2012 07:32:32] "GET /questions/ HTTP/1.1" 200 911
+[24/Jan/2012 07:32:46] "GET /questions/ HTTP/1.1" 200 911
+[24/Jan/2012 07:33:46] "GET /questions/ HTTP/1.1" 200 911
+[24/Jan/2012 07:35:17] "GET /questions/ HTTP/1.1" 200 911
+[24/Jan/2012 08:13:07] "GET /questions/ HTTP/1.1" 200 911
+[24/Jan/2012 13:53:09] "GET /questions/ HTTP/1.1" 200 911
+[24/Jan/2012 21:27:30] "GET /questions/ HTTP/1.1" 200 911
+[25/Jan/2012 19:28:46] "GET /questions/ HTTP/1.1" 200 911
+[25/Jan/2012 22:23:17] "GET /questions/ HTTP/1.1" 200 911
+[25/Jan/2012 22:23:54] "GET /questions/ HTTP/1.1" 200 911
+[26/Jan/2012 18:52:31] "GET /questions/ HTTP/1.1" 200 911
+[26/Jan/2012 20:08:04] "GET /questions/ HTTP/1.1" 200 911
+[26/Jan/2012 20:08:50] "GET /questions/ HTTP/1.1" 200 911
+[26/Jan/2012 20:11:59] "GET /questions/ HTTP/1.1" 200 911
+[26/Jan/2012 20:14:20] "GET /questions/ HTTP/1.1" 200 911
+[26/Jan/2012 20:16:54] "GET /questions/ HTTP/1.1" 200 911
+[26/Jan/2012 20:18:37] "GET /questions/ HTTP/1.1" 200 911
+[26/Jan/2012 20:19:45] "GET /questions/ HTTP/1.1" 200 911
+[26/Jan/2012 20:28:21] "GET /questions/ HTTP/1.1" 200 911
+[26/Jan/2012 20:32:35] "GET /questions/ HTTP/1.1" 200 911
+[26/Jan/2012 20:33:02] "GET /questions/ HTTP/1.1" 200 911
+[26/Jan/2012 20:37:45] "GET /questions/ HTTP/1.1" 200 911
+[26/Jan/2012 20:40:30] "GET /questions/ HTTP/1.1" 200 911
+[26/Jan/2012 20:54:25] "GET /questions/ HTTP/1.1" 200 911
+[26/Jan/2012 21:19:17] "GET /questions/ HTTP/1.1" 200 911
+[26/Jan/2012 21:21:04] "GET /questions/ HTTP/1.1" 200 911
+[26/Jan/2012 21:22:41] "GET /questions/ HTTP/1.1" 200 911
+[26/Jan/2012 21:25:32] "GET /questions/ HTTP/1.1" 200 911
+[26/Jan/2012 21:27:45] "GET /questions/ HTTP/1.1" 200 911
+[26/Jan/2012 21:29:15] "GET /questions/ HTTP/1.1" 200 911
+[26/Jan/2012 21:29:57] "GET /questions/ HTTP/1.1" 200 911
+[27/Jan/2012 07:15:47] "GET /questions/ HTTP/1.1" 200 911
+[27/Jan/2012 07:17:16] "GET /questions/ HTTP/1.1" 200 911
+[27/Jan/2012 07:36:28] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 07:41:26] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 07:47:00] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 07:48:13] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 07:51:48] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 07:52:44] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 07:57:10] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 07:58:16] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 08:03:09] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 08:11:07] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 08:13:29] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 08:26:47] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 08:27:54] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 08:29:18] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 08:29:50] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 08:30:49] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 08:33:50] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 08:34:46] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 08:36:10] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 08:53:18] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 08:57:02] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 08:57:57] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 09:33:33] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 09:35:12] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 10:04:12] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 10:07:35] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 10:09:36] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 10:15:47] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 10:19:57] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 10:20:55] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 10:21:55] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 10:23:02] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 10:29:14] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 10:31:29] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 10:34:22] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 10:38:00] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 10:38:47] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 10:46:23] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 10:49:29] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 11:52:48] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 16:20:32] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 17:32:23] "GET /questions/ HTTP/1.1" 200 911
+[28/Jan/2012 17:54:59] "GET /admin HTTP/1.1" 301 0
+[28/Jan/2012 17:55:04] "GET /questions HTTP/1.1" 301 0
+[28/Jan/2012 17:55:04] "GET /admin/ HTTP/1.1" 200 6104
+[28/Jan/2012 17:55:04] "GET /questions/ HTTP/1.1" 200 911
+[29/Jan/2012 11:26:30] "GET /questions/ HTTP/1.1" 200 911
+[29/Jan/2012 11:31:57] "GET /questions/ HTTP/1.1" 200 911
+[29/Jan/2012 11:32:34] "GET /questions HTTP/1.1" 301 0
+[29/Jan/2012 11:32:34] "GET /questions/ HTTP/1.1" 200 911
+[29/Jan/2012 11:37:54] "GET /questions/ HTTP/1.1" 200 911
+[29/Jan/2012 11:38:17] "GET /questions/ HTTP/1.1" 200 911
+[29/Jan/2012 11:41:14] "GET /questions/ HTTP/1.1" 200 911
+[29/Jan/2012 11:42:07] "GET /questions/ HTTP/1.1" 200 911
+[29/Jan/2012 11:44:11] "GET /questions/ HTTP/1.1" 200 911
+[29/Jan/2012 11:53:27] "GET /questions/ HTTP/1.1" 200 911
+[29/Jan/2012 14:14:47] "GET /questions/ HTTP/1.1" 200 911
+[29/Jan/2012 14:15:18] "GET /questions/ HTTP/1.1" 200 911
+[29/Jan/2012 14:16:44] "GET /questions/ HTTP/1.1" 200 911
+[29/Jan/2012 14:22:16] "GET /questions/ HTTP/1.1" 200 911
+[29/Jan/2012 14:23:20] "GET /questions/ HTTP/1.1" 200 911
+[29/Jan/2012 14:27:38] "GET /questions/ HTTP/1.1" 200 911
+[29/Jan/2012 14:27:50] "GET /questions/ HTTP/1.1" 200 911
+[29/Jan/2012 14:31:03] "GET /questions/ HTTP/1.1" 200 911
+[29/Jan/2012 14:31:22] "GET /questions/ HTTP/1.1" 200 911
+[29/Jan/2012 14:35:43] "GET /questions/ HTTP/1.1" 200 911
+[29/Jan/2012 14:36:50] "GET /questions/ HTTP/1.1" 200 911
+[29/Jan/2012 14:37:42] "GET /questions/ HTTP/1.1" 200 911
+[29/Jan/2012 17:14:16] "GET /questions/ HTTP/1.1" 200 911
+[30/Jan/2012 05:13:28] "GET /questions/ HTTP/1.1" 200 911
+[30/Jan/2012 19:29:43] "GET /questions/ HTTP/1.1" 200 911
+[30/Jan/2012 22:18:51] "GET /questions/ HTTP/1.1" 200 911
+[30/Jan/2012 22:36:06] "GET /questions/ HTTP/1.1" 200 911
+[30/Jan/2012 22:41:41] "GET /questions/ HTTP/1.1" 200 911
+[30/Jan/2012 22:47:42] "GET /questions/ HTTP/1.1" 200 911
+[30/Jan/2012 22:49:16] "GET /questions/ HTTP/1.1" 200 911
+[30/Jan/2012 22:50:56] "GET /questions/ HTTP/1.1" 200 911
+[30/Jan/2012 22:54:45] "GET /questions/ HTTP/1.1" 200 911
+[30/Jan/2012 22:57:31] "GET /questions/ HTTP/1.1" 200 911
+[30/Jan/2012 23:00:37] "GET /questions/ HTTP/1.1" 200 911
+[30/Jan/2012 23:00:55] "GET /questions/ HTTP/1.1" 200 911
+[30/Jan/2012 23:01:36] "GET /questions/ HTTP/1.1" 200 911
+[30/Jan/2012 23:01:58] "GET /questions/ HTTP/1.1" 200 911
+[30/Jan/2012 23:06:44] "GET /questions/ HTTP/1.1" 200 911
+[30/Jan/2012 23:07:08] "GET /questions/ HTTP/1.1" 200 911
+[30/Jan/2012 23:07:22] "GET /questions/ HTTP/1.1" 200 911
+[30/Jan/2012 23:23:42] "GET /questions/ HTTP/1.1" 200 911
+[31/Jan/2012 21:24:32] "GET /questions/ HTTP/1.1" 200 911
+[01/Feb/2012 07:45:47] "GET /questions/ HTTP/1.1" 200 911
+[02/Feb/2012 07:49:44] "GET /questions/ HTTP/1.1" 200 911
+[02/Feb/2012 09:02:50] "GET /questions/ HTTP/1.1" 200 911
+[02/Feb/2012 14:11:52] "GET http://proxyjudge2.proxyfire.net/fastenv HTTP/1.1" 404 1774
+Traceback (most recent call last):
+  File "/usr/lib/python2.6/SocketServer.py", line 283, in _handle_request_noblock
+    self.process_request(request, client_address)
+  File "/usr/lib/python2.6/SocketServer.py", line 309, in process_request
+    self.finish_request(request, client_address)
+  File "/usr/lib/python2.6/SocketServer.py", line 322, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 570, in __init__
+    BaseHTTPRequestHandler.__init__(self, *args, **kwargs)
+  File "/usr/lib/python2.6/SocketServer.py", line 617, in __init__
+    self.handle()
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 610, in handle
+    self.raw_requestline = self.rfile.readline()
+  File "/usr/lib/python2.6/socket.py", line 450, in readline
+    data = self._sock.recv(self._rbufsize)
+error: [Errno 104] Connection reset by peer
+Traceback (most recent call last):
+  File "/usr/lib/python2.6/SocketServer.py", line 283, in _handle_request_noblock
+    self.process_request(request, client_address)
+  File "/usr/lib/python2.6/SocketServer.py", line 309, in process_request
+    self.finish_request(request, client_address)
+  File "/usr/lib/python2.6/SocketServer.py", line 322, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 570, in __init__
+    BaseHTTPRequestHandler.__init__(self, *args, **kwargs)
+  File "/usr/lib/python2.6/SocketServer.py", line 617, in __init__
+    self.handle()
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 610, in handle
+    self.raw_requestline = self.rfile.readline()
+  File "/usr/lib/python2.6/socket.py", line 450, in readline
+    data = self._sock.recv(self._rbufsize)
+error: [Errno 104] Connection reset by peer
+[03/Feb/2012 11:30:48] "GET /questions/ HTTP/1.1" 200 911
+[03/Feb/2012 19:43:57] "GET /questions/ HTTP/1.1" 200 911
+[04/Feb/2012 06:57:03] "GET /questions/ HTTP/1.1" 200 911
+[04/Feb/2012 07:15:29] "GET /questions/ HTTP/1.1" 200 911
+[04/Feb/2012 12:20:09] "GET /questions/ HTTP/1.1" 200 911
+[04/Feb/2012 21:07:34] "GET /questions/ HTTP/1.1" 200 911
+[05/Feb/2012 11:39:53] "GET /questions/ HTTP/1.1" 200 911
+[05/Feb/2012 16:28:53] "GET /questions/ HTTP/1.1" 200 911
+[05/Feb/2012 16:36:37] "GET /questions/ HTTP/1.1" 200 911
+[05/Feb/2012 16:36:54] "GET /questions/ HTTP/1.1" 200 911
+[05/Feb/2012 16:37:32] "GET /questions/ HTTP/1.1" 200 911
+[05/Feb/2012 17:08:00] "GET /questions/ HTTP/1.1" 200 911
+[05/Feb/2012 17:08:45] "GET /questions/ HTTP/1.1" 200 911
+[05/Feb/2012 17:15:04] "GET /questions/ HTTP/1.1" 200 911
+[05/Feb/2012 17:16:57] "GET /questions/ HTTP/1.1" 200 911
+[05/Feb/2012 17:18:47] "GET /questions/ HTTP/1.1" 200 911
+[05/Feb/2012 17:26:41] "GET /questions/ HTTP/1.1" 200 911
+[05/Feb/2012 17:27:34] "GET /questions/ HTTP/1.1" 200 911
+[05/Feb/2012 17:43:57] "GET /questions/ HTTP/1.1" 200 911
+[05/Feb/2012 17:55:09] "GET /questions/ HTTP/1.1" 200 911
+[05/Feb/2012 17:59:30] "GET /questions/ HTTP/1.1" 200 911
+[05/Feb/2012 18:12:09] "GET /questions/ HTTP/1.1" 200 911
+[05/Feb/2012 18:12:55] "GET /questions/ HTTP/1.1" 200 911
+[05/Feb/2012 18:18:20] "GET /questions/ HTTP/1.1" 200 911
+[05/Feb/2012 18:29:01] "GET /questions/ HTTP/1.1" 200 911
+[05/Feb/2012 18:39:06] "GET /questions/ HTTP/1.1" 200 911
+[06/Feb/2012 11:17:07] "GET /questions/ HTTP/1.1" 200 911
+[06/Feb/2012 11:48:43] "GET /questions/ HTTP/1.1" 200 911
+[06/Feb/2012 11:54:58] "GET /questions/ HTTP/1.1" 200 911
+[06/Feb/2012 11:55:15] "GET /questions/ HTTP/1.1" 200 911
+Traceback (most recent call last):
+  File "/usr/lib/python2.6/SocketServer.py", line 283, in _handle_request_noblock
+    self.process_request(request, client_address)
+  File "/usr/lib/python2.6/SocketServer.py", line 309, in process_request
+    self.finish_request(request, client_address)
+  File "/usr/lib/python2.6/SocketServer.py", line 322, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 570, in __init__
+    BaseHTTPRequestHandler.__init__(self, *args, **kwargs)
+  File "/usr/lib/python2.6/SocketServer.py", line 617, in __init__
+    self.handle()
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 610, in handle
+    self.raw_requestline = self.rfile.readline()
+  File "/usr/lib/python2.6/socket.py", line 450, in readline
+    data = self._sock.recv(self._rbufsize)
+error: [Errno 104] Connection reset by peer
+[08/Feb/2012 12:25:56] "GET /questions/ HTTP/1.1" 200 911
+[09/Feb/2012 13:06:59] "GET /questions/ HTTP/1.1" 200 911
+[10/Feb/2012 13:46:18] "GET /questions/ HTTP/1.1" 200 911
+[12/Feb/2012 14:15:31] "GET /questions/ HTTP/1.1" 200 911
+[12/Feb/2012 14:18:23] "GET /questions/ HTTP/1.1" 200 911
+[12/Feb/2012 14:33:18] "GET /questions/ HTTP/1.1" 200 911
+[12/Feb/2012 14:34:57] "GET /questions/ HTTP/1.1" 200 911
+[12/Feb/2012 14:37:24] "GET /questions/ HTTP/1.1" 200 911
+[12/Feb/2012 14:38:01] "GET /questions/ HTTP/1.1" 200 911
+[12/Feb/2012 14:47:02] "GET /questions/ HTTP/1.1" 200 911
+[12/Feb/2012 14:56:42] "GET /questions HTTP/1.1" 301 0
+[12/Feb/2012 14:56:43] "GET /questions/ HTTP/1.1" 200 911
+[12/Feb/2012 14:56:49] "GET /admin HTTP/1.1" 301 0
+[12/Feb/2012 14:56:50] "GET /admin/ HTTP/1.1" 200 2028
+[12/Feb/2012 14:56:57] "POST /admin/ HTTP/1.1" 302 0
+[12/Feb/2012 14:56:58] "GET /admin/ HTTP/1.1" 200 6104
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+[12/Feb/2012 15:10:19] "GET /questions HTTP/1.1" 500 88388
+[12/Feb/2012 15:10:29] "GET /admin HTTP/1.1" 301 0
+[12/Feb/2012 15:10:38] "GET /admin/ HTTP/1.1" 500 378882
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+Error: That port is already in use.
+[12/Feb/2012 15:15:32] "GET /admin/ HTTP/1.1" 200 6104
+[12/Feb/2012 15:16:12] "GET /create_user HTTP/1.1" 404 2136
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+[12/Feb/2012 15:18:12] "GET /create_user HTTP/1.1" 500 80871
+[12/Feb/2012 15:18:59] "GET /create_user HTTP/1.1" 500 93461
+[12/Feb/2012 15:19:24] "GET /create_user HTTP/1.1" 500 80814
+[12/Feb/2012 15:20:06] "GET /create_user HTTP/1.1" 301 0
+[12/Feb/2012 15:20:06] "GET /create_user/ HTTP/1.1" 200 12
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+[12/Feb/2012 15:21:50] "GET /create_user/ HTTP/1.1" 200 12
+[12/Feb/2012 15:22:01] "GET /admin/ HTTP/1.1" 200 6104
+[12/Feb/2012 15:22:04] "GET /admin/auth/user/ HTTP/1.1" 200 6042
+[12/Feb/2012 15:22:04] "GET /admin/jsi18n/ HTTP/1.1" 200 2158
+[12/Feb/2012 15:22:19] "GET /admin/auth/user/2/ HTTP/1.1" 200 13627
+[12/Feb/2012 15:22:19] "GET /admin/jsi18n/ HTTP/1.1" 200 2158
+[12/Feb/2012 15:22:24] "GET /admin/auth/user/2/delete/ HTTP/1.1" 200 2240
+[12/Feb/2012 15:22:26] "POST /admin/auth/user/2/delete/ HTTP/1.1" 302 0
+[12/Feb/2012 15:22:26] "GET /admin/auth/user/ HTTP/1.1" 200 5875
+[12/Feb/2012 15:22:27] "GET /admin/jsi18n/ HTTP/1.1" 200 2158
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/S3.py:16: DeprecationWarning: the sha module is deprecated; use the hashlib module instead
+  import sha
+[12/Feb/2012 15:51:31] "GET /questions HTTP/1.1" 301 0
+[12/Feb/2012 15:51:31] "GET /admin HTTP/1.1" 301 0
+[12/Feb/2012 15:51:31] "GET /questions/ HTTP/1.1" 200 911
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/S3.py:16: DeprecationWarning: the sha module is deprecated; use the hashlib module instead
+  import sha
+[12/Feb/2012 15:59:35] "GET /questions/ HTTP/1.1" 200 911
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/S3.py:16: DeprecationWarning: the sha module is deprecated; use the hashlib module instead
+  import sha
+[12/Feb/2012 16:11:19] "GET /questions/ HTTP/1.1" 200 911
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+Error: That port is already in use.
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/S3.py:16: DeprecationWarning: the sha module is deprecated; use the hashlib module instead
+  import sha
+[12/Feb/2012 18:42:01] "GET /questions/ HTTP/1.1" 200 911
+[15/Feb/2012 19:14:34] "GET /questions/ HTTP/1.1" 200 911
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+Error: No module named oauth2appoauth2appoauth2app
+[16/Feb/2012 19:14:09] "GET /admin HTTP/1.1" 301 0
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/S3.py:16: DeprecationWarning: the sha module is deprecated; use the hashlib module instead
+  import sha
+[16/Feb/2012 19:14:10] "GET /admin/ HTTP/1.1" 200 6343
+[16/Feb/2012 19:14:14] "GET /create_user HTTP/1.1" 301 0
+[16/Feb/2012 19:14:14] "GET /create_user/ HTTP/1.1" 200 4
+[16/Feb/2012 19:14:19] "GET /create_user/ HTTP/1.1" 500 102736
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/S3.py:16: DeprecationWarning: the sha module is deprecated; use the hashlib module instead
+  import sha
+[18/Feb/2012 06:36:14] "GET /questions/ HTTP/1.1" 200 911
+[18/Feb/2012 06:36:19] "GET /create_user/ HTTP/1.1" 200 64
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+[18/Feb/2012 06:44:54] "GET /create_user/ HTTP/1.1" 500 76203
+[18/Feb/2012 06:44:56] "GET /create_user/ HTTP/1.1" 500 76204
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/S3.py:16: DeprecationWarning: the sha module is deprecated; use the hashlib module instead
+  import sha
+[18/Feb/2012 06:45:28] "GET /create_user/ HTTP/1.1" 500 66436
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/S3.py:16: DeprecationWarning: the sha module is deprecated; use the hashlib module instead
+  import sha
+[18/Feb/2012 06:47:04] "GET /create_user/ HTTP/1.1" 500 63091
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/S3.py:16: DeprecationWarning: the sha module is deprecated; use the hashlib module instead
+  import sha
+[18/Feb/2012 06:47:33] "GET /create_user/ HTTP/1.1" 500 66421
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/S3.py:16: DeprecationWarning: the sha module is deprecated; use the hashlib module instead
+  import sha
+[18/Feb/2012 06:52:50] "GET /create_user/ HTTP/1.1" 500 63709
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/S3.py:16: DeprecationWarning: the sha module is deprecated; use the hashlib module instead
+  import sha
+[18/Feb/2012 06:55:33] "GET /create_user/ HTTP/1.1" 200 94
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/S3.py:16: DeprecationWarning: the sha module is deprecated; use the hashlib module instead
+  import sha
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/views.py:2: DeprecationWarning: the md5 module is deprecated; use hashlib instead
+  import md5
+[18/Feb/2012 07:05:03] "GET /create_user/ HTTP/1.1" 200 94
+[18/Feb/2012 07:05:09] "GET / HTTP/1.1" 404 2216
+[18/Feb/2012 07:05:13] "GET /create_user/ HTTP/1.1" 200 94
+[18/Feb/2012 07:06:42] "POST /create_user HTTP/1.1" 500 60999
+[18/Feb/2012 07:07:46] "GET /create_user/ HTTP/1.1" 200 94
+[18/Feb/2012 07:08:39] "POST /create_user/ HTTP/1.1" 403 2326
+[18/Feb/2012 07:08:52] "POST /create_user/ HTTP/1.1" 403 2326
+[18/Feb/2012 07:09:36] "POST /create_user/ HTTP/1.1" 403 2326
+[18/Feb/2012 07:09:47] "POST /create_user/ HTTP/1.1" 403 2326
+[18/Feb/2012 07:12:23] "PO /create_user/ HTTP/1.1" 200 94
+[18/Feb/2012 07:12:50] "POST /create_user/ HTTP/1.1" 403 2326
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/S3.py:16: DeprecationWarning: the sha module is deprecated; use the hashlib module instead
+  import sha
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/views.py:2: DeprecationWarning: the md5 module is deprecated; use hashlib instead
+  import md5
+[18/Feb/2012 07:17:14] "POST /create_user/ HTTP/1.1" 200 94
+[18/Feb/2012 07:18:37] "POST /create_user/ HTTP/1.1" 200 64
+[18/Feb/2012 07:18:56] "POST /create_user/ HTTP/1.1" 200 64
+[18/Feb/2012 07:19:37] "POST /create_user/ HTTP/1.1" 200 64
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/S3.py:16: DeprecationWarning: the sha module is deprecated; use the hashlib module instead
+  import sha
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/views.py:2: DeprecationWarning: the md5 module is deprecated; use hashlib instead
+  import md5
+[18/Feb/2012 07:20:31] "POST /create_user/ HTTP/1.1" 200 93
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/S3.py:16: DeprecationWarning: the sha module is deprecated; use the hashlib module instead
+  import sha
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/views.py:2: DeprecationWarning: the md5 module is deprecated; use hashlib instead
+  import md5
+[18/Feb/2012 07:21:38] "POST /create_user/ HTTP/1.1" 500 120539
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/S3.py:16: DeprecationWarning: the sha module is deprecated; use the hashlib module instead
+  import sha
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/views.py:2: DeprecationWarning: the md5 module is deprecated; use hashlib instead
+  import md5
+[18/Feb/2012 07:22:32] "POST /create_user/ HTTP/1.1" 500 121241
+[18/Feb/2012 07:23:18] "GET /create_user/ HTTP/1.1" 200 94
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/S3.py:16: DeprecationWarning: the sha module is deprecated; use the hashlib module instead
+  import sha
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/views.py:2: DeprecationWarning: the md5 module is deprecated; use hashlib instead
+  import md5
+[18/Feb/2012 07:24:50] "POST /create_user/ HTTP/1.1" 500 82271
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/S3.py:16: DeprecationWarning: the sha module is deprecated; use the hashlib module instead
+  import sha
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/views.py:2: DeprecationWarning: the md5 module is deprecated; use hashlib instead
+  import md5
+[18/Feb/2012 07:31:02] "POST /create_user/ HTTP/1.1" 200 90
+[18/Feb/2012 07:31:16] "GET /admin HTTP/1.1" 301 0
+[18/Feb/2012 07:31:16] "GET /admin/ HTTP/1.1" 200 2028
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+[18/Feb/2012 07:31:35] "POST /admin/ HTTP/1.1" 302 0
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/S3.py:16: DeprecationWarning: the sha module is deprecated; use the hashlib module instead
+  import sha
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/views.py:2: DeprecationWarning: the md5 module is deprecated; use hashlib instead
+  import md5
+[18/Feb/2012 07:31:35] "GET /admin/ HTTP/1.1" 200 6343
+[18/Feb/2012 07:31:37] "GET /admin/auth/user/ HTTP/1.1" 200 6042
+[18/Feb/2012 07:31:38] "GET /admin/jsi18n/ HTTP/1.1" 200 2158
+[18/Feb/2012 07:31:50] "POST /create_user/ HTTP/1.1" 500 127453
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/S3.py:16: DeprecationWarning: the sha module is deprecated; use the hashlib module instead
+  import sha
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/views.py:2: DeprecationWarning: the md5 module is deprecated; use hashlib instead
+  import md5
+[18/Feb/2012 07:34:41] "POST /create_user/ HTTP/1.1" 200 93
+[18/Feb/2012 07:35:04] "POST /create_user/ HTTP/1.1" 500 127239
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/S3.py:16: DeprecationWarning: the sha module is deprecated; use the hashlib module instead
+  import sha
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/views.py:2: DeprecationWarning: the md5 module is deprecated; use hashlib instead
+  import md5
+[18/Feb/2012 07:36:59] "GET /admin/auth/user/ HTTP/1.1" 200 6648
+[18/Feb/2012 07:36:59] "GET /admin/jsi18n/ HTTP/1.1" 200 2158
+[18/Feb/2012 07:37:14] "POST /admin/auth/user/ HTTP/1.1" 200 2513
+[18/Feb/2012 07:37:16] "POST /admin/auth/user/ HTTP/1.1" 302 0
+[18/Feb/2012 07:37:16] "GET /admin/auth/user/ HTTP/1.1" 200 6153
+[18/Feb/2012 07:37:16] "GET /admin/jsi18n/ HTTP/1.1" 200 2158
+[18/Feb/2012 07:37:42] "POST /create_user/ HTTP/1.1" 200 71
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+/home/ec2-user/HalfCanvas/HalfCanvas/hcserver/../hcserver/S3.py:16: DeprecationWarning: the sha module is deprecated; use the hashlib module instead
+  import sha
+[18/Feb/2012 07:45:04] "POST /create_user/ HTTP/1.1" 200 80
+[18/Feb/2012 07:45:17] "POST /create_user/ HTTP/1.1" 200 99
