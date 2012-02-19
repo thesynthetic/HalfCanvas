@@ -32,13 +32,11 @@
 
 - (void)viewDidLoad
 {
-    loggedIn = false;
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    if ([prefs objectForKey:@"username"])
-    {
-        loggedIn = true;
-    }
+    
+    
     [super viewDidLoad];
+    
+    
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -56,7 +54,15 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-
+    
+    loggedIn = false;
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    if ([prefs objectForKey:@"logged_in"])
+    {
+        loggedIn = true;
+    }
+    
+    [[self tableView] reloadData];
     [super viewWillAppear:animated];
 }
 
@@ -94,7 +100,14 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 1;
+    if (loggedIn)
+    {
+        return 2;
+    }
+    else
+    {
+        return 1;
+    }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
@@ -115,21 +128,35 @@
     
     if (indexPath.section == 0)
     {
-        
-        if (loggedIn)
+        if (indexPath.row == 0)
         {
-            NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-            [[cell textLabel] setText:[prefs objectForKey:@"username"]];
+            if (loggedIn)
+            {
+                NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+                [[cell textLabel] setText:[prefs objectForKey:@"username"]];
+            }
+            else 
+            {
+                [[cell textLabel] setText:@"Sign In"];
+            }
         }
-        else 
+        if (indexPath.row == 1)
         {
-            [[cell textLabel] setText:@"Sign In"];
+            if (loggedIn)
+            {
+                [[cell textLabel] setText:@"Sign Out"];
+            }
         }
+            
+    }
+    else 
+    {
+        [[cell textLabel] setText:@"Other"];
         
     }
+    
 
     // Configure the cell...
-    
     return cell;
 }
 
@@ -177,12 +204,32 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    if (indexPath.section == 0)
+    {
+        if (indexPath.row == 0)
+        {
+            if (!loggedIn)
+            {
+                [self performSegueWithIdentifier:@"signin" sender:self];
+            }
+        }
+        if (indexPath.row == 1)
+        {
+            if (loggedIn)
+            {
+                NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+                [user setBool:false forKey:@"logged_in"];
+                [user setValue:nil forKey:@"access_token"];
+                [user setValue:nil forKey:@"username"];
+                loggedIn = false;
+                [tableView reloadData];
+            }
+        }
+    }
+    
 }
+
+
+
 
 @end
