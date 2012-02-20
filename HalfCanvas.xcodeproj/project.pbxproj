@@ -73,6 +73,7 @@
 		70C9308D14F125E8009441BE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70C9308C14F125E7009441BE /* MobileCoreServices.framework */; };
 		70C9308F14F12600009441BE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70C9308E14F12600009441BE /* libz.dylib */; };
 		70C9309214F18635009441BE /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C9309114F18635009441BE /* SignInViewController.m */; };
+		70C9309B14F1EC3E009441BE /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70C9309914F1EC3E009441BE /* Model.xcdatamodeld */; };
 		70D0BE9714C4929000CBF56C /* SectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70D0BE9614C4929000CBF56C /* SectionHeader.xib */; };
 		70D9D9AD14D7A71C00BEBE58 /* halfcanvas_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 70D9D9AC14D7A71C00BEBE58 /* halfcanvas_logo.png */; };
 		70E2EF9614D4431A00F02216 /* UploadImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70E2EF9514D4431A00F02216 /* UploadImageController.m */; };
@@ -197,6 +198,7 @@
 		70C9308E14F12600009441BE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		70C9309014F18635009441BE /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		70C9309114F18635009441BE /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
+		70C9309A14F1EC3E009441BE /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		70D0BE9614C4929000CBF56C /* SectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionHeader.xib; sourceTree = "<group>"; };
 		70D9D9AC14D7A71C00BEBE58 /* halfcanvas_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = halfcanvas_logo.png; sourceTree = "<group>"; };
 		70E2EF9414D4431A00F02216 /* UploadImageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadImageController.h; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 		7062EAC714BA47280055A979 = {
 			isa = PBXGroup;
 			children = (
+				70C9309914F1EC3E009441BE /* Model.xcdatamodeld */,
 				7062EADC14BA47290055A979 /* HalfCanvas */,
 				7062EAD514BA47280055A979 /* Frameworks */,
 				7062EAD314BA47280055A979 /* Products */,
@@ -584,6 +587,7 @@
 				70C9301714F121E2009441BE /* ASIS3ServiceRequest.m in Sources */,
 				70C9302F14F12292009441BE /* Reachability.m in Sources */,
 				70C9309214F18635009441BE /* SignInViewController.m in Sources */,
+				70C9309B14F1EC3E009441BE /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -700,6 +704,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		70C9309914F1EC3E009441BE /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				70C9309A14F1EC3E009441BE /* Model.xcdatamodel */,
+			);
+			currentVersion = 70C9309A14F1EC3E009441BE /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 7062EAC914BA47280055A979 /* Project object */;
 }
