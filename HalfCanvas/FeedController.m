@@ -17,6 +17,12 @@
 @synthesize picker;
 @synthesize imageToPost;
 
+@synthesize userE;
+@synthesize imageE;
+@synthesize questionE;
+@synthesize objectContext;
+
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -40,12 +46,13 @@
 - (void)viewDidLoad
 {
     self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
-}
-
--(IBAction)loadData
-{
+    [self loadData];
+    
+    
     [super viewDidLoad];
 }
+
+
 
 - (void)viewDidUnload
 {
@@ -378,6 +385,152 @@
         UploadImageController *vc = [segue destinationViewController];
         [vc setImageToPost:[self imageToPost]];
     }
+}
+
+#pragma mark - Server Connectivity
+
+-(IBAction)loadData
+{
+    NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com:8000/questions/"];
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    
+        
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    // Use when fetching text data
+    NSString *responseString = [request responseString];
+    
+    
+    objectContext = [self managedObjectContext];
+    if (objectContext != nil)
+    {
+        NSManagedObjectContext *context = [self managedObjectContext];
+        
+        
+        
+        User *userE = [NSEntityDescription
+                        insertNewObjectForEntityForName:@"User" 
+                                          inManagedObjectContext:context];
+        Question *questionE = [NSEntityDescription
+                       insertNewObjectForEntityForName:@"FailedBankInfo" 
+                       inManagedObjectContext:context];
+
+        
+        userE.name = @"Test Bank";
+        userE.bla = @"Testville";
+        userE.state = @"Testland";
+        
+        FailedBankDetails *failedBankDetails = [NSEntityDescription
+                                                insertNewObjectForEntityForName:@"FailedBankDetails" 
+                                                inManagedObjectContext:context];
+        failedBankDetails.closeDate = [NSDate date];
+        failedBankDetails.updatedDate = [NSDate date];
+        failedBankDetails.zip = [NSNumber numberWithInt:12345];
+        failedBankDetails.info = failedBankInfo;
+        failedBankInfo.details = failedBankDetails;
+        NSError *error;
+        if (![context save:&error]) {
+            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        }
+        
+    }
+        
+    SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
+    NSError *error = nil;
+    id jsonObjects = [jsonParser objectWithString:responseString error:&error];
+    
+    if ([jsonObjects isKindOfClass:[NSDictionary class]])
+    {
+        // treat as a dictionary, or reassign to a dictionary ivar
+    }
+    else if ([jsonObjects isKindOfClass:[NSArray class]])
+    {
+        //Load the server data into Core Data
+        
+        /*
+         for (NSDictionary *dict in jsonObjects)
+         {
+         Question *newQuestion = [[Question alloc] init];
+         NSDictionary *fieldDict = [dict objectForKey:@"fields"];
+         [newQuestion setDescription:[fieldDict objectForKey:@"description"]];
+         [newQuestion setImage_url:[fieldDict objectForKey:@"image_url"]];
+         [newQuestion setUser:[fieldDict objectForKey:@"user"]];
+         [[QuestionCollection   questions] addObject:newQuestion];
+         }
+         */
+    }
+    
+    // Use when fetching binary data
+    //NSData *responseData = [request responseData];
+    
+    
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    NSError *error = [request error];
+    
+    //Todo: Display Error Message
+}
+
+
+#pragma mark Core Data stack
+
+/**
+ Returns the managed object context for the application.
+ If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
+ */
+- (NSManagedObjectContext *)managedObjectContext
+{
+    
+    if (managedObjectContext != nil)
+    {
+        return managedObjectContext;
+    }
+    
+    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    if (coordinator != nil)
+    {
+        managedObjectContext = [[NSManagedObjectContext alloc] init];
+        [managedObjectContext setPersistentStoreCoordinator:coordinator];
+    }
+    return managedObjectContext;
+}
+
+/**
+ Returns the managed object model for the application.
+ If the model doesn't already exist, it is created from the application's model.
+ */
+- (NSManagedObjectModel *)managedObjectModel
+{
+    if (managedObjectModel != nil)
+    {
+        return managedObjectModel;
+    }
+    managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+    
+    return managedObjectModel;
+}
+
+/**
+ Returns the persistent store coordinator for the application.
+ If the coordinator doesn't already exist, it is created and the application's store added to it.
+ */
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
+{
+    
+    if (persistentStoreCoordinator != nil)
+    {
+        return persistentStoreCoordinator;
+    }
+    
+    persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    
+    return persistentStoreCoordinator;
 }
 
 

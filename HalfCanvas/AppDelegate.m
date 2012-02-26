@@ -16,6 +16,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    
     NSURLRequest *theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://stripedcanvas.com:8000/questions/"] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
     NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
     if (theConnection) {
@@ -103,7 +105,7 @@
     {
         // treat as an array or reassign to an array ivar.
         
-        
+        /*
         for (NSDictionary *dict in jsonObjects)
         {
             Question *newQuestion = [[Question alloc] init];
@@ -113,6 +115,7 @@
             [newQuestion setUser:[fieldDict objectForKey:@"user"]];
             [[QuestionCollection   questions] addObject:newQuestion];
         }
+         */
     }
     
 

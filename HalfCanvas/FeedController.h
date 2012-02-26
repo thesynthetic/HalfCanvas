@@ -7,13 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 #import "FeedCell.h"
 #import "SBJson.h"
 #import "Question.h"
+#import "User.h"
+#import "Image.h"
 #import "QuestionCollection.h"
 #import "MBProgressHUD.h"
 #import "IconDownloader.h"
 #import "UploadImageController.h"
+#import "ASIHTTPRequest.h"
+
 
 @interface FeedController : UITableViewController <IconDownloaderDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate>
 {
@@ -25,6 +30,18 @@
     UIActionSheet *popup;
     UIImagePickerController *picker;
     UIImage *imageToPost;
+    
+    
+    //Core Data
+    NSManagedObjectContext *managedObjectContext;
+    NSManagedObjectModel *managedObjectModel;
+    NSPersistentStoreCoordinator *persistentStoreCoordinator;
+    User *userE;
+    Image *imageE;
+    Question *questionE;
+    NSManagedObjectContext *objectContext;
+    
+    
 }
 
 -(IBAction)imageClick:(id)sender;
@@ -37,10 +54,23 @@
 @property (retain) UIImagePickerController *picker;
 @property (retain) UIImage *imageToPost;
 
+@property (retain) User *userE;
+@property (retain) Image *imageE;
+@property (retain) Question *questionE;
+@property (retain) NSManagedObjectContext *objectContext;
+
+-  (NSManagedObjectModel *)managedObjectModel;
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator;
+- (NSManagedObjectContext *)managedObjectContext;
+
+
 - (void)startImageDownload:(Question *)question forIndexPath:(NSIndexPath *)indexPath;
 - (void)loadImagesForOnscreenRows;
 -(void)startCamera;
 -(void)startPictureChooser;
+
+
+
 
 
 @end

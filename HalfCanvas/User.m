@@ -1,20 +1,20 @@
 //
-//  Question.m
+//  User.m
 //  HalfCanvas
 //
 //  Created by Ryan Hittner on 2/25/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "Question.h"
 #import "User.h"
 
 
-@implementation Question
+@implementation User
 
 @dynamic id;
-@dynamic image;
-@dynamic image_url;
-@dynamic user;
+@dynamic user_image;
+@dynamic user_image_url;
+@dynamic username;
+@dynamic question;
 
 @end

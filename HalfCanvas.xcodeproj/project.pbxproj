@@ -24,7 +24,6 @@
 		701881B014C37D90002B07D8 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 701881A214C37D90002B07D8 /* SBJsonTokeniser.m */; };
 		701881B114C37D90002B07D8 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 701881A414C37D90002B07D8 /* SBJsonUTF8Stream.m */; };
 		701881B214C37D90002B07D8 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 701881A614C37D90002B07D8 /* SBJsonWriter.m */; };
-		701881B514C38441002B07D8 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 701881B414C38441002B07D8 /* Question.m */; };
 		701881B714C38F9D002B07D8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701881B614C38F9D002B07D8 /* CoreData.framework */; };
 		701881C114C39D90002B07D8 /* QuestionCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 701881C014C39D90002B07D8 /* QuestionCollection.m */; };
 		701D2CC214C4E62500C075A4 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 701D2CC114C4E62500C075A4 /* MBProgressHUD.m */; };
@@ -80,6 +79,9 @@
 		70ECAA8414CC60CC00081EF3 /* 02-redo.png in Resources */ = {isa = PBXBuildFile; fileRef = 70ECAA8314CC60CC00081EF3 /* 02-redo.png */; };
 		70ECAA8714CC65EB00081EF3 /* 01-refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 70ECAA8614CC65EB00081EF3 /* 01-refresh.png */; };
 		70ECAA8E14CC79E700081EF3 /* IconDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 70ECAA8D14CC79E700081EF3 /* IconDownloader.m */; };
+		70FB34A614F92DDD00864FC2 /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FB34A514F92DDD00864FC2 /* Image.m */; };
+		70FB34A914F92DDE00864FC2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FB34A814F92DDD00864FC2 /* User.m */; };
+		70FB34AC14F92DDE00864FC2 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FB34AB14F92DDE00864FC2 /* Question.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,8 +118,6 @@
 		701881A414C37D90002B07D8 /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		701881A514C37D90002B07D8 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		701881A614C37D90002B07D8 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		701881B314C38441002B07D8 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
-		701881B414C38441002B07D8 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
 		701881B614C38F9D002B07D8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		701881BF14C39D90002B07D8 /* QuestionCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionCollection.h; sourceTree = "<group>"; };
 		701881C014C39D90002B07D8 /* QuestionCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionCollection.m; sourceTree = "<group>"; };
@@ -207,6 +207,12 @@
 		70ECAA8614CC65EB00081EF3 /* 01-refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01-refresh.png"; sourceTree = "<group>"; };
 		70ECAA8C14CC79E700081EF3 /* IconDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconDownloader.h; sourceTree = "<group>"; };
 		70ECAA8D14CC79E700081EF3 /* IconDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconDownloader.m; sourceTree = "<group>"; };
+		70FB34A414F92DDD00864FC2 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
+		70FB34A514F92DDD00864FC2 /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Image.m; sourceTree = "<group>"; };
+		70FB34A714F92DDD00864FC2 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		70FB34A814F92DDD00864FC2 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		70FB34AA14F92DDE00864FC2 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
+		70FB34AB14F92DDE00864FC2 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -329,9 +335,13 @@
 				7062EAE514BA47290055A979 /* AppDelegate.h */,
 				7062EAE614BA47290055A979 /* AppDelegate.m */,
 				701881BF14C39D90002B07D8 /* QuestionCollection.h */,
+				70FB34AA14F92DDE00864FC2 /* Question.h */,
+				70FB34AB14F92DDE00864FC2 /* Question.m */,
+				70FB34A714F92DDD00864FC2 /* User.h */,
+				70FB34A814F92DDD00864FC2 /* User.m */,
+				70FB34A414F92DDD00864FC2 /* Image.h */,
+				70FB34A514F92DDD00864FC2 /* Image.m */,
 				701881C014C39D90002B07D8 /* QuestionCollection.m */,
-				701881B314C38441002B07D8 /* Question.h */,
-				701881B414C38441002B07D8 /* Question.m */,
 				7005AEB214C4602600CCE435 /* ComposeAnswerController.h */,
 				7005AEB314C4602600CCE435 /* ComposeAnswerController.m */,
 				7005AEBA14C47D8600CCE435 /* FeedView */,
@@ -563,7 +573,6 @@
 				701881B014C37D90002B07D8 /* SBJsonTokeniser.m in Sources */,
 				701881B114C37D90002B07D8 /* SBJsonUTF8Stream.m in Sources */,
 				701881B214C37D90002B07D8 /* SBJsonWriter.m in Sources */,
-				701881B514C38441002B07D8 /* Question.m in Sources */,
 				701881C114C39D90002B07D8 /* QuestionCollection.m in Sources */,
 				7005AEB414C4602600CCE435 /* ComposeAnswerController.m in Sources */,
 				7005AEBD14C47DB700CCE435 /* FeedSectionHeader.m in Sources */,
@@ -588,6 +597,9 @@
 				70C9302F14F12292009441BE /* Reachability.m in Sources */,
 				70C9309214F18635009441BE /* SignInViewController.m in Sources */,
 				70C9309B14F1EC3E009441BE /* Model.xcdatamodeld in Sources */,
+				70FB34A614F92DDD00864FC2 /* Image.m in Sources */,
+				70FB34A914F92DDE00864FC2 /* User.m in Sources */,
+				70FB34AC14F92DDE00864FC2 /* Question.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
