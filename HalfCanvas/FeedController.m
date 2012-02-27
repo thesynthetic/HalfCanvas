@@ -22,6 +22,7 @@
 @synthesize questionE;
 @synthesize objectContext;
 
+@synthesize imageCache;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -46,8 +47,18 @@
 - (void)viewDidLoad
 {
     self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
-    [self loadData];
+    self.imageCache = [[NSMutableDictionary alloc] init];
     
+    if (!networkQueue) {
+        networkQueue = [[ASINetworkQueue alloc] init];
+    }
+    //failed = NO;
+    [networkQueue reset];
+    //[networkQueue setDownloadProgressDelegate:progressIndicator];
+    [networkQueue setRequestDidFinishSelector:@selector(imageFetchComplete:)];
+    [networkQueue setRequestDidFailSelector:@selector(imageFetchFailed:)];
+    [networkQueue setShowAccurateProgress:true];
+    [networkQueue setDelegate:self];
     
     [super viewDidLoad];
 }
@@ -89,13 +100,15 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[QuestionCollection questions] count];
+    //return [[QuestionCollection questions] count];
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    if ([[QuestionCollection questions] count] > 0) 
+    //if ([[QuestionCollection questions] count] > 0) 
+    if (true)
     {
         return 1;
     }
@@ -136,32 +149,32 @@
     static NSString *CellIdentifier = @"FeedCell";
     
     FeedCell *feedCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
     if (feedCell == nil) {
         feedCell = [[FeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    // Configure the cell...
     
-    
-    
-    if (![[[QuestionCollection questions] objectAtIndex:indexPath.section] image])
+    //if (![[[QuestionCollection questions] objectAtIndex:indexPath.section] image])
+    if ([imageCache objectForKey:@"https://s3.amazonaws.com/halfcanvas/problems/photo-1.jpg"] == nil)
     {
+        //If not cached
+        [[feedCell imageView] setImage:nil];
         
-        NSLog(@"Index: %d",indexPath.section);
-       //if (self.tableView.decelerating == NO && self.tableView.dragging == NO )
-        //{
-            NSLog(@"Starting to load image: %d",indexPath.section);
-            [self startImageDownload:[[QuestionCollection questions] objectAtIndex:indexPath.section] forIndexPath:indexPath];
-        //}  
+        ASIHTTPRequest *request;
+        request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@"https://s3.amazonaws.com/halfcanvas/problems/photo-1.jpg"]];
+        [request setDownloadProgressDelegate:[feedCell imageProgressIndicator]];
+        [networkQueue addOperation:request];
+        [networkQueue go];
         [[feedCell imageView] setImage:nil];
     }
     else
     {
-        
-        [[feedCell imageView] setImage:[[[QuestionCollection questions] objectAtIndex:indexPath.section] image]];
-    }
+        //If cached, load and display
 
-    
+        [[feedCell imageView] setImage:[imageCache objectForKey:@"https://s3.amazonaws.com/halfcanvas/problems/photo-1.jpg"]];
+        //[[feedCell imageView] setImage:[[[QuestionCollection questions] objectAtIndex:indexPath.section] image]];
+    }
     
     return feedCell;
 }
@@ -420,7 +433,7 @@
                        inManagedObjectContext:context];
 
         
-        userE.name = @"Test Bank";
+        /*userE.name = @"Test Bank";
         userE.bla = @"Testville";
         userE.state = @"Testland";
         
@@ -436,6 +449,7 @@
         if (![context save:&error]) {
             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
         }
+         */
         
     }
         
@@ -532,6 +546,43 @@
     
     return persistentStoreCoordinator;
 }
+
+
+- (void)imageFetchComplete:(ASIHTTPRequest *)request
+{
+	UIImage *img = [UIImage imageWithData:[request responseData]];
+    NSLog(@"Downloaded...%@",[[request url] absoluteString]);
+    [imageCache setObject:img forKey:[[request url] absoluteString]];
+    [[self tableView] reloadData];
+    
+    
+	/*if (img) {
+		if ([imageView1 image]) {
+			if ([imageView2 image]) {
+				[imageView3 setImage:img];
+			} else {
+				[imageView2 setImage:img];
+			}
+		} else {
+			[imageView1 setImage:img];
+		}
+	}
+     */
+}
+
+- (void)imageFetchFailed:(ASIHTTPRequest *)request
+{
+	/*
+     if (!failed) {
+		if ([[request error] domain] != NetworkRequestErrorDomain || [[request error] code] != ASIRequestCancelledErrorType) {
+			UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Download failed" message:@"Failed to download images" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+			[alertView show];
+		}
+		failed = YES;
+	}
+     */
+}
+
 
 
 

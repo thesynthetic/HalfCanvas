@@ -18,7 +18,9 @@
 #import "IconDownloader.h"
 #import "UploadImageController.h"
 #import "ASIHTTPRequest.h"
+#import "ASINetworkQueue.h"
 
+@class ASINetworkQueue;
 
 @interface FeedController : UITableViewController <IconDownloaderDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate>
 {
@@ -30,7 +32,7 @@
     UIActionSheet *popup;
     UIImagePickerController *picker;
     UIImage *imageToPost;
-    
+    NSMutableDictionary *imageCache;
     
     //Core Data
     NSManagedObjectContext *managedObjectContext;
@@ -41,6 +43,8 @@
     Question *questionE;
     NSManagedObjectContext *objectContext;
     
+    //ASIHttp Variables
+    ASINetworkQueue *networkQueue;
     
 }
 
@@ -48,6 +52,7 @@
 -(IBAction)loadData;
 -(IBAction)cameraButtonClick;
 
+@property (retain) NSMutableDictionary *imageCache;
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
 @property (retain) NSArray *questions;
 @property (retain) UIActionSheet *popup;
@@ -70,6 +75,8 @@
 -(void)startPictureChooser;
 
 
+- (void)imageFetchComplete:(ASIHTTPRequest *)request;
+- (void)imageFetchFailed:(ASIHTTPRequest *)request;
 
 
 

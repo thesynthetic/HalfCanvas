@@ -12,8 +12,10 @@
 {
     
     UIImageView *imageView;
+    UIProgressView *imageProgressIndicator;
 }
 
 @property (nonatomic, retain) IBOutlet UIImageView *imageView;
+@property (nonatomic, retain) IBOutlet UIProgressView *imageProgressIndicator;
 
 @end

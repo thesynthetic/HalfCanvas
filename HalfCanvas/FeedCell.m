@@ -11,6 +11,7 @@
 @implementation FeedCell
 
 @synthesize imageView;
+@synthesize imageProgressIndicator;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
