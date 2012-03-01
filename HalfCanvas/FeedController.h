@@ -26,6 +26,7 @@
 @interface FeedController : UITableViewController <IconDownloaderDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, MBProgressHUDDelegate>
 {
     QuestionCollection *qcol;
+    NSMutableArray *qc;
     
     NSArray *questions;
     MBProgressHUD *HUD;
@@ -48,6 +49,7 @@
 -(IBAction)loadData;
 -(IBAction)cameraButtonClick;
 
+@property (retain) NSMutableArray *qc;
 @property (retain) QuestionCollection *qcol;
 @property (retain) NSMutableDictionary *imageCache;
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
@@ -55,19 +57,19 @@
 @property (retain) UIActionSheet *popup;
 @property (retain) UIImagePickerController *picker;
 @property (retain) UIImage *imageToPost;
+//
+//@property (retain) User *userE;
+//@property (retain) Image *imageE;
+//@property (retain) Question *questionE;
+//@property (retain) NSManagedObjectContext *objectContext;
 
-@property (retain) User *userE;
-@property (retain) Image *imageE;
-@property (retain) Question *questionE;
-@property (retain) NSManagedObjectContext *objectContext;
+//-  (NSManagedObjectModel *)managedObjectModel;
+//- (NSPersistentStoreCoordinator *)persistentStoreCoordinator;
+//- (NSManagedObjectContext *)managedObjectContext;
 
--  (NSManagedObjectModel *)managedObjectModel;
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator;
-- (NSManagedObjectContext *)managedObjectContext;
-
-
-- (void)startImageDownload:(Question *)question forIndexPath:(NSIndexPath *)indexPath;
-- (void)loadImagesForOnscreenRows;
+//
+//- (void)startImageDownload:(Question *)question forIndexPath:(NSIndexPath *)indexPath;
+//- (void)loadImagesForOnscreenRows;
 -(void)startCamera;
 -(void)startPictureChooser;
 

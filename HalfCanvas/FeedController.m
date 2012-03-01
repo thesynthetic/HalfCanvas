@@ -17,6 +17,7 @@
 @synthesize picker;
 @synthesize imageToPost;
 @synthesize qcol;
+@synthesize qc;
 
 @synthesize imageCache;
 
@@ -42,6 +43,9 @@
 
 - (void)viewDidLoad
 {
+
+    qc = [[NSMutableArray alloc] init];
+    
     self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
     self.imageCache = [[NSMutableDictionary alloc] init];
     
@@ -100,13 +104,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[qcol questionArray] count];
+    return [qc count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    if ([[qcol questionArray] count] > 0) 
+    if ([qc count] > 0) 
     {
         return 1;
     }
@@ -120,15 +124,28 @@
 
 -  (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if ([[qcol questionArray] count] > 0) 
+    if ([qc count] > 0) 
     {
         CGRect  viewRect = CGRectMake(0, 0, 320, 40);
         UIView* myView = [[UIView alloc] initWithFrame:viewRect];
         [myView setBackgroundColor:[UIColor whiteColor]];
         UILabel *userLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 10, 100, 20)];
         UIImageView *userImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5,5,30,30)];
-        [userImageView setImage:[UIImage imageNamed:@"profile_picture.jpg"]];
-        Question *test = [[qcol questionArray] objectAtIndex:section];
+        UIImage *tempImg = [imageCache objectForKey:[[qc objectAtIndex:section] user_profile_image_url]];
+                                                     
+        if (tempImg != nil)
+        {
+            [userImageView setImage:tempImg];
+        }
+        else 
+        {
+            ASIHTTPRequest *request;
+            request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[[qc objectAtIndex:section] user_profile_image_url]]];
+            [networkQueue addOperation:request];
+            [networkQueue go];
+        }
+        
+        Question *test = [qc objectAtIndex:section];
         [userLabel setFont:[UIFont boldSystemFontOfSize:13.0]];
         [userLabel setText:[test username]];
         [myView addSubview:userLabel];
@@ -151,29 +168,44 @@
     if (feedCell == nil) {
         feedCell = [[FeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+
+    UIImage *tempImg = [imageCache objectForKey:[[qc objectAtIndex:indexPath.section] image_url]];
     
-    
-    //if (![[[QuestionCollection questions] objectAtIndex:indexPath.section] image])
-    if ([imageCache objectForKey:@"https://s3.amazonaws.com/halfcanvas/problems/photo-1.jpg"] == nil)
+    if (tempImg != nil)
     {
-        //If not cached
-        [[feedCell imageView] setImage:nil];
-        
+        [[feedCell imageView] setImage:tempImg];
+    }
+    else 
+    {
         ASIHTTPRequest *request;
-        request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@"https://s3.amazonaws.com/halfcanvas/problems/photo-1.jpg"]];
+        request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[[qc objectAtIndex:indexPath.section] image_url]]];
         [request setDownloadProgressDelegate:[feedCell imageProgressIndicator]];
         [networkQueue addOperation:request];
         [networkQueue go];
-        [[feedCell imageView] setImage:nil];
     }
-    else
-    {
-        //If cached, load and display
 
-        [[feedCell imageView] setImage:[imageCache objectForKey:@"https://s3.amazonaws.com/halfcanvas/problems/photo-1.jpg"]];
-        //[[feedCell imageView] setImage:[[[QuestionCollection questions] objectAtIndex:indexPath.section] image]];
-    }
     
+    //if (![[[QuestionCollection questions] objectAtIndex:indexPath.section] image])
+//    if ([imageCache objectForKey:@"https://s3.amazonaws.com/halfcanvas/problems/photo-1.jpg"] == nil)
+//    {
+//        //If not cached
+//        [[feedCell imageView] setImage:nil];
+//        
+//        ASIHTTPRequest *request;
+//        request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@"https://s3.amazonaws.com/halfcanvas/problems/photo-1.jpg"]];
+//        [request setDownloadProgressDelegate:[feedCell imageProgressIndicator]];
+//        [networkQueue addOperation:request];
+//        [networkQueue go];
+//        [[feedCell imageView] setImage:nil];
+//    }
+//    else
+//    {
+//        //If cached, load and display
+//
+//        [[feedCell imageView] setImage:[imageCache objectForKey:@"https://s3.amazonaws.com/halfcanvas/problems/photo-1.jpg"]];
+//        //[[feedCell imageView] setImage:[[[QuestionCollection questions] objectAtIndex:indexPath.section] image]];
+//    }
+//    
     return feedCell;
 }
 
@@ -330,8 +362,10 @@
 - (void)cameraButtonClick
 {
     popup = [[UIActionSheet alloc] initWithTitle:@"Upload Photo" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"From album", nil];
-    [popup setActionSheetStyle:UIActionSheetStyleBlackOpaque];
-    [popup showInView:self.view];
+    [popup showFromTabBar:self.tabBarController.tabBar];
+    
+    //[popup setActionSheetStyle:UIActionSheetStyleBlackOpaque];
+//    [popup showInView:self.view];
     
 }
 
@@ -343,14 +377,14 @@
         [self startPictureChooser];
     } 
     else if (buttonIndex == 2) {
-        [popup dismissWithClickedButtonIndex:buttonIndex animated:true];  
+//        [popup dismissWithClickedButtonIndex:buttonIndex animated:true];  
     }
 }
 
--(void)actionSheetCancel:(UIActionSheet *)actionSheet   
-{
-    NSLog(@"cancel");
-}
+//-(void)actionSheetCancel:(UIActionSheet *)actionSheet   
+//{
+//    NSLog(@"cancel");
+//}
 
 
 #pragma mark - Image Picker
@@ -406,8 +440,9 @@
     NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com:8000/questions/"];
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     [request setDelegate:self];
-    [request startAsynchronous];
     [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
+    [request startAsynchronous];
+
     
     //Show HUD
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
@@ -426,7 +461,7 @@
     NSLog(@"%@", responseString);
     
     // Parse JSON Data and create question collection
-    qcol = [[QuestionCollection alloc] init];
+
     
     SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
     NSError *error = nil;
@@ -450,7 +485,8 @@
             [newQuestion setDescription:[dict objectForKey:@"description"]];
             [newQuestion setUser_profile_image_url:[dict objectForKey:@"user_profile_image_url"]];             
 
-            [[qcol questionArray] addObject:newQuestion];
+            [qc addObject:newQuestion];
+            NSLog(@"%d",[qc count]);
         }
     }
     
@@ -473,20 +509,6 @@
     NSLog(@"Downloaded...%@",[[request url] absoluteString]);
     [imageCache setObject:img forKey:[[request url] absoluteString]];
     [[self tableView] reloadData];
-    
-    
-	/*if (img) {
-		if ([imageView1 image]) {
-			if ([imageView2 image]) {
-				[imageView3 setImage:img];
-			} else {
-				[imageView2 setImage:img];
-			}
-		} else {
-			[imageView1 setImage:img];
-		}
-	}
-     */
 }
 
 - (void)imageFetchFailed:(ASIHTTPRequest *)request
