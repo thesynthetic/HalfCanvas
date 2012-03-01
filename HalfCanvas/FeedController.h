@@ -19,11 +19,14 @@
 #import "UploadImageController.h"
 #import "ASIHTTPRequest.h"
 #import "ASINetworkQueue.h"
+#import "ASIDownloadCache.h"
 
 @class ASINetworkQueue;
 
-@interface FeedController : UITableViewController <IconDownloaderDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate>
+@interface FeedController : UITableViewController <IconDownloaderDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, MBProgressHUDDelegate>
 {
+    QuestionCollection *qcol;
+    
     NSArray *questions;
     MBProgressHUD *HUD;
     NSMutableData *receivedData;   
@@ -34,17 +37,10 @@
     UIImage *imageToPost;
     NSMutableDictionary *imageCache;
     
-    //Core Data
-    NSManagedObjectContext *managedObjectContext;
-    NSManagedObjectModel *managedObjectModel;
-    NSPersistentStoreCoordinator *persistentStoreCoordinator;
-    User *userE;
-    Image *imageE;
-    Question *questionE;
-    NSManagedObjectContext *objectContext;
-    
     //ASIHttp Variables
     ASINetworkQueue *networkQueue;
+
+    
     
 }
 
@@ -52,6 +48,7 @@
 -(IBAction)loadData;
 -(IBAction)cameraButtonClick;
 
+@property (retain) QuestionCollection *qcol;
 @property (retain) NSMutableDictionary *imageCache;
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
 @property (retain) NSArray *questions;

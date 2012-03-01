@@ -18,13 +18,13 @@
     // Override point for customization after application launch.
     
     
-    NSURLRequest *theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://stripedcanvas.com:8000/questions/"] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-    NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
-    if (theConnection) {
-        receivedData = [NSMutableData data];
-    } else {
-        // Todo 2.0: Inform the user that the connection failed.
-    }
+//    NSURLRequest *theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://stripedcanvas.com:8000/questions/"] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+//    NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+//    if (theConnection) {
+//        receivedData = [NSMutableData data];
+//    } else {
+//        // Todo 2.0: Inform the user that the connection failed.
+//    }
     
     
     
@@ -89,42 +89,42 @@
           [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    [[QuestionCollection questions] removeAllObjects];
-    NSString *txt = [[NSString alloc] initWithData:receivedData encoding: NSASCIIStringEncoding];    
-    SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
-    NSError *error = nil;
-    id jsonObjects = [jsonParser objectWithString:txt error:&error];
-    
-    if ([jsonObjects isKindOfClass:[NSDictionary class]])
-    {
-        // treat as a dictionary, or reassign to a dictionary ivar
-    }
-    else if ([jsonObjects isKindOfClass:[NSArray class]])
-    {
-        // treat as an array or reassign to an array ivar.
-        
-        /*
-        for (NSDictionary *dict in jsonObjects)
-        {
-            Question *newQuestion = [[Question alloc] init];
-            NSDictionary *fieldDict = [dict objectForKey:@"fields"];
-            [newQuestion setDescription:[fieldDict objectForKey:@"description"]];
-            [newQuestion setImage_url:[fieldDict objectForKey:@"image_url"]];
-            [newQuestion setUser:[fieldDict objectForKey:@"user"]];
-            [[QuestionCollection   questions] addObject:newQuestion];
-        }
-         */
-    }
-    
-
-    MainTabBarController *mtbc = (MainTabBarController *)self.window.rootViewController;
-    UINavigationController *nc = (UINavigationController *)[[mtbc viewControllers] objectAtIndex:0];
-    FeedController *feed = (FeedController *)[[nc viewControllers] objectAtIndex:0];
-    [[feed tableView] reloadData];
-    
-}
+//- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+//{
+//    [[QuestionCollection questions] removeAllObjects];
+//    NSString *txt = [[NSString alloc] initWithData:receivedData encoding: NSASCIIStringEncoding];    
+//    SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
+//    NSError *error = nil;
+//    id jsonObjects = [jsonParser objectWithString:txt error:&error];
+//    
+//    if ([jsonObjects isKindOfClass:[NSDictionary class]])
+//    {
+//        // treat as a dictionary, or reassign to a dictionary ivar
+//    }
+//    else if ([jsonObjects isKindOfClass:[NSArray class]])
+//    {
+//        // treat as an array or reassign to an array ivar.
+//        
+//        /*
+//        for (NSDictionary *dict in jsonObjects)
+//        {
+//            Question *newQuestion = [[Question alloc] init];
+//            NSDictionary *fieldDict = [dict objectForKey:@"fields"];
+//            [newQuestion setDescription:[fieldDict objectForKey:@"description"]];
+//            [newQuestion setImage_url:[fieldDict objectForKey:@"image_url"]];
+//            [newQuestion setUser:[fieldDict objectForKey:@"user"]];
+//            [[QuestionCollection   questions] addObject:newQuestion];
+//        }
+//         */
+//    }
+//    
+//
+//    MainTabBarController *mtbc = (MainTabBarController *)self.window.rootViewController;
+//    UINavigationController *nc = (UINavigationController *)[[mtbc viewControllers] objectAtIndex:0];
+//    FeedController *feed = (FeedController *)[[nc viewControllers] objectAtIndex:0];
+//    [[feed tableView] reloadData];
+//    
+//}
 
 
 

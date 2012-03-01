@@ -16,11 +16,7 @@
 @synthesize popup;
 @synthesize picker;
 @synthesize imageToPost;
-
-@synthesize userE;
-@synthesize imageE;
-@synthesize questionE;
-@synthesize objectContext;
+@synthesize qcol;
 
 @synthesize imageCache;
 
@@ -54,12 +50,16 @@
     }
     //failed = NO;
     [networkQueue reset];
-    //[networkQueue setDownloadProgressDelegate:progressIndicator];
     [networkQueue setRequestDidFinishSelector:@selector(imageFetchComplete:)];
     [networkQueue setRequestDidFailSelector:@selector(imageFetchFailed:)];
     [networkQueue setShowAccurateProgress:true];
     [networkQueue setDelegate:self];
     
+    //Turn on caching and set defaults
+    [ASIHTTPRequest setDefaultCache:[ASIDownloadCache sharedCache]];
+    
+    
+    [self loadData];
     [super viewDidLoad];
 }
 
@@ -100,15 +100,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    //return [[QuestionCollection questions] count];
-    return 1;
+    return [[qcol questionArray] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    //if ([[QuestionCollection questions] count] > 0) 
-    if (true)
+    if ([[qcol questionArray] count] > 0) 
     {
         return 1;
     }
@@ -122,7 +120,7 @@
 
 -  (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if ([[QuestionCollection questions] count] > 0) 
+    if ([[qcol questionArray] count] > 0) 
     {
         CGRect  viewRect = CGRectMake(0, 0, 320, 40);
         UIView* myView = [[UIView alloc] initWithFrame:viewRect];
@@ -130,12 +128,12 @@
         UILabel *userLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 10, 100, 20)];
         UIImageView *userImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5,5,30,30)];
         [userImageView setImage:[UIImage imageNamed:@"profile_picture.jpg"]];
-        Question *test = [[QuestionCollection questions] objectAtIndex:section];
+        Question *test = [[qcol questionArray] objectAtIndex:section];
         [userLabel setFont:[UIFont boldSystemFontOfSize:13.0]];
-        [userLabel setText:[test user]];
+        [userLabel setText:[test username]];
         [myView addSubview:userLabel];
         [myView addSubview:userImageView];
-
+        
         return myView;
     }
     else
@@ -265,67 +263,67 @@
 }
 
 
-//New Functions
-- (void)startImageDownload:(Question *)question forIndexPath:(NSIndexPath *)indexPath
-{
-    IconDownloader *iconDownloader = [imageDownloadsInProgress objectForKey:indexPath];
-    if (iconDownloader == nil) 
-    {
-        iconDownloader = [[IconDownloader alloc] init];
-        iconDownloader.question = [[QuestionCollection questions] objectAtIndex:indexPath.section];
-        NSLog(@"Downloading index: %d",indexPath.section);
-        iconDownloader.indexPath = indexPath;
-        iconDownloader.delegate = self;
-        [imageDownloadsInProgress setObject:iconDownloader forKey:indexPath];
-        [iconDownloader startDownload];
-    }
-}
+////New Functions
+//- (void)startImageDownload:(Question *)question forIndexPath:(NSIndexPath *)indexPath
+//{
+//    IconDownloader *iconDownloader = [imageDownloadsInProgress objectForKey:indexPath];
+//    if (iconDownloader == nil) 
+//    {
+//        iconDownloader = [[IconDownloader alloc] init];
+//        iconDownloader.question = [[QuestionCollection questions] objectAtIndex:indexPath.section];
+//        NSLog(@"Downloading index: %d",indexPath.section);
+//        iconDownloader.indexPath = indexPath;
+//        iconDownloader.delegate = self;
+//        [imageDownloadsInProgress setObject:iconDownloader forKey:indexPath];
+//        [iconDownloader startDownload];
+//    }
+//}
 
-// called by our ImageDownloader when an icon is ready to be displayed
-- (void)appImageDidLoad:(NSIndexPath *)indexPath
-{
-    IconDownloader *iconDownloader = [imageDownloadsInProgress objectForKey:indexPath];
-    if (iconDownloader != nil)
-    {
-        FeedCell *feedCell = [self.tableView cellForRowAtIndexPath:indexPath];
-        
-        // Display the newly loaded image
-        [[[QuestionCollection questions] objectAtIndex:indexPath.section] setImage:iconDownloader.question.image];
-        feedCell.imageView.image = iconDownloader.question.image;
-    }
-}
+//// called by our ImageDownloader when an icon is ready to be displayed
+//- (void)appImageDidLoad:(NSIndexPath *)indexPath
+//{
+//    IconDownloader *iconDownloader = [imageDownloadsInProgress objectForKey:indexPath];
+//    if (iconDownloader != nil)
+//    {
+//        FeedCell *feedCell = [self.tableView cellForRowAtIndexPath:indexPath];
+//        
+//        // Display the newly loaded image
+//        [[[QuestionCollection questions] objectAtIndex:indexPath.section] setImage:iconDownloader.question.image];
+//        feedCell.imageView.image = iconDownloader.question.image;
+//    }
+//}
 
 
-- (void)loadImagesForOnscreenRows
-{
-    if ([[QuestionCollection questions] count] > 0)
-    {
-        NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
-        for (NSIndexPath *indexPath in visiblePaths)
-        {
-            Question *question = [[QuestionCollection questions] objectAtIndex:indexPath.section];
-            
-            if (!question.image) // avoid the app icon download if the app already has an icon
-            {
-                [self startImageDownload:question forIndexPath:indexPath];
-            }
-        }
-    }
-}
+//- (void)loadImagesForOnscreenRows
+//{
+//    if ([[QuestionCollection questions] count] > 0)
+//    {
+//        NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
+//        for (NSIndexPath *indexPath in visiblePaths)
+//        {
+//            Question *question = [[QuestionCollection questions] objectAtIndex:indexPath.section];
+//            
+//            if (!question.image) // avoid the app icon download if the app already has an icon
+//            {
+//                [self startImageDownload:question forIndexPath:indexPath];
+//            }
+//        }
+//    }
+//}
 
-// Load images for all onscreen rows when scrolling is finished
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    if (!decelerate)
-	{
-        [self loadImagesForOnscreenRows];
-    }
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    [self loadImagesForOnscreenRows];
-}
+//// Load images for all onscreen rows when scrolling is finished
+//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+//{
+//    if (!decelerate)
+//	{
+//        [self loadImagesForOnscreenRows];
+//    }
+//}
+//
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+//{
+//    [self loadImagesForOnscreenRows];
+//}
 
 #pragma mark - Popup Menu for Camera
 
@@ -343,15 +341,15 @@
         [self startCamera];
     } else if (buttonIndex == 1) {
         [self startPictureChooser];
-    } else if (buttonIndex == 2) {
+    } 
+    else if (buttonIndex == 2) {
         [popup dismissWithClickedButtonIndex:buttonIndex animated:true];  
     }
 }
 
 -(void)actionSheetCancel:(UIActionSheet *)actionSheet   
 {
-    
-    
+    NSLog(@"cancel");
 }
 
 
@@ -402,57 +400,34 @@
 
 #pragma mark - Server Connectivity
 
+//Load JSON Data from Server
 -(IBAction)loadData
 {
     NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com:8000/questions/"];
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     [request setDelegate:self];
     [request startAsynchronous];
+    [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
     
-        
+    //Show HUD
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+	[self.navigationController.view addSubview:HUD];
+    
+    HUD.delegate = self;
+    HUD.labelText = @"Loading";
+    
+    [HUD show:YES];
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
     // Use when fetching text data
     NSString *responseString = [request responseString];
+    NSLog(@"%@", responseString);
     
+    // Parse JSON Data and create question collection
+    qcol = [[QuestionCollection alloc] init];
     
-    objectContext = [self managedObjectContext];
-    if (objectContext != nil)
-    {
-        NSManagedObjectContext *context = [self managedObjectContext];
-        
-        
-        
-        User *userE = [NSEntityDescription
-                        insertNewObjectForEntityForName:@"User" 
-                                          inManagedObjectContext:context];
-        Question *questionE = [NSEntityDescription
-                       insertNewObjectForEntityForName:@"FailedBankInfo" 
-                       inManagedObjectContext:context];
-
-        
-        /*userE.name = @"Test Bank";
-        userE.bla = @"Testville";
-        userE.state = @"Testland";
-        
-        FailedBankDetails *failedBankDetails = [NSEntityDescription
-                                                insertNewObjectForEntityForName:@"FailedBankDetails" 
-                                                inManagedObjectContext:context];
-        failedBankDetails.closeDate = [NSDate date];
-        failedBankDetails.updatedDate = [NSDate date];
-        failedBankDetails.zip = [NSNumber numberWithInt:12345];
-        failedBankDetails.info = failedBankInfo;
-        failedBankInfo.details = failedBankDetails;
-        NSError *error;
-        if (![context save:&error]) {
-            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-        }
-         */
-        
-    }
-        
     SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
     NSError *error = nil;
     id jsonObjects = [jsonParser objectWithString:responseString error:&error];
@@ -465,22 +440,22 @@
     {
         //Load the server data into Core Data
         
-        /*
-         for (NSDictionary *dict in jsonObjects)
-         {
-         Question *newQuestion = [[Question alloc] init];
-         NSDictionary *fieldDict = [dict objectForKey:@"fields"];
-         [newQuestion setDescription:[fieldDict objectForKey:@"description"]];
-         [newQuestion setImage_url:[fieldDict objectForKey:@"image_url"]];
-         [newQuestion setUser:[fieldDict objectForKey:@"user"]];
-         [[QuestionCollection   questions] addObject:newQuestion];
-         }
-         */
+        for (NSDictionary *dict in jsonObjects)
+        {
+            Question *newQuestion = [[Question alloc] init];
+
+            [newQuestion setUsername:[dict objectForKey:@"username"]];
+            [newQuestion setQuestion_id:[[dict objectForKey:@"question_id"] integerValue]];
+            [newQuestion setImage_url:[dict objectForKey:@"image_url"]];
+            [newQuestion setDescription:[dict objectForKey:@"description"]];
+            [newQuestion setUser_profile_image_url:[dict objectForKey:@"user_profile_image_url"]];             
+
+            [[qcol questionArray] addObject:newQuestion];
+        }
     }
     
-    // Use when fetching binary data
-    //NSData *responseData = [request responseData];
-    
+    [HUD hide:YES];
+    [[self tableView] reloadData];
     
 }
 
@@ -489,62 +464,6 @@
     NSError *error = [request error];
     
     //Todo: Display Error Message
-}
-
-
-#pragma mark Core Data stack
-
-/**
- Returns the managed object context for the application.
- If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
- */
-- (NSManagedObjectContext *)managedObjectContext
-{
-    
-    if (managedObjectContext != nil)
-    {
-        return managedObjectContext;
-    }
-    
-    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-    if (coordinator != nil)
-    {
-        managedObjectContext = [[NSManagedObjectContext alloc] init];
-        [managedObjectContext setPersistentStoreCoordinator:coordinator];
-    }
-    return managedObjectContext;
-}
-
-/**
- Returns the managed object model for the application.
- If the model doesn't already exist, it is created from the application's model.
- */
-- (NSManagedObjectModel *)managedObjectModel
-{
-    if (managedObjectModel != nil)
-    {
-        return managedObjectModel;
-    }
-    managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
-    
-    return managedObjectModel;
-}
-
-/**
- Returns the persistent store coordinator for the application.
- If the coordinator doesn't already exist, it is created and the application's store added to it.
- */
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
-{
-    
-    if (persistentStoreCoordinator != nil)
-    {
-        return persistentStoreCoordinator;
-    }
-    
-    persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    
-    return persistentStoreCoordinator;
 }
 
 

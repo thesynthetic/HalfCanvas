@@ -2,20 +2,25 @@
 //  Question.h
 //  HalfCanvas
 //
-//  Created by Ryan Hittner on 2/25/12.
+//  Created by Ryan Hittner on 1/15/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
 
-@class User;
+@interface Question : NSObject
+{
+    NSString *username;
+    NSInteger question_id;
+    NSString *image_url;
+    NSString *description;
+    NSString *user_profile_image_url;
+}
 
-@interface Question : NSManagedObject
-
-@property (nonatomic, retain) NSNumber * id;
-@property (nonatomic, retain) NSData * image;
-@property (nonatomic, retain) NSString * image_url;
-@property (nonatomic, retain) User *user;
+@property (retain) NSString *username;
+@property (nonatomic) NSInteger question_id;
+@property (retain) NSString *image_url;
+@property (retain) NSString *description;
+@property (retain) NSString *user_profile_image_url;
 
 @end
