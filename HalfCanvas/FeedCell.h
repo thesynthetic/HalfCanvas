@@ -14,6 +14,7 @@
     UIImageView *imageView;
     UIProgressView *imageProgressIndicator;
 }
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
 
 @property (nonatomic, retain) IBOutlet UIImageView *imageView;
 @property (nonatomic, retain) IBOutlet UIProgressView *imageProgressIndicator;

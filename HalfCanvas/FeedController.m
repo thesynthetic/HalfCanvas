@@ -35,8 +35,6 @@
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
 }
 
 #pragma mark - View lifecycle
@@ -61,6 +59,8 @@
     
     //Turn on caching and set defaults
     [ASIHTTPRequest setDefaultCache:[ASIDownloadCache sharedCache]];
+    
+    
     
     
     [self loadData];
@@ -141,6 +141,11 @@
         {
             ASIHTTPRequest *request;
             request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[[qc objectAtIndex:section] user_profile_image_url]]];
+            [request setDownloadCache:[ASIDownloadCache sharedCache]];
+            [request setCachePolicy:ASIAskServerIfModifiedCachePolicy|ASIFallbackToCacheIfLoadFailsCachePolicy];
+            [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
+            [request setSecondsToCache:60*60*24*7];
+
             [networkQueue addOperation:request];
             [networkQueue go];
         }
@@ -179,33 +184,17 @@
     {
         ASIHTTPRequest *request;
         request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[[qc objectAtIndex:indexPath.section] image_url]]];
+        [request setDownloadCache:[ASIDownloadCache sharedCache]];
+        [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
+        [request setCachePolicy:ASIAskServerIfModifiedCachePolicy|ASIFallbackToCacheIfLoadFailsCachePolicy];
+        [request setSecondsToCache:60*60*24*7];
+        
         [request setDownloadProgressDelegate:[feedCell imageProgressIndicator]];
         [networkQueue addOperation:request];
         [networkQueue go];
+        
     }
 
-    
-    //if (![[[QuestionCollection questions] objectAtIndex:indexPath.section] image])
-//    if ([imageCache objectForKey:@"https://s3.amazonaws.com/halfcanvas/problems/photo-1.jpg"] == nil)
-//    {
-//        //If not cached
-//        [[feedCell imageView] setImage:nil];
-//        
-//        ASIHTTPRequest *request;
-//        request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:@"https://s3.amazonaws.com/halfcanvas/problems/photo-1.jpg"]];
-//        [request setDownloadProgressDelegate:[feedCell imageProgressIndicator]];
-//        [networkQueue addOperation:request];
-//        [networkQueue go];
-//        [[feedCell imageView] setImage:nil];
-//    }
-//    else
-//    {
-//        //If cached, load and display
-//
-//        [[feedCell imageView] setImage:[imageCache objectForKey:@"https://s3.amazonaws.com/halfcanvas/problems/photo-1.jpg"]];
-//        //[[feedCell imageView] setImage:[[[QuestionCollection questions] objectAtIndex:indexPath.section] image]];
-//    }
-//    
     return feedCell;
 }
 
@@ -441,6 +430,10 @@
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     [request setDelegate:self];
     [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
+    [request setCachePolicy:ASIFallbackToCacheIfLoadFailsCachePolicy];
+    //[request setSecondsToCache:60*60*24*7];
+    
+
     [request startAsynchronous];
 
     
@@ -456,13 +449,16 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
+    if ([request didUseCachedResponse])
+    {
+        NSLog(@"Did use cache!");   
+    }
     // Use when fetching text data
     NSString *responseString = [request responseString];
     NSLog(@"%@", responseString);
+    [qc removeAllObjects];
     
     // Parse JSON Data and create question collection
-
-    
     SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
     NSError *error = nil;
     id jsonObjects = [jsonParser objectWithString:responseString error:&error];
@@ -498,7 +494,12 @@
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
     NSError *error = [request error];
-    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection" 
+                                                    message:[error description]
+                                                   delegate:nil 
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
     //Todo: Display Error Message
 }
 
@@ -524,6 +525,13 @@
      */
 }
 
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+    UITouch *touch = [touches anyObject];
+    NSLog(@"clicked");
+}
 
 
 
