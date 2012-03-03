@@ -21,7 +21,7 @@
 				<string>Untitled-1.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
-			<true/>
+			<false/>
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>

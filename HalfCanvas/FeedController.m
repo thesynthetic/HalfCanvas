@@ -142,7 +142,7 @@
             ASIHTTPRequest *request;
             request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[[qc objectAtIndex:section] user_profile_image_url]]];
             [request setDownloadCache:[ASIDownloadCache sharedCache]];
-            [request setCachePolicy:ASIAskServerIfModifiedCachePolicy|ASIFallbackToCacheIfLoadFailsCachePolicy];
+            [request setCachePolicy:ASIAskServerIfModifiedWhenStaleCachePolicy|ASIFallbackToCacheIfLoadFailsCachePolicy];
             [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
             [request setSecondsToCache:60*60*24*7];
 
@@ -186,10 +186,10 @@
         request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[[qc objectAtIndex:indexPath.section] image_url]]];
         [request setDownloadCache:[ASIDownloadCache sharedCache]];
         [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
-        [request setCachePolicy:ASIAskServerIfModifiedCachePolicy|ASIFallbackToCacheIfLoadFailsCachePolicy];
+        [request setCachePolicy:ASIAskServerIfModifiedWhenStaleCachePolicy|ASIFallbackToCacheIfLoadFailsCachePolicy];
         [request setSecondsToCache:60*60*24*7];
-        
         [request setDownloadProgressDelegate:[feedCell imageProgressIndicator]];
+        
         [networkQueue addOperation:request];
         [networkQueue go];
         
@@ -431,9 +431,7 @@
     [request setDelegate:self];
     [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
     [request setCachePolicy:ASIFallbackToCacheIfLoadFailsCachePolicy];
-    //[request setSecondsToCache:60*60*24*7];
     
-
     [request startAsynchronous];
 
     
@@ -442,7 +440,7 @@
 	[self.navigationController.view addSubview:HUD];
     
     HUD.delegate = self;
-    HUD.labelText = @"Loading";
+    //HUD.labelText = @"Loading";
     
     [HUD show:YES];
 }
