@@ -60,9 +60,6 @@
     //Turn on caching and set defaults
     [ASIHTTPRequest setDefaultCache:[ASIDownloadCache sharedCache]];
     
-    
-    
-    
     [self loadData];
     [super viewDidLoad];
 }
@@ -173,7 +170,8 @@
     if (feedCell == nil) {
         feedCell = [[FeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-
+    [feedCell setDelegate:self];
+    [feedCell setIndex:indexPath.section];
     UIImage *tempImg = [imageCache objectForKey:[[qc objectAtIndex:indexPath.section] image_url]];
     
     if (tempImg != nil)
@@ -352,10 +350,6 @@
 {
     popup = [[UIActionSheet alloc] initWithTitle:@"Post a problem" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"From album", nil];
     [popup showFromTabBar:self.tabBarController.tabBar];
-    
-    //[popup setActionSheetStyle:UIActionSheetStyleBlackOpaque];
-//    [popup showInView:self.view];
-    
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -403,7 +397,7 @@
 {
     [self setImageToPost:image];
     [picker dismissModalViewControllerAnimated:YES];
-    [self performSegueWithIdentifier:@"didcapturepicture" sender:self];
+    [self performSegueWithIdentifier:@"didcapturepicture1" sender:self];
 }
 //Function to get rid of the picker
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -414,10 +408,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Make sure your segue name in storyboard is the same as this line
-    if ([[segue identifier] isEqualToString:@"didcapturepicture"])
+    if ([[segue identifier] isEqualToString:@"didcapturepicture1"])
     {
-        UploadImageController *vc = [segue destinationViewController];
-        [vc setImageToPost:[self imageToPost]];
+        UploadImageController1 *viewController = [segue destinationViewController];
+        [viewController setImageToUpload:[self imageToPost]];
     }
 }
 
@@ -524,13 +518,11 @@
 }
 
 
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+-(void)handleMainImageClick:(int)indexNum
 {
-    
-    UITouch *touch = [touches anyObject];
-    NSLog(@"clicked");
+    NSLog(@"Action for index: %d",indexNum);
+    [self performSegueWithIdentifier:@"PictureViewer" sender:nil];
 }
-
 
 
 

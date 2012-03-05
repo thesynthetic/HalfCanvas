@@ -9,11 +9,15 @@
 #import "FeedCell.h"
 #import "FeedController.h"
 
+
+
+
 @implementation FeedCell
 
 @synthesize imageView;
 @synthesize imageProgressIndicator;
-
+@synthesize delegate;
+@synthesize index;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -46,7 +50,7 @@
     
     if ([touch view] == imageView)
     {
-        [[self nextResponder] touchesEnded:touches withEvent:event];
+        [[self delegate] handleMainImageClick:[self index]];
     }
     
 }

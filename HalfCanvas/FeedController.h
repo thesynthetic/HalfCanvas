@@ -20,10 +20,11 @@
 #import "ASIHTTPRequest.h"
 #import "ASINetworkQueue.h"
 #import "ASIDownloadCache.h"
+#import "UploadImageController1.h"
 
 @class ASINetworkQueue;
 
-@interface FeedController : UITableViewController <IconDownloaderDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, MBProgressHUDDelegate>
+@interface FeedController : UITableViewController <IconDownloaderDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, MBProgressHUDDelegate, FeedCellDelegate>
 {
     QuestionCollection *qcol;
     NSMutableArray *qc;

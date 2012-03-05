@@ -8,15 +8,26 @@
 
 #import <UIKit/UIKit.h>
 
+@class FeedCell;
+@protocol FeedCellDelegate <NSObject>
+@optional
+- (void)handleMainImageClick:(int)indexNum;
+@end
+
+
 @interface FeedCell : UITableViewCell
 {
     
     UIImageView *imageView;
     UIProgressView *imageProgressIndicator;
+    id <FeedCellDelegate> delegate;
+    int index;
 }
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
 
 @property (nonatomic, retain) IBOutlet UIImageView *imageView;
 @property (nonatomic, retain) IBOutlet UIProgressView *imageProgressIndicator;
+@property (nonatomic, retain) id <FeedCellDelegate> delegate;
+@property (nonatomic) int index;
+
 
 @end

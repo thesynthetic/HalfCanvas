@@ -50,6 +50,8 @@
 		708E061A14BA94E6000C1876 /* blank-canvas.png in Resources */ = {isa = PBXBuildFile; fileRef = 708E061914BA94E6000C1876 /* blank-canvas.png */; };
 		708E061C14BA950A000C1876 /* gears.png in Resources */ = {isa = PBXBuildFile; fileRef = 708E061B14BA950A000C1876 /* gears.png */; };
 		708E061E14BA9524000C1876 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 708E061D14BA9524000C1876 /* home.png */; };
+		70AE0B4C1502E9A70045EDB8 /* PictureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AE0B4B1502E9A60045EDB8 /* PictureViewController.m */; };
+		70AE0B501503E7690045EDB8 /* UploadImageController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AE0B4F1503E7690045EDB8 /* UploadImageController1.m */; };
 		70C9300214F121E2009441BE /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C92FB114F121E2009441BE /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		70C9300314F121E2009441BE /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C92FB414F121E2009441BE /* ASIDataCompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		70C9300414F121E2009441BE /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C92FB614F121E2009441BE /* ASIDataDecompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -152,6 +154,10 @@
 		708E061914BA94E6000C1876 /* blank-canvas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blank-canvas.png"; sourceTree = "<group>"; };
 		708E061B14BA950A000C1876 /* gears.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gears.png; sourceTree = "<group>"; };
 		708E061D14BA9524000C1876 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
+		70AE0B4A1502E9A60045EDB8 /* PictureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureViewController.h; sourceTree = "<group>"; };
+		70AE0B4B1502E9A60045EDB8 /* PictureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureViewController.m; sourceTree = "<group>"; };
+		70AE0B4E1503E7690045EDB8 /* UploadImageController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadImageController1.h; sourceTree = "<group>"; };
+		70AE0B4F1503E7690045EDB8 /* UploadImageController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadImageController1.m; sourceTree = "<group>"; };
 		70C92FB014F121E2009441BE /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		70C92FB114F121E2009441BE /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		70C92FB214F121E2009441BE /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -236,10 +242,14 @@
 				70D0BE9614C4929000CBF56C /* SectionHeader.xib */,
 				708E061414BA8DC0000C1876 /* FeedController.h */,
 				708E061514BA8DC0000C1876 /* FeedController.m */,
+				70AE0B4A1502E9A60045EDB8 /* PictureViewController.h */,
+				70AE0B4B1502E9A60045EDB8 /* PictureViewController.m */,
 				7005AEBB14C47DB700CCE435 /* FeedSectionHeader.h */,
 				7005AEBC14C47DB700CCE435 /* FeedSectionHeader.m */,
 				70E2EF9414D4431A00F02216 /* UploadImageController.h */,
 				70E2EF9514D4431A00F02216 /* UploadImageController.m */,
+				70AE0B4E1503E7690045EDB8 /* UploadImageController1.h */,
+				70AE0B4F1503E7690045EDB8 /* UploadImageController1.m */,
 			);
 			name = FeedView;
 			sourceTree = "<group>";
@@ -588,6 +598,8 @@
 				70FB34A614F92DDD00864FC2 /* Image.m in Sources */,
 				70FB34A914F92DDE00864FC2 /* User.m in Sources */,
 				70FB34AC14F92DDE00864FC2 /* Question.m in Sources */,
+				70AE0B4C1502E9A70045EDB8 /* PictureViewController.m in Sources */,
+				70AE0B501503E7690045EDB8 /* UploadImageController1.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
