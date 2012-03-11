@@ -189,6 +189,7 @@
 
 -(void)performUploader
 {
+    /*
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:@"http://www.stripedcanvas.com:8000/post/"];
     [request setPostValue:@"Ben" forKey:@"first_name"];
     [request setPostValue:@"Copsey" forKey:@"last_name"];
@@ -196,6 +197,7 @@
     [request startSynchronous];
     NSLog(@"Value: %f",[myProgressIndicator progress]);
     HUD.progress = 1;
+     */
 }
 
 @end
