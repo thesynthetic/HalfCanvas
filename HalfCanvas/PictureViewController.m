@@ -63,4 +63,18 @@
     
 }
 
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [touches anyObject];
+    
+    if ([touch view] == [self view])
+    {
+        if (touch.tapCount == 1) {
+            [self dismissModalViewControllerAnimated:true];
+        }
+    }
+    
+}
+
+
 @end

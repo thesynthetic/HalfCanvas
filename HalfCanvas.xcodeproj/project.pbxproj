@@ -44,6 +44,8 @@
 		7062EAF414BA47290055A979 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7062EAF314BA47290055A979 /* SecondViewController.m */; };
 		7062EAF614BA47290055A979 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 7062EAF514BA47290055A979 /* second.png */; };
 		7062EAF814BA47290055A979 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7062EAF714BA47290055A979 /* second@2x.png */; };
+		706547F71507B3EB00AE909F /* 09-chat-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 706547F61507B3EB00AE909F /* 09-chat-2.png */; };
+		706547FA1507B3F900AE909F /* 12-eye.png in Resources */ = {isa = PBXBuildFile; fileRef = 706547F91507B3F900AE909F /* 12-eye.png */; };
 		708E061114BA4FA0000C1876 /* FeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 708E061014BA4FA0000C1876 /* FeedCell.m */; };
 		708E061614BA8DC0000C1876 /* FeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 708E061514BA8DC0000C1876 /* FeedController.m */; };
 		708E061814BA93FF000C1876 /* 168-upload-photo-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 708E061714BA93FF000C1876 /* 168-upload-photo-2.png */; };
@@ -74,7 +76,6 @@
 		70C9309214F18635009441BE /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C9309114F18635009441BE /* SignInViewController.m */; };
 		70C9309B14F1EC3E009441BE /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70C9309914F1EC3E009441BE /* Model.xcdatamodeld */; };
 		70D0BE9714C4929000CBF56C /* SectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70D0BE9614C4929000CBF56C /* SectionHeader.xib */; };
-		70E2EF9614D4431A00F02216 /* UploadImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70E2EF9514D4431A00F02216 /* UploadImageController.m */; };
 		70ECAA8414CC60CC00081EF3 /* 02-redo.png in Resources */ = {isa = PBXBuildFile; fileRef = 70ECAA8314CC60CC00081EF3 /* 02-redo.png */; };
 		70ECAA8714CC65EB00081EF3 /* 01-refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 70ECAA8614CC65EB00081EF3 /* 01-refresh.png */; };
 		70ECAA8E14CC79E700081EF3 /* IconDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 70ECAA8D14CC79E700081EF3 /* IconDownloader.m */; };
@@ -146,6 +147,8 @@
 		7062EAF314BA47290055A979 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		7062EAF514BA47290055A979 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		7062EAF714BA47290055A979 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		706547F61507B3EB00AE909F /* 09-chat-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "09-chat-2.png"; sourceTree = "<group>"; };
+		706547F91507B3F900AE909F /* 12-eye.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "12-eye.png"; sourceTree = "<group>"; };
 		708E060F14BA4FA0000C1876 /* FeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedCell.h; sourceTree = "<group>"; };
 		708E061014BA4FA0000C1876 /* FeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedCell.m; sourceTree = "<group>"; };
 		708E061414BA8DC0000C1876 /* FeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedController.h; sourceTree = "<group>"; };
@@ -201,8 +204,6 @@
 		70C9309114F18635009441BE /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		70C9309A14F1EC3E009441BE /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		70D0BE9614C4929000CBF56C /* SectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionHeader.xib; sourceTree = "<group>"; };
-		70E2EF9414D4431A00F02216 /* UploadImageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadImageController.h; sourceTree = "<group>"; };
-		70E2EF9514D4431A00F02216 /* UploadImageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadImageController.m; sourceTree = "<group>"; };
 		70ECAA8314CC60CC00081EF3 /* 02-redo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02-redo.png"; sourceTree = "<group>"; };
 		70ECAA8614CC65EB00081EF3 /* 01-refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01-refresh.png"; sourceTree = "<group>"; };
 		70ECAA8C14CC79E700081EF3 /* IconDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconDownloader.h; sourceTree = "<group>"; };
@@ -246,8 +247,6 @@
 				70AE0B4B1502E9A60045EDB8 /* PictureViewController.m */,
 				7005AEBB14C47DB700CCE435 /* FeedSectionHeader.h */,
 				7005AEBC14C47DB700CCE435 /* FeedSectionHeader.m */,
-				70E2EF9414D4431A00F02216 /* UploadImageController.h */,
-				70E2EF9514D4431A00F02216 /* UploadImageController.m */,
 				70AE0B4E1503E7690045EDB8 /* UploadImageController1.h */,
 				70AE0B4F1503E7690045EDB8 /* UploadImageController1.m */,
 			);
@@ -371,6 +370,8 @@
 		7062EADD14BA47290055A979 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				706547F91507B3F900AE909F /* 12-eye.png */,
+				706547F61507B3EB00AE909F /* 09-chat-2.png */,
 				7007726C14DD627300B91AAA /* Splined_Canvas.png */,
 				702EB6A51501C19400B0BCB7 /* Untitled-1.png */,
 				7062EADE14BA47290055A979 /* HalfCanvas-Info.plist */,
@@ -542,6 +543,8 @@
 				70ECAA8714CC65EB00081EF3 /* 01-refresh.png in Resources */,
 				7007726D14DD627300B91AAA /* Splined_Canvas.png in Resources */,
 				702EB6A61501C19400B0BCB7 /* Untitled-1.png in Resources */,
+				706547F71507B3EB00AE909F /* 09-chat-2.png in Resources */,
+				706547FA1507B3F900AE909F /* 12-eye.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,7 +579,6 @@
 				7005AEBD14C47DB700CCE435 /* FeedSectionHeader.m in Sources */,
 				701D2CC214C4E62500C075A4 /* MBProgressHUD.m in Sources */,
 				70ECAA8E14CC79E700081EF3 /* IconDownloader.m in Sources */,
-				70E2EF9614D4431A00F02216 /* UploadImageController.m in Sources */,
 				704431F314DF506F00537505 /* SettingsViewController.m in Sources */,
 				70C9300214F121E2009441BE /* ASIAuthenticationDialog.m in Sources */,
 				70C9300314F121E2009441BE /* ASIDataCompressor.m in Sources */,
