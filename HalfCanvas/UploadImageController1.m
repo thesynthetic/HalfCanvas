@@ -192,9 +192,12 @@
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:@"http://www.stripedcanvas.com:8000/post/"];
     [request setPostValue:@"Ben" forKey:@"first_name"];
     [request setPostValue:@"Copsey" forKey:@"last_name"];
-    [request setUploadProgressDelegate:myProgressIndicator];
-    [request startSynchronous];
-    NSLog(@"Value: %f",[myProgressIndicator progress]);
+    //[request setUploadProgressDelegate:myProgressIndicator];
+    
+    //Todo:  Implement asynchronous upload
+    
+    //[request startSynchronous];
+    //NSLog(@"Value: %f",[myProgressIndicator progress]);
     HUD.progress = 1;
 }
 

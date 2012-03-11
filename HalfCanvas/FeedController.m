@@ -348,7 +348,7 @@
 
 - (void)cameraButtonClick
 {
-    popup = [[UIActionSheet alloc] initWithTitle:@"Post a problem" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"From album", nil];
+    popup = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Upload from Album", nil];
     [popup showFromTabBar:self.tabBarController.tabBar];
 }
 

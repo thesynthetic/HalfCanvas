@@ -16,7 +16,6 @@
 #import "QuestionCollection.h"
 #import "MBProgressHUD.h"
 #import "IconDownloader.h"
-#import "UploadImageController.h"
 #import "ASIHTTPRequest.h"
 #import "ASINetworkQueue.h"
 #import "ASIDownloadCache.h"
