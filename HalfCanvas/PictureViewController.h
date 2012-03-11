@@ -10,8 +10,17 @@
 
 @interface PictureViewController : UIViewController
 {
-    
+    bool hiddenEdges;
+    UINavigationBar *navBar;
+    UIScrollView *scrollView;
+    UIImageView *imageView;
+    UIImage *image;
 }
+
+@property (retain) IBOutlet UINavigationBar *navBar;
+@property (retain) IBOutlet UIScrollView *scrollView;
+@property (retain) IBOutlet UIImageView *imageView;
+@property (retain) UIImage *image;
 
 -(IBAction)closePictureViewer:(id)sender;
 @end

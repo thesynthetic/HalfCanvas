@@ -10,11 +10,16 @@
 
 @implementation PictureViewController
 
+@synthesize navBar;
+@synthesize scrollView;
+@synthesize image;
+@synthesize imageView;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+
     }
     return self;
 }
@@ -36,13 +41,29 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
+    
+    //[scrollView setUserInteractionEnabled:true];
+    //[imageView setUserInteractionEnabled:true];
+    [scrollView setContentSize:CGSizeMake(1000,1000)];
+    [scrollView setMinimumZoomScale:scrollView.frame.size.width / imageView.frame.size.width];
+    [scrollView setContentOffset:CGPointMake(1000,0)];
+    [scrollView setDelegate:self];
+    [scrollView setMaximumZoomScale:2.0];
+    [scrollView setZoomScale:scrollView.minimumZoomScale];
+    [scrollView setPagingEnabled:TRUE];
+
+    [imageView setImage:image];
+    [scrollView addSubview:imageView];
     [super viewDidLoad];
 }
-*/
+
+-(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    return imageView;
+}
 
 - (void)viewDidUnload
 {
@@ -60,17 +81,37 @@
 -(IBAction)closePictureViewer:(id)sender
 {
     [self dismissModalViewControllerAnimated:true];
-    
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    NSLog(@"uh");
     UITouch *touch = [touches anyObject];
     
-    if ([touch view] == [self view])
+    if ([touch view] == [self scrollView])
     {
         if (touch.tapCount == 1) {
-            [self dismissModalViewControllerAnimated:true];
+        //    [self dismissModalViewControllerAnimated:true];
+            
+            if (hiddenEdges){
+                [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+                [UIView beginAnimations:nil context:NULL];
+                [UIView setAnimationDuration:0.5];
+                [navBar setAlpha:1.0];
+                [UIView commitAnimations];
+                hiddenEdges = false;
+            }
+            else 
+            {
+                [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+                [UIView beginAnimations:nil context:NULL];
+                [UIView setAnimationDuration:0.5];
+                [navBar setAlpha:0.0];
+                [UIView commitAnimations];
+                
+                hiddenEdges = true;
+            }
+            
         }
     }
     

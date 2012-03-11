@@ -182,9 +182,17 @@
     
 	HUD.delegate = self;
     HUD.labelText = @"Loading";
+    [HUD show:YES];
     
-	// myProgressTask uses the HUD instance to update progress
-    [HUD showWhileExecuting:@selector(performUploader) onTarget:self withObject:nil animated:YES];
+	//To do: Make asynchronous
+    NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com:8000/post/"];
+    
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setData:UIImagePNGRepresentation(imageToUpload) withFileName:@"upload.jpg" andContentType:@"image/jpeg" forKey:@"file"];
+    [request setDelegate:self];
+    [request startSynchronous];
+    [HUD show:NO];
+    [self.navigationController popViewControllerAnimated:false];
 }
 
 -(void)performUploader

@@ -15,7 +15,7 @@
 @synthesize questions;
 @synthesize popup;
 @synthesize picker;
-@synthesize imageToPost;
+@synthesize imageToUpload;
 @synthesize qcol;
 @synthesize qc;
 
@@ -395,7 +395,7 @@
 //UIImagePickerController Delegate Functions
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
-    [self setImageToPost:image];
+    [self setImageToUpload:image];
     [picker dismissModalViewControllerAnimated:YES];
     [self performSegueWithIdentifier:@"didcapturepicture1" sender:self];
 }
@@ -411,8 +411,19 @@
     if ([[segue identifier] isEqualToString:@"didcapturepicture1"])
     {
         UploadImageController1 *viewController = [segue destinationViewController];
-        [viewController setImageToUpload:[self imageToPost]];
+        [viewController setImageToUpload:[self imageToUpload]];
     }
+    
+    if ([[segue identifier] isEqualToString:@"PictureViewer"])
+    {
+        // Get reference to the destination view controller
+        PictureViewController *pictureView = [segue destinationViewController];
+        
+        // Pass any objects to the view controller here, like...
+        [pictureView setImage:[imageCache objectForKey:[[qc objectAtIndex:pictureViewerIndex] image_url]]];
+    }
+
+    
 }
 
 #pragma mark - Server Connectivity
@@ -521,9 +532,9 @@
 -(void)handleMainImageClick:(int)indexNum
 {
     NSLog(@"Action for index: %d",indexNum);
+    pictureViewerIndex = indexNum;
     [self performSegueWithIdentifier:@"PictureViewer" sender:nil];
 }
-
 
 
 @end

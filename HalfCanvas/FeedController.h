@@ -20,6 +20,7 @@
 #import "ASINetworkQueue.h"
 #import "ASIDownloadCache.h"
 #import "UploadImageController1.h"
+#import "PictureViewController.h"
 
 @class ASINetworkQueue;
 
@@ -35,13 +36,14 @@
     NSMutableDictionary *imageDownloadsInProgress;
     UIActionSheet *popup;
     UIImagePickerController *picker;
-    UIImage *imageToPost;
+    UIImage *imageToUpload;
     NSMutableDictionary *imageCache;
     
     //ASIHttp Variables
     ASINetworkQueue *networkQueue;
-
     
+    //PictureViewer
+    int pictureViewerIndex;
     
 }
 
@@ -56,7 +58,7 @@
 @property (retain) NSArray *questions;
 @property (retain) UIActionSheet *popup;
 @property (retain) UIImagePickerController *picker;
-@property (retain) UIImage *imageToPost;
+@property (retain) UIImage *imageToUpload;
 //
 //@property (retain) User *userE;
 //@property (retain) Image *imageE;
