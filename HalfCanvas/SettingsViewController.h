@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SignInViewController.h"
 
 @interface SettingsViewController : UITableViewController
 {
