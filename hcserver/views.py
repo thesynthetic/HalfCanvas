@@ -1,4 +1,3 @@
-import S3
 import hashlib
 from django.http import HttpResponse
 from django.core import serializers
@@ -7,10 +6,9 @@ from django.contrib.auth.models import User
 from django.utils import simplejson
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate
+import boto
+from boto.s3.key import Key
 
-AWS_ACCESS_KEY_ID = 'AKIAIAUQBYXDQRINBT5Q'
-AWS_SECRET_ACCESS_KEY = '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'
-BUCKET_NAME = 'halfcanvas'
 
 #Error 9.0 - Login
 #Error 9.1 - Username and password is incorrect
@@ -117,16 +115,16 @@ def login(request):
 @csrf_exempt
 def post(request):
 	if request.method == 'POST':
-		if request.FILES['file']:
-			from boto.s3.key import Key
+		if request.FILES:
+			conn= boto.connect_s3()
+			bucket = conn.get_bucket('halfcanvas')
 			k = Key(bucket)
-			k.key = 'foobar'
-			k.set_contents_from_string('This is a test of S3')
+			k.key = 'users/test.jpg'
+			k.set_metadata("Content-Type", 'image/jpeg')
+			dict_keys = request.FILES.keys()
+			k.set_contents_from_string(request.FILES[dict_keys[0]].read())
 
 
-
-
-
-		return HttpResponse(simplejson.dumps(request.FILES))
+		return HttpResponse(request.FILES[dict_keys[0]].read())
 	else:
 		return HttpResponse("Nothing, just nothing!")
