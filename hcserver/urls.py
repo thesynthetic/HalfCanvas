@@ -21,5 +21,5 @@ urlpatterns = patterns('',
     url(r'^login/','hcserver.views.login'),
     
     # Post Question
-    url(r'^post/','hcserver.views.post'),
+    url(r'^create_question/','hcserver.views.create_question'),
 )

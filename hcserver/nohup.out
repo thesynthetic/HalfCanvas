@@ -122,3 +122,98 @@ Quit the server with CONTROL-C.
 [11/Mar/2012 15:23:50] "POST /post/ HTTP/1.1" 200 0
 [11/Mar/2012 15:36:12] "GET /questions/ HTTP/1.1" 200 684
 [11/Mar/2012 15:37:10] "POST /post/ HTTP/1.1" 200 0
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+[11/Mar/2012 15:44:06] "GET /questions/ HTTP/1.1" 200 684
+[11/Mar/2012 15:46:29] "GET /questions/ HTTP/1.1" 200 684
+[11/Mar/2012 15:46:46] "GET /questions/ HTTP/1.1" 200 684
+[11/Mar/2012 15:47:36] "POST /post/ HTTP/1.1" 500 65819
+[11/Mar/2012 15:48:37] "GET /questions/ HTTP/1.1" 200 684
+[11/Mar/2012 15:49:12] "POST /create_question/ HTTP/1.1" 404 2478
+[11/Mar/2012 15:49:59] "POST /create_question/ HTTP/1.1" 404 2482
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+[11/Mar/2012 15:51:08] "GET /questions/ HTTP/1.1" 200 684
+[11/Mar/2012 15:51:31] "POST /create_question/ HTTP/1.1" 200 0
+[11/Mar/2012 15:56:02] "GET /questions/ HTTP/1.1" 200 684
+[11/Mar/2012 15:56:50] "GET /questions/ HTTP/1.1" 200 684
+[11/Mar/2012 15:57:05] "POST /create_question/ HTTP/1.1" 200 0
+[11/Mar/2012 15:57:48] "POST /create_question/ HTTP/1.1" 200 0
+[11/Mar/2012 16:03:20] "GET /post/ HTTP/1.1" 404 2459
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+[11/Mar/2012 16:11:54] "GET /questions/ HTTP/1.1" 200 684
+[11/Mar/2012 16:11:55] "GET /questions/ HTTP/1.1" 200 684
+[11/Mar/2012 16:12:00] "GET /questions/ HTTP/1.1" 200 684
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+[11/Mar/2012 16:14:05] "GET /questions/ HTTP/1.1" 500 70694
+[11/Mar/2012 16:14:35] "GET /questions/ HTTP/1.1" 200 684
+[11/Mar/2012 16:14:55] "POST /create_question/ HTTP/1.1" 500 77604
+[11/Mar/2012 16:14:58] "GET /questions/ HTTP/1.1" 200 684
+[11/Mar/2012 16:15:19] "GET /questions/ HTTP/1.1" 200 684
+[11/Mar/2012 16:15:30] "GET /questions/ HTTP/1.1" 200 684
+[11/Mar/2012 16:15:56] "GET /questions/ HTTP/1.1" 200 684
+[11/Mar/2012 16:15:58] "GET /admin HTTP/1.1" 301 0
+[11/Mar/2012 16:15:58] "GET /admin/ HTTP/1.1" 200 2028
+[11/Mar/2012 16:16:03] "POST /admin/ HTTP/1.1" 302 0
+[11/Mar/2012 16:16:03] "GET /admin/ HTTP/1.1" 200 7578
+[11/Mar/2012 16:16:04] "GET /admin/hcserver/userdata/ HTTP/1.1" 200 4387
+[11/Mar/2012 16:16:04] "GET /admin/jsi18n/ HTTP/1.1" 200 2158
+[11/Mar/2012 16:16:06] "GET /admin/hcserver/userdata/2/ HTTP/1.1" 200 5051
+[11/Mar/2012 16:16:06] "GET /admin/jsi18n/ HTTP/1.1" 200 2158
+[11/Mar/2012 16:16:08] "GET /admin/hcserver/userdata/1/ HTTP/1.1" 200 5058
+[11/Mar/2012 16:16:13] "GET /admin/jsi18n/ HTTP/1.1" 200 2158
+[11/Mar/2012 16:16:13] "GET /admin/jsi18n/ HTTP/1.1" 200 2158
+[11/Mar/2012 16:16:13] "GET /admin/jsi18n/ HTTP/1.1" 200 2158
+[11/Mar/2012 16:16:49] "POST /create_question/ HTTP/1.1" 500 79598
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+[11/Mar/2012 16:19:50] "POST /create_question/ HTTP/1.1" 500 80107
+Validating models...
+
+0 errors found
+Django version 1.3.1, using settings 'hcserver.settings'
+Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
+Quit the server with CONTROL-C.
+[11/Mar/2012 16:21:35] "GET /questions/ HTTP/1.1" 200 684
+[11/Mar/2012 16:22:04] "GET /questions/ HTTP/1.1" 200 684
+[11/Mar/2012 16:22:37] "POST /create_user/ HTTP/1.1" 200 82
+[11/Mar/2012 16:23:10] "POST /create_question/ HTTP/1.1" 200 0
+[11/Mar/2012 16:23:33] "GET /questions/ HTTP/1.1" 200 903
+[11/Mar/2012 16:23:39] "GET /questions/ HTTP/1.1" 200 903
+[11/Mar/2012 16:23:40] "GET /admin HTTP/1.1" 301 0
+[11/Mar/2012 16:23:40] "GET /admin/ HTTP/1.1" 200 7578
+[11/Mar/2012 16:23:42] "GET /admin/hcserver/userdata/ HTTP/1.1" 200 4387
+[11/Mar/2012 16:23:42] "GET /admin/jsi18n/ HTTP/1.1" 200 2158
+[11/Mar/2012 16:23:44] "GET /admin/hcserver/question/ HTTP/1.1" 200 4740
+[11/Mar/2012 16:23:44] "GET /admin/jsi18n/ HTTP/1.1" 200 2158
+[11/Mar/2012 16:23:45] "GET /admin/hcserver/question/4/ HTTP/1.1" 200 5812
+[11/Mar/2012 16:23:45] "GET /admin/jsi18n/ HTTP/1.1" 200 2158
+[11/Mar/2012 16:23:50] "GET /admin/hcserver/question/4/delete/ HTTP/1.1" 200 2297
+[11/Mar/2012 16:23:51] "POST /admin/hcserver/question/4/delete/ HTTP/1.1" 302 0
+[11/Mar/2012 16:23:51] "GET /admin/hcserver/question/ HTTP/1.1" 200 4708
+[11/Mar/2012 16:23:51] "GET /admin/jsi18n/ HTTP/1.1" 200 2158
+[11/Mar/2012 16:24:08] "GET /questions/ HTTP/1.1" 200 684
+[11/Mar/2012 16:24:22] "POST /create_question/ HTTP/1.1" 200 0
+[11/Mar/2012 16:24:25] "GET /questions/ HTTP/1.1" 200 903

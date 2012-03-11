@@ -7,6 +7,7 @@ from django.utils import simplejson
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate
 import boto
+import datetime
 from boto.s3.key import Key
 
 
@@ -113,18 +114,23 @@ def login(request):
                         content_type = 'application/javascript; charset=utf8'
                 )
 @csrf_exempt
-def post(request):
+def create_question(request):
+	#Many more validation steps must be implemented here
 	if request.method == 'POST':
 		if request.FILES:
 			conn= boto.connect_s3()
 			bucket = conn.get_bucket('halfcanvas')
 			k = Key(bucket)
-			k.key = 'users/test.jpg'
+			k.key = 'problems/test.jpg'
 			k.set_metadata("Content-Type", 'image/jpeg')
 			dict_keys = request.FILES.keys()
 			k.set_contents_from_string(request.FILES[dict_keys[0]].read())
-
-
+			access_token = request.POST['access_token']
+			image_url = 'https://s3.amazonaws.com/halfcanvas/' + k.key 
+			user_data = UserData.objects.get(access_token = access_token)
+			q = Question(user=user_data.user, image_url=image_url, pub_date=datetime.datetime.now())
+			q.save()
+			
 		return HttpResponse(request.FILES[dict_keys[0]].read())
 	else:
 		return HttpResponse("Nothing, just nothing!")
