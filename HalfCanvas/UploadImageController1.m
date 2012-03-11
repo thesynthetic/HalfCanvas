@@ -182,16 +182,21 @@
     
 	HUD.delegate = self;
     HUD.labelText = @"Loading";
-    [HUD show:YES];
+    [HUD showWhileExecuting:@selector(uploadData) onTarget:self withObject:nil animated:YES];
     
-	//To do: Make asynchronous
-    NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com:8000/post/"];
-    
+    }
+
+-(void)uploadData
+{
+    //To do: Make asynchronous
+    NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com:8000/create_question/"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setData:UIImagePNGRepresentation(imageToUpload) withFileName:@"upload.jpg" andContentType:@"image/jpeg" forKey:@"file"];
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSString *access_token = [user objectForKey:@"access_token"];
+    [request setPostValue:access_token forKey:@"access_token"];
     [request setDelegate:self];
     [request startSynchronous];
-    [HUD show:NO];
     [self.navigationController popViewControllerAnimated:false];
 }
 
