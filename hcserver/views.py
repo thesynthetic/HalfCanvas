@@ -1,16 +1,16 @@
-import S3
 import hashlib
 from django.http import HttpResponse
 from django.core import serializers
-from hcserver.models import Question, Answer, AccessToken
+from hcserver.models import Question, Answer, UserData
 from django.contrib.auth.models import User
 from django.utils import simplejson
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate
+from django.db.models import Count
+import boto
+import datetime
+from boto.s3.key import Key
 
-AWS_ACCESS_KEY_ID = 'AKIAIAUQBYXDQRINBT5Q'
-AWS_SECRET_ACCESS_KEY = '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'
-BUCKET_NAME = 'halfcanvas'
 
 #Error 9.0 - Login
 #Error 9.1 - Username and password is incorrect
@@ -25,8 +25,25 @@ BUCKET_NAME = 'halfcanvas'
 
 
 def index(request):
-	json_output = data = serializers.serialize("json", Question.objects.all())
-	return HttpResponse(json_output)
+	output = []
+	for i in Question.objects.select_related('user__userdata').all().order_by('-pub_date').annotate(answer_count=Count('answer')):
+		question = dict()
+		question['image_url'] = i.image_url
+		question['username'] = i.user.username
+		question['description'] = i.description
+		question['user_profile_image_url'] = i.user.userdata.profile_image_url
+		question['question_id'] = i.pk
+		question['answer_count'] = i.answer_count
+		#question['pub_date'] = i.pub_date
+		output.append(question)
+	#json_output = data = serializers.serialize("json", Question.objects.all())
+	#return HttpResponse(json_output)
+	return HttpResponse(
+                        simplejson.dumps(output),
+                        content_type = 'application/javascript; charset=utf8'
+                )
+	
+
 
 @csrf_exempt
 def create_user(request):
@@ -37,11 +54,11 @@ def create_user(request):
 		password = postdata['password']
 	        if (User.objects.filter(username=username).count() > 0):
                 	response = dict()
-                	response['error_code'] = 10.1
+                	response['error_code'] = '10.1'
                 	response['error_message'] = 'Username is already being used'
         	elif (User.objects.filter(email=email).count() > 0):
                 	response = dict()
-                	response['error_code'] = 10.2
+                	response['error_code'] = '10.2'
                 	response['error_message'] = 'Email address is already being used'
         	else:                
 			user = User.objects.create_user(username, email, password)
@@ -50,10 +67,10 @@ def create_user(request):
 			m.update(username)
 			m.update('halfcanvasforkids')
 			access_token = m.hexdigest()
-			token = AccessToken(user=user, access_token=access_token)
-			token.save()
+			userData = UserData(user=user, access_token=access_token, profile_image_url='')
+			userData.save()
 			response = dict()
-			response['errorcode'] = 0
+			response['errorcode'] = '0'
 			response['errormesssage'] = ''
 			data = dict()
 			data['access_token'] = access_token
@@ -61,7 +78,7 @@ def create_user(request):
 	else:
 		response = dict()
 		response['errormessage'] = 'Username, email, or password not received'
-		response['errorcode'] = 10.3
+		response['errorcode'] = '10.3'
 
 	return HttpResponse(
         		simplejson.dumps(response),
@@ -77,34 +94,54 @@ def login(request):
                 user = authenticate(username=username, password=password)
 		if user is not None:
 			if user.is_active:
-				token = AccessToken.objects.get(user=user)
+				userData = UserData.objects.get(user=user)
 				response = dict()
-				response['errorcode'] = 0
+				response['errorcode'] = '0'
 				response['errormessage'] = ''
 				data = dict()
-				data['access_token'] = token.access_token
+				data['access_token'] = userData.access_token
 				response['data'] = data
 			else:
 				response = dict()
-                                response['errorcode'] = 9.2
+                                response['errorcode'] = '9.2'
                                 response['errormessage'] = 'User is not active'
 		else:
 			response = dict()
-                       	response['errorcode'] = 9.1
-                      	response['errormessage'] = 'Username and password is incorrect'
+                       	response['errorcode'] = '9.1'
+                      	response['errormessage'] = 'Username and password incorrect'
         else:
                 response = dict()
                 response['errormessage'] = 'Username and password not received'
-                response['errorcode'] = 9.3
+                response['errorcode'] = '9.3'
 	return HttpResponse(
 			simplejson.dumps(response),
                         content_type = 'application/javascript; charset=utf8'
                 )
+@csrf_exempt
+def create_question(request):
+	#Many more validation steps must be implemented here
+	if request.method == 'POST':
+		if request.FILES:
+			access_token = request.POST['access_token']
+                        user_data = UserData.objects.get(access_token = access_token)			
+			
+			#Connect to S3
+			conn= boto.connect_s3()
+			bucket = conn.get_bucket('halfcanvas')
+			k = Key(bucket)
 
-def upload_question(request):
-	#if request.method == 'POST':
-	#	form = UploadFileForm(request.POST, request.FILES)
-	#	if form.is_valid():
-	#handle_uploaded_file(request.FILES['file'])
-	return HttpResponse(request.FILES)	
-	#conn = S3.AWSAuthConnection('AKIAIAUQBYXDQRINBT5Q','M1R6SrYJcJFxkf8LtzZinu9CQ8Yh9RW6EHEd+yvH')
+			#Create filename for S3
+			s3_key = datetime.datetime.now().strftime('%Y%m%d-%H%M%S-%f') + user_data.user.username +'.jpg' 
+			k.key = 'problems/' + s3_key
+			k.set_metadata("Content-Type", 'image/jpeg')
+			dict_keys = request.FILES.keys()
+			k.set_contents_from_string(request.FILES[dict_keys[0]].read())
+			
+			#Store Question metadata in DB
+			image_url = 'https://s3.amazonaws.com/halfcanvas/' + k.key 
+			q = Question(user=user_data.user, image_url=image_url, pub_date=datetime.datetime.now())
+			q.save()
+			
+		return HttpResponse(request.FILES[dict_keys[0]].read())
+	else:
+		return HttpResponse("Nothing, just nothing!")

@@ -19,4 +19,7 @@ urlpatterns = patterns('',
     # Create User
     url(r'^create_user/','hcserver.views.create_user'),
     url(r'^login/','hcserver.views.login'),
+    
+    # Post Question
+    url(r'^create_question/','hcserver.views.create_question'),
 )
