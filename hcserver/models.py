@@ -8,12 +8,33 @@ class Question(models.Model):
     image_url = models.CharField(max_length=200)
     user = models.ForeignKey(User)
 
+    def __unicode__(self):
+	return str(self.pk)
+
 class Answer(models.Model):
     question = models.ForeignKey(Question)
     text = models.CharField(max_length=16000)
     user = models.ForeignKey(User)
+    image_url = models.CharField(max_length=200,default='')
+
+    def __unicode__(self):
+        return str(self.pk)
 
 class UserData(models.Model):  
     user = models.OneToOneField(User, related_name='userdata')
     access_token = models.CharField(max_length=32)
     profile_image_url = models.CharField(max_length=200)	
+
+    def __unicode__(self):
+        return self.user.username
+
+class Tag(models.Model):
+    question = models.ForeignKey(Question)
+    user = models.ForeignKey(User)
+
+class AnswerLike(models.Model):
+     answer = models.ForeignKey(Answer)
+     user = models.ForeignKey(User)
+
+
+
