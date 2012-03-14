@@ -173,6 +173,7 @@
     [feedCell setDelegate:self];
     [feedCell setIndex:indexPath.section];
     UIImage *tempImg = [imageCache objectForKey:[[qc objectAtIndex:indexPath.section] image_url]];
+    [[feedCell answerCount] setText:[NSString stringWithFormat:@"%i", [[qc objectAtIndex:indexPath.section] answer_count]]];
     
     if (tempImg != nil)
     {
@@ -422,6 +423,17 @@
         // Pass any objects to the view controller here, like...
         [pictureView setImage:[imageCache objectForKey:[[qc objectAtIndex:pictureViewerIndex] image_url]]];
     }
+    
+    if ([[segue identifier] isEqualToString:@"AnswerViewer"])
+    {
+        // Get reference to the destination view controller
+        //AnswerViewController *answerView = [segue destinationViewController];
+        
+        // Pass any objects to the view controller here, like...
+        //[answerView setImage:[imageCache objectForKey:[[qc objectAtIndex:pictureViewerIndex] image_url]]];
+    }
+
+    
 
     
 }
@@ -483,6 +495,7 @@
             [newQuestion setImage_url:[dict objectForKey:@"image_url"]];
             [newQuestion setDescription:[dict objectForKey:@"description"]];
             [newQuestion setUser_profile_image_url:[dict objectForKey:@"user_profile_image_url"]];             
+            [newQuestion setAnswer_count:[[dict objectForKey:@"answer_count"] integerValue]];
 
             [qc addObject:newQuestion];
             NSLog(@"%d",[qc count]);
@@ -534,6 +547,13 @@
     NSLog(@"Action for index: %d",indexNum);
     pictureViewerIndex = indexNum;
     [self performSegueWithIdentifier:@"PictureViewer" sender:nil];
+}
+
+- (void)handleAnswerclick:(int)indexNum
+{
+    answerViewerIndex = indexNum;
+    [self performSegueWithIdentifier:@"AnswerViewer" sender:nil];
+
 }
 
 

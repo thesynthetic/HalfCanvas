@@ -18,6 +18,8 @@
 @synthesize imageProgressIndicator;
 @synthesize delegate;
 @synthesize index;
+@synthesize answerCount;
+@synthesize answerLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -43,16 +45,48 @@
     // Configure the view for the selected state
 }
 
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     
+    UITouch *touch = [touches anyObject];
+    
+    if ([touch view] == answerCount || [touch view] == answerLabel)
+    {
+        [answerCount setAlpha:1.0];
+        [answerLabel setAlpha:1.0];
+    }
+}
+
+-(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event 
+{
+    UITouch *touch = [touches anyObject];
+    
+    if ([touch view] == answerCount || [touch view] == answerLabel)
+    {
+        [answerCount setAlpha:0.5];
+        [answerLabel setAlpha:0.5];
+    }
+    
+}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
     UITouch *touch = [touches anyObject];
     
     if ([touch view] == imageView)
     {
         [[self delegate] handleMainImageClick:[self index]];
     }
+    if ([touch view] == answerCount || [touch view] == answerLabel)
+    {
+        [answerCount setAlpha:0.5];
+        [answerLabel setAlpha:0.5];
+        [[self delegate] handleAnswerclick:[self index]];
+    }
     
+
 }
+
+
 
 @end

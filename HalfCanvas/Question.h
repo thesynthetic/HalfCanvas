@@ -15,12 +15,14 @@
     NSString *image_url;
     NSString *description;
     NSString *user_profile_image_url;
+    NSInteger answer_count;
 }
 
 @property (retain) NSString *username;
-@property (nonatomic) NSInteger question_id;
+@property NSInteger question_id;
 @property (retain) NSString *image_url;
 @property (retain) NSString *description;
 @property (retain) NSString *user_profile_image_url;
+@property NSInteger answer_count;
 
 @end

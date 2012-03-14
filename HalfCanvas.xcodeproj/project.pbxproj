@@ -31,6 +31,7 @@
 		701D2CC814C4E63B00C075A4 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 701D2CC714C4E63B00C075A4 /* 37x-Checkmark.png */; };
 		702EB6A61501C19400B0BCB7 /* Untitled-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 702EB6A51501C19400B0BCB7 /* Untitled-1.png */; };
 		704431F314DF506F00537505 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 704431F214DF506F00537505 /* SettingsViewController.m */; };
+		705E5A801510331E00249D4F /* AnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 705E5A7F1510331D00249D4F /* AnswerViewController.m */; };
 		7062EAD714BA47290055A979 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7062EAD614BA47290055A979 /* UIKit.framework */; };
 		7062EAD914BA47290055A979 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7062EAD814BA47290055A979 /* Foundation.framework */; };
 		7062EADB14BA47290055A979 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7062EADA14BA47290055A979 /* CoreGraphics.framework */; };
@@ -128,6 +129,8 @@
 		702EB6A51501C19400B0BCB7 /* Untitled-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Untitled-1.png"; path = "../Untitled-1.png"; sourceTree = "<group>"; };
 		704431F114DF506F00537505 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		704431F214DF506F00537505 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		705E5A7E1510331D00249D4F /* AnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerViewController.h; sourceTree = "<group>"; };
+		705E5A7F1510331D00249D4F /* AnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerViewController.m; sourceTree = "<group>"; };
 		7062EAD214BA47280055A979 /* HalfCanvas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HalfCanvas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7062EAD614BA47290055A979 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7062EAD814BA47290055A979 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -244,6 +247,8 @@
 				708E061414BA8DC0000C1876 /* FeedController.h */,
 				708E061514BA8DC0000C1876 /* FeedController.m */,
 				70AE0B4A1502E9A60045EDB8 /* PictureViewController.h */,
+				705E5A7E1510331D00249D4F /* AnswerViewController.h */,
+				705E5A7F1510331D00249D4F /* AnswerViewController.m */,
 				70AE0B4B1502E9A60045EDB8 /* PictureViewController.m */,
 				7005AEBB14C47DB700CCE435 /* FeedSectionHeader.h */,
 				7005AEBC14C47DB700CCE435 /* FeedSectionHeader.m */,
@@ -602,6 +607,7 @@
 				70FB34AC14F92DDE00864FC2 /* Question.m in Sources */,
 				70AE0B4C1502E9A70045EDB8 /* PictureViewController.m in Sources */,
 				70AE0B501503E7690045EDB8 /* UploadImageController1.m in Sources */,
+				705E5A801510331E00249D4F /* AnswerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

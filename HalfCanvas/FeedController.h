@@ -21,6 +21,7 @@
 #import "ASIDownloadCache.h"
 #import "UploadImageController1.h"
 #import "PictureViewController.h"
+#import "AnswerViewController.h"
 
 @class ASINetworkQueue;
 
@@ -44,6 +45,9 @@
     
     //PictureViewer
     int pictureViewerIndex;
+    
+    //AnswerViewer
+    int answerViewerIndex;
     
 }
 
@@ -79,6 +83,7 @@
 - (void)imageFetchComplete:(ASIHTTPRequest *)request;
 - (void)imageFetchFailed:(ASIHTTPRequest *)request;
 
-
+- (void)handleAnswerclick:(int)indexNum;
+- (void)handleMainImageClick:(int)indexNum;
 
 @end
