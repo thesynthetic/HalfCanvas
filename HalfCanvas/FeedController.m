@@ -443,7 +443,7 @@
 //Load JSON Data from Server
 -(IBAction)loadData
 {
-    NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com:8000/questions/"];
+    NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/questions/"];
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     [request setDelegate:self];
     [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];

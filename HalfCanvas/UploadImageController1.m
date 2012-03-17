@@ -189,15 +189,16 @@
 -(void)uploadData
 {
     //To do: Make asynchronous
-    NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com:8000/create_question/"];
+    NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/create_question/"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-    [request setData:UIImagePNGRepresentation(imageToUpload) withFileName:@"upload.jpg" andContentType:@"image/jpeg" forKey:@"file"];
+    [request setData:UIImageJPEGRepresentation(imageToUpload,0.35) withFileName:@"upload.jpg" andContentType:@"image/jpeg" forKey:@"file"];
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
     NSString *access_token = [user objectForKey:@"access_token"];
     [request setPostValue:access_token forKey:@"access_token"];
     [request setDelegate:self];
     [request startSynchronous];
     [self.navigationController popViewControllerAnimated:false];
+    
 }
 
 -(void)performUploader

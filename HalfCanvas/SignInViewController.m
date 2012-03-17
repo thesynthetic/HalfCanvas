@@ -226,7 +226,7 @@
 - (IBAction)signIn:(id)sender
 {
     
-    NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com:8000/login/"];
+    NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/login/"];
 	
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setPostValue:[username text] forKey:@"username"];

@@ -76,6 +76,7 @@
     if ([touch view] == imageView)
     {
         [[self delegate] handleMainImageClick:[self index]];
+        //imageView.frame;
     }
     if ([touch view] == answerCount || [touch view] == answerLabel)
     {
