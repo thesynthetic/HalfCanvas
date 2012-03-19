@@ -7,7 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ASINetworkQueue.h"
+#import "ASIDownloadCache.h"
+#import "ASIFormDataRequest.h"
+#import "ASIHTTPRequest.h"
+#import "MBProgressHUD.h"
 
-@interface AnswerViewController : UITableViewController
+@interface AnswerViewController : UITableViewController <MBProgressHUDDelegate>
+{
+    NSInteger question_id;
+    
+    NSMutableArray *answerCollection;   
+    NSMutableDictionary *imageCache;
+    
+    ASINetworkQueue *networkQueue;
+    
+    MBProgressHUD *HUD;
+}
+
+@property NSInteger question_id;
+@property (retain) NSMutableArray *answerCollection;
+@property (retain) NSMutableDictionary *imageCache;
 
 @end

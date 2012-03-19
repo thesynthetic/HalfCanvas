@@ -427,10 +427,10 @@
     if ([[segue identifier] isEqualToString:@"AnswerViewer"])
     {
         // Get reference to the destination view controller
-        //AnswerViewController *answerView = [segue destinationViewController];
+        AnswerViewController *answerView = [segue destinationViewController];
         
         // Pass any objects to the view controller here, like...
-        //[answerView setImage:[imageCache objectForKey:[[qc objectAtIndex:pictureViewerIndex] image_url]]];
+        [answerView setQuestion_id:answerViewerIndex];
     }
 
     
@@ -551,7 +551,7 @@
 
 - (void)handleAnswerclick:(int)indexNum
 {
-    answerViewerIndex = indexNum;
+    answerViewerIndex = [[qc objectAtIndex:indexNum] question_id];
     [self performSegueWithIdentifier:@"AnswerViewer" sender:nil];
 
 }

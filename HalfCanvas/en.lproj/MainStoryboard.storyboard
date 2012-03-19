@@ -538,66 +538,6 @@
         <image name="home.png" width="22" height="22"/>
         <image name="profile_picture.jpg" width="50" height="50"/>
     </resources>
-    <classes>
-        <class className="AnswerViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswerViewController.h"/>
-        </class>
-        <class className="FeedCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedCell.h"/>
-            <relationships>
-                <relationship kind="action" name="answerButtonClick:"/>
-                <relationship kind="outlet" name="answerButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="answerCount" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="answerLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="imageProgressIndicator" candidateClass="UIProgressView"/>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="FeedController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedController.h"/>
-            <relationships>
-                <relationship kind="action" name="cameraButtonClick"/>
-                <relationship kind="action" name="imageClick:"/>
-                <relationship kind="action" name="loadData"/>
-            </relationships>
-        </class>
-        <class className="FeedSectionHeader" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedSectionHeader.h"/>
-            <relationships>
-                <relationship kind="outlet" name="user" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="MainTabBarController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainTabBarController.h"/>
-        </class>
-        <class className="PictureViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PictureViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="closePictureViewer:"/>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="navBar" candidateClass="UINavigationBar"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="SettingsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
-        </class>
-        <class className="SignInViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SignInViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="signIn:"/>
-            </relationships>
-        </class>
-        <class className="UploadImageController1" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UploadImageController1.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelButton:"/>
-                <relationship kind="action" name="doneButton:"/>
-                <relationship kind="outlet" name="comments" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="tags" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

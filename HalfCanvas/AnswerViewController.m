@@ -10,9 +10,15 @@
 
 @interface AnswerViewController ()
 
+
 @end
 
 @implementation AnswerViewController
+
+@synthesize question_id;
+@synthesize answerCollection;
+@synthesize imageCache;
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -25,6 +31,7 @@
 
 - (void)viewDidLoad
 {
+
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -39,6 +46,27 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+
+- (void)viewWillAppear:(BOOL)animated{
+    
+    answerCollection = [[NSMutableArray alloc] init];
+    self.imageCache = [[NSMutableDictionary alloc] init];
+    if (!networkQueue) {
+        networkQueue = [[ASINetworkQueue alloc] init];
+    }
+    [networkQueue reset];
+    [networkQueue setRequestDidFinishSelector:@selector(imageFetchComplete:)];
+    [networkQueue setRequestDidFailSelector:@selector(imageFetchFailed:)];
+    [networkQueue setShowAccurateProgress:true];
+    [networkQueue setDelegate:self];
+    
+    //Turn on caching and set defaults
+    [ASIHTTPRequest setDefaultCache:[ASIDownloadCache sharedCache]];
+    [self loadData];
+    [super viewWillAppear:animated];
+
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -122,6 +150,30 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+#pragma mark - ASIHTTPRequest
+
+- (void)loadData
+{
+    NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/answers/"];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setPostValue:[NSString stringWithFormat:@"%d", question_id] forKey:@"question_id"];
+    NSLog(@"Question_id: %d", question_id);
+    [request setDelegate:self];
+    [request startAsynchronous];
+
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    HUD.delegate = self;
+    [HUD show:YES];
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    NSString *responseString = [request responseString];
+    NSLog(@"%@", responseString);
+    [HUD hide:YES];
 }
 
 @end
