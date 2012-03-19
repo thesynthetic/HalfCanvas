@@ -178,11 +178,12 @@
 	[self.navigationController.view addSubview:HUD];
     
     // Set determinate mode
-    HUD.mode = MBProgressHUDModeDeterminate;
-    
+    HUD.mode = MBProgressHUDAnimationFade;
+
 	HUD.delegate = self;
-    HUD.labelText = @"Loading";
-    [HUD showWhileExecuting:@selector(uploadData) onTarget:self withObject:nil animated:YES];
+    HUD.labelText = @"Uploading";
+    [HUD show:YES];
+    [self uploadData];
     
     }
 
@@ -196,11 +197,22 @@
     NSString *access_token = [user objectForKey:@"access_token"];
     [request setPostValue:access_token forKey:@"access_token"];
     [request setDelegate:self];
-    [request startSynchronous];
+    [request startAsynchronous];
+}
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    [HUD hide:YES];
     [self.navigationController popViewControllerAnimated:false];
-    
 }
 
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    [HUD hide:YES];
+    HUD.labelText = @"Could not upload.";
+    
+    [HUD show:YES];
+	[HUD hide:YES afterDelay:3];
+}
 -(void)performUploader
 {
     /*
