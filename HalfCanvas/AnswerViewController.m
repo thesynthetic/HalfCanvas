@@ -80,50 +80,76 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return [answerCollection count];
+    return [answerCollection count] + 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [answerCollection count];
+        return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == [answerCollection count])
+    {
+        return 100;
+    }
+    else
+    {
+        return  350;   
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"AnswerFeedCell";
-    
-    FeedCell *feedCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (feedCell == nil) {
-        feedCell = [[FeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    [feedCell setDelegate:self];
-    [feedCell setIndex:indexPath.section];
-    UIImage *tempImg = [imageCache objectForKey:[[answerCollection objectAtIndex:indexPath.section] image_url]];
-    //[[feedCell answerCount] setText:[NSString stringWithFormat:@"%i", [[answerCollection objectAtIndex:indexPath.section] answer_count]]];
-    
-    if (tempImg != nil)
-    {
-        [[feedCell imageView] setImage:tempImg];
-    }
-    else 
-    {
-        ASIHTTPRequest *request;
-        request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[[answerCollection objectAtIndex:indexPath.section] image_url]]];
-        [request setDownloadCache:[ASIDownloadCache sharedCache]];
-        [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
-        [request setCachePolicy:ASIAskServerIfModifiedWhenStaleCachePolicy|ASIFallbackToCacheIfLoadFailsCachePolicy];
-        [request setSecondsToCache:60*60*24*7];
-        [request setDownloadProgressDelegate:[feedCell imageProgressIndicator]];
+    if (indexPath.section == [answerCollection count]){
+        static NSString *CellIdentifier = @"AnswerFeedAddCell";
         
-        [networkQueue addOperation:request];
-        [networkQueue go];
+        FeedCell *feedCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
+        if (feedCell == nil) {
+            feedCell = [[FeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        } 
+        
+        return feedCell;
     }
-    
-    return feedCell;
+    else
+    {
+        static NSString *CellIdentifier = @"AnswerFeedCell";
+        
+        FeedCell *feedCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (feedCell == nil) {
+            feedCell = [[FeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        [feedCell setDelegate:self];
+        [feedCell setIndex:indexPath.section];
+        UIImage *tempImg = [imageCache objectForKey:[[answerCollection objectAtIndex:indexPath.section] image_url]];
+        //[[feedCell answerCount] setText:[NSString stringWithFormat:@"%i", [[answerCollection objectAtIndex:indexPath.section] answer_count]]];
+        
+        if (tempImg != nil)
+        {
+            [[feedCell imageView] setImage:tempImg];
+        }
+        else 
+        {
+            ASIHTTPRequest *request;
+            request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[[answerCollection objectAtIndex:indexPath.section] image_url]]];
+            [request setDownloadCache:[ASIDownloadCache sharedCache]];
+            [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
+            [request setCachePolicy:ASIAskServerIfModifiedWhenStaleCachePolicy|ASIFallbackToCacheIfLoadFailsCachePolicy];
+            [request setSecondsToCache:60*60*24*7];
+            [request setDownloadProgressDelegate:[feedCell imageProgressIndicator]];
+            
+            [networkQueue addOperation:request];
+            [networkQueue go];
+            
+        }
+        
+        return feedCell;
+    }
 }
 
 /*

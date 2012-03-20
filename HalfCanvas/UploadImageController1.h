@@ -26,4 +26,6 @@
 -(IBAction)cancelButton:(id)sender;
 -(IBAction)doneButton:(id)sender;
 
+-(void)uploadData;
+
 @end
