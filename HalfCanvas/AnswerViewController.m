@@ -31,7 +31,7 @@
 
 - (void)viewDidLoad
 {
-
+    self.imageCache = [[NSMutableDictionary alloc] init];
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -80,24 +80,50 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return [answerCollection count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [answerCollection count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"AnswerFeedCell";
     
-    // Configure the cell...
+    FeedCell *feedCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    return cell;
+    if (feedCell == nil) {
+        feedCell = [[FeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    [feedCell setDelegate:self];
+    [feedCell setIndex:indexPath.section];
+    UIImage *tempImg = [imageCache objectForKey:[[answerCollection objectAtIndex:indexPath.section] image_url]];
+    //[[feedCell answerCount] setText:[NSString stringWithFormat:@"%i", [[answerCollection objectAtIndex:indexPath.section] answer_count]]];
+    
+    if (tempImg != nil)
+    {
+        [[feedCell imageView] setImage:tempImg];
+    }
+    else 
+    {
+        ASIHTTPRequest *request;
+        request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[[answerCollection objectAtIndex:indexPath.section] image_url]]];
+        [request setDownloadCache:[ASIDownloadCache sharedCache]];
+        [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
+        [request setCachePolicy:ASIAskServerIfModifiedWhenStaleCachePolicy|ASIFallbackToCacheIfLoadFailsCachePolicy];
+        [request setSecondsToCache:60*60*24*7];
+        [request setDownloadProgressDelegate:[feedCell imageProgressIndicator]];
+        
+        [networkQueue addOperation:request];
+        [networkQueue go];
+        
+    }
+    
+    return feedCell;
 }
 
 /*
@@ -173,7 +199,51 @@
 {
     NSString *responseString = [request responseString];
     NSLog(@"%@", responseString);
+    //
+    [answerCollection removeAllObjects];
+    
+    // Parse JSON Data and create question collection
+    SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
+    NSError *error = nil;
+    id jsonObjects = [jsonParser objectWithString:responseString error:&error];
+    
+    if ([jsonObjects isKindOfClass:[NSDictionary class]])
+    {
+        // treat as a dictionary, or reassign to a dictionary ivar
+    }
+    else if ([jsonObjects isKindOfClass:[NSArray class]])
+    {
+        //Load the server data into Core Data
+        
+        for (NSDictionary *dict in jsonObjects)
+        {
+            Answer *newAnswer = [[Answer alloc] init];
+            [newAnswer setUsername:[dict objectForKey:@"username"]];
+            [newAnswer setAnswer_id:[[dict objectForKey:@"answer_id"] integerValue]];
+            [newAnswer setImage_url:[dict objectForKey:@"image_url"]];
+            [newAnswer setDescription:[dict objectForKey:@"description"]];
+            [newAnswer setUser_profile_image_url:[dict objectForKey:@"user_profile_image_url"]];             
+            [answerCollection addObject:newAnswer];
+        }
+    }
+    
+    [[self tableView] reloadData];
+    
+    //
     [HUD hide:YES];
+}
+
+- (void)imageFetchComplete:(ASIHTTPRequest *)request
+{
+	UIImage *img = [UIImage imageWithData:[request responseData]];
+    NSLog(@"Downloaded...%@",[[request url] absoluteString]);
+    [imageCache setObject:img forKey:[[request url] absoluteString]];
+    [[self tableView] reloadData];
+}
+
+- (void)imageFetchFailed:(ASIHTTPRequest *)request
+{
+	
 }
 
 @end

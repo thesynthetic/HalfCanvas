@@ -12,6 +12,9 @@
 #import "ASIFormDataRequest.h"
 #import "ASIHTTPRequest.h"
 #import "MBProgressHUD.h"
+#import "SBJson.h"
+#import "Answer.h"
+#import "FeedCell.h"
 
 @interface AnswerViewController : UITableViewController <MBProgressHUDDelegate>
 {

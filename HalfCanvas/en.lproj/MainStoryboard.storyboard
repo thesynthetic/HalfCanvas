@@ -155,7 +155,7 @@
                         <sections>
                             <tableViewSection id="KqV-EW-DXN">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="rJ7-Na-LPn">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="rJ7-Na-LPn">
                                         <rect key="frame" x="0.0" y="10" width="320" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -439,31 +439,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FeedCell" rowHeight="350" id="Zr9-oj-XdE" customClass="FeedCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AnswerFeedCell" rowHeight="350" id="Zr9-oj-XdE" customClass="FeedCell">
                                 <rect key="frame" x="0.0" y="40" width="320" height="350"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="349"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" alpha="0.5" contentMode="left" text="24" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="ZUw-Xd-qNU">
-                                            <rect key="frame" x="1" y="317" width="33" height="22"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                            <color key="textColor" red="1" green="0.047058823530000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
                                         <progressView opaque="NO" contentMode="scaleToFill" progressViewStyle="bar" id="jFE-vm-4FD">
                                             <rect key="frame" x="85" y="150" width="150" height="11"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </progressView>
-                                        <label opaque="NO" clipsSubviews="YES" alpha="0.5" contentMode="left" text="Half Answers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="lJs-mG-JS2">
-                                            <rect key="frame" x="38" y="314" width="92" height="28"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                            <color key="textColor" red="0.0" green="0.57254901960000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="avm-Ad-lmh">
                                             <rect key="frame" x="5" y="0.0" width="310" height="310"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -484,8 +470,6 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <outlet property="answerCount" destination="ZUw-Xd-qNU" id="wvE-17-QIE"/>
-                                    <outlet property="answerLabel" destination="lJs-mG-JS2" id="Xhs-bd-cAJ"/>
                                     <outlet property="imageProgressIndicator" destination="jFE-vm-4FD" id="4x4-ai-iCE"/>
                                     <outlet property="imageView" destination="avm-Ad-lmh" id="Zf4-jg-67z"/>
                                 </connections>
@@ -538,6 +522,66 @@
         <image name="home.png" width="22" height="22"/>
         <image name="profile_picture.jpg" width="50" height="50"/>
     </resources>
+    <classes>
+        <class className="AnswerViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswerViewController.h"/>
+        </class>
+        <class className="FeedCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedCell.h"/>
+            <relationships>
+                <relationship kind="action" name="answerButtonClick:"/>
+                <relationship kind="outlet" name="answerButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="answerCount" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="answerLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="imageProgressIndicator" candidateClass="UIProgressView"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="FeedController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedController.h"/>
+            <relationships>
+                <relationship kind="action" name="cameraButtonClick"/>
+                <relationship kind="action" name="imageClick:"/>
+                <relationship kind="action" name="loadData"/>
+            </relationships>
+        </class>
+        <class className="FeedSectionHeader" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedSectionHeader.h"/>
+            <relationships>
+                <relationship kind="outlet" name="user" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="MainTabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainTabBarController.h"/>
+        </class>
+        <class className="PictureViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PictureViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="closePictureViewer:"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="navBar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="SettingsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
+        </class>
+        <class className="SignInViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SignInViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="signIn:"/>
+            </relationships>
+        </class>
+        <class className="UploadImageController1" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UploadImageController1.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelButton:"/>
+                <relationship kind="action" name="doneButton:"/>
+                <relationship kind="outlet" name="comments" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="tags" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
