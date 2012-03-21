@@ -15,8 +15,9 @@
 #import "SBJson.h"
 #import "Answer.h"
 #import "FeedCell.h"
+#import "PictureViewController.h"
 
-@interface AnswerViewController : UITableViewController <MBProgressHUDDelegate>
+@interface AnswerViewController : UITableViewController <MBProgressHUDDelegate, FeedCellDelegate>
 {
     NSInteger question_id;
     
@@ -26,6 +27,9 @@
     ASINetworkQueue *networkQueue;
     
     MBProgressHUD *HUD;
+    
+    //PictureViewer
+    int pictureViewerIndex;
 }
 
 @property NSInteger question_id;

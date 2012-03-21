@@ -50,11 +50,12 @@
     //[imageView setUserInteractionEnabled:true];
     [scrollView setContentSize:CGSizeMake(1000,1000)];
     [scrollView setMinimumZoomScale:scrollView.frame.size.width / imageView.frame.size.width];
-    [scrollView setContentOffset:CGPointMake(1000,0)];
+  
     [scrollView setDelegate:self];
     [scrollView setMaximumZoomScale:2.0];
     [scrollView setZoomScale:scrollView.minimumZoomScale];
-    [scrollView setPagingEnabled:TRUE];
+    [scrollView setPagingEnabled:false];
+    
 
     [imageView setImage:image];
     [scrollView addSubview:imageView];

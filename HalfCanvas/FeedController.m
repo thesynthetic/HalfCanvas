@@ -43,7 +43,7 @@
 {
 
     qc = [[NSMutableArray alloc] init];
-    
+
     self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
     self.imageCache = [[NSMutableDictionary alloc] init];
     
@@ -59,7 +59,7 @@
     
     //Turn on caching and set defaults
     [ASIHTTPRequest setDefaultCache:[ASIDownloadCache sharedCache]];
-    
+    questionEndIndex = 10;
     [self loadData];
     [super viewDidLoad];
 }
@@ -101,7 +101,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [qc count];
+    //if ([qc count] > 0)
+    //{
+    //    return [qc count] + 1;       
+    //}
+    //else 
+    //{
+        return [qc count];
+    //}
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -109,8 +116,17 @@
     // Return the number of rows in the section.
     if ([qc count] > 0) 
     {
-        return 1;
+        if (section == [qc count] - 1)
+        {
+            return 2;
+        }
+        else 
+        {
+            return 1;            
+        }
+
     }
+    
     else 
     {
         //If not loaded yet (2 will fill the screen)
@@ -121,7 +137,7 @@
 
 -  (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if ([qc count] > 0) 
+    if ([qc count] > 0 && section < [qc count]) 
     {
         CGRect  viewRect = CGRectMake(0, 0, 320, 40);
         UIView* myView = [[UIView alloc] initWithFrame:viewRect];
@@ -163,43 +179,66 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"FeedCell";
-    
-    FeedCell *feedCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (feedCell == nil) {
-        feedCell = [[FeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    [feedCell setDelegate:self];
-    [feedCell setIndex:indexPath.section];
-    UIImage *tempImg = [imageCache objectForKey:[[qc objectAtIndex:indexPath.section] image_url]];
-    [[feedCell answerCount] setText:[NSString stringWithFormat:@"%i", [[qc objectAtIndex:indexPath.section] answer_count]]];
-    
-    if (tempImg != nil)
+    if (1 == indexPath.row)
     {
-        [[feedCell imageView] setImage:tempImg];
+        static NSString *CellIdentifier = @"LoadMoreCell";
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        //cell.contentView.backgroundColor = [UIColor grayColor];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
+        return cell;
     }
     else 
     {
-        ASIHTTPRequest *request;
-        request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[[qc objectAtIndex:indexPath.section] image_url]]];
-        [request setDownloadCache:[ASIDownloadCache sharedCache]];
-        [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
-        [request setCachePolicy:ASIAskServerIfModifiedWhenStaleCachePolicy|ASIFallbackToCacheIfLoadFailsCachePolicy];
-        [request setSecondsToCache:60*60*24*7];
-        [request setDownloadProgressDelegate:[feedCell imageProgressIndicator]];
+        static NSString *CellIdentifier = @"FeedCell";
         
-        [networkQueue addOperation:request];
-        [networkQueue go];
+        FeedCell *feedCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
-    }
+        if (feedCell == nil) {
+            feedCell = [[FeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        [feedCell setDelegate:self];
+        [feedCell setIndex:indexPath.section];
+        UIImage *tempImg = [imageCache objectForKey:[[qc objectAtIndex:indexPath.section] image_url]];
+        [[feedCell answerCount] setText:[NSString stringWithFormat:@"%i", [[qc objectAtIndex:indexPath.section] answer_count]]];
+        
+        if (tempImg != nil)
+        {
+            [[feedCell imageView] setImage:tempImg];
+        }
+        else 
+        {
+            ASIHTTPRequest *request;
+            request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[[qc objectAtIndex:indexPath.section] image_url]]];
+            [request setDownloadCache:[ASIDownloadCache sharedCache]];
+            [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
+            [request setCachePolicy:ASIAskServerIfModifiedWhenStaleCachePolicy|ASIFallbackToCacheIfLoadFailsCachePolicy];
+            [request setSecondsToCache:60*60*24*7];
+            [request setDownloadProgressDelegate:[feedCell imageProgressIndicator]];
+            
+            [networkQueue addOperation:request];
+            [networkQueue go];
+            
+        }
+        
+        return feedCell;
 
-    return feedCell;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return  350;
+    if (1 == indexPath.row){
+        return 50;
+    }
+    else {
+        return  350; 
+    }
+
 }
 -(IBAction)imageClick:(id)sender 
 {
@@ -251,6 +290,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == 1)
+    {
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        questionEndIndex = questionEndIndex + 10;
+        [self loadData];
+        
+    }
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
@@ -443,12 +489,15 @@
 //Load JSON Data from Server
 -(IBAction)loadData
 {
+  
+    
     NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/questions/"];
-    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setPostValue:[NSString stringWithFormat:@"%d", 0] forKey:@"start"];
+    [request setPostValue:[NSString stringWithFormat:@"%d", questionEndIndex] forKey:@"end"];    
     [request setDelegate:self];
     [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
     [request setCachePolicy:ASIFallbackToCacheIfLoadFailsCachePolicy];
-    
     [request startAsynchronous];
 
     

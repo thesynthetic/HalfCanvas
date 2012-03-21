@@ -22,6 +22,7 @@
 #import "UploadImageController1.h"
 #import "PictureViewController.h"
 #import "AnswerViewController.h"
+#import "ASIFormDataRequest.h"
 
 @class ASINetworkQueue;
 
@@ -48,6 +49,8 @@
     
     //AnswerViewer
     int answerViewerIndex;
+    
+    int questionEndIndex;
     
 }
 

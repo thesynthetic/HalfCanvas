@@ -87,44 +87,131 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [answerCollection count];
+    if ([answerCollection count] > 0) 
+    {
+        if (section == [answerCollection count] - 1)
+        {
+            return 2;
+        }
+        else 
+        {
+            return 1;            
+        }
+        
+    }
+    
+    else 
+    {
+        //If not loaded yet (2 will fill the screen)
+        return 2;
+    }
+
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if (1 == indexPath.row){
+        return 50;
+    }
+    else {
+        return  350; 
+    }
+    
+    
+}
+
+-  (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    
+        CGRect  viewRect = CGRectMake(0, 0, 320, 40);
+        UIView* myView = [[UIView alloc] initWithFrame:viewRect];
+        [myView setBackgroundColor:[UIColor whiteColor]];
+        UILabel *userLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 10, 100, 20)];
+        UIImageView *userImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5,5,30,30)];
+        UIImage *tempImg = [imageCache objectForKey:[[answerCollection objectAtIndex:section] user_profile_image_url]];
+        
+        if (tempImg != nil)
+        {
+            [userImageView setImage:tempImg];
+        }
+        else 
+        {
+            ASIHTTPRequest *request;
+            request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[[answerCollection objectAtIndex:section] user_profile_image_url]]];
+            [request setDownloadCache:[ASIDownloadCache sharedCache]];
+            [request setCachePolicy:ASIAskServerIfModifiedWhenStaleCachePolicy|ASIFallbackToCacheIfLoadFailsCachePolicy];
+            [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
+            [request setSecondsToCache:60*60*24*7];
+            
+            [networkQueue addOperation:request];
+            [networkQueue go];
+        }
+        
+        Answer *test = [answerCollection objectAtIndex:section];
+        [userLabel setFont:[UIFont boldSystemFontOfSize:13.0]];
+        [userLabel setText:[test username]];
+        [myView addSubview:userLabel];
+        [myView addSubview:userImageView];
+        
+        return myView;
+   
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"AnswerFeedCell";
-    
-    FeedCell *feedCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (feedCell == nil) {
-        feedCell = [[FeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    [feedCell setDelegate:self];
-    [feedCell setIndex:indexPath.section];
-    UIImage *tempImg = [imageCache objectForKey:[[answerCollection objectAtIndex:indexPath.section] image_url]];
-    //[[feedCell answerCount] setText:[NSString stringWithFormat:@"%i", [[answerCollection objectAtIndex:indexPath.section] answer_count]]];
-    
-    if (tempImg != nil)
+    if (1 == indexPath.row)
     {
-        [[feedCell imageView] setImage:tempImg];
+        static NSString *CellIdentifier = @"AddHalfAnswer";
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        //cell.contentView.backgroundColor = [UIColor grayColor];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
+        return cell;
     }
     else 
-    {
-        ASIHTTPRequest *request;
-        request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[[answerCollection objectAtIndex:indexPath.section] image_url]]];
-        [request setDownloadCache:[ASIDownloadCache sharedCache]];
-        [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
-        [request setCachePolicy:ASIAskServerIfModifiedWhenStaleCachePolicy|ASIFallbackToCacheIfLoadFailsCachePolicy];
-        [request setSecondsToCache:60*60*24*7];
-        [request setDownloadProgressDelegate:[feedCell imageProgressIndicator]];
+    {   
+        static NSString *CellIdentifier = @"AnswerFeedCell";
         
-        [networkQueue addOperation:request];
-        [networkQueue go];
+        FeedCell *feedCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
+        if (feedCell == nil) {
+            feedCell = [[FeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        [feedCell setDelegate:self];
+        [feedCell setIndex:indexPath.section];
+        UIImage *tempImg = [imageCache objectForKey:[[answerCollection objectAtIndex:indexPath.section] image_url]];
+        
+        
+        if (tempImg != nil)
+        {
+            NSLog(@"we are here");
+            [[feedCell imageView] setImage:tempImg];
+        }
+        else 
+        {
+            ASIHTTPRequest *request;
+            request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[[answerCollection objectAtIndex:indexPath.section] image_url]]];
+            [request setDownloadCache:[ASIDownloadCache sharedCache]];
+            [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
+            [request setCachePolicy:ASIAskServerIfModifiedWhenStaleCachePolicy|ASIFallbackToCacheIfLoadFailsCachePolicy];
+            [request setSecondsToCache:60*60*24*7];
+            [request setDownloadProgressDelegate:[feedCell imageProgressIndicator]];
+            [networkQueue addOperation:request];
+            [networkQueue go];
+            
+        }
+        
+        return feedCell;
     }
-    
-    return feedCell;
 }
+
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -169,6 +256,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    if (indexPath.row == 1)
+    {
+      
+        NSLog(@"HEY");
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
@@ -176,6 +270,12 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //Load more pictures when at bottom of table (xth row)
+    
 }
 
 #pragma mark - ASIHTTPRequest
@@ -243,7 +343,33 @@
 
 - (void)imageFetchFailed:(ASIHTTPRequest *)request
 {
-	
+
 }
+
+#pragma mark - Image Viewer
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Make sure your segue name in storyboard is the same as this line
+   
+    
+    if ([[segue identifier] isEqualToString:@"PictureViewer"])
+    {
+        // Get reference to the destination view controller
+        PictureViewController *pictureView = [segue destinationViewController];
+        
+        // Pass any objects to the view controller here, like...
+        [pictureView setImage:[imageCache objectForKey:[[answerCollection objectAtIndex:pictureViewerIndex] image_url]]];
+    }
+    
+}
+
+
+-(void)handleMainImageClick:(int)indexNum
+{
+    NSLog(@"Action for index: %d",indexNum);
+    pictureViewerIndex = indexNum;
+    [self performSegueWithIdentifier:@"PictureViewer" sender:nil];
+}
+
 
 @end
