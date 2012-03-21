@@ -36,4 +36,6 @@
 @property (retain) NSMutableArray *answerCollection;
 @property (retain) NSMutableDictionary *imageCache;
 
+- (void)loadData;
+
 @end
