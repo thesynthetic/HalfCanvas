@@ -457,7 +457,7 @@
     // Make sure your segue name in storyboard is the same as this line
     if ([[segue identifier] isEqualToString:@"didcapturepicture1"])
     {
-        UploadImageController1 *viewController = [segue destinationViewController];
+        UploadImageController *viewController = [segue destinationViewController];
         [viewController setImageToUpload:[self imageToUpload]];
     }
     

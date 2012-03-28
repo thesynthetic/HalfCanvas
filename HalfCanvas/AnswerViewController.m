@@ -18,7 +18,9 @@
 @synthesize question_id;
 @synthesize answerCollection;
 @synthesize imageCache;
-
+@synthesize popup;
+@synthesize picker;
+@synthesize imageToUpload;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -95,7 +97,7 @@
         }
         else 
         {
-            return 1;            
+            return 1;
         }
         
     }
@@ -262,6 +264,8 @@
       
         NSLog(@"HEY");
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [self addAnswerClick];
+        
     }
     // Navigation logic may go here. Create and push another view controller.
     /*
@@ -349,9 +353,6 @@
 #pragma mark - Image Viewer
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Make sure your segue name in storyboard is the same as this line
-   
-    
     if ([[segue identifier] isEqualToString:@"PictureViewer"])
     {
         // Get reference to the destination view controller
@@ -360,7 +361,6 @@
         // Pass any objects to the view controller here, like...
         [pictureView setImage:[imageCache objectForKey:[[answerCollection objectAtIndex:pictureViewerIndex] image_url]]];
     }
-    
 }
 
 
@@ -370,6 +370,61 @@
     pictureViewerIndex = indexNum;
     [self performSegueWithIdentifier:@"PictureViewer" sender:nil];
 }
+
+#pragma mark - Add Answer Functions
+
+- (void)addAnswerClick
+{
+    popup = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Upload from Album", nil];
+    [popup showFromTabBar:self.tabBarController.tabBar];
+}
+
+-(void) startCamera
+{
+    picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = true;
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    [self presentModalViewController:picker animated:YES];
+}
+
+- (void) startPictureChooser
+{
+    picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = true;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentModalViewController:picker animated:YES];
+}
+
+
+#pragma mark - UIImagePicker Functions
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        [self startCamera];
+    } else if (buttonIndex == 1) {
+        [self startPictureChooser];
+    } 
+    else if (buttonIndex == 2) {
+        
+    }
+}
+
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
+{
+    [self setImageToUpload:image];
+    [picker dismissModalViewControllerAnimated:YES];
+    [self performSegueWithIdentifier:@"" sender:self];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissModalViewControllerAnimated:YES];
+}
+
+
 
 
 @end

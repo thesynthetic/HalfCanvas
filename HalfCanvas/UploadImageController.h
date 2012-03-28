@@ -11,7 +11,7 @@
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
 
-@interface UploadImageController1 : UITableViewController <ASIHTTPRequestDelegate>
+@interface UploadImageController : UITableViewController <ASIHTTPRequestDelegate>
 {
     UITextView *comments;
     UITextField *tags;

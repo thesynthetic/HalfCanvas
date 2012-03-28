@@ -17,7 +17,7 @@
 #import "FeedCell.h"
 #import "PictureViewController.h"
 
-@interface AnswerViewController : UITableViewController <MBProgressHUDDelegate, FeedCellDelegate>
+@interface AnswerViewController : UITableViewController <MBProgressHUDDelegate, FeedCellDelegate, UIImagePickerControllerDelegate>
 {
     NSInteger question_id;
     
@@ -30,12 +30,23 @@
     
     //PictureViewer
     int pictureViewerIndex;
+    
+    UIActionSheet *popup;
+    
+    UIImagePickerController *picker;
+    UIImage *imageToUpload;
 }
 
 @property NSInteger question_id;
 @property (retain) NSMutableArray *answerCollection;
 @property (retain) NSMutableDictionary *imageCache;
+@property (retain) UIActionSheet *popup;
+@property (retain) UIImagePickerController *picker;
+@property (retain) UIImage *imageToUpload;
+
 
 - (void)loadData;
-
+- (void)addAnswerClick;
+- (void)startCamera;
+- (void)startPictureChooser;
 @end

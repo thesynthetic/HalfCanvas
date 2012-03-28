@@ -19,7 +19,7 @@
 #import "ASIHTTPRequest.h"
 #import "ASINetworkQueue.h"
 #import "ASIDownloadCache.h"
-#import "UploadImageController1.h"
+#import "UploadImageController.h"
 #import "PictureViewController.h"
 #import "AnswerViewController.h"
 #import "ASIFormDataRequest.h"

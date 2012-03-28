@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "UploadImageController1.h"
+#import "UploadImageController.h"
 
 
-@implementation UploadImageController1
+@implementation UploadImageController
 
 @synthesize comments;
 @synthesize tags;

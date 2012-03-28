@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
     <dependencies>
-        <deployment defaultVersion="1296" identifier="iOS"/>
+        <deployment defaultVersion="1280" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1179"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
     </dependencies>
     <scenes>
-        <!--Feed Controller - HalfCanvas-->
         <scene sceneID="DRd-cS-wRU">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jhl-pq-tQX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -114,7 +113,6 @@
             </objects>
             <point key="canvasLocation" x="1281" y="-184"/>
         </scene>
-        <!--Navigation Controller - Problems-->
         <scene sceneID="Lvi-If-TXu">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cf0-pi-voc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -133,7 +131,6 @@
             </objects>
             <point key="canvasLocation" x="688" y="-39"/>
         </scene>
-        <!--Upload Image Controller1-->
         <scene sceneID="fRe-7x-AtF">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e7d-zJ-XDC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -221,7 +218,6 @@
             </objects>
             <point key="canvasLocation" x="2034" y="270"/>
         </scene>
-        <!--Picture View Controller-->
         <scene sceneID="v0C-oA-IFu">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdb-Ha-35g" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -269,7 +265,6 @@
             </objects>
             <point key="canvasLocation" x="2044" y="-943"/>
         </scene>
-        <!--Settings View Controller - Settings-->
         <scene sceneID="8M4-gY-9Ts">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tk5-e0-pq2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -300,7 +295,6 @@
             </objects>
             <point key="canvasLocation" x="1214" y="1351"/>
         </scene>
-        <!--Sign In View Controller-->
         <scene sceneID="Img-z2-I6G">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fwT-8X-ybf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -324,7 +318,7 @@
                                 <rect key="frame" x="0.0" y="91" width="320" height="45"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                    <rect key="frame" x="10" y="1" width="300" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -342,7 +336,6 @@
             </objects>
             <point key="canvasLocation" x="1722" y="1346"/>
         </scene>
-        <!--Main Tab Bar Controller-->
         <scene sceneID="15">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
@@ -364,7 +357,6 @@
             </objects>
             <point key="canvasLocation" x="88" y="216"/>
         </scene>
-        <!--Navigation Controller - Settings-->
         <scene sceneID="tm7-Yt-gT9">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cIA-FN-mT7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -385,7 +377,6 @@
             </objects>
             <point key="canvasLocation" x="688" y="1351"/>
         </scene>
-        <!--Navigation Controller - My Canvas-->
         <scene sceneID="cGW-iy-kuD">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w0q-rZ-Bb3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -402,7 +393,6 @@
             </objects>
             <point key="canvasLocation" x="696" y="669"/>
         </scene>
-        <!--Navigation Controller - Explore-->
         <scene sceneID="PCQ-dH-Dfa">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rps-6y-JVM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -419,7 +409,6 @@
             </objects>
             <point key="canvasLocation" x="100" y="1151"/>
         </scene>
-        <!--Answer View Controller - Half Answers-->
         <scene sceneID="28O-fc-xUK">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yS1-Qa-D8X" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -492,13 +481,14 @@
                     <navigationItem key="navigationItem" title="Half Answers" id="S9N-4B-e8c"/>
                     <connections>
                         <segue destination="yuc-WI-7dQ" kind="modal" identifier="PictureViewer" modalTransitionStyle="coverVertical" id="VTb-Sj-C4n"/>
+                        <segue destination="dKJ-4J-4Uh" kind="push" id="0Jn-o9-eCO"/>
                     </connections>
                 </tableViewController>
                 <view contentMode="scaleToFill" id="aVt-vW-wyL" customClass="FeedSectionHeader">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ryeguy_24" lineBreakMode="tailTruncation" minimumFontSize="10" adjustsFontSizeToFit="NO" id="sfR-wx-Bbg">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ryeguy_24" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" minimumFontSize="10" id="sfR-wx-Bbg">
                             <rect key="frame" x="42" y="7" width="157" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
@@ -525,7 +515,6 @@
             </objects>
             <point key="canvasLocation" x="2034" y="-342"/>
         </scene>
-        <!--Picture View Controller-->
         <scene sceneID="yNm-gs-coh">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z95-Xu-KXX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -572,7 +561,64 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="2474" y="-342"/>
+            <point key="canvasLocation" x="2834" y="-834"/>
+        </scene>
+        <scene sceneID="hga-qi-Hck">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Svc-y9-svl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="dKJ-4J-4Uh" customClass="UploadImageController1" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="235" id="nZB-yp-Cs6">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="Comments" id="ITX-Yl-4IK">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="84" id="3iX-m3-KMc">
+                                        <rect key="frame" x="0.0" y="46" width="320" height="86"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="300" height="83"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Rqj-af-xs8">
+                                                    <rect key="frame" x="1" y="2" width="299" height="78"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="dKJ-4J-4Uh" id="6Ub-O7-tna"/>
+                            <outlet property="delegate" destination="dKJ-4J-4Uh" id="zsE-Yt-468"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="GZ0-Mm-9sA">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Hr4-Ho-082">
+                            <connections>
+                                <action selector="cancelButton:" destination="dKJ-4J-4Uh" id="zVg-cA-bPl"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="EUl-LK-Qe4">
+                            <connections>
+                                <action selector="doneButton:" destination="dKJ-4J-4Uh" id="83E-pj-ySQ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="comments" destination="Rqj-af-xs8" id="rwX-Ge-p5s"/>
+                    </connections>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="2826" y="-164"/>
         </scene>
     </scenes>
     <resources>
