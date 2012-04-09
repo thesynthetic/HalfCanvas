@@ -57,7 +57,7 @@
     
     loggedIn = false;
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    if ([prefs objectForKey:@"logged_in"])
+    if ([prefs boolForKey:@"logged_in"])
     {
         loggedIn = true;
     }
@@ -221,6 +221,7 @@
                 [user setBool:false forKey:@"logged_in"];
                 [user setValue:nil forKey:@"access_token"];
                 [user setValue:nil forKey:@"username"];
+                [user synchronize];
                 loggedIn = false;
                 [tableView reloadData];
             }

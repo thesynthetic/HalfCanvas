@@ -375,8 +375,16 @@
 
 - (void)addAnswerClick
 {
-    popup = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Upload from Album", nil];
-    [popup showFromTabBar:self.tabBarController.tabBar];
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    if ([prefs boolForKey:@"logged_in"])
+    {    
+        popup = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Upload from Album", nil];
+        [popup showFromTabBar:self.tabBarController.tabBar];
+    }
+    else
+    {
+        [self performSegueWithIdentifier:@"SignUpPopUp" sender:self];
+    }
 }
 
 -(void) startCamera
