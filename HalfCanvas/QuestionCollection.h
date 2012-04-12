@@ -13,7 +13,7 @@
     NSMutableArray *questionsArray;
 }
 
-+ (NSMutableArray*) questions;
+//+ (NSMutableArray*) questions;
 
 @property (retain) NSMutableArray *questionArray;
 

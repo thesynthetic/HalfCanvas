@@ -1,18 +1,20 @@
 //
-//  SignInViewController.m
+//  SignUpEmailViewController.m
 //  HalfCanvas
 //
-//  Created by Ryan Hittner on 2/19/12.
+//  Created by Ryan Hittner on 4/7/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "SignInViewController.h"
+#import "SignUpEmailViewController.h"
 
 
-@implementation SignInViewController
+@implementation SignUpEmailViewController
 
 @synthesize username;
 @synthesize password;
+@synthesize email;
+@synthesize segcontrol;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -36,12 +38,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    state = 0;
 }
 
 - (void)viewDidUnload
@@ -53,7 +50,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    
     [super viewWillAppear:animated];
 }
 
@@ -80,43 +76,40 @@
 
 #pragma mark - Table view data source
 
+
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    if (section == 0)
+    if (state == 0)
+    {
+        return 4;
+    }
+    else 
     {
         return 2;
     }
-    if (section == 1) 
-    {
-        return 1;
-    }
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    
-    if (indexPath.section == 0)
-    {
-        
-    // Configure the cell...
-    
+    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 
-        UILabel *cellLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 11, 95, 21)];
+    UILabel *cellLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 11, 95, 21)];
+    
+    if (state == 0)
+    {
+
         if (indexPath.row == 0)
         {
             username = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
@@ -128,7 +121,50 @@
             username.textColor = [UIColor blackColor];
             [cell addSubview:username];
         }
-        else 
+        if (indexPath.row == 1)
+        {
+            email = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
+            [cellLabel setText:@"Email"];
+            [cellLabel setBackgroundColor:[UIColor clearColor]];
+            [cellLabel setFont:[UIFont boldSystemFontOfSize:16]];
+            email.placeholder = @"john@smith.com";
+            email.adjustsFontSizeToFitWidth = YES;
+            email.textColor = [UIColor blackColor];
+            [cell addSubview:email];
+        }
+        if (indexPath.row == 2)
+        {
+            password = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
+            [cellLabel setText:@"Password"];
+            [cellLabel setFont:[UIFont boldSystemFontOfSize:16]];
+            [cellLabel setBackgroundColor:[UIColor clearColor]];
+            password.secureTextEntry = YES;
+            password.adjustsFontSizeToFitWidth = YES;
+            password.textColor = [UIColor blackColor];
+            [cell addSubview:password];
+        }
+        if (indexPath.row == 3)
+        {
+            
+            [cellLabel setText:@"Photo"];
+            [cellLabel setBackgroundColor:[UIColor clearColor]];
+            [cellLabel setFont:[UIFont boldSystemFontOfSize:16]];
+        }
+    }
+    else 
+    {
+        if (indexPath.row == 0)
+        {
+            username = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
+            [cellLabel setText:@"Username"];
+            [cellLabel setBackgroundColor:[UIColor clearColor]];
+            [cellLabel setFont:[UIFont boldSystemFontOfSize:16]];
+            username.placeholder = @"johnsmith";
+            username.adjustsFontSizeToFitWidth = YES;
+            username.textColor = [UIColor blackColor];
+            [cell addSubview:username];
+        }
+        if (indexPath.row == 1)
         {
             password = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
             [cellLabel setText:@"Password"];
@@ -140,22 +176,11 @@
             [cell addSubview:password];
         }
         
-        [cell addSubview:cellLabel];
-
-
+        
     }
-    
-    if (indexPath.section == 1)
-    {
-        if (indexPath.row == 0)
-        {
-            UILabel *signInLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 11, 95, 21)];
-            [signInLabel setFont:[UIFont boldSystemFontOfSize:16]];    
-            [signInLabel setText:@"Sign In"];
-            [signInLabel setBackgroundColor:[UIColor clearColor]];
-            [cell addSubview:signInLabel];
-        }
-    }
+        
+        
+    [cell addSubview:cellLabel];
         
     return cell;
 }
@@ -203,17 +228,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    if (indexPath.section == 1)
-    {
-        if (indexPath.row == 0)
-        {
-            [tableView deselectRowAtIndexPath:indexPath animated:YES];
-            [self signIn:self];
-            
-        }
-        
-    }
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
@@ -223,63 +237,57 @@
      */
 }
 
-- (IBAction)signIn:(id)sender
+#pragma mark - Handlers
+
+-(IBAction)test:(id)sender
 {
-    
-    NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/login/"];
-	
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-    [request setPostValue:[username text] forKey:@"username"];
-    [request setPostValue:[password text] forKey:@"password"];
-    
-    
-	// Create a request
-	// You don't normally need to retain a synchronous request, but we need to in this case because we'll need it later if we reload the table data
-	//[self setRequest:[ASIHTTPRequest requestWithURL:url]];
-    
-	// Start the request
-	[request startSynchronous];
-	
-	// Request has now finished
-	NSError *error = [request error];
-    NSString *response;
-    if (!error) {
-        response = [request responseString];
-    }
-    
-    SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
-    NSError *jsonError = nil;
-    id jsonObjects = [jsonParser objectWithString:response error:&jsonError];
-    
-    if ([jsonObjects isKindOfClass:[NSDictionary class]])
+    UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;    
+    state = [segmentedControl selectedSegmentIndex];
+    [[self tableView] reloadData];
+}
+
+-(IBAction)doneButtonClick:(id)sender
+{
+    if (state == 0)
     {
-        // treat as a dictionary, or reassign to a dictionary ivar
-        NSString *errorcode = [jsonObjects objectForKey:@"errorcode"];
-        NSString *errormessage = [jsonObjects objectForKey:@"errormessage"];
-        if ([errorcode doubleValue] != 0)
-        {
-            UIAlertView *message = [[UIAlertView alloc] initWithTitle:errormessage
-                                                              message:@""
-                                                             delegate:nil
-                                                    cancelButtonTitle:@"OK"
-                                                    otherButtonTitles:nil];
-            [message show];
-            
-        }
-        else 
-        {
-            //Handle access code and setting NSUserDefaults
-            NSDictionary *data = [jsonObjects objectForKey:@"data"];
-            NSString *access_token = [data objectForKey:@"access_token"];
-            NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-            [user setValue:access_token forKey:@"access_token"];
-            [user setValue:[username text] forKey:@"username"];
-            [user setBool:TRUE forKey:@"logged_in"];
-            [self.navigationController popViewControllerAnimated:YES];
-        }
+        //Sign Up Handler
+        
+
+        
         
     }
-    
+    else 
+    {
+        NSLog(@"HERE");
+        //Sign In Handler
+        NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/login/"];
+        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+        [request setPostValue:[username text] forKey:@"username"];
+        [request setPostValue:[password text] forKey:@"password"];
+        [request startAsynchronous];
+        
+    }
 }
+
+#pragma mark - ASI HTTP Request Callback
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    // Use when fetching text data
+    NSString *responseString = [request responseString];
+    NSLog(@"Response: %@", responseString);
+    
+    // Use when fetching binary data
+    //NSData *responseData = [request responseData];
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    NSError *error = [request error];
+    NSLog(@"ERROR");
+}
+
+//Gravitar URL - Retro Style Identicon http://www.gravatar.com/avatar/f778d4000d84e1434d04eb8526ec3de2?d=retro
+
 
 @end

@@ -15,7 +15,11 @@
 @synthesize questions;
 @synthesize popup;
 @synthesize picker;
-@synthesize imageToPost;
+@synthesize imageToUpload;
+@synthesize qcol;
+@synthesize qc;
+
+@synthesize imageCache;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -31,21 +35,36 @@
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
 }
 
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
-    self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
-}
 
--(IBAction)loadData
-{
+    qc = [[NSMutableArray alloc] init];
+
+    self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
+    self.imageCache = [[NSMutableDictionary alloc] init];
+    
+    if (!networkQueue) {
+        networkQueue = [[ASINetworkQueue alloc] init];
+    }
+    //failed = NO;
+    [networkQueue reset];
+    [networkQueue setRequestDidFinishSelector:@selector(imageFetchComplete:)];
+    [networkQueue setRequestDidFailSelector:@selector(imageFetchFailed:)];
+    [networkQueue setShowAccurateProgress:true];
+    [networkQueue setDelegate:self];
+    
+    //Turn on caching and set defaults
+    [ASIHTTPRequest setDefaultCache:[ASIDownloadCache sharedCache]];
+    questionEndIndex = 10;
+    [self loadData];
     [super viewDidLoad];
 }
+
+
 
 - (void)viewDidUnload
 {
@@ -82,16 +101,32 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[QuestionCollection questions] count];
+    //if ([qc count] > 0)
+    //{
+    //    return [qc count] + 1;       
+    //}
+    //else 
+    //{
+        return [qc count];
+    //}
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    if ([[QuestionCollection questions] count] > 0) 
+    if ([qc count] > 0) 
     {
-        return 1;
+        if (section == [qc count] - 1)
+        {
+            return 2;
+        }
+        else 
+        {
+            return 1;            
+        }
+
     }
+    
     else 
     {
         //If not loaded yet (2 will fill the screen)
@@ -102,20 +137,38 @@
 
 -  (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if ([[QuestionCollection questions] count] > 0) 
+    if ([qc count] > 0 && section < [qc count]) 
     {
         CGRect  viewRect = CGRectMake(0, 0, 320, 40);
         UIView* myView = [[UIView alloc] initWithFrame:viewRect];
         [myView setBackgroundColor:[UIColor whiteColor]];
         UILabel *userLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 10, 100, 20)];
         UIImageView *userImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5,5,30,30)];
-        [userImageView setImage:[UIImage imageNamed:@"profile_picture.jpg"]];
-        Question *test = [[QuestionCollection questions] objectAtIndex:section];
+        UIImage *tempImg = [imageCache objectForKey:[[qc objectAtIndex:section] user_profile_image_url]];
+                                                     
+        if (tempImg != nil)
+        {
+            [userImageView setImage:tempImg];
+        }
+        else 
+        {
+            ASIHTTPRequest *request;
+            request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[[qc objectAtIndex:section] user_profile_image_url]]];
+            [request setDownloadCache:[ASIDownloadCache sharedCache]];
+            [request setCachePolicy:ASIAskServerIfModifiedWhenStaleCachePolicy|ASIFallbackToCacheIfLoadFailsCachePolicy];
+            [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
+            [request setSecondsToCache:60*60*24*7];
+
+            [networkQueue addOperation:request];
+            [networkQueue go];
+        }
+        
+        Question *test = [qc objectAtIndex:section];
         [userLabel setFont:[UIFont boldSystemFontOfSize:13.0]];
-        [userLabel setText:[test user]];
+        [userLabel setText:[test username]];
         [myView addSubview:userLabel];
         [myView addSubview:userImageView];
-
+        
         return myView;
     }
     else
@@ -126,42 +179,66 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"FeedCell";
-    
-    FeedCell *feedCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (feedCell == nil) {
-        feedCell = [[FeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    
-    // Configure the cell...
-    
-    
-    
-    if (![[[QuestionCollection questions] objectAtIndex:indexPath.section] image])
+    if (1 == indexPath.row)
     {
+        static NSString *CellIdentifier = @"LoadMoreCell";
         
-        NSLog(@"Index: %d",indexPath.section);
-       //if (self.tableView.decelerating == NO && self.tableView.dragging == NO )
-        //{
-            NSLog(@"Starting to load image: %d",indexPath.section);
-            [self startImageDownload:[[QuestionCollection questions] objectAtIndex:indexPath.section] forIndexPath:indexPath];
-        //}  
-        [[feedCell imageView] setImage:nil];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        //cell.contentView.backgroundColor = [UIColor grayColor];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
+        return cell;
     }
-    else
+    else 
     {
+        static NSString *CellIdentifier = @"FeedCell";
         
-        [[feedCell imageView] setImage:[[[QuestionCollection questions] objectAtIndex:indexPath.section] image]];
-    }
+        FeedCell *feedCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (feedCell == nil) {
+            feedCell = [[FeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        [feedCell setDelegate:self];
+        [feedCell setIndex:indexPath.section];
+        UIImage *tempImg = [imageCache objectForKey:[[qc objectAtIndex:indexPath.section] image_url]];
+        [[feedCell answerCount] setText:[NSString stringWithFormat:@"%i", [[qc objectAtIndex:indexPath.section] answer_count]]];
+        
+        if (tempImg != nil)
+        {
+            [[feedCell imageView] setImage:tempImg];
+        }
+        else 
+        {
+            ASIHTTPRequest *request;
+            request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[[qc objectAtIndex:indexPath.section] image_url]]];
+            [request setDownloadCache:[ASIDownloadCache sharedCache]];
+            [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
+            [request setCachePolicy:ASIAskServerIfModifiedWhenStaleCachePolicy|ASIFallbackToCacheIfLoadFailsCachePolicy];
+            [request setSecondsToCache:60*60*24*7];
+            [request setDownloadProgressDelegate:[feedCell imageProgressIndicator]];
+            
+            [networkQueue addOperation:request];
+            [networkQueue go];
+            
+        }
+        
+        return feedCell;
 
-    
-    
-    return feedCell;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return  350;
+    if (1 == indexPath.row){
+        return 50;
+    }
+    else {
+        return  350; 
+    }
+
 }
 -(IBAction)imageClick:(id)sender 
 {
@@ -213,6 +290,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == 1)
+    {
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        questionEndIndex = questionEndIndex + 10;
+        [self loadData];
+        
+    }
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
@@ -245,76 +329,87 @@
 }
 
 
-//New Functions
-- (void)startImageDownload:(Question *)question forIndexPath:(NSIndexPath *)indexPath
-{
-    IconDownloader *iconDownloader = [imageDownloadsInProgress objectForKey:indexPath];
-    if (iconDownloader == nil) 
-    {
-        iconDownloader = [[IconDownloader alloc] init];
-        iconDownloader.question = [[QuestionCollection questions] objectAtIndex:indexPath.section];
-        NSLog(@"Downloading index: %d",indexPath.section);
-        iconDownloader.indexPath = indexPath;
-        iconDownloader.delegate = self;
-        [imageDownloadsInProgress setObject:iconDownloader forKey:indexPath];
-        [iconDownloader startDownload];
-    }
-}
+////New Functions
+//- (void)startImageDownload:(Question *)question forIndexPath:(NSIndexPath *)indexPath
+//{
+//    IconDownloader *iconDownloader = [imageDownloadsInProgress objectForKey:indexPath];
+//    if (iconDownloader == nil) 
+//    {
+//        iconDownloader = [[IconDownloader alloc] init];
+//        iconDownloader.question = [[QuestionCollection questions] objectAtIndex:indexPath.section];
+//        NSLog(@"Downloading index: %d",indexPath.section);
+//        iconDownloader.indexPath = indexPath;
+//        iconDownloader.delegate = self;
+//        [imageDownloadsInProgress setObject:iconDownloader forKey:indexPath];
+//        [iconDownloader startDownload];
+//    }
+//}
 
-// called by our ImageDownloader when an icon is ready to be displayed
-- (void)appImageDidLoad:(NSIndexPath *)indexPath
-{
-    IconDownloader *iconDownloader = [imageDownloadsInProgress objectForKey:indexPath];
-    if (iconDownloader != nil)
-    {
-        FeedCell *feedCell = [self.tableView cellForRowAtIndexPath:indexPath];
-        
-        // Display the newly loaded image
-        [[[QuestionCollection questions] objectAtIndex:indexPath.section] setImage:iconDownloader.question.image];
-        feedCell.imageView.image = iconDownloader.question.image;
-    }
-}
+//// called by our ImageDownloader when an icon is ready to be displayed
+//- (void)appImageDidLoad:(NSIndexPath *)indexPath
+//{
+//    IconDownloader *iconDownloader = [imageDownloadsInProgress objectForKey:indexPath];
+//    if (iconDownloader != nil)
+//    {
+//        FeedCell *feedCell = [self.tableView cellForRowAtIndexPath:indexPath];
+//        
+//        // Display the newly loaded image
+//        [[[QuestionCollection questions] objectAtIndex:indexPath.section] setImage:iconDownloader.question.image];
+//        feedCell.imageView.image = iconDownloader.question.image;
+//    }
+//}
 
 
-- (void)loadImagesForOnscreenRows
-{
-    if ([[QuestionCollection questions] count] > 0)
-    {
-        NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
-        for (NSIndexPath *indexPath in visiblePaths)
-        {
-            Question *question = [[QuestionCollection questions] objectAtIndex:indexPath.section];
-            
-            if (!question.image) // avoid the app icon download if the app already has an icon
-            {
-                [self startImageDownload:question forIndexPath:indexPath];
-            }
-        }
-    }
-}
+//- (void)loadImagesForOnscreenRows
+//{
+//    if ([[QuestionCollection questions] count] > 0)
+//    {
+//        NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
+//        for (NSIndexPath *indexPath in visiblePaths)
+//        {
+//            Question *question = [[QuestionCollection questions] objectAtIndex:indexPath.section];
+//            
+//            if (!question.image) // avoid the app icon download if the app already has an icon
+//            {
+//                [self startImageDownload:question forIndexPath:indexPath];
+//            }
+//        }
+//    }
+//}
 
-// Load images for all onscreen rows when scrolling is finished
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    if (!decelerate)
-	{
-        [self loadImagesForOnscreenRows];
-    }
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    [self loadImagesForOnscreenRows];
-}
+//// Load images for all onscreen rows when scrolling is finished
+//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+//{
+//    if (!decelerate)
+//	{
+//        [self loadImagesForOnscreenRows];
+//    }
+//}
+//
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+//{
+//    [self loadImagesForOnscreenRows];
+//}
 
 #pragma mark - Popup Menu for Camera
 
 - (void)cameraButtonClick
 {
-    popup = [[UIActionSheet alloc] initWithTitle:@"Upload Photo" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"From album", nil];
-    [popup setActionSheetStyle:UIActionSheetStyleBlackOpaque];
-    [popup showInView:self.view];
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    if ([prefs boolForKey:@"logged_in"])
+    {
+        popup = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Upload from Album", nil];
+        [popup showFromTabBar:self.tabBarController.tabBar];
+    }
+    else
+    {
+        
+        [self performSegueWithIdentifier:@"SignUpPopUp" sender:self];
+        
+    }
     
+    
+
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -323,16 +418,16 @@
         [self startCamera];
     } else if (buttonIndex == 1) {
         [self startPictureChooser];
-    } else if (buttonIndex == 2) {
-        [popup dismissWithClickedButtonIndex:buttonIndex animated:true];  
+    } 
+    else if (buttonIndex == 2) {
+//        [popup dismissWithClickedButtonIndex:buttonIndex animated:true];  
     }
 }
 
--(void)actionSheetCancel:(UIActionSheet *)actionSheet   
-{
-    
-    
-}
+//-(void)actionSheetCancel:(UIActionSheet *)actionSheet   
+//{
+//    NSLog(@"cancel");
+//}
 
 
 #pragma mark - Image Picker
@@ -360,9 +455,9 @@
 //UIImagePickerController Delegate Functions
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
-    [self setImageToPost:image];
+    [self setImageToUpload:image];
     [picker dismissModalViewControllerAnimated:YES];
-    [self performSegueWithIdentifier:@"didcapturepicture" sender:self];
+    [self performSegueWithIdentifier:@"didcapturepicture1" sender:self];
 }
 //Function to get rid of the picker
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -373,14 +468,155 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Make sure your segue name in storyboard is the same as this line
-    if ([[segue identifier] isEqualToString:@"didcapturepicture"])
+    if ([[segue identifier] isEqualToString:@"didcapturepicture1"])
     {
-        UploadImageController *vc = [segue destinationViewController];
-        [vc setImageToPost:[self imageToPost]];
+        UploadImageController *viewController = [segue destinationViewController];
+        [viewController setImageToUpload:[self imageToUpload]];
     }
+    
+    if ([[segue identifier] isEqualToString:@"PictureViewer"])
+    {
+        // Get reference to the destination view controller
+        PictureViewController *pictureView = [segue destinationViewController];
+        
+        // Pass any objects to the view controller here, like...
+        [pictureView setImage:[imageCache objectForKey:[[qc objectAtIndex:pictureViewerIndex] image_url]]];
+    }
+    
+    if ([[segue identifier] isEqualToString:@"AnswerViewer"])
+    {
+        // Get reference to the destination view controller
+        AnswerViewController *answerView = [segue destinationViewController];
+        
+        // Pass any objects to the view controller here, like...
+        [answerView setQuestion_id:answerViewerIndex];
+    }
+
+    
+
+    
+}
+
+#pragma mark - Server Connectivity
+
+//Load JSON Data from Server
+-(IBAction)loadData
+{
+  
+    
+    NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/questions/"];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setPostValue:[NSString stringWithFormat:@"%d", 0] forKey:@"start"];
+    [request setPostValue:[NSString stringWithFormat:@"%d", questionEndIndex] forKey:@"end"];    
+    [request setDelegate:self];
+    [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
+    [request setCachePolicy:ASIFallbackToCacheIfLoadFailsCachePolicy];
+    [request startAsynchronous];
+
+    
+    //Show HUD
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+	[self.navigationController.view addSubview:HUD];
+    
+    HUD.delegate = self;
+    //HUD.labelText = @"Loading";
+    
+    [HUD show:YES];
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    if ([request didUseCachedResponse])
+    {
+        NSLog(@"Did use cache!");   
+    }
+    // Use when fetching text data
+    NSString *responseString = [request responseString];
+    NSLog(@"%@", responseString);
+    [qc removeAllObjects];
+    
+    // Parse JSON Data and create question collection
+    SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
+    NSError *error = nil;
+    id jsonObjects = [jsonParser objectWithString:responseString error:&error];
+    
+    if ([jsonObjects isKindOfClass:[NSDictionary class]])
+    {
+        // treat as a dictionary, or reassign to a dictionary ivar
+    }
+    else if ([jsonObjects isKindOfClass:[NSArray class]])
+    {
+        //Load the server data into Core Data
+        
+        for (NSDictionary *dict in jsonObjects)
+        {
+            Question *newQuestion = [[Question alloc] init];
+
+            [newQuestion setUsername:[dict objectForKey:@"username"]];
+            [newQuestion setQuestion_id:[[dict objectForKey:@"question_id"] integerValue]];
+            [newQuestion setImage_url:[dict objectForKey:@"image_url"]];
+            [newQuestion setDescription:[dict objectForKey:@"description"]];
+            [newQuestion setUser_profile_image_url:[dict objectForKey:@"user_profile_image_url"]];             
+            [newQuestion setAnswer_count:[[dict objectForKey:@"answer_count"] integerValue]];
+
+            [qc addObject:newQuestion];
+            NSLog(@"%d",[qc count]);
+        }
+    }
+    
+    [HUD hide:YES];
+    [[self tableView] reloadData];
+    
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    NSError *error = [request error];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection" 
+                                                    message:[error description]
+                                                   delegate:nil 
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+    //Todo: Display Error Message
 }
 
 
+- (void)imageFetchComplete:(ASIHTTPRequest *)request
+{
+	UIImage *img = [UIImage imageWithData:[request responseData]];
+    NSLog(@"Downloaded...%@",[[request url] absoluteString]);
+    [imageCache setObject:img forKey:[[request url] absoluteString]];
+    [[self tableView] reloadData];
+}
+
+- (void)imageFetchFailed:(ASIHTTPRequest *)request
+{
+	/*
+     if (!failed) {
+		if ([[request error] domain] != NetworkRequestErrorDomain || [[request error] code] != ASIRequestCancelledErrorType) {
+			UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Download failed" message:@"Failed to download images" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+			[alertView show];
+		}
+		failed = YES;
+	}
+     */
+}
+
+
+-(void)handleMainImageClick:(int)indexNum
+{
+    NSLog(@"Action for index: %d",indexNum);
+    pictureViewerIndex = indexNum;
+    [self performSegueWithIdentifier:@"PictureViewer" sender:nil];
+}
+
+- (void)handleAnswerclick:(int)indexNum
+{
+    answerViewerIndex = [[qc objectAtIndex:indexNum] question_id];
+    [self performSegueWithIdentifier:@"AnswerViewer" sender:nil];
+
+}
 
 
 @end

@@ -1,33 +1,31 @@
 //
-//  UploadImageController.h
+//  UploadImageController1.h
 //  HalfCanvas
 //
-//  Created by Ryan Hittner on 1/28/12.
+//  Created by Ryan Hittner on 3/4/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h>
+#import "MBProgressHUD.h"
+#import "ASIHTTPRequest.h"
+#import "ASIFormDataRequest.h"
 
-@interface UploadImageController : UIViewController
+@interface UploadImageController : UITableViewController <ASIHTTPRequestDelegate>
 {
-    UITextField *tags;
     UITextView *comments;
-    UIBarItem *post;
-    UIButton *cancel;
-    
-    UIImage *imagetoPost;
-    UIImageView *viewer;
-    
-    UIScrollView *scroller;
+    UITextField *tags;
+    UIImage *imageToUploader;
+    MBProgressHUD *HUD;
 }
 
-@property (retain) IBOutlet UITextField *tags;
-@property (retain) IBOutlet UITextView *comments;
-@property (retain) IBOutlet UIBarItem *post;
-@property (retain) IBOutlet UIButton *cancel;
-@property (retain) UIImage *imageToPost;
-@property (retain) IBOutlet UIScrollView *scroller;
-@property (retain) IBOutlet UIImageView *viewer;
+@property (nonatomic, retain) IBOutlet UITextView *comments;
+@property (nonatomic, retain) IBOutlet UITextField *tags;
+@property (nonatomic, retain) UIImage *imageToUpload;
+
+-(IBAction)cancelButton:(id)sender;
+-(IBAction)doneButton:(id)sender;
+
+-(void)uploadData;
 
 @end

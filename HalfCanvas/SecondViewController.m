@@ -137,10 +137,10 @@
     if ([[segue identifier] isEqualToString:@"didcapturepicture"])
     {
         // Get reference to the destination view controller
-        UploadImageController *vc = [segue destinationViewController];
+
         
         // Pass any objects to the view controller here, like...
-        [vc setImageToPost:[self imageToPost]];
+
     }
 }
 
