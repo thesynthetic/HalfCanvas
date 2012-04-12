@@ -546,3 +546,174 @@ Validating models...
 Django version 1.3.1, using settings 'hcserver.settings'
 Development server is running at http://ec2-107-20-141-154.compute-1.amazonaws.com:8000/
 Quit the server with CONTROL-C.
+[13/Mar/2012 21:23:42] "GET /questions/ HTTP/1.1" 200 765
+[13/Mar/2012 21:25:16] "GET /questions/ HTTP/1.1" 200 765
+[13/Mar/2012 21:26:14] "GET /questions/ HTTP/1.1" 200 765
+[13/Mar/2012 22:14:05] "GET /questions/ HTTP/1.1" 200 765
+Traceback (most recent call last):
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 284, in run
+    self.finish_response()
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 324, in finish_response
+    self.write(data)
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 403, in write
+    self.send_headers()
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 467, in send_headers
+    self.send_preamble()
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 382, in send_preamble
+    self._write('HTTP/%s %s\r\n' % (self.http_version,self.status))
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 511, in _write
+    self.stdout.write(data)
+  File "/usr/lib/python2.6/socket.py", line 324, in write
+    self.flush()
+  File "/usr/lib/python2.6/socket.py", line 303, in flush
+    self._sock.sendall(buffer(data, write_offset, buffer_size))
+error: [Errno 32] Broken pipe
+Traceback (most recent call last):
+  File "/usr/lib/python2.6/SocketServer.py", line 283, in _handle_request_noblock
+    self.process_request(request, client_address)
+  File "/usr/lib/python2.6/SocketServer.py", line 309, in process_request
+    self.finish_request(request, client_address)
+  File "/usr/lib/python2.6/SocketServer.py", line 322, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 570, in __init__
+    BaseHTTPRequestHandler.__init__(self, *args, **kwargs)
+  File "/usr/lib/python2.6/SocketServer.py", line 618, in __init__
+    self.finish()
+  File "/usr/lib/python2.6/SocketServer.py", line 661, in finish
+    self.wfile.flush()
+  File "/usr/lib/python2.6/socket.py", line 303, in flush
+    self._sock.sendall(buffer(data, write_offset, buffer_size))
+error: [Errno 32] Broken pipe
+Traceback (most recent call last):
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 284, in run
+    self.finish_response()
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 324, in finish_response
+    self.write(data)
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 420, in write
+    self._write(data)
+  File "/usr/lib/python2.6/socket.py", line 324, in write
+    self.flush()
+  File "/usr/lib/python2.6/socket.py", line 303, in flush
+    self._sock.sendall(buffer(data, write_offset, buffer_size))
+error: [Errno 32] Broken pipe
+Traceback (most recent call last):
+  File "/usr/lib/python2.6/SocketServer.py", line 283, in _handle_request_noblock
+    self.process_request(request, client_address)
+  File "/usr/lib/python2.6/SocketServer.py", line 309, in process_request
+    self.finish_request(request, client_address)
+  File "/usr/lib/python2.6/SocketServer.py", line 322, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 570, in __init__
+    BaseHTTPRequestHandler.__init__(self, *args, **kwargs)
+  File "/usr/lib/python2.6/SocketServer.py", line 618, in __init__
+    self.finish()
+  File "/usr/lib/python2.6/SocketServer.py", line 661, in finish
+    self.wfile.flush()
+  File "/usr/lib/python2.6/socket.py", line 303, in flush
+    self._sock.sendall(buffer(data, write_offset, buffer_size))
+error: [Errno 32] Broken pipe
+[14/Mar/2012 16:04:40] "GET /questions/ HTTP/1.1" 200 765
+Traceback (most recent call last):
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 284, in run
+    self.finish_response()
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 324, in finish_response
+    self.write(data)
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 420, in write
+    self._write(data)
+  File "/usr/lib/python2.6/socket.py", line 324, in write
+    self.flush()
+  File "/usr/lib/python2.6/socket.py", line 303, in flush
+    self._sock.sendall(buffer(data, write_offset, buffer_size))
+error: [Errno 32] Broken pipe
+Traceback (most recent call last):
+  File "/usr/lib/python2.6/SocketServer.py", line 283, in _handle_request_noblock
+    self.process_request(request, client_address)
+  File "/usr/lib/python2.6/SocketServer.py", line 309, in process_request
+    self.finish_request(request, client_address)
+  File "/usr/lib/python2.6/SocketServer.py", line 322, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 570, in __init__
+    BaseHTTPRequestHandler.__init__(self, *args, **kwargs)
+  File "/usr/lib/python2.6/SocketServer.py", line 618, in __init__
+    self.finish()
+  File "/usr/lib/python2.6/SocketServer.py", line 661, in finish
+    self.wfile.flush()
+  File "/usr/lib/python2.6/socket.py", line 303, in flush
+    self._sock.sendall(buffer(data, write_offset, buffer_size))
+error: [Errno 32] Broken pipe
+[14/Mar/2012 16:05:17] "GET /questions/ HTTP/1.1" 200 765
+Traceback (most recent call last):
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 284, in run
+    self.finish_response()
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 324, in finish_response
+    self.write(data)
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 403, in write
+    self.send_headers()
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 467, in send_headers
+    self.send_preamble()
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 382, in send_preamble
+    self._write('HTTP/%s %s\r\n' % (self.http_version,self.status))
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 511, in _write
+    self.stdout.write(data)
+  File "/usr/lib/python2.6/socket.py", line 324, in write
+    self.flush()
+  File "/usr/lib/python2.6/socket.py", line 303, in flush
+    self._sock.sendall(buffer(data, write_offset, buffer_size))
+error: [Errno 32] Broken pipe
+Traceback (most recent call last):
+  File "/usr/lib/python2.6/SocketServer.py", line 283, in _handle_request_noblock
+    self.process_request(request, client_address)
+  File "/usr/lib/python2.6/SocketServer.py", line 309, in process_request
+    self.finish_request(request, client_address)
+  File "/usr/lib/python2.6/SocketServer.py", line 322, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 570, in __init__
+    BaseHTTPRequestHandler.__init__(self, *args, **kwargs)
+  File "/usr/lib/python2.6/SocketServer.py", line 618, in __init__
+    self.finish()
+  File "/usr/lib/python2.6/SocketServer.py", line 661, in finish
+    self.wfile.flush()
+  File "/usr/lib/python2.6/socket.py", line 303, in flush
+    self._sock.sendall(buffer(data, write_offset, buffer_size))
+error: [Errno 32] Broken pipe
+Traceback (most recent call last):
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 284, in run
+    self.finish_response()
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 324, in finish_response
+    self.write(data)
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 403, in write
+    self.send_headers()
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 467, in send_headers
+    self.send_preamble()
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 382, in send_preamble
+    self._write('HTTP/%s %s\r\n' % (self.http_version,self.status))
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 511, in _write
+    self.stdout.write(data)
+  File "/usr/lib/python2.6/socket.py", line 324, in write
+    self.flush()
+  File "/usr/lib/python2.6/socket.py", line 303, in flush
+    self._sock.sendall(buffer(data, write_offset, buffer_size))
+error: [Errno 32] Broken pipe
+Traceback (most recent call last):
+  File "/usr/lib/python2.6/SocketServer.py", line 283, in _handle_request_noblock
+    self.process_request(request, client_address)
+  File "/usr/lib/python2.6/SocketServer.py", line 309, in process_request
+    self.finish_request(request, client_address)
+  File "/usr/lib/python2.6/SocketServer.py", line 322, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/lib/python2.6/site-packages/django/core/servers/basehttp.py", line 570, in __init__
+    BaseHTTPRequestHandler.__init__(self, *args, **kwargs)
+  File "/usr/lib/python2.6/SocketServer.py", line 618, in __init__
+    self.finish()
+  File "/usr/lib/python2.6/SocketServer.py", line 661, in finish
+    self.wfile.flush()
+  File "/usr/lib/python2.6/socket.py", line 303, in flush
+    self._sock.sendall(buffer(data, write_offset, buffer_size))
+error: [Errno 32] Broken pipe
+[14/Mar/2012 16:05:17] "GET /questions/ HTTP/1.1" 200 765
+[14/Mar/2012 19:11:07] "GET /questions/ HTTP/1.1" 200 765
+[14/Mar/2012 19:11:14] "GET /questions/ HTTP/1.1" 200 765
+[14/Mar/2012 21:18:15] "POST /create_question/ HTTP/1.1" 200 0
+[14/Mar/2012 21:18:15] "GET /questions/ HTTP/1.1" 200 1030
+[14/Mar/2012 21:40:59] "GET / HTTP/1.1" 404 2440
+[14/Mar/2012 21:41:03] "GET /questions/ HTTP/1.1" 200 1030

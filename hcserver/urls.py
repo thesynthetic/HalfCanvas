@@ -22,4 +22,7 @@ urlpatterns = patterns('',
     
     # Post Question
     url(r'^create_question/','hcserver.views.create_question'),
+
+    # Answers
+    url(r'^answers/','hcserver.views.answers'),
 )

@@ -23,10 +23,16 @@ from boto.s3.key import Key
 #Error 10.3 - Username, email, or password not received
 
 
-
+@csrf_exempt
 def index(request):
 	output = []
-	for i in Question.objects.select_related('user__userdata').all().order_by('-pub_date').annotate(answer_count=Count('answer')):
+	if(request.POST['start'] and request.POST['end']):
+		start_index = request.POST['start']
+		end_index = request.POST['end']
+	else:
+		start_index = 0
+		end_index = 9
+	for i in Question.objects.select_related('user__userdata').all().order_by('-pub_date')[start_index:end_index].annotate(answer_count=Count('answer')):
 		question = dict()
 		question['image_url'] = i.image_url
 		question['username'] = i.user.username
@@ -39,10 +45,30 @@ def index(request):
 	#json_output = data = serializers.serialize("json", Question.objects.all())
 	#return HttpResponse(json_output)
 	return HttpResponse(
-                        simplejson.dumps(output),
-                        content_type = 'application/javascript; charset=utf8'
-                )
+               	        simplejson.dumps(output),
+               	        content_type = 'application/javascript; charset=utf8'
+               	)
 	
+@csrf_exempt
+def answers(request):
+	if request.POST['question_id']:
+		output = []
+		for i in Answer.objects.filter(question__pk=request.POST['question_id']).order_by('pub_date').select_related('user__userdata'):
+                	answer = dict()
+               		answer['image_url'] = i.image_url
+                	answer['username'] = i.user.username
+                	answer['text'] = i.text
+                	answer['user_profile_image_url'] = i.user.userdata.profile_image_url
+                	answer['answer_id'] = i.pk
+                	#answer['pub_date'] = i.pub_date
+                	output.append(answer)
+        	return HttpResponse(
+                	        simplejson.dumps(output),
+                        	content_type = 'application/javascript; charset=utf8'
+                	)
+	else:
+		#Todo: Handle error
+		return HttpResponse()
 
 
 @csrf_exempt

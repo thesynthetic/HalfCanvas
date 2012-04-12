@@ -16,6 +16,7 @@ class Answer(models.Model):
     text = models.CharField(max_length=16000)
     user = models.ForeignKey(User)
     image_url = models.CharField(max_length=200,default='')
+    pub_date = models.DateTimeField('date published')
 
     def __unicode__(self):
         return str(self.pk)
