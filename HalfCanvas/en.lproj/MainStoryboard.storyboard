@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
     <dependencies>
-        <deployment defaultVersion="1280" identifier="iOS"/>
+        <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1179"/>
     </dependencies>
     <scenes>
+        <!--Sign Up View Controller-->
         <scene sceneID="wIu-6I-C71">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oVG-32-Qmi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -18,22 +19,22 @@
                                 <rect key="frame" x="21" y="160" width="278" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Connecting students and tutors" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" minimumFontSize="10" id="rbW-uV-tIv">
-                                <rect key="frame" x="52" y="29" width="216" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Connecting students and tutors" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" adjustsFontSizeToFit="NO" id="rbW-uV-tIv">
+                                <rect key="frame" x="52" y="84" width="216" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                 <color key="textColor" red="0.25352017490000001" green="0.57431114429999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="with pictures." textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" minimumFontSize="10" id="k3e-Yp-R3h">
-                                <rect key="frame" x="62" y="46" width="196" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="with pictures." textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" adjustsFontSizeToFit="NO" id="k3e-Yp-R3h">
+                                <rect key="frame" x="62" y="103" width="196" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                 <color key="textColor" red="0.25352017490000001" green="0.57431114429999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" id="qj6-8o-ot8">
-                                <rect key="frame" x="47" y="233" width="226" height="26"/>
+                                <rect key="frame" x="47" y="228" width="226" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                 <state key="normal" title="Or, sign in with your email address.">
@@ -65,6 +66,7 @@
             </objects>
             <point key="canvasLocation" x="3204" y="-2116"/>
         </scene>
+        <!--Sign Up Email View Controller-->
         <scene sceneID="W7i-qw-bhj">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hB6-wP-f6B" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -73,17 +75,25 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <segmentedControl key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="iWf-oC-sdR">
+                        <toolbar key="tableHeaderView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackOpaque" id="2i4-bo-mEV">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="Sign Up"/>
-                                <segment title="Sign In"/>
-                            </segments>
-                            <connections>
-                                <action selector="test:" destination="gJS-tC-9nL" eventType="valueChanged" id="gIC-fQ-W9g"/>
-                            </connections>
-                        </segmentedControl>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <items>
+                                <barButtonItem title="Item" style="plain" id="fsv-m9-93K">
+                                    <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="iWf-oC-sdR">
+                                        <rect key="frame" x="6" y="8" width="309" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <segments>
+                                            <segment title="Sign Up"/>
+                                            <segment title="Sign In"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="test:" destination="gJS-tC-9nL" eventType="valueChanged" id="gIC-fQ-W9g"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </barButtonItem>
+                            </items>
+                        </toolbar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="BOR-8q-rsc">
                                 <rect key="frame" x="0.0" y="80" width="320" height="45"/>
@@ -98,7 +108,7 @@
                                 <rect key="frame" x="0.0" y="125" width="320" height="45"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                    <rect key="frame" x="10" y="0.0" width="300" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -120,6 +130,7 @@
             </objects>
             <point key="canvasLocation" x="3664" y="-2120"/>
         </scene>
+        <!--Feed Controller - HalfCanvas-->
         <scene sceneID="DRd-cS-wRU">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jhl-pq-tQX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -228,6 +239,7 @@
             </objects>
             <point key="canvasLocation" x="1277" y="-138"/>
         </scene>
+        <!--Navigation Controller - Problems-->
         <scene sceneID="Lvi-If-TXu">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cf0-pi-voc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -246,6 +258,7 @@
             </objects>
             <point key="canvasLocation" x="688" y="-39"/>
         </scene>
+        <!--Upload Image Controller-->
         <scene sceneID="fRe-7x-AtF">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e7d-zJ-XDC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -333,6 +346,7 @@
             </objects>
             <point key="canvasLocation" x="2034" y="270"/>
         </scene>
+        <!--Picture View Controller -  -->
         <scene sceneID="v0C-oA-IFu">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdb-Ha-35g" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -380,6 +394,7 @@
             </objects>
             <point key="canvasLocation" x="2044" y="-943"/>
         </scene>
+        <!--Settings View Controller - Settings-->
         <scene sceneID="8M4-gY-9Ts">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tk5-e0-pq2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -410,6 +425,7 @@
             </objects>
             <point key="canvasLocation" x="1214" y="1351"/>
         </scene>
+        <!--Sign In View Controller-->
         <scene sceneID="Img-z2-I6G">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fwT-8X-ybf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -451,6 +467,7 @@
             </objects>
             <point key="canvasLocation" x="1722" y="1346"/>
         </scene>
+        <!--Main Tab Bar Controller-->
         <scene sceneID="15">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
@@ -472,6 +489,7 @@
             </objects>
             <point key="canvasLocation" x="88" y="216"/>
         </scene>
+        <!--Navigation Controller - Settings-->
         <scene sceneID="tm7-Yt-gT9">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cIA-FN-mT7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -492,6 +510,7 @@
             </objects>
             <point key="canvasLocation" x="688" y="1351"/>
         </scene>
+        <!--Navigation Controller - My Canvas-->
         <scene sceneID="cGW-iy-kuD">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w0q-rZ-Bb3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -508,6 +527,7 @@
             </objects>
             <point key="canvasLocation" x="696" y="669"/>
         </scene>
+        <!--Navigation Controller - Explore-->
         <scene sceneID="PCQ-dH-Dfa">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rps-6y-JVM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -524,6 +544,7 @@
             </objects>
             <point key="canvasLocation" x="100" y="1151"/>
         </scene>
+        <!--Answer View Controller - Half Answers-->
         <scene sceneID="28O-fc-xUK">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yS1-Qa-D8X" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -604,7 +625,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ryeguy_24" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" minimumFontSize="10" id="sfR-wx-Bbg">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ryeguy_24" lineBreakMode="tailTruncation" minimumFontSize="10" adjustsFontSizeToFit="NO" id="sfR-wx-Bbg">
                             <rect key="frame" x="42" y="7" width="157" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
@@ -631,6 +652,7 @@
             </objects>
             <point key="canvasLocation" x="2034" y="-348"/>
         </scene>
+        <!--Picture View Controller-->
         <scene sceneID="yNm-gs-coh">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z95-Xu-KXX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -679,6 +701,7 @@
             </objects>
             <point key="canvasLocation" x="2834" y="-834"/>
         </scene>
+        <!--Upload Image Controller-->
         <scene sceneID="hga-qi-Hck">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Svc-y9-svl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -736,6 +759,7 @@
             </objects>
             <point key="canvasLocation" x="2826" y="-164"/>
         </scene>
+        <!--Navigation Controller-->
         <scene sceneID="bn8-Ee-Pul">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OWR-1Y-Zq2" userLabel="First Responder" sceneMemberID="firstResponder"/>
