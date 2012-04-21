@@ -81,21 +81,26 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    if (state == 0)
-    {
-        return 4;
+    if (section == 0){
+        if (state == 0)
+        {
+            return 4;
+        }
+        else 
+        {
+            return 2;
+        }
     }
-    else 
+    else
     {
-        return 2;
+        return 1;
     }
-
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -103,79 +108,95 @@
     static NSString *CellIdentifier = @"Cell";
     
     //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-
-    UILabel *cellLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 11, 95, 21)];
+    UITableViewCell *cell;
+    UILabel *cellLabel;
     
-    if (state == 0)
-    {
+    if (indexPath.section == 0){
+        
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cellLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 11, 95, 21)];
+        
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
+        if (state == 0)
+        {
 
-        if (indexPath.row == 0)
-        {
-            username = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
-            [cellLabel setText:@"Username"];
-            [cellLabel setBackgroundColor:[UIColor clearColor]];
-            [cellLabel setFont:[UIFont boldSystemFontOfSize:16]];
-            username.placeholder = @"johnsmith";
-            username.adjustsFontSizeToFitWidth = YES;
-            username.textColor = [UIColor blackColor];
-            [cell addSubview:username];
+            if (indexPath.row == 0)
+            {
+                username = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
+                [cellLabel setText:@"Username"];
+                [cellLabel setBackgroundColor:[UIColor clearColor]];
+                [cellLabel setFont:[UIFont boldSystemFontOfSize:16]];
+                username.placeholder = @"johnsmith";
+                username.adjustsFontSizeToFitWidth = YES;
+                username.textColor = [UIColor blackColor];
+                [cell addSubview:username];
+            }
+            if (indexPath.row == 1)
+            {
+                email = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
+                [cellLabel setText:@"Email"];
+                [cellLabel setBackgroundColor:[UIColor clearColor]];
+                [cellLabel setFont:[UIFont boldSystemFontOfSize:16]];
+                email.placeholder = @"john@smith.com";
+                email.adjustsFontSizeToFitWidth = YES;
+                email.textColor = [UIColor blackColor];
+                [cell addSubview:email];
+            }
+            if (indexPath.row == 2)
+            {
+                password = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
+                [cellLabel setText:@"Password"];
+                [cellLabel setFont:[UIFont boldSystemFontOfSize:16]];
+                [cellLabel setBackgroundColor:[UIColor clearColor]];
+                password.secureTextEntry = YES;
+                password.adjustsFontSizeToFitWidth = YES;
+                password.textColor = [UIColor blackColor];
+                [cell addSubview:password];
+            }
+            if (indexPath.row == 3)
+            {
+                
+                [cellLabel setText:@"Photo"];
+                [cellLabel setBackgroundColor:[UIColor clearColor]];
+                [cellLabel setFont:[UIFont boldSystemFontOfSize:16]];
+            }
         }
-        if (indexPath.row == 1)
+        else 
         {
-            email = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
-            [cellLabel setText:@"Email"];
-            [cellLabel setBackgroundColor:[UIColor clearColor]];
-            [cellLabel setFont:[UIFont boldSystemFontOfSize:16]];
-            email.placeholder = @"john@smith.com";
-            email.adjustsFontSizeToFitWidth = YES;
-            email.textColor = [UIColor blackColor];
-            [cell addSubview:email];
-        }
-        if (indexPath.row == 2)
-        {
-            password = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
-            [cellLabel setText:@"Password"];
-            [cellLabel setFont:[UIFont boldSystemFontOfSize:16]];
-            [cellLabel setBackgroundColor:[UIColor clearColor]];
-            password.secureTextEntry = YES;
-            password.adjustsFontSizeToFitWidth = YES;
-            password.textColor = [UIColor blackColor];
-            [cell addSubview:password];
-        }
-        if (indexPath.row == 3)
-        {
+            if (indexPath.row == 0)
+            {
+                username = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
+                [cellLabel setText:@"Username"];
+                [cellLabel setBackgroundColor:[UIColor clearColor]];
+                [cellLabel setFont:[UIFont boldSystemFontOfSize:16]];
+                username.placeholder = @"johnsmith";
+                username.adjustsFontSizeToFitWidth = YES;
+                username.textColor = [UIColor blackColor];
+                [cell addSubview:username];
+            }
+            if (indexPath.row == 1)
+            {
+                password = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
+                [cellLabel setText:@"Password"];
+                [cellLabel setFont:[UIFont boldSystemFontOfSize:16]];
+                [cellLabel setBackgroundColor:[UIColor clearColor]];
+                password.secureTextEntry = YES;
+                password.adjustsFontSizeToFitWidth = YES;
+                password.textColor = [UIColor blackColor];
+                [cell addSubview:password];
+            }
             
-            [cellLabel setText:@"Photo"];
-            [cellLabel setBackgroundColor:[UIColor clearColor]];
-            [cellLabel setFont:[UIFont boldSystemFontOfSize:16]];
+            
         }
+        
     }
     else 
     {
-        if (indexPath.row == 0)
-        {
-            username = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
-            [cellLabel setText:@"Username"];
-            [cellLabel setBackgroundColor:[UIColor clearColor]];
-            [cellLabel setFont:[UIFont boldSystemFontOfSize:16]];
-            username.placeholder = @"johnsmith";
-            username.adjustsFontSizeToFitWidth = YES;
-            username.textColor = [UIColor blackColor];
-            [cell addSubview:username];
-        }
-        if (indexPath.row == 1)
-        {
-            password = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
-            [cellLabel setText:@"Password"];
-            [cellLabel setFont:[UIFont boldSystemFontOfSize:16]];
-            [cellLabel setBackgroundColor:[UIColor clearColor]];
-            password.secureTextEntry = YES;
-            password.adjustsFontSizeToFitWidth = YES;
-            password.textColor = [UIColor blackColor];
-            [cell addSubview:password];
-        }
         
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"DoneCell"];
+        
+        [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
         
     }
         
