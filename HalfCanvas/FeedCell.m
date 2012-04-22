@@ -72,4 +72,9 @@
     [[self delegate] handleAnswerclick:[self index]];
 }
 
+-(IBAction)addAnswerClick:(id)sender
+{
+      [[self delegate] handleAddAnswerClick:[self index]];
+}
+
 @end

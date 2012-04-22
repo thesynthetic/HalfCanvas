@@ -13,6 +13,7 @@
 @optional
 - (void)handleMainImageClick:(int)indexNum;
 - (void)handleAnswerclick:(int)indexNum;
+- (void)handleAddAnswerClick:(int)indexNum;
 @end
 
 

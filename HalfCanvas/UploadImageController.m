@@ -14,6 +14,8 @@
 @synthesize comments;
 @synthesize tags;
 @synthesize imageToUpload;
+@synthesize isQuestion;
+@synthesize question_id;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -37,19 +39,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -78,97 +72,18 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-#pragma mark - Table view data source
-
-/*- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    
-    // Configure the cell...
-    
-    return cell;
-}
-
- */
- 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+  
 }
-
 
 -(IBAction)cancelButton:(id)sender
 {
     [self.navigationController popViewControllerAnimated:false];
-    
 }
+
 -(IBAction)doneButton:(id)sender
 {
     NSLog(@"Upload");
@@ -182,14 +97,21 @@
 
 	HUD.delegate = self;
     HUD.labelText = @"Uploading";
-    [HUD show:YES];
-    [self uploadData];
     
+    [HUD show:YES];
+    
+    if (isQuestion)
+    {
+        [self uploadDataAsQuestion];
     }
+    else 
+    {
+        [self uploadDataAsAnswer];
+    }
+}
 
--(void)uploadData
+-(void)uploadDataAsQuestion
 {
-    //To do: Make asynchronous
     NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/create_question/"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setData:UIImageJPEGRepresentation(imageToUpload,0.35) withFileName:@"upload.jpg" andContentType:@"image/jpeg" forKey:@"file"];
@@ -199,6 +121,22 @@
     [request setDelegate:self];
     [request startAsynchronous];
 }
+
+-(void)uploadDataAsAnswer
+{
+    NSLog(@"%d",[self question_id]);
+    NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/create_answer/"];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setData:UIImageJPEGRepresentation(imageToUpload,0.35) withFileName:@"upload.jpg" andContentType:@"image/jpeg" forKey:@"file"];
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSString *access_token = [user objectForKey:@"access_token"];
+    [request setPostValue:[NSString stringWithFormat:@"%d",[self question_id]] forKey:@"question_id"];
+    [request setPostValue:access_token forKey:@"access_token"];
+    [request setDelegate:self];
+    [request startAsynchronous];
+}
+
+
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
     [HUD hide:YES];
@@ -213,20 +151,6 @@
     [HUD show:YES];
 	[HUD hide:YES afterDelay:3];
 }
--(void)performUploader
-{
-    /*
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:@"http://www.stripedcanvas.com:8000/post/"];
-    [request setPostValue:@"Ben" forKey:@"first_name"];
-    [request setPostValue:@"Copsey" forKey:@"last_name"];
-    //[request setUploadProgressDelegate:myProgressIndicator];
-    
-    //Todo:  Implement asynchronous upload
-    
-    //[request startSynchronous];
-    //NSLog(@"Value: %f",[myProgressIndicator progress]);
-    HUD.progress = 1;
-     */
-}
+
 
 @end

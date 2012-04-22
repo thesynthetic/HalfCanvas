@@ -150,10 +150,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="349"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" id="5wN-Ff-GIE">
-                                            <rect key="frame" x="9" y="317" width="52" height="20"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" id="5wN-Ff-GIE">
+                                            <rect key="frame" x="-2" y="318" width="52" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="25" maxY="0.0"/>
                                             <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             <state key="normal" title="24" backgroundImage="comment_64.png">
                                                 <color key="titleColor" red="0.038462593650000002" green="0.74932324849999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -169,6 +170,7 @@
                                         <progressView opaque="NO" contentMode="scaleToFill" id="5DZ-h9-PFr">
                                             <rect key="frame" x="85" y="150" width="150" height="9"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="progressTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </progressView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="zs1-gp-eLp">
                                             <rect key="frame" x="5" y="0.0" width="310" height="310"/>
@@ -186,7 +188,7 @@
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <action selector="addAnswer:" destination="fFh-IO-q7y" eventType="touchUpInside" id="VJE-zb-kBJ"/>
+                                                <action selector="addAnswerClick:" destination="wob-UC-TyX" eventType="touchUpInside" id="rRA-QT-Alv"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -241,6 +243,7 @@
                         <segue destination="FyP-hw-Z7z" kind="push" identifier="didcapturepicture1" id="J0Y-1R-tGX"/>
                         <segue destination="agB-vk-Yf8" kind="push" identifier="AnswerViewer" id="xFe-Q4-Niw"/>
                         <segue destination="bpV-Zm-Anx" kind="modal" identifier="SignUpPopUp" id="sEW-H8-cXr"/>
+                        <segue destination="dKJ-4J-4Uh" kind="push" identifier="didcapturepicture2" id="6Ql-kL-hnx"/>
                     </connections>
                 </tableViewController>
             </objects>
@@ -624,7 +627,7 @@
                     <navigationItem key="navigationItem" title="Half Answers" id="S9N-4B-e8c"/>
                     <connections>
                         <segue destination="yuc-WI-7dQ" kind="modal" identifier="PictureViewer" modalTransitionStyle="coverVertical" id="VTb-Sj-C4n"/>
-                        <segue destination="dKJ-4J-4Uh" kind="push" identifier="ImagePickerUpload" id="0Jn-o9-eCO"/>
+                        <segue destination="dKJ-4J-4Uh" kind="push" identifier="didcapturepicture2" id="0Jn-o9-eCO"/>
                         <segue destination="bpV-Zm-Anx" kind="modal" identifier="SignUpPopUp" id="3Zq-Rg-m8G"/>
                     </connections>
                 </tableViewController>
@@ -657,7 +660,7 @@
                     </connections>
                 </view>
             </objects>
-            <point key="canvasLocation" x="2034" y="-348"/>
+            <point key="canvasLocation" x="2029" y="-335"/>
         </scene>
         <!--Picture View Controller-->
         <scene sceneID="yNm-gs-coh">
@@ -878,6 +881,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="6Ql-kL-hnx"/>
         <segue reference="sEW-H8-cXr"/>
     </inferredMetricsTieBreakers>
 </document>

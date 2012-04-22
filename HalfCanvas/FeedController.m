@@ -19,6 +19,7 @@
 @synthesize imageToUpload;
 @synthesize qcol;
 @synthesize qc;
+@synthesize addingQuestion;
 
 @synthesize imageCache;
 
@@ -412,54 +413,24 @@
     }
 }
 
--(IBAction)addAnswer:(id)sender
-{
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    if ([prefs boolForKey:@"logged_in"])
-    {
-        actionSheetAnswer = [[UIActionSheet alloc] initWithTitle:@"Upload an answer" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Upload from Album", nil];
-        [actionSheetAnswer setTag:1];
-        [actionSheetAnswer showFromTabBar:self.tabBarController.tabBar];
-    }
-    else
-    {
-        [self performSegueWithIdentifier:@"SignUpPopUp" sender:self];
-    }
-}
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     
-    if ([actionSheet tag] == 0){
-        if (buttonIndex == 0) {
-            [self startCamera];
-        } else if (buttonIndex == 1) {
-            [self startPictureChooser];
-        } 
-        else if (buttonIndex == 2) {
-            //[popup dismissWithClickedButtonIndex:buttonIndex animated:true];  
-        }
-    }
+    if (buttonIndex == 0) {
+        [self startCamera];
+    } else if (buttonIndex == 1) {
+        [self startPictureChooser];
+    } 
+    NSLog(@"%d",[actionSheet tag]);
     if ([actionSheet tag] == 1)
     {
-        if (buttonIndex == 0) {
-            //[self startCamera];
-        } else if (buttonIndex == 1) {
-            //[self startPictureChooser];
-        } 
-        else if (buttonIndex == 2) {
-            //[popup dismissWithClickedButtonIndex:buttonIndex animated:true];  
-        }
-
+        [self setAddingQuestion:false];
     }
+    else {
+        [self setAddingQuestion:true];
+    }
+
 }
-
-//-(void)actionSheetCancel:(UIActionSheet *)actionSheet   
-//{
-//    NSLog(@"cancel");
-//}
-
-
-
 
 
 #pragma mark - Image Picker
@@ -483,15 +454,23 @@
 }
 
 
-
-//UIImagePickerController Delegate Functions
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
     [self setImageToUpload:image];
     [picker dismissModalViewControllerAnimated:YES];
-    [self performSegueWithIdentifier:@"didcapturepicture1" sender:self];
+    if ([self addingQuestion])
+    {
+        [self performSegueWithIdentifier:@"didcapturepicture1" sender:self];
+    }
+    else 
+    {
+        [self performSegueWithIdentifier:@"didcapturepicture2" sender:self];
+    }
+        
+    
 }
-//Function to get rid of the picker
+
+
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [picker dismissModalViewControllerAnimated:YES];
@@ -503,8 +482,18 @@
     if ([[segue identifier] isEqualToString:@"didcapturepicture1"])
     {
         UploadImageController *viewController = [segue destinationViewController];
+        [viewController setIsQuestion:YES];
         [viewController setImageToUpload:[self imageToUpload]];
     }
+    if ([[segue identifier] isEqualToString:@"didcapturepicture2"])
+    {
+        UploadImageController *viewController = [segue destinationViewController];
+        [viewController setIsQuestion:NO];
+
+        [viewController setQuestion_id:answerViewerIndex];
+        [viewController setImageToUpload:[self imageToUpload]];
+    }
+    
     
     if ([[segue identifier] isEqualToString:@"PictureViewer"])
     {
@@ -517,16 +506,10 @@
     
     if ([[segue identifier] isEqualToString:@"AnswerViewer"])
     {
-        // Get reference to the destination view controller
         AnswerViewController *answerView = [segue destinationViewController];
-        
-        // Pass any objects to the view controller here, like...
         [answerView setQuestion_id:answerViewerIndex];
     }
-
-    
-
-    
+   
 }
 
 #pragma mark - Server Connectivity
@@ -645,9 +628,30 @@
 
 - (void)handleAnswerclick:(int)indexNum
 {
-    answerViewerIndex = [[qc objectAtIndex:indexNum] question_id];
+    Question *question = [qc objectAtIndex:indexNum];
+    answerViewerIndex = [question question_id];
     [self performSegueWithIdentifier:@"AnswerViewer" sender:nil];
 }
+                                       
+- (void)handleAddAnswerClick:(int)indexNum
+{
+    Question *question = [qc objectAtIndex:indexNum];
+    answerViewerIndex = [question question_id];
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    if ([prefs boolForKey:@"logged_in"])
+    {
+        actionSheetAnswer = [[UIActionSheet alloc] initWithTitle:@"Upload an answer" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Upload from Album", nil];
+        [actionSheetAnswer setTag:1];
+        [actionSheetAnswer showFromTabBar:self.tabBarController.tabBar];
+    }
+    else
+    {
+        [self performSegueWithIdentifier:@"SignUpPopUp" sender:self];
+    }
+    
 
+}
+
+                                       
 
 @end

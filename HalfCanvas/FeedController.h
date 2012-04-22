@@ -53,12 +53,14 @@
     
     int questionEndIndex;
     
+    BOOL addingQuestion;
+    
 }
 
 -(IBAction)imageClick:(id)sender;
 -(IBAction)loadData;
 -(IBAction)cameraButtonClick;
-- (IBAction)addAnswer:(id)sender;
+-(IBAction)addAnswer:(id)sender;
 
 @property (retain) NSMutableArray *qc;
 @property (retain) QuestionCollection *qcol;
@@ -69,24 +71,11 @@
 @property (retain) UIActionSheet *actionSheetAnswer;
 @property (retain) UIImagePickerController *picker;
 @property (retain) UIImage *imageToUpload;
+@property (nonatomic) BOOL addingQuestion;
 
-//
-//@property (retain) User *userE;
-//@property (retain) Image *imageE;
-//@property (retain) Question *questionE;
-//@property (retain) NSManagedObjectContext *objectContext;
 
-//-  (NSManagedObjectModel *)managedObjectModel;
-//- (NSPersistentStoreCoordinator *)persistentStoreCoordinator;
-//- (NSManagedObjectContext *)managedObjectContext;
-
-//
-//- (void)startImageDownload:(Question *)question forIndexPath:(NSIndexPath *)indexPath;
-//- (void)loadImagesForOnscreenRows;
 -(void)startCamera;
 -(void)startPictureChooser;
-
-
 
 
 - (void)imageFetchComplete:(ASIHTTPRequest *)request;
@@ -94,5 +83,6 @@
 
 - (void)handleAnswerclick:(int)indexNum;
 - (void)handleMainImageClick:(int)indexNum;
+- (void)handleAddAnswerClick:(int)indexNum;
 
 @end
