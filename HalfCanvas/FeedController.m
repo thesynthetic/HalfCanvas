@@ -13,7 +13,8 @@
 
 @synthesize imageDownloadsInProgress;
 @synthesize questions;
-@synthesize popup;
+@synthesize actionSheetAnswer;
+@synthesize actionSheetQuestion;
 @synthesize picker;
 @synthesize imageToUpload;
 @synthesize qcol;
@@ -41,8 +42,9 @@
 
 - (void)viewDidLoad
 {
-
+    
     qc = [[NSMutableArray alloc] init];
+    
 
     self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
     self.imageCache = [[NSMutableDictionary alloc] init];
@@ -202,9 +204,11 @@
             feedCell = [[FeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         [feedCell setDelegate:self];
+        [feedCell initExtras];
         [feedCell setIndex:indexPath.section];
         UIImage *tempImg = [imageCache objectForKey:[[qc objectAtIndex:indexPath.section] image_url]];
-        [[feedCell answerCount] setText:[NSString stringWithFormat:@"%i", [[qc objectAtIndex:indexPath.section] answer_count]]];
+        [[feedCell answerCount] setTitle:[NSString stringWithFormat:@"%i", [[qc objectAtIndex:indexPath.section] answer_count]] forState:nil];
+        //[[feedCell answerCount] setText:[NSString stringWithFormat:@"%i", [[qc objectAtIndex:indexPath.section] answer_count]] ];
         
         if (tempImg != nil)
         {
@@ -398,29 +402,54 @@
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     if ([prefs boolForKey:@"logged_in"])
     {
-        popup = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Upload from Album", nil];
-        [popup showFromTabBar:self.tabBarController.tabBar];
+        actionSheetQuestion = [[UIActionSheet alloc] initWithTitle:@"Upload a question" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Upload from Album", nil];
+        [actionSheetQuestion setTag:0];
+        [actionSheetQuestion showFromTabBar:self.tabBarController.tabBar];
     }
     else
     {
-        
         [self performSegueWithIdentifier:@"SignUpPopUp" sender:self];
-        
     }
-    
-    
+}
 
+-(IBAction)addAnswer:(id)sender
+{
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    if ([prefs boolForKey:@"logged_in"])
+    {
+        actionSheetAnswer = [[UIActionSheet alloc] initWithTitle:@"Upload an answer" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Upload from Album", nil];
+        [actionSheetAnswer setTag:1];
+        [actionSheetAnswer showFromTabBar:self.tabBarController.tabBar];
+    }
+    else
+    {
+        [self performSegueWithIdentifier:@"SignUpPopUp" sender:self];
+    }
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     
-    if (buttonIndex == 0) {
-        [self startCamera];
-    } else if (buttonIndex == 1) {
-        [self startPictureChooser];
-    } 
-    else if (buttonIndex == 2) {
-//        [popup dismissWithClickedButtonIndex:buttonIndex animated:true];  
+    if ([actionSheet tag] == 0){
+        if (buttonIndex == 0) {
+            [self startCamera];
+        } else if (buttonIndex == 1) {
+            [self startPictureChooser];
+        } 
+        else if (buttonIndex == 2) {
+            //[popup dismissWithClickedButtonIndex:buttonIndex animated:true];  
+        }
+    }
+    if ([actionSheet tag] == 1)
+    {
+        if (buttonIndex == 0) {
+            //[self startCamera];
+        } else if (buttonIndex == 1) {
+            //[self startPictureChooser];
+        } 
+        else if (buttonIndex == 2) {
+            //[popup dismissWithClickedButtonIndex:buttonIndex animated:true];  
+        }
+
     }
 }
 
@@ -428,6 +457,9 @@
 //{
 //    NSLog(@"cancel");
 //}
+
+
+
 
 
 #pragma mark - Image Picker
@@ -615,7 +647,6 @@
 {
     answerViewerIndex = [[qc objectAtIndex:indexNum] question_id];
     [self performSegueWithIdentifier:@"AnswerViewer" sender:nil];
-
 }
 
 

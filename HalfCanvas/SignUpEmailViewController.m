@@ -264,7 +264,8 @@
 {
     UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;    
     state = [segmentedControl selectedSegmentIndex];
-    [[self tableView] reloadData];
+    //[[self tableView] reloadData];
+    [[self tableView] reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 -(IBAction)doneButtonClick:(id)sender

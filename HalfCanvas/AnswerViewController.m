@@ -54,6 +54,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     
     answerCollection = [[NSMutableArray alloc] init];
+    NSLog(@"Answer count: %d",[answerCollection count]);
     self.imageCache = [[NSMutableDictionary alloc] init];
     if (!networkQueue) {
         networkQueue = [[ASINetworkQueue alloc] init];
@@ -82,7 +83,8 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return [answerCollection count];
+    
+    return [answerCollection count] == 0 ? 1 : [answerCollection count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -105,7 +107,9 @@
     else 
     {
         //If not loaded yet (2 will fill the screen)
-        return 2;
+        
+        
+        return 1;
     }
 
 }
@@ -113,7 +117,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (1 == indexPath.row){
+    if ([answerCollection count] == 0 || 1 == indexPath.row){
         return 50;
     }
     else {
@@ -125,7 +129,7 @@
 
 -  (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    
+    if ([answerCollection count] > 0){
         CGRect  viewRect = CGRectMake(0, 0, 320, 40);
         UIView* myView = [[UIView alloc] initWithFrame:viewRect];
         [myView setBackgroundColor:[UIColor whiteColor]];
@@ -157,13 +161,28 @@
         [myView addSubview:userImageView];
         
         return myView;
+    }
+    else {
+        CGRect  viewRect = CGRectMake(0, 0, 320, 40);
+        UIView* myView = [[UIView alloc] initWithFrame:viewRect];
+        [myView setBackgroundColor:[UIColor whiteColor]];
+        UILabel *userLabel = [[UILabel alloc] initWithFrame:CGRectMake(150, 10, 100, 20)];
+        [userLabel setFont:[UIFont boldSystemFontOfSize:13.0]];
+        [userLabel setText:@"No answers yet."];
+
+
+        
+        return myView;
+
+        
+    }
    
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (1 == indexPath.row)
+    if (1 == indexPath.row || [answerCollection count] == 0)
     {
         static NSString *CellIdentifier = @"AddHalfAnswer";
         
@@ -424,7 +443,7 @@
 {
     [self setImageToUpload:image];
     [picker dismissModalViewControllerAnimated:YES];
-    [self performSegueWithIdentifier:@"" sender:self];
+    [self performSegueWithIdentifier:@"ImagePickerUpload" sender:self];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker

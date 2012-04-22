@@ -29,10 +29,19 @@
     if (self) {
         // Initialization code
         
+        
     }
     return self;
 }
 
+
+- (void)initExtras 
+{
+    [answerCount setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
+    [answerCount setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+    
+    
+}
 - (void)awakeFromNib
 {
     [imageView setUserInteractionEnabled:YES];
@@ -45,29 +54,7 @@
     // Configure the view for the selected state
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    
-    UITouch *touch = [touches anyObject];
-    
-    if ([touch view] == answerCount || [touch view] == answerLabel)
-    {
-        [answerCount setAlpha:1.0];
-        [answerLabel setAlpha:1.0];
-    }
-}
 
--(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event 
-{
-    UITouch *touch = [touches anyObject];
-    
-    if ([touch view] == answerCount || [touch view] == answerLabel)
-    {
-        [answerCount setAlpha:0.5];
-        [answerLabel setAlpha:0.5];
-    }
-    
-}
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -78,16 +65,11 @@
         [[self delegate] handleMainImageClick:[self index]];
         //imageView.frame;
     }
-    if ([touch view] == answerCount || [touch view] == answerLabel)
-    {
-        [answerCount setAlpha:0.5];
-        [answerLabel setAlpha:0.5];
-        [[self delegate] handleAnswerclick:[self index]];
-    }
-    
-
 }
 
-
+-(IBAction)answerCountClick:(id)sender
+{
+    [[self delegate] handleAnswerclick:[self index]];
+}
 
 @end

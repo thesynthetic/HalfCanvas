@@ -36,7 +36,8 @@
     NSMutableData *receivedData;   
     BOOL questionsLoaded;
     NSMutableDictionary *imageDownloadsInProgress;
-    UIActionSheet *popup;
+    UIActionSheet *actionSheetQuestion;
+    UIActionSheet *actionSheetAnswer;
     UIImagePickerController *picker;
     UIImage *imageToUpload;
     NSMutableDictionary *imageCache;
@@ -57,15 +58,18 @@
 -(IBAction)imageClick:(id)sender;
 -(IBAction)loadData;
 -(IBAction)cameraButtonClick;
+- (IBAction)addAnswer:(id)sender;
 
 @property (retain) NSMutableArray *qc;
 @property (retain) QuestionCollection *qcol;
 @property (retain) NSMutableDictionary *imageCache;
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
 @property (retain) NSArray *questions;
-@property (retain) UIActionSheet *popup;
+@property (retain) UIActionSheet *actionSheetQuestion;
+@property (retain) UIActionSheet *actionSheetAnswer;
 @property (retain) UIImagePickerController *picker;
 @property (retain) UIImage *imageToUpload;
+
 //
 //@property (retain) User *userE;
 //@property (retain) Image *imageE;
@@ -81,6 +85,8 @@
 //- (void)loadImagesForOnscreenRows;
 -(void)startCamera;
 -(void)startPictureChooser;
+
+
 
 
 - (void)imageFetchComplete:(ASIHTTPRequest *)request;

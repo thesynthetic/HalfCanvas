@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
     <dependencies>
-        <deployment defaultVersion="1280" identifier="iOS"/>
+        <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1179"/>
     </dependencies>
     <scenes>
+        <!--Sign Up View Controller-->
         <scene sceneID="wIu-6I-C71">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oVG-32-Qmi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -18,14 +19,14 @@
                                 <rect key="frame" x="21" y="160" width="278" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Connecting students and tutors" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" minimumFontSize="10" id="rbW-uV-tIv">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Connecting students and tutors" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" adjustsFontSizeToFit="NO" id="rbW-uV-tIv">
                                 <rect key="frame" x="52" y="84" width="216" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                 <color key="textColor" red="0.25352017490000001" green="0.57431114429999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="with pictures." textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" minimumFontSize="10" id="k3e-Yp-R3h">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="with pictures." textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" adjustsFontSizeToFit="NO" id="k3e-Yp-R3h">
                                 <rect key="frame" x="62" y="103" width="196" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
@@ -65,6 +66,7 @@
             </objects>
             <point key="canvasLocation" x="3204" y="-2116"/>
         </scene>
+        <!--Sign Up Email View Controller-->
         <scene sceneID="W7i-qw-bhj">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hB6-wP-f6B" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -106,7 +108,7 @@
                                 <rect key="frame" x="0.0" y="125" width="320" height="45"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                    <rect key="frame" x="10" y="0.0" width="300" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Done" lineBreakMode="tailTruncation" minimumFontSize="10" id="f95-XV-uG4">
@@ -131,6 +133,7 @@
             </objects>
             <point key="canvasLocation" x="3664" y="-2120"/>
         </scene>
+        <!--Feed Controller - HalfCanvas-->
         <scene sceneID="DRd-cS-wRU">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jhl-pq-tQX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -147,30 +150,32 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="349"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" alpha="0.50000000000000011" contentMode="left" text="24" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="ncK-7O-ezF">
-                                            <rect key="frame" x="1" y="317" width="33" height="22"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" id="5wN-Ff-GIE">
+                                            <rect key="frame" x="9" y="317" width="52" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                            <color key="textColor" red="1" green="0.047058823530000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="24" backgroundImage="comment_64.png">
+                                                <color key="titleColor" red="0.038462593650000002" green="0.74932324849999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="highlighted">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="answerCountClick:" destination="wob-UC-TyX" eventType="touchUpInside" id="LwC-eN-Ho9"/>
+                                            </connections>
+                                        </button>
                                         <progressView opaque="NO" contentMode="scaleToFill" id="5DZ-h9-PFr">
                                             <rect key="frame" x="85" y="150" width="150" height="9"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </progressView>
-                                        <label opaque="NO" clipsSubviews="YES" alpha="0.50000000000000011" contentMode="left" text="Half Answers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="dHl-fc-vnM">
-                                            <rect key="frame" x="38" y="314" width="92" height="28"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                            <color key="textColor" red="0.0" green="0.57254901960000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="zs1-gp-eLp">
                                             <rect key="frame" x="5" y="0.0" width="310" height="310"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <button opaque="NO" alpha="0.60000000000000009" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="ayN-U3-kn4">
-                                            <rect key="frame" x="294" y="317" width="18" height="19"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" id="8Ot-Ca-thd">
+                                            <rect key="frame" x="278" y="313" width="29" height="29"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                             <state key="normal">
@@ -180,13 +185,15 @@
                                             <state key="highlighted">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="addAnswer:" destination="fFh-IO-q7y" eventType="touchUpInside" id="VJE-zb-kBJ"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <outlet property="answerCount" destination="ncK-7O-ezF" id="Rnh-v9-NDj"/>
-                                    <outlet property="answerLabel" destination="dHl-fc-vnM" id="cSr-Vx-qc8"/>
+                                    <outlet property="answerCount" destination="5wN-Ff-GIE" id="sF4-5f-x8i"/>
                                     <outlet property="imageProgressIndicator" destination="5DZ-h9-PFr" id="zuU-4I-dHB"/>
                                     <outlet property="imageView" destination="zs1-gp-eLp" id="k4u-hZ-Qh5"/>
                                 </connections>
@@ -237,8 +244,9 @@
                     </connections>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="1277" y="-138"/>
+            <point key="canvasLocation" x="1288" y="-94"/>
         </scene>
+        <!--Navigation Controller - Problems-->
         <scene sceneID="Lvi-If-TXu">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cf0-pi-voc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -257,6 +265,7 @@
             </objects>
             <point key="canvasLocation" x="688" y="-39"/>
         </scene>
+        <!--Upload Image Controller-->
         <scene sceneID="fRe-7x-AtF">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e7d-zJ-XDC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -344,10 +353,11 @@
             </objects>
             <point key="canvasLocation" x="2034" y="270"/>
         </scene>
+        <!--Picture View Controller-->
         <scene sceneID="v0C-oA-IFu">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdb-Ha-35g" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController title=" " id="3lZ-vk-zcO" customClass="PictureViewController" sceneMemberID="viewController">
+                <viewController id="3lZ-vk-zcO" customClass="PictureViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bw5-TU-JBJ">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -367,7 +377,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Title" id="3sy-HD-eDG">
+                                    <navigationItem id="3sy-HD-eDG">
                                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="kkp-uT-8Ci">
                                             <connections>
                                                 <action selector="closePictureViewer:" destination="3lZ-vk-zcO" id="3j1-2W-IPc"/>
@@ -391,6 +401,7 @@
             </objects>
             <point key="canvasLocation" x="2044" y="-943"/>
         </scene>
+        <!--Settings View Controller - Settings-->
         <scene sceneID="8M4-gY-9Ts">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tk5-e0-pq2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -421,6 +432,7 @@
             </objects>
             <point key="canvasLocation" x="1214" y="1351"/>
         </scene>
+        <!--Sign In View Controller-->
         <scene sceneID="Img-z2-I6G">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fwT-8X-ybf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -444,7 +456,7 @@
                                 <rect key="frame" x="0.0" y="91" width="320" height="45"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                    <rect key="frame" x="10" y="0.0" width="300" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -462,6 +474,7 @@
             </objects>
             <point key="canvasLocation" x="1722" y="1346"/>
         </scene>
+        <!--Main Tab Bar Controller-->
         <scene sceneID="15">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
@@ -483,6 +496,7 @@
             </objects>
             <point key="canvasLocation" x="88" y="216"/>
         </scene>
+        <!--Navigation Controller - Settings-->
         <scene sceneID="tm7-Yt-gT9">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cIA-FN-mT7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -503,6 +517,7 @@
             </objects>
             <point key="canvasLocation" x="688" y="1351"/>
         </scene>
+        <!--Navigation Controller - My Canvas-->
         <scene sceneID="cGW-iy-kuD">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w0q-rZ-Bb3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -519,6 +534,7 @@
             </objects>
             <point key="canvasLocation" x="696" y="669"/>
         </scene>
+        <!--Navigation Controller - Explore-->
         <scene sceneID="PCQ-dH-Dfa">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rps-6y-JVM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -535,6 +551,7 @@
             </objects>
             <point key="canvasLocation" x="100" y="1151"/>
         </scene>
+        <!--Answer View Controller - Half Answers-->
         <scene sceneID="28O-fc-xUK">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yS1-Qa-D8X" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -607,7 +624,7 @@
                     <navigationItem key="navigationItem" title="Half Answers" id="S9N-4B-e8c"/>
                     <connections>
                         <segue destination="yuc-WI-7dQ" kind="modal" identifier="PictureViewer" modalTransitionStyle="coverVertical" id="VTb-Sj-C4n"/>
-                        <segue destination="dKJ-4J-4Uh" kind="push" id="0Jn-o9-eCO"/>
+                        <segue destination="dKJ-4J-4Uh" kind="push" identifier="ImagePickerUpload" id="0Jn-o9-eCO"/>
                         <segue destination="bpV-Zm-Anx" kind="modal" identifier="SignUpPopUp" id="3Zq-Rg-m8G"/>
                     </connections>
                 </tableViewController>
@@ -615,7 +632,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ryeguy_24" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" minimumFontSize="10" id="sfR-wx-Bbg">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ryeguy_24" lineBreakMode="tailTruncation" minimumFontSize="10" adjustsFontSizeToFit="NO" id="sfR-wx-Bbg">
                             <rect key="frame" x="42" y="7" width="157" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
@@ -642,6 +659,7 @@
             </objects>
             <point key="canvasLocation" x="2034" y="-348"/>
         </scene>
+        <!--Picture View Controller-->
         <scene sceneID="yNm-gs-coh">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z95-Xu-KXX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -665,7 +683,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Title" id="a3X-3b-cMN">
+                                    <navigationItem id="a3X-3b-cMN">
                                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="kBP-iu-zsj">
                                             <connections>
                                                 <action selector="closePictureViewer:" destination="yuc-WI-7dQ" id="PtX-Bs-l5N"/>
@@ -690,10 +708,11 @@
             </objects>
             <point key="canvasLocation" x="2834" y="-834"/>
         </scene>
+        <!--Upload Image Controller-->
         <scene sceneID="hga-qi-Hck">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Svc-y9-svl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="dKJ-4J-4Uh" customClass="UploadImageController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="" id="dKJ-4J-4Uh" customClass="UploadImageController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="235" id="nZB-yp-Cs6">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -747,6 +766,7 @@
             </objects>
             <point key="canvasLocation" x="2826" y="-164"/>
         </scene>
+        <!--Navigation Controller-->
         <scene sceneID="bn8-Ee-Pul">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OWR-1Y-Zq2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -771,6 +791,7 @@
         <image name="09-chat-2.png" width="24" height="22"/>
         <image name="12-eye.png" width="24" height="16"/>
         <image name="X-Large_278x44_glowy.png" width="280" height="47"/>
+        <image name="comment_64.png" width="167" height="64"/>
         <image name="gears.png" width="26" height="28"/>
         <image name="home.png" width="22" height="22"/>
         <image name="profile_picture.jpg" width="50" height="50"/>
@@ -783,8 +804,8 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedCell.h"/>
             <relationships>
                 <relationship kind="action" name="answerButtonClick:"/>
-                <relationship kind="outlet" name="answerButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="answerCount" candidateClass="UILabel"/>
+                <relationship kind="action" name="answerCountClick:"/>
+                <relationship kind="outlet" name="answerCount" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="answerLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="imageProgressIndicator" candidateClass="UIProgressView"/>
                 <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
@@ -793,6 +814,7 @@
         <class className="FeedController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedController.h"/>
             <relationships>
+                <relationship kind="action" name="addAnswer:"/>
                 <relationship kind="action" name="cameraButtonClick"/>
                 <relationship kind="action" name="imageClick:"/>
                 <relationship kind="action" name="loadData"/>

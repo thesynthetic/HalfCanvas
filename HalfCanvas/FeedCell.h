@@ -22,7 +22,7 @@
     UIImageView *imageView;
     UIProgressView *imageProgressIndicator;
     UIButton *answerButton;
-    UILabel *answerCount;
+    UIButton *answerCount;
     UILabel *answerLabel;
     id <FeedCellDelegate> delegate;
     int index;
@@ -30,13 +30,14 @@
 
 @property (nonatomic, retain) IBOutlet UIImageView *imageView;
 @property (nonatomic, retain) IBOutlet UIProgressView *imageProgressIndicator;
-@property (nonatomic, retain) IBOutlet UIButton *answerButton;
-@property (nonatomic, retain) IBOutlet UILabel *answerCount;
+@property (nonatomic, retain) IBOutlet UIButton *answerCount;
 @property (nonatomic, retain) IBOutlet UILabel *answerLabel;
 @property (nonatomic, retain) id <FeedCellDelegate> delegate;
 @property (nonatomic) int index;
 
 -(IBAction)answerButtonClick:(id)sender;
+-(void)initExtras;
 
+-(IBAction)answerCountClick:(id)sender;
 
 @end
