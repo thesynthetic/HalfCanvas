@@ -564,7 +564,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AnswerFeedCell" rowHeight="350" id="Zr9-oj-XdE" customClass="FeedCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AnswerFeedCell" rowHeight="350" id="Zr9-oj-XdE" customClass="FeedCell">
                                 <rect key="frame" x="0.0" y="40" width="320" height="350"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -575,7 +575,7 @@
                                             <rect key="frame" x="85" y="150" width="150" height="9"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </progressView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="avm-Ad-lmh">
+                                        <imageView contentMode="scaleAspectFit" id="avm-Ad-lmh">
                                             <rect key="frame" x="5" y="0.0" width="310" height="310"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -596,7 +596,7 @@
                                 </view>
                                 <connections>
                                     <outlet property="imageProgressIndicator" destination="jFE-vm-4FD" id="4x4-ai-iCE"/>
-                                    <outlet property="imageView" destination="avm-Ad-lmh" id="Zf4-jg-67z"/>
+                                    <outlet property="imageView" destination="avm-Ad-lmh" id="Kw9-dN-Nry"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="AddHalfAnswer" textLabel="DHR-gc-tnz" rowHeight="50" style="IBUITableViewCellStyleDefault" id="EHk-Rd-EJv">
@@ -881,7 +881,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="6Ql-kL-hnx"/>
-        <segue reference="sEW-H8-cXr"/>
+        <segue reference="3Zq-Rg-m8G"/>
+        <segue reference="0Jn-o9-eCO"/>
     </inferredMetricsTieBreakers>
 </document>

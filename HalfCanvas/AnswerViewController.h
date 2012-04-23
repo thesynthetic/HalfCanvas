@@ -21,19 +21,12 @@
 @interface AnswerViewController : UITableViewController <MBProgressHUDDelegate, FeedCellDelegate, UIImagePickerControllerDelegate>
 {
     NSInteger question_id;
-    
     NSMutableArray *answerCollection;   
     NSMutableDictionary *imageCache;
-    
     ASINetworkQueue *networkQueue;
-    
     MBProgressHUD *HUD;
-    
-    //PictureViewer
     int pictureViewerIndex;
-    
     UIActionSheet *popup;
-    
     UIImagePickerController *picker;
     UIImage *imageToUpload;
 }
@@ -50,4 +43,6 @@
 - (void)addAnswerClick;
 - (void)startCamera;
 - (void)startPictureChooser;
+- (void)handleMainImageClick:(int)indexNum;
+
 @end

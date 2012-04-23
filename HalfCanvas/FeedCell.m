@@ -28,8 +28,6 @@
     
     if (self) {
         // Initialization code
-        
-        
     }
     return self;
 }
@@ -39,9 +37,8 @@
 {
     [answerCount setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
     [answerCount setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
-    
-    
 }
+
 - (void)awakeFromNib
 {
     [imageView setUserInteractionEnabled:YES];
@@ -59,7 +56,7 @@
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch = [touches anyObject];
-    
+    NSLog(@"OK!");
     if ([touch view] == imageView)
     {
         [[self delegate] handleMainImageClick:[self index]];
