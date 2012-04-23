@@ -17,15 +17,21 @@
     UITextField *tags;
     UIImage *imageToUploader;
     MBProgressHUD *HUD;
+    BOOL isQuestion;
+    int question_id;
 }
 
 @property (nonatomic, retain) IBOutlet UITextView *comments;
 @property (nonatomic, retain) IBOutlet UITextField *tags;
 @property (nonatomic, retain) UIImage *imageToUpload;
+@property (nonatomic) BOOL isQuestion;
+@property (nonatomic) int question_id;
 
 -(IBAction)cancelButton:(id)sender;
 -(IBAction)doneButton:(id)sender;
 
--(void)uploadData;
+-(void)uploadDataAsQuestion;
+-(void)uploadDataAsAnswer;
 
 @end
+

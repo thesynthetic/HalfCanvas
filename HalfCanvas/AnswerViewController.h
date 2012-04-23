@@ -16,6 +16,7 @@
 #import "Answer.h"
 #import "FeedCell.h"
 #import "PictureViewController.h"
+#import "UploadImageController.h"
 
 @interface AnswerViewController : UITableViewController <MBProgressHUDDelegate, FeedCellDelegate, UIImagePickerControllerDelegate>
 {

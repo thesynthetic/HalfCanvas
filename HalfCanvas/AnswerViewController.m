@@ -351,8 +351,6 @@
     }
     
     [[self tableView] reloadData];
-    
-    //
     [HUD hide:YES];
 }
 
@@ -374,12 +372,17 @@
 {
     if ([[segue identifier] isEqualToString:@"PictureViewer"])
     {
-        // Get reference to the destination view controller
         PictureViewController *pictureView = [segue destinationViewController];
-        
-        // Pass any objects to the view controller here, like...
         [pictureView setImage:[imageCache objectForKey:[[answerCollection objectAtIndex:pictureViewerIndex] image_url]]];
     }
+    if ([[segue identifier] isEqualToString:@"didcapturepicture2"])
+    {
+        UploadImageController *viewController = [segue destinationViewController];
+        [viewController setQuestion_id:[self question_id]];
+        [viewController setImageToUpload:[self imageToUpload]];
+    }
+    
+    
 }
 
 
@@ -443,7 +446,8 @@
 {
     [self setImageToUpload:image];
     [picker dismissModalViewControllerAnimated:YES];
-    [self performSegueWithIdentifier:@"ImagePickerUpload" sender:self];
+    [self performSegueWithIdentifier:@"didcapturepicture2" sender:self];
+    
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
