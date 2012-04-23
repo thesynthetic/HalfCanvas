@@ -34,6 +34,8 @@
 		704431F314DF506F00537505 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 704431F214DF506F00537505 /* SettingsViewController.m */; };
 		704786B4154367E1005638FC /* plus_64.png in Resources */ = {isa = PBXBuildFile; fileRef = 704786B3154367E1005638FC /* plus_64.png */; };
 		704786B715437491005638FC /* comment_64.png in Resources */ = {isa = PBXBuildFile; fileRef = 704786B615437491005638FC /* comment_64.png */; };
+		70483A961544DD7300F7BAF9 /* halfcanvas-114.png in Resources */ = {isa = PBXBuildFile; fileRef = 70483A951544DD7300F7BAF9 /* halfcanvas-114.png */; };
+		70483A991544DD8200F7BAF9 /* halfcanvas-114.png in Resources */ = {isa = PBXBuildFile; fileRef = 70483A981544DD8200F7BAF9 /* halfcanvas-114.png */; };
 		705E5A801510331E00249D4F /* AnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 705E5A7F1510331D00249D4F /* AnswerViewController.m */; };
 		7062EAD714BA47290055A979 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7062EAD614BA47290055A979 /* UIKit.framework */; };
 		7062EAD914BA47290055A979 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7062EAD814BA47290055A979 /* Foundation.framework */; };
@@ -139,6 +141,8 @@
 		704431F214DF506F00537505 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		704786B3154367E1005638FC /* plus_64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plus_64.png; path = Images/plus_64.png; sourceTree = "<group>"; };
 		704786B615437491005638FC /* comment_64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = comment_64.png; path = Images/comment_64.png; sourceTree = "<group>"; };
+		70483A951544DD7300F7BAF9 /* halfcanvas-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "halfcanvas-114.png"; sourceTree = "<group>"; };
+		70483A981544DD8200F7BAF9 /* halfcanvas-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "halfcanvas-114.png"; sourceTree = "<group>"; };
 		705E5A7E1510331D00249D4F /* AnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerViewController.h; sourceTree = "<group>"; };
 		705E5A7F1510331D00249D4F /* AnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerViewController.m; sourceTree = "<group>"; };
 		7062EAD214BA47280055A979 /* HalfCanvas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HalfCanvas.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -319,6 +323,7 @@
 		7062EAC714BA47280055A979 = {
 			isa = PBXGroup;
 			children = (
+				70483A981544DD8200F7BAF9 /* halfcanvas-114.png */,
 				70C9309914F1EC3E009441BE /* Model.xcdatamodeld */,
 				7062EADC14BA47290055A979 /* HalfCanvas */,
 				7062EAD514BA47280055A979 /* Frameworks */,
@@ -397,6 +402,7 @@
 				706547F91507B3F900AE909F /* 12-eye.png */,
 				70735E34152F3C95000F94B5 /* X-Large_278x44_glowy.png */,
 				706547F61507B3EB00AE909F /* 09-chat-2.png */,
+				70483A951544DD7300F7BAF9 /* halfcanvas-114.png */,
 				704786B3154367E1005638FC /* plus_64.png */,
 				7007726C14DD627300B91AAA /* Splined_Canvas.png */,
 				702EB6A51501C19400B0BCB7 /* Untitled-1.png */,
@@ -585,6 +591,8 @@
 				70735E35152F3C95000F94B5 /* X-Large_278x44_glowy.png in Resources */,
 				704786B4154367E1005638FC /* plus_64.png in Resources */,
 				704786B715437491005638FC /* comment_64.png in Resources */,
+				70483A961544DD7300F7BAF9 /* halfcanvas-114.png in Resources */,
+				70483A991544DD8200F7BAF9 /* halfcanvas-114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
