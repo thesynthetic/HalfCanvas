@@ -21,18 +21,22 @@
 {
     
     UIImageView *imageView;
+    UIImageView *messageBubble;
     UIProgressView *imageProgressIndicator;
     UIButton *answerButton;
-    UIButton *answerCount;
-    UILabel *answerLabel;
+    UIButton *answerCountButton;
+    UILabel *answerCountLabel;
     id <FeedCellDelegate> delegate;
     int index;
 }
 
 @property (nonatomic, retain) IBOutlet UIImageView *imageView;
+@property (nonatomic, retain) IBOutlet UIImageView *messageBubble;
 @property (nonatomic, retain) IBOutlet UIProgressView *imageProgressIndicator;
 @property (nonatomic, retain) IBOutlet UIButton *answerCount;
-@property (nonatomic, retain) IBOutlet UILabel *answerLabel;
+@property (nonatomic, retain) IBOutlet UIButton *answerButton;
+@property (nonatomic, retain) IBOutlet UIButton *answerCountButton;
+@property (nonatomic, retain) IBOutlet UILabel *answerCountLabel;
 @property (nonatomic, retain) id <FeedCellDelegate> delegate;
 @property (nonatomic) int index;
 

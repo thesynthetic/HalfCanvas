@@ -19,7 +19,10 @@
 @synthesize delegate;
 @synthesize index;
 @synthesize answerCount;
-@synthesize answerLabel;
+@synthesize answerCountButton;
+@synthesize answerButton;
+@synthesize answerCountLabel;
+@synthesize messageBubble;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -37,6 +40,9 @@
 {
     [answerCount setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
     [answerCount setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+    [answerButton setBackgroundImage:[UIImage imageNamed:@"Answer-Button-Background.png"] forState:UIControlStateHighlighted];
+    [answerCountButton setBackgroundImage:[UIImage imageNamed:@"Answer-Button-Background.png"] forState:UIControlStateHighlighted];
+    
 }
 
 - (void)awakeFromNib

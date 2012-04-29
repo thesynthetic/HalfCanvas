@@ -54,7 +54,10 @@
     int questionEndIndex;
     
     BOOL addingQuestion;
+    UIView *nibView;
     
+    BOOL loading;
+    BOOL animationFinished;
 }
 
 -(IBAction)imageClick:(id)sender;
@@ -72,6 +75,7 @@
 @property (retain) UIImagePickerController *picker;
 @property (retain) UIImage *imageToUpload;
 @property (nonatomic) BOOL addingQuestion;
+
 
 
 -(void)startCamera;

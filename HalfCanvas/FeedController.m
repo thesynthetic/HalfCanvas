@@ -46,7 +46,10 @@
     
     qc = [[NSMutableArray alloc] init];
     
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"NavBarBg.png"] forBarMetrics:UIBarMetricsDefault];
 
+    
+    
     self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
     self.imageCache = [[NSMutableDictionary alloc] init];
     
@@ -208,8 +211,18 @@
         [feedCell initExtras];
         [feedCell setIndex:indexPath.section];
         UIImage *tempImg = [imageCache objectForKey:[[qc objectAtIndex:indexPath.section] image_url]];
-        [[feedCell answerCount] setTitle:[NSString stringWithFormat:@"%i", [[qc objectAtIndex:indexPath.section] answer_count]] forState:nil];
-        //[[feedCell answerCount] setText:[NSString stringWithFormat:@"%i", [[qc objectAtIndex:indexPath.section] answer_count]] ];
+        if ([[qc objectAtIndex:indexPath.section] answer_count] > 0)
+        {
+            [[feedCell answerCountLabel] setText:[NSString stringWithFormat:@"%i", [[qc objectAtIndex:indexPath.section] answer_count]]];
+            [[feedCell messageBubble] setHidden:false];
+        }
+        else
+        {
+            [[feedCell messageBubble] setHidden:true];
+            [[feedCell answerCountLabel] setText:@""];
+        }
+        
+       
         
         if (tempImg != nil)
         {
@@ -241,7 +254,7 @@
         return 50;
     }
     else {
-        return  350; 
+        return  356; 
     }
 
 }
@@ -403,7 +416,7 @@
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     if ([prefs boolForKey:@"logged_in"])
     {
-        actionSheetQuestion = [[UIActionSheet alloc] initWithTitle:@"Upload a question" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Upload from Album", nil];
+        actionSheetQuestion = [[UIActionSheet alloc] initWithTitle:@"Post your question" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Upload from Album", nil];
         [actionSheetQuestion setTag:0];
         [actionSheetQuestion showFromTabBar:self.tabBarController.tabBar];
     }
@@ -518,6 +531,46 @@
 -(IBAction)loadData
 {
   
+    NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:@"HCStatusBar" owner:self options:nil];
+    
+    // assuming the view is the only top-level object in the nib file (besides File's Owner and First Responder)
+    nibView = [nibObjects objectAtIndex:0];
+    //320 35
+    nibView.frame = CGRectMake(0,400, 320, 35);
+    nibView.alpha = 0;
+    [[[self parentViewController] view] addSubview:nibView];
+    
+    loading = true;
+    
+    [UIView animateWithDuration:0.25
+     
+                          delay: 0.0
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         
+                         nibView.alpha = 0.8;
+                         
+                         // Create a nested animation that has a different
+                         // duration, timing curve, and configuration.
+                         
+                     }
+                     completion:^(BOOL finished){
+   
+                         if (loading == false)
+                         {
+                             [UIView animateWithDuration:0.25
+                                                   delay: 1.0
+                                                 options:UIViewAnimationOptionCurveEaseIn
+                                              animations:^{
+                                                  nibView.alpha = 0.0;
+                                              }
+                                              completion:nil];
+                             animationFinished = true;
+                         }
+                     }];
+    
+    NSLog(@"Animation done");
+    
     
     NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/questions/"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
@@ -527,20 +580,19 @@
     [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
     [request setCachePolicy:ASIFallbackToCacheIfLoadFailsCachePolicy];
     [request startAsynchronous];
-
     
     //Show HUD
-    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-	[self.navigationController.view addSubview:HUD];
-    
-    HUD.delegate = self;
+    //HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+	//[self.navigationController.view addSubview:HUD];
+    //HUD.delegate = self;
     //HUD.labelText = @"Loading";
-    
-    [HUD show:YES];
+    //[HUD show:YES];
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
+    
+    
     if ([request didUseCachedResponse])
     {
         NSLog(@"Did use cache!");   
@@ -579,8 +631,29 @@
         }
     }
     
-    [HUD hide:YES];
+    //[HUD hide:YES];
+    loading = false;
+    if (!animationFinished)
+    {
+        [UIView animateWithDuration:0.25
+         
+                              delay: 0.0
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             
+                             nibView.alpha = 0.0;
+                             
+                             // Create a nested animation that has a different
+                             // duration, timing curve, and configuration.
+                             
+                         }
+                         completion:^(BOOL finished){
+                             
+                         }];
+    }
+
     [[self tableView] reloadData];
+
     
 }
 
@@ -640,7 +713,7 @@
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     if ([prefs boolForKey:@"logged_in"])
     {
-        actionSheetAnswer = [[UIActionSheet alloc] initWithTitle:@"Upload an answer" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Upload from Album", nil];
+        actionSheetAnswer = [[UIActionSheet alloc] initWithTitle:@"Post an answer (only half)" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Upload from Album", nil];
         [actionSheetAnswer setTag:1];
         [actionSheetAnswer showFromTabBar:self.tabBarController.tabBar];
     }

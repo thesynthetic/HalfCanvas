@@ -242,8 +242,6 @@
     
     if (indexPath.row == 1)
     {
-      
-        NSLog(@"HEY");
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
         [self addAnswerClick];
         
