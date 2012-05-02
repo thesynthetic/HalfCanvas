@@ -260,7 +260,7 @@
 }
 -(IBAction)imageClick:(id)sender 
 {
-    NSLog(@"CLICKED!");
+
 }
 
 
@@ -341,9 +341,7 @@
 {
     // release the connection, and the data object
     // inform the user
-    NSLog(@"Connection failed! Error - %@ %@",
-          [error localizedDescription],
-          [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
+  
 }
 
 
@@ -434,7 +432,6 @@
     } else if (buttonIndex == 1) {
         [self startPictureChooser];
     } 
-    NSLog(@"%d",[actionSheet tag]);
     if ([actionSheet tag] == 1)
     {
         [self setAddingQuestion:false];
@@ -569,7 +566,7 @@
                          }
                      }];
     
-    NSLog(@"Animation done");
+
     
     
     NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/questions/"];
@@ -580,6 +577,15 @@
     [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
     [request setCachePolicy:ASIFallbackToCacheIfLoadFailsCachePolicy];
     [request startAsynchronous];
+    
+    NSError *error;
+    //if (![[GANTracker sharedTracker] trackEvent:@"AppEvent" action:@"AppDidLaunch" label:@"" value:1 withError:&error]) {
+
+    //}
+    if (![[GANTracker sharedTracker] trackPageview:@"FeedView" withError:&error]) {
+        
+    }
+    
     
     //Show HUD
     //HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
@@ -595,11 +601,11 @@
     
     if ([request didUseCachedResponse])
     {
-        NSLog(@"Did use cache!");   
+  
     }
     // Use when fetching text data
     NSString *responseString = [request responseString];
-    NSLog(@"%@", responseString);
+
     [qc removeAllObjects];
     
     // Parse JSON Data and create question collection
@@ -627,7 +633,6 @@
             [newQuestion setAnswer_count:[[dict objectForKey:@"answer_count"] integerValue]];
 
             [qc addObject:newQuestion];
-            NSLog(@"%d",[qc count]);
         }
     }
     
@@ -673,7 +678,7 @@
 - (void)imageFetchComplete:(ASIHTTPRequest *)request
 {
 	UIImage *img = [UIImage imageWithData:[request responseData]];
-    NSLog(@"Downloaded...%@",[[request url] absoluteString]);
+
     [imageCache setObject:img forKey:[[request url] absoluteString]];
     [[self tableView] reloadData];
 }
@@ -694,7 +699,7 @@
 
 -(void)handleMainImageClick:(int)indexNum
 {
-    NSLog(@"Action for index: %d",indexNum);
+
     pictureViewerIndex = indexNum;
     [self performSegueWithIdentifier:@"PictureViewer" sender:nil];
 }

@@ -15,6 +15,7 @@
 @synthesize password;
 @synthesize email;
 @synthesize segcontrol;
+@synthesize doneCell;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -189,73 +190,54 @@
             
             
         }
-        
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     else 
-    {
-        
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"DoneCell"];
-        
+    {   
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cellLabel = [[UILabel alloc] initWithFrame:CGRectMake(129, 11, 42, 21)];
+        [cellLabel setTextAlignment:UITextAlignmentCenter];
+        [cellLabel setFont:[UIFont boldSystemFontOfSize:16]];
+        [cellLabel setBackgroundColor:[UIColor clearColor]];
+        [cellLabel setText:@"Done"];
         [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
-        
     }
-        
         
     [cell addSubview:cellLabel];
         
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+{   
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.section == 1 && indexPath.row == 0)
+    {
+    
+        if (state == 0) //Sign Up Handler
+        {
+            NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/create_user/"];
+            ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+            [request setDelegate:self];
+            [request setPostValue:[username text] forKey:@"username"];
+            [request setPostValue:[password text] forKey:@"password"];
+            [request setPostValue:[email text] forKey:@"email"];
+            [request startAsynchronous];        
+        }
+        else //Sign In Handler
+        {
+            NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/login/"];
+            ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+            [request setDelegate:self];
+            [request setPostValue:[username text] forKey:@"username"];
+            [request setPostValue:[password text] forKey:@"password"];
+            [request startAsynchronous];
+        }
+    }
 }
 
 #pragma mark - Handlers
@@ -264,43 +246,47 @@
 {
     UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;    
     state = [segmentedControl selectedSegmentIndex];
+    NSLog(@"State = %d",state);
     //[[self tableView] reloadData];
     [[self tableView] reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-}
-
--(IBAction)doneButtonClick:(id)sender
-{
-    if (state == 0)
-    {
-        //Sign Up Handler
-        
-
-        
-        
-    }
-    else 
-    {
-        NSLog(@"HERE");
-        //Sign In Handler
-        NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/login/"];
-        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-        [request setPostValue:[username text] forKey:@"username"];
-        [request setPostValue:[password text] forKey:@"password"];
-        [request startAsynchronous];
-        
-    }
 }
 
 #pragma mark - ASI HTTP Request Callback
 
 - (void)requestFinished:(ASIHTTPRequest *)request
-{
-    // Use when fetching text data
-    NSString *responseString = [request responseString];
-    NSLog(@"Response: %@", responseString);
+{    
+   
+    SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
+    NSError *jsonError = nil;
     
-    // Use when fetching binary data
-    //NSData *responseData = [request responseData];
+    id jsonObjects = [jsonParser objectWithString:[request responseString] error:&jsonError];
+    
+    if ([jsonObjects isKindOfClass:[NSDictionary class]])
+    {
+        NSString *errorcode = [jsonObjects objectForKey:@"errorcode"];
+        NSString *errormessage = [jsonObjects objectForKey:@"errormessage"];
+        if ([errorcode doubleValue] != 0)
+        {
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:errormessage
+                                                              message:@""
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles:nil];
+            [message show];
+        }
+        else 
+        {
+            //Handle access code and setting NSUserDefaults
+            NSDictionary *data = [jsonObjects objectForKey:@"data"];
+            NSString *access_token = [data objectForKey:@"access_token"];
+            NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+            [user setValue:access_token forKey:@"access_token"];
+            [user setValue:[username text] forKey:@"username"];
+            [user setBool:TRUE forKey:@"logged_in"];
+
+            [self.navigationController dismissModalViewControllerAnimated:true];
+        }
+    }
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request

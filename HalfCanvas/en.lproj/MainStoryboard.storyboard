@@ -64,7 +64,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="3204" y="-2116"/>
+            <point key="canvasLocation" x="2592" y="-1928"/>
         </scene>
         <!--Sign Up Email View Controller-->
         <scene sceneID="W7i-qw-bhj">
@@ -96,27 +96,18 @@
                         </toolbar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="BOR-8q-rsc">
-                                <rect key="frame" x="0.0" y="80" width="320" height="45"/>
+                                <rect key="frame" x="0.0" y="80" width="320" height="46"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="10" y="1" width="300" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DoneCell" id="1JO-lv-1Cx">
-                                <rect key="frame" x="0.0" y="125" width="320" height="45"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="10" y="0.0" width="300" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Done" lineBreakMode="tailTruncation" minimumFontSize="10" id="f95-XV-uG4">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="310-G7-H0B">
                                             <rect key="frame" x="129" y="11" width="42" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -131,7 +122,7 @@
                     <navigationItem key="navigationItem" id="Yb3-Jw-QJx"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="3664" y="-2120"/>
+            <point key="canvasLocation" x="3116" y="-1944"/>
         </scene>
         <!--Feed Controller-->
         <scene sceneID="DRd-cS-wRU">
@@ -811,7 +802,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="2636" y="-2110"/>
+            <point key="canvasLocation" x="2100" y="-1938"/>
         </scene>
     </scenes>
     <resources>
@@ -881,8 +872,8 @@
         <class className="SignUpEmailViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SignUpEmailViewController.h"/>
             <relationships>
-                <relationship kind="action" name="doneButtonClick:"/>
                 <relationship kind="action" name="test:"/>
+                <relationship kind="outlet" name="doneCell" candidateClass="UITableViewCell"/>
             </relationships>
         </class>
         <class className="SignUpViewController" superclassName="UIViewController">
@@ -909,7 +900,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="0Jn-o9-eCO"/>
-        <segue reference="3Zq-Rg-m8G"/>
+        <segue reference="6Ql-kL-hnx"/>
+        <segue reference="sEW-H8-cXr"/>
     </inferredMetricsTieBreakers>
 </document>

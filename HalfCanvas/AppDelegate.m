@@ -8,6 +8,12 @@
 
 #import "AppDelegate.h"
 
+#import "GANTracker.h"
+
+// DGoogle Analytics dispatch period in seconds
+static const NSInteger kGANDispatchPeriodSec = 10;
+
+
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -17,6 +23,11 @@
 {
     // Override point for customization after application launch.
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
+
+    [[GANTracker sharedTracker] startTrackerWithAccountID:@"UA-31335301-1"
+                                           dispatchPeriod:kGANDispatchPeriodSec
+                                                 delegate:nil];
+    
     return YES;
 }
 							
