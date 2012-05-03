@@ -610,25 +610,35 @@
     if ([jsonObjects isKindOfClass:[NSDictionary class]])
     {
         // treat as a dictionary, or reassign to a dictionary ivar
-    }
-    else if ([jsonObjects isKindOfClass:[NSArray class]])
-    {
-        //Load the server data into Core Data
+        NSArray *question_list = [jsonObjects objectForKey:@"question_list"];
         
-        for (NSDictionary *dict in jsonObjects)
+        NSArray *action_list = [jsonObjects objectForKey:@"action_list"];
+        if (action_list != nil)
+        {
+            //Handle Action List
+        }
+        
+        for (NSDictionary *dict in question_list)
         {
             Question *newQuestion = [[Question alloc] init];
-
+            
             [newQuestion setUsername:[dict objectForKey:@"username"]];
             [newQuestion setQuestion_id:[[dict objectForKey:@"question_id"] integerValue]];
             [newQuestion setImage_url:[dict objectForKey:@"image_url"]];
             [newQuestion setDescription:[dict objectForKey:@"description"]];
             [newQuestion setUser_profile_image_url:[dict objectForKey:@"user_profile_image_url"]];             
             [newQuestion setAnswer_count:[[dict objectForKey:@"answer_count"] integerValue]];
-
+            
             [qc addObject:newQuestion];
             NSLog(@"%d",[qc count]);
         }
+        
+    }
+    else if ([jsonObjects isKindOfClass:[NSArray class]])
+    {
+        //Load the server data into Core Data
+        
+        
     }
     
     //[HUD hide:YES];

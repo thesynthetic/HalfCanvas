@@ -10,6 +10,7 @@
 		7005AEB414C4602600CCE435 /* ComposeAnswerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7005AEB314C4602600CCE435 /* ComposeAnswerController.m */; };
 		7005AEBD14C47DB700CCE435 /* FeedSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7005AEBC14C47DB700CCE435 /* FeedSectionHeader.m */; };
 		7007726D14DD627300B91AAA /* Splined_Canvas.png in Resources */ = {isa = PBXBuildFile; fileRef = 7007726C14DD627300B91AAA /* Splined_Canvas.png */; };
+		700BB060154DFE4F0072893B /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 700BB05F154DFE4F0072893B /* ActivityViewController.m */; };
 		7018811F14C3355F002B07D8 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7018811E14C3355F002B07D8 /* MainTabBarController.m */; };
 		701881A714C37D90002B07D8 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 7018818F14C37D90002B07D8 /* NSObject+SBJson.m */; };
 		701881A814C37D90002B07D8 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7018819214C37D90002B07D8 /* SBJsonParser.m */; };
@@ -105,6 +106,8 @@
 		7005AEBB14C47DB700CCE435 /* FeedSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedSectionHeader.h; sourceTree = "<group>"; };
 		7005AEBC14C47DB700CCE435 /* FeedSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedSectionHeader.m; sourceTree = "<group>"; };
 		7007726C14DD627300B91AAA /* Splined_Canvas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Splined_Canvas.png; sourceTree = "<group>"; };
+		700BB05E154DFE4F0072893B /* ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityViewController.h; sourceTree = "<group>"; };
+		700BB05F154DFE4F0072893B /* ActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityViewController.m; sourceTree = "<group>"; };
 		7018811D14C3355F002B07D8 /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
 		7018811E14C3355F002B07D8 /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
 		7018818E14C37D90002B07D8 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
@@ -289,6 +292,15 @@
 			name = FeedView;
 			sourceTree = "<group>";
 		};
+		700BB05C154DFE2F0072893B /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				700BB05E154DFE4F0072893B /* ActivityViewController.h */,
+				700BB05F154DFE4F0072893B /* ActivityViewController.m */,
+			);
+			name = Activity;
+			sourceTree = "<group>";
+		};
 		7018814B14C36538002B07D8 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -392,6 +404,7 @@
 				70E2EF9214D442C300F02216 /* Snap a Picture */,
 				704431F014DF502300537505 /* Settings */,
 				70ECAA8C14CC79E700081EF3 /* IconDownloader.h */,
+				700BB05C154DFE2F0072893B /* Activity */,
 				70ECAA8D14CC79E700081EF3 /* IconDownloader.m */,
 				7062EAEB14BA47290055A979 /* FirstViewController.h */,
 				7062EAEC14BA47290055A979 /* FirstViewController.m */,
@@ -678,6 +691,7 @@
 				70302B7D1516BEE1006492C8 /* Answer.m in Sources */,
 				70735E39152F4A1C000F94B5 /* SignUpViewController.m in Sources */,
 				70F1167C1530A312000CDFF0 /* SignUpEmailViewController.m in Sources */,
+				700BB060154DFE4F0072893B /* ActivityViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
