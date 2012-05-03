@@ -23,6 +23,7 @@
 #import "PictureViewController.h"
 #import "AnswerViewController.h"
 #import "ASIFormDataRequest.h"
+#import "GANTracker.h"
 
 @class ASINetworkQueue;
 

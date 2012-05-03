@@ -56,6 +56,10 @@
 		70735E35152F3C95000F94B5 /* X-Large_278x44_glowy.png in Resources */ = {isa = PBXBuildFile; fileRef = 70735E34152F3C95000F94B5 /* X-Large_278x44_glowy.png */; };
 		70735E39152F4A1C000F94B5 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70735E38152F4A1B000F94B5 /* SignUpViewController.m */; };
 		70866C37154DE6C20014688D /* MessageBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 70866C36154DE6C20014688D /* MessageBubble.png */; };
+		70866C3A155027F10014688D /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70866C39155027F10014688D /* libsqlite3.0.dylib */; };
+		70866C3F15503A920014688D /* libGoogleAnalytics_NoThumb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70866C3E15503A920014688D /* libGoogleAnalytics_NoThumb.a */; };
+		70866C4015503B7C0014688D /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70866C3C155033C10014688D /* libGoogleAnalytics.a */; };
+		70866C4215507A550014688D /* NavBarBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 70866C4115507A550014688D /* NavBarBg.png */; };
 		708E061114BA4FA0000C1876 /* FeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 708E061014BA4FA0000C1876 /* FeedCell.m */; };
 		708E061614BA8DC0000C1876 /* FeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 708E061514BA8DC0000C1876 /* FeedController.m */; };
 		708E061814BA93FF000C1876 /* 168-upload-photo-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 708E061714BA93FF000C1876 /* 168-upload-photo-2.png */; };
@@ -179,6 +183,11 @@
 		70735E37152F4A1B000F94B5 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		70735E38152F4A1B000F94B5 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		70866C36154DE6C20014688D /* MessageBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageBubble.png; sourceTree = "<group>"; };
+		70866C39155027F10014688D /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		70866C3B155033C10014688D /* GANTracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GANTracker.h; sourceTree = "<group>"; };
+		70866C3C155033C10014688D /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
+		70866C3E15503A920014688D /* libGoogleAnalytics_NoThumb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics_NoThumb.a; sourceTree = "<group>"; };
+		70866C4115507A550014688D /* NavBarBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBarBg.png; sourceTree = "<group>"; };
 		708E060F14BA4FA0000C1876 /* FeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedCell.h; sourceTree = "<group>"; };
 		708E061014BA4FA0000C1876 /* FeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedCell.m; sourceTree = "<group>"; };
 		708E061414BA8DC0000C1876 /* FeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedController.h; sourceTree = "<group>"; };
@@ -258,6 +267,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70866C3A155027F10014688D /* libsqlite3.0.dylib in Frameworks */,
 				70C9308F14F12600009441BE /* libz.dylib in Frameworks */,
 				70C9308D14F125E8009441BE /* MobileCoreServices.framework in Frameworks */,
 				70C9308B14F125DD009441BE /* SystemConfiguration.framework in Frameworks */,
@@ -266,6 +276,8 @@
 				7062EAD714BA47290055A979 /* UIKit.framework in Frameworks */,
 				7062EAD914BA47290055A979 /* Foundation.framework in Frameworks */,
 				7062EADB14BA47290055A979 /* CoreGraphics.framework in Frameworks */,
+				70866C4015503B7C0014688D /* libGoogleAnalytics.a in Frameworks */,
+				70866C3F15503A920014688D /* libGoogleAnalytics_NoThumb.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,8 +292,8 @@
 				70D0BE9614C4929000CBF56C /* SectionHeader.xib */,
 				708E061414BA8DC0000C1876 /* FeedController.h */,
 				708E061514BA8DC0000C1876 /* FeedController.m */,
-				705E5A7E1510331D00249D4F /* AnswerViewController.h */,
 				705E5A7F1510331D00249D4F /* AnswerViewController.m */,
+				705E5A7E1510331D00249D4F /* AnswerViewController.h */,
 				70AE0B4A1502E9A60045EDB8 /* PictureViewController.h */,
 				70AE0B4B1502E9A60045EDB8 /* PictureViewController.m */,
 				7005AEBB14C47DB700CCE435 /* FeedSectionHeader.h */,
@@ -347,6 +359,7 @@
 		7062EAC714BA47280055A979 = {
 			isa = PBXGroup;
 			children = (
+				70866C39155027F10014688D /* libsqlite3.0.dylib */,
 				70483A981544DD8200F7BAF9 /* halfcanvas-114.png */,
 				70C9309914F1EC3E009441BE /* Model.xcdatamodeld */,
 				7062EADC14BA47290055A979 /* HalfCanvas */,
@@ -398,8 +411,9 @@
 				70FB34A414F92DDD00864FC2 /* Image.h */,
 				70FB34A514F92DDD00864FC2 /* Image.m */,
 				7005AEB214C4602600CCE435 /* ComposeAnswerController.h */,
-				70F116781530A154000CDFF0 /* Sign Up Sign In */,
 				7005AEB314C4602600CCE435 /* ComposeAnswerController.m */,
+				70F116781530A154000CDFF0 /* Sign Up Sign In */,
+				70866C3D155034020014688D /* Google Analytics */,
 				7005AEBA14C47D8600CCE435 /* FeedView */,
 				70E2EF9214D442C300F02216 /* Snap a Picture */,
 				704431F014DF502300537505 /* Settings */,
@@ -426,6 +440,7 @@
 			children = (
 				704786B615437491005638FC /* comment_64.png */,
 				70B4F75A154C93740041C67D /* NavBarBg@2x.png */,
+				70866C4115507A550014688D /* NavBarBg.png */,
 				70B4F760154D7DB20041C67D /* Answer-Button-(under-picture).png */,
 				70866C36154DE6C20014688D /* MessageBubble.png */,
 				70B4F761154D7DB20041C67D /* Answer-Button-(under-picture)@2x.png */,
@@ -449,6 +464,16 @@
 				7062EAE414BA47290055A979 /* HalfCanvas-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		70866C3D155034020014688D /* Google Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				70866C3B155033C10014688D /* GANTracker.h */,
+				70866C3E15503A920014688D /* libGoogleAnalytics_NoThumb.a */,
+				70866C3C155033C10014688D /* libGoogleAnalytics.a */,
+			);
+			name = "Google Analytics";
 			sourceTree = "<group>";
 		};
 		70C92FAF14F121E2009441BE /* ASIHTTPRequest */ = {
@@ -630,6 +655,7 @@
 				70B4F763154D7DB20041C67D /* Answer-Button-(under-picture)@2x.png in Resources */,
 				70B4F767154D83230041C67D /* Answer-Button-Background.png in Resources */,
 				70866C37154DE6C20014688D /* MessageBubble.png in Resources */,
+				70866C4215507A550014688D /* NavBarBg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -769,6 +795,10 @@
 				GCC_PREFIX_HEADER = "HalfCanvas/HalfCanvas-Prefix.pch";
 				"HEADER_SEARCH_PATHS[arch=*]" = "${SDK_DIR}/usr/include/libxml2";
 				INFOPLIST_FILE = "HalfCanvas/HalfCanvas-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/HalfCanvas\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -781,6 +811,10 @@
 				GCC_PREFIX_HEADER = "HalfCanvas/HalfCanvas-Prefix.pch";
 				"HEADER_SEARCH_PATHS[arch=*]" = "${SDK_DIR}/usr/include/libxml2";
 				INFOPLIST_FILE = "HalfCanvas/HalfCanvas-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/HalfCanvas\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
