@@ -62,7 +62,7 @@
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch = [touches anyObject];
-    NSLog(@"OK!");
+
     if ([touch view] == imageView)
     {
         [[self delegate] handleMainImageClick:[self index]];

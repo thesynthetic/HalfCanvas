@@ -30,7 +30,7 @@
         // Custom initialization
     }
     
-    return self;	
+    return self;
 }
 
 - (void)didReceiveMemoryWarning

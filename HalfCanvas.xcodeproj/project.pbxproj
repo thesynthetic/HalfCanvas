@@ -95,6 +95,7 @@
 		70C9309B14F1EC3E009441BE /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70C9309914F1EC3E009441BE /* Model.xcdatamodeld */; };
 		70D0BE9714C4929000CBF56C /* SectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70D0BE9614C4929000CBF56C /* SectionHeader.xib */; };
 		70D4E4DC154813E30006C227 /* HCStatusBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70D4E4DB154813E30006C227 /* HCStatusBar.xib */; };
+		70E2C7E41559FBA0004A2079 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70E2C7E31559FBA0004A2079 /* MediaPlayer.framework */; };
 		70ECAA8414CC60CC00081EF3 /* 02-redo.png in Resources */ = {isa = PBXBuildFile; fileRef = 70ECAA8314CC60CC00081EF3 /* 02-redo.png */; };
 		70ECAA8714CC65EB00081EF3 /* 01-refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 70ECAA8614CC65EB00081EF3 /* 01-refresh.png */; };
 		70ECAA8E14CC79E700081EF3 /* IconDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 70ECAA8D14CC79E700081EF3 /* IconDownloader.m */; };
@@ -248,6 +249,7 @@
 		70C9309A14F1EC3E009441BE /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		70D0BE9614C4929000CBF56C /* SectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionHeader.xib; sourceTree = "<group>"; };
 		70D4E4DB154813E30006C227 /* HCStatusBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCStatusBar.xib; sourceTree = "<group>"; };
+		70E2C7E31559FBA0004A2079 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		70ECAA8314CC60CC00081EF3 /* 02-redo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02-redo.png"; sourceTree = "<group>"; };
 		70ECAA8614CC65EB00081EF3 /* 01-refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01-refresh.png"; sourceTree = "<group>"; };
 		70ECAA8C14CC79E700081EF3 /* IconDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconDownloader.h; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70E2C7E41559FBA0004A2079 /* MediaPlayer.framework in Frameworks */,
 				70866C3A155027F10014688D /* libsqlite3.0.dylib in Frameworks */,
 				70C9308F14F12600009441BE /* libz.dylib in Frameworks */,
 				70C9308D14F125E8009441BE /* MobileCoreServices.framework in Frameworks */,
@@ -359,6 +362,7 @@
 		7062EAC714BA47280055A979 = {
 			isa = PBXGroup;
 			children = (
+				70E2C7E31559FBA0004A2079 /* MediaPlayer.framework */,
 				70866C39155027F10014688D /* libsqlite3.0.dylib */,
 				70483A981544DD8200F7BAF9 /* halfcanvas-114.png */,
 				70C9309914F1EC3E009441BE /* Model.xcdatamodeld */,

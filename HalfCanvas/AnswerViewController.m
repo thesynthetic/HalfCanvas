@@ -34,7 +34,12 @@
 - (void)viewDidLoad
 {
     self.imageCache = [[NSMutableDictionary alloc] init];
+    
+    
     [super viewDidLoad];
+    
+    
+
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -42,6 +47,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+
 
 - (void)viewDidUnload
 {
@@ -206,27 +212,23 @@
         }
         [feedCell setDelegate:self];
         [feedCell setIndex:indexPath.section];
-        UIImage *tempImg = [imageCache objectForKey:[[answerCollection objectAtIndex:indexPath.section] image_url]];
+        
+        NSURL *url = [NSURL URLWithString:@"http://s3.amazonaws.com/halfcanvas/video/Test-out.mp4"];
+        mplayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayBackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:mplayer];
         
         
-        if (tempImg != nil)
-        {
-            [[feedCell imageView] setImage:tempImg];
-        }
-        else 
-        {
-            ASIHTTPRequest *request;
-            request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[[answerCollection objectAtIndex:indexPath.section] image_url]]];
-            [request setDownloadCache:[ASIDownloadCache sharedCache]];
-            [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
-            [request setCachePolicy:ASIAskServerIfModifiedWhenStaleCachePolicy|ASIFallbackToCacheIfLoadFailsCachePolicy];
-            [request setSecondsToCache:60*60*24*7];
-            [request setDownloadProgressDelegate:[feedCell imageProgressIndicator]];
-            [networkQueue addOperation:request];
-            [networkQueue go];
-            
-        }
+        mplayer.view.frame = CGRectMake(5, 5, 310, 200);
+        mplayer.controlStyle = MPMovieControlModeDefault;
+        mplayer.shouldAutoplay = NO;
         
+        [self.view addSubview:mplayer.view];
+        [mplayer setFullscreen:NO animated:YES];
+        
+        [feedCell setUserInteractionEnabled:YES];
+    
+
         return feedCell;
     }
 }
@@ -258,6 +260,7 @@
 
 - (void)loadData
 {
+    
     NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/answers/"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setPostValue:[NSString stringWithFormat:@"%d", question_id] forKey:@"question_id"];
@@ -334,13 +337,15 @@
         [viewController setQuestion_id:[self question_id]];
         [viewController setImageToUpload:[self imageToUpload]];
     }
-    
+            
     
 }
 
 
 -(void)handleMainImageClick:(int)indexNum
 {
+    
+   
     NSLog(@"Action for index: %d",indexNum);
     pictureViewerIndex = indexNum;
     [self performSegueWithIdentifier:@"PictureViewer" sender:nil];
@@ -409,6 +414,30 @@
 }
 
 
+-(IBAction)playbackMovie:(id)sender{
+    NSURL *url = [NSURL URLWithString:@"http://s3.amazonaws.com/halfcanvas/video/Test-out.mp4"];
+    mplayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayBackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:mplayer];
+    
+    mplayer.view.frame = CGRectMake(5, 5, 310, 200);
+    mplayer.controlStyle = MPMovieControlModeDefault;
+    mplayer.shouldAutoplay = YES;
+    
+    [self.parentViewController.view addSubview:mplayer.view];
+    [mplayer setFullscreen:NO animated:YES];
+    
+    
+}
+
+-(void) moviePlayBackDidFinish:(NSNotification*)notification {
+    MPMoviePlayerController *player = [notification object];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:player];
+    if ([player respondsToSelector:@selector(setFullscreen:animated:)]){
+        
+        [player.view removeFromSuperview];
+    }
+}
 
 
 @end
