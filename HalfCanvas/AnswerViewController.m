@@ -219,8 +219,8 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayBackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:mplayer];
         
         
-        mplayer.view.frame = CGRectMake(5, 5, 310, 200);
-        mplayer.controlStyle = MPMovieControlModeDefault;
+        mplayer.view.frame = CGRectMake(5, 40, 310, 200);
+        mplayer.controlStyle = MPMovieControlStyleEmbedded;
         mplayer.shouldAutoplay = NO;
         
         [self.view addSubview:mplayer.view];
@@ -421,7 +421,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayBackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:mplayer];
     
     mplayer.view.frame = CGRectMake(5, 5, 310, 200);
-    mplayer.controlStyle = MPMovieControlModeDefault;
+    mplayer.controlStyle = MPMovieControlStyleEmbedded;
     mplayer.shouldAutoplay = YES;
     
     [self.parentViewController.view addSubview:mplayer.view];
