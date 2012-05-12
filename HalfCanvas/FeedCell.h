@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 @class FeedCell;
 @protocol FeedCellDelegate <NSObject>
@@ -21,16 +22,21 @@
 {
     
     UIImageView *imageView;
+    UIImageView *playButton;
     UIImageView *messageBubble;
     UIProgressView *imageProgressIndicator;
     UIButton *answerButton;
     UIButton *answerCountButton;
     UILabel *answerCountLabel;
+    MPMoviePlayerController *mplayer;
+    UIView *movieCanvas;
     id <FeedCellDelegate> delegate;
     int index;
 }
 
 @property (nonatomic, retain) IBOutlet UIImageView *imageView;
+@property (nonatomic, retain) IBOutlet UIView *movieCanvas;
+@property (nonatomic, retain) IBOutlet UIImageView *playButton;
 @property (nonatomic, retain) IBOutlet UIImageView *messageBubble;
 @property (nonatomic, retain) IBOutlet UIProgressView *imageProgressIndicator;
 @property (nonatomic, retain) IBOutlet UIButton *answerCount;
@@ -44,5 +50,6 @@
 -(void)initExtras;
 
 -(IBAction)answerCountClick:(id)sender;
+-(IBAction)playMovie:(id)sender;
 
 @end

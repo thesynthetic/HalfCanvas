@@ -414,7 +414,7 @@
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     if ([prefs boolForKey:@"logged_in"])
     {
-        actionSheetQuestion = [[UIActionSheet alloc] initWithTitle:@"Post your question" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Upload from Album", nil];
+        actionSheetQuestion = [[UIActionSheet alloc] initWithTitle:@"Choose Source for Question" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Upload from Album", nil];
         [actionSheetQuestion setTag:0];
         [actionSheetQuestion showFromTabBar:self.tabBarController.tabBar];
     }

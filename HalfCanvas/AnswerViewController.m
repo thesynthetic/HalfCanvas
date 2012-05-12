@@ -127,7 +127,7 @@
         return 50;
     }
     else {
-        return  350; 
+        return  236; 
     }
     
     
@@ -212,23 +212,8 @@
         }
         [feedCell setDelegate:self];
         [feedCell setIndex:indexPath.section];
-        
-        NSURL *url = [NSURL URLWithString:@"http://s3.amazonaws.com/halfcanvas/video/Test-out.mp4"];
-        mplayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayBackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:mplayer];
-        
-        
-        mplayer.view.frame = CGRectMake(5, 40, 310, 200);
-        mplayer.controlStyle = MPMovieControlStyleEmbedded;
-        mplayer.shouldAutoplay = NO;
-        
-        [self.view addSubview:mplayer.view];
-        [mplayer setFullscreen:NO animated:YES];
-        
-        [feedCell setUserInteractionEnabled:YES];
-    
 
+        
         return feedCell;
     }
 }
@@ -414,30 +399,8 @@
 }
 
 
--(IBAction)playbackMovie:(id)sender{
-    NSURL *url = [NSURL URLWithString:@"http://s3.amazonaws.com/halfcanvas/video/Test-out.mp4"];
-    mplayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayBackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:mplayer];
-    
-    mplayer.view.frame = CGRectMake(5, 5, 310, 200);
-    mplayer.controlStyle = MPMovieControlStyleEmbedded;
-    mplayer.shouldAutoplay = YES;
-    
-    [self.parentViewController.view addSubview:mplayer.view];
-    [mplayer setFullscreen:NO animated:YES];
-    
-    
-}
 
--(void) moviePlayBackDidFinish:(NSNotification*)notification {
-    MPMoviePlayerController *player = [notification object];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:player];
-    if ([player respondsToSelector:@selector(setFullscreen:animated:)]){
-        
-        [player.view removeFromSuperview];
-    }
-}
+
 
 
 @end

@@ -100,6 +100,9 @@
 		70ECAA8714CC65EB00081EF3 /* 01-refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 70ECAA8614CC65EB00081EF3 /* 01-refresh.png */; };
 		70ECAA8E14CC79E700081EF3 /* IconDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 70ECAA8D14CC79E700081EF3 /* IconDownloader.m */; };
 		70F1167C1530A312000CDFF0 /* SignUpEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F1167B1530A312000CDFF0 /* SignUpEmailViewController.m */; };
+		70F2DF8B155E7DA0001C3C4F /* play_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 70F2DF8A155E7DA0001C3C4F /* play_button.png */; };
+		70F2DF8F155E85D6001C3C4F /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 70F2DF8D155E85D6001C3C4F /* heart.png */; };
+		70F2DF90155E85D6001C3C4F /* heart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 70F2DF8E155E85D6001C3C4F /* heart@2x.png */; };
 		70FB34A614F92DDD00864FC2 /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FB34A514F92DDD00864FC2 /* Image.m */; };
 		70FB34A914F92DDE00864FC2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FB34A814F92DDD00864FC2 /* User.m */; };
 		70FB34AC14F92DDE00864FC2 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FB34AB14F92DDE00864FC2 /* Question.m */; };
@@ -256,6 +259,9 @@
 		70ECAA8D14CC79E700081EF3 /* IconDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconDownloader.m; sourceTree = "<group>"; };
 		70F1167A1530A312000CDFF0 /* SignUpEmailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpEmailViewController.h; sourceTree = "<group>"; };
 		70F1167B1530A312000CDFF0 /* SignUpEmailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpEmailViewController.m; sourceTree = "<group>"; };
+		70F2DF8A155E7DA0001C3C4F /* play_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_button.png; sourceTree = "<group>"; };
+		70F2DF8D155E85D6001C3C4F /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
+		70F2DF8E155E85D6001C3C4F /* heart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart@2x.png"; sourceTree = "<group>"; };
 		70FB34A414F92DDD00864FC2 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
 		70FB34A514F92DDD00864FC2 /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Image.m; sourceTree = "<group>"; };
 		70FB34A714F92DDD00864FC2 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -295,8 +301,8 @@
 				70D0BE9614C4929000CBF56C /* SectionHeader.xib */,
 				708E061414BA8DC0000C1876 /* FeedController.h */,
 				708E061514BA8DC0000C1876 /* FeedController.m */,
-				705E5A7F1510331D00249D4F /* AnswerViewController.m */,
 				705E5A7E1510331D00249D4F /* AnswerViewController.h */,
+				705E5A7F1510331D00249D4F /* AnswerViewController.m */,
 				70AE0B4A1502E9A60045EDB8 /* PictureViewController.h */,
 				70AE0B4B1502E9A60045EDB8 /* PictureViewController.m */,
 				7005AEBB14C47DB700CCE435 /* FeedSectionHeader.h */,
@@ -444,6 +450,9 @@
 			children = (
 				704786B615437491005638FC /* comment_64.png */,
 				70B4F75A154C93740041C67D /* NavBarBg@2x.png */,
+				70F2DF8D155E85D6001C3C4F /* heart.png */,
+				70F2DF8E155E85D6001C3C4F /* heart@2x.png */,
+				70F2DF8A155E7DA0001C3C4F /* play_button.png */,
 				70866C4115507A550014688D /* NavBarBg.png */,
 				70B4F760154D7DB20041C67D /* Answer-Button-(under-picture).png */,
 				70866C36154DE6C20014688D /* MessageBubble.png */,
@@ -660,6 +669,9 @@
 				70B4F767154D83230041C67D /* Answer-Button-Background.png in Resources */,
 				70866C37154DE6C20014688D /* MessageBubble.png in Resources */,
 				70866C4215507A550014688D /* NavBarBg.png in Resources */,
+				70F2DF8B155E7DA0001C3C4F /* play_button.png in Resources */,
+				70F2DF8F155E85D6001C3C4F /* heart.png in Resources */,
+				70F2DF90155E85D6001C3C4F /* heart@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

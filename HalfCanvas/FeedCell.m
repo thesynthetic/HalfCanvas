@@ -23,6 +23,8 @@
 @synthesize answerButton;
 @synthesize answerCountLabel;
 @synthesize messageBubble;
+@synthesize playButton;
+@synthesize movieCanvas;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -79,5 +81,27 @@
 {
       [[self delegate] handleAddAnswerClick:[self index]];
 }
+
+-(IBAction)playMovie:(id)sender
+{
+    NSURL *url = [NSURL URLWithString:@"http://s3.amazonaws.com/halfcanvas/video/Test-out.mp4"];
+    mplayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayBackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:mplayer];
+    mplayer.view.frame = CGRectMake(0, 0, 310, 200);
+    mplayer.controlStyle = MPMovieControlStyleDefault;
+    mplayer.shouldAutoplay = YES;
+    [[self playButton] setHidden:TRUE];
+    [self.movieCanvas addSubview:mplayer.view];
+    
+}
+
+-(void) moviePlayBackDidFinish:(NSNotification*)notification {
+    MPMoviePlayerController *player = [notification object];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:player];
+    if ([player respondsToSelector:@selector(setFullscreen:animated:)]){
+        [player.view removeFromSuperview];
+    }
+}
+
 
 @end

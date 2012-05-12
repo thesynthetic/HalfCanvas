@@ -17,7 +17,7 @@
 #import "FeedCell.h"
 #import "PictureViewController.h"
 #import "UploadImageController.h"
-#import <MediaPlayer/MediaPlayer.h>
+
 
 @interface AnswerViewController : UITableViewController <MBProgressHUDDelegate, FeedCellDelegate, UIImagePickerControllerDelegate>
 {
@@ -30,7 +30,7 @@
     UIActionSheet *popup;
     UIImagePickerController *picker;
     UIImage *imageToUpload;
-    MPMoviePlayerController *mplayer;
+
 }
 
 @property NSInteger question_id;
