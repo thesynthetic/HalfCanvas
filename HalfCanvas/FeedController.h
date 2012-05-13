@@ -15,7 +15,6 @@
 #import "Image.h"
 #import "QuestionCollection.h"
 #import "MBProgressHUD.h"
-#import "IconDownloader.h"
 #import "ASIHTTPRequest.h"
 #import "ASINetworkQueue.h"
 #import "ASIDownloadCache.h"
@@ -27,7 +26,7 @@
 
 @class ASINetworkQueue;
 
-@interface FeedController : UITableViewController <IconDownloaderDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, MBProgressHUDDelegate, FeedCellDelegate>
+@interface FeedController : UITableViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, MBProgressHUDDelegate, FeedCellDelegate>
 {
     QuestionCollection *qcol;
     NSMutableArray *qc;

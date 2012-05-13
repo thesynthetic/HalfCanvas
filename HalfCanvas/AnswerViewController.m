@@ -345,6 +345,8 @@
     {    
         popup = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Upload from Album", nil];
         [popup showFromTabBar:self.tabBarController.tabBar];
+        
+        
     }
     else
     {

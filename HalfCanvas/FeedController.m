@@ -8,7 +8,6 @@
 
 #import "FeedController.h"
 
-
 @implementation FeedController
 
 @synthesize imageDownloadsInProgress;
@@ -20,7 +19,6 @@
 @synthesize qcol;
 @synthesize qc;
 @synthesize addingQuestion;
-
 @synthesize imageCache;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -29,7 +27,6 @@
     if (self) {
         // Custom initialization
     }
-    
     return self;
 }
 
@@ -414,9 +411,11 @@
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     if ([prefs boolForKey:@"logged_in"])
     {
-        actionSheetQuestion = [[UIActionSheet alloc] initWithTitle:@"Choose Source for Question" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Upload from Album", nil];
-        [actionSheetQuestion setTag:0];
-        [actionSheetQuestion showFromTabBar:self.tabBarController.tabBar];
+//        actionSheetQuestion = [[UIActionSheet alloc] initWithTitle:@"Choose Source for Question" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Upload from Album", nil];
+//        [actionSheetQuestion setTag:0];
+//        [actionSheetQuestion showFromTabBar:self.tabBarController.tabBar];
+        [self performSegueWithIdentifier:@"StartRecorder" sender:self];
+        
     }
     else
     {
@@ -499,11 +498,9 @@
     {
         UploadImageController *viewController = [segue destinationViewController];
         [viewController setIsQuestion:NO];
-
         [viewController setQuestion_id:answerViewerIndex];
         [viewController setImageToUpload:[self imageToUpload]];
     }
-    
     
     if ([[segue identifier] isEqualToString:@"PictureViewer"])
     {
@@ -519,7 +516,6 @@
         AnswerViewController *answerView = [segue destinationViewController];
         [answerView setQuestion_id:answerViewerIndex];
     }
-   
 }
 
 #pragma mark - Server Connectivity
@@ -527,7 +523,6 @@
 //Load JSON Data from Server
 -(IBAction)loadData
 {
-  
     NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:@"HCStatusBar" owner:self options:nil];
     
     // assuming the view is the only top-level object in the nib file (besides File's Owner and First Responder)
@@ -536,7 +531,6 @@
     nibView.frame = CGRectMake(0,400, 320, 35);
     nibView.alpha = 0;
     [[[self parentViewController] view] addSubview:nibView];
-    
     loading = true;
     
     [UIView animateWithDuration:0.25
@@ -566,9 +560,6 @@
                          }
                      }];
     
-
-    
-    
     NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/questions/"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setPostValue:[NSString stringWithFormat:@"%d", 0] forKey:@"start"];
@@ -586,7 +577,6 @@
         
     }
     
-    
     //Show HUD
     //HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
 	//[self.navigationController.view addSubview:HUD];
@@ -597,8 +587,6 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-    
-    
     if ([request didUseCachedResponse])
     {
   
@@ -617,13 +605,11 @@
     {
         // treat as a dictionary, or reassign to a dictionary ivar
         NSArray *question_list = [jsonObjects objectForKey:@"question_list"];
-        
         NSArray *action_list = [jsonObjects objectForKey:@"action_list"];
         if (action_list != nil)
         {
             //Handle Action List
-        }
-        
+        }        
         for (NSDictionary *dict in question_list)
         {
             Question *newQuestion = [[Question alloc] init];
@@ -634,16 +620,14 @@
             [newQuestion setDescription:[dict objectForKey:@"description"]];
             [newQuestion setUser_profile_image_url:[dict objectForKey:@"user_profile_image_url"]];             
             [newQuestion setAnswer_count:[[dict objectForKey:@"answer_count"] integerValue]];
-            
+
             [qc addObject:newQuestion];
         }
         
     }
     else if ([jsonObjects isKindOfClass:[NSArray class]])
     {
-        //Load the server data into Core Data
-        
-        
+        //Load the server data into Core Data   
     }
     
     //[HUD hide:YES];
@@ -666,10 +650,7 @@
                              
                          }];
     }
-
     [[self tableView] reloadData];
-
-    
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -688,7 +669,6 @@
 - (void)imageFetchComplete:(ASIHTTPRequest *)request
 {
 	UIImage *img = [UIImage imageWithData:[request responseData]];
-
     [imageCache setObject:img forKey:[[request url] absoluteString]];
     [[self tableView] reloadData];
 }
@@ -706,10 +686,8 @@
      */
 }
 
-
 -(void)handleMainImageClick:(int)indexNum
 {
-
     pictureViewerIndex = indexNum;
     [self performSegueWithIdentifier:@"PictureViewer" sender:nil];
 }
@@ -736,10 +714,6 @@
     {
         [self performSegueWithIdentifier:@"SignUpPopUp" sender:self];
     }
-    
-
 }
-
-                                       
 
 @end

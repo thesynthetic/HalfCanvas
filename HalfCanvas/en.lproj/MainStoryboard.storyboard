@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1179"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
     </dependencies>
     <scenes>
         <!--Sign Up View Controller-->
@@ -260,10 +260,11 @@
                         <segue destination="agB-vk-Yf8" kind="push" identifier="AnswerViewer" id="xFe-Q4-Niw"/>
                         <segue destination="bpV-Zm-Anx" kind="modal" identifier="SignUpPopUp" id="sEW-H8-cXr"/>
                         <segue destination="dKJ-4J-4Uh" kind="push" identifier="didcapturepicture2" id="6Ql-kL-hnx"/>
+                        <segue destination="jEV-o8-1OO" kind="modal" identifier="StartRecorder" modalTransitionStyle="coverVertical" id="tZ8-Q1-7EE"/>
                     </connections>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="1288" y="-94"/>
+            <point key="canvasLocation" x="1322" y="-72"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Lvi-If-TXu">
@@ -448,7 +449,7 @@
                     <navigationItem key="navigationItem" title="Settings" id="2RA-eR-RhV"/>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1214" y="1351"/>
+            <point key="canvasLocation" x="1266" y="1739"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="Img-z2-I6G">
@@ -490,7 +491,7 @@
                     <navigationItem key="navigationItem" id="atl-gS-gnj"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="1722" y="1346"/>
+            <point key="canvasLocation" x="1870" y="1718"/>
         </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="15">
@@ -533,7 +534,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="688" y="1351"/>
+            <point key="canvasLocation" x="688" y="1727"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cGW-iy-kuD">
@@ -736,6 +737,60 @@
             </objects>
             <point key="canvasLocation" x="2834" y="-834"/>
         </scene>
+        <!--Cam View Controller-->
+        <scene sceneID="oPD-bw-ROr">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S1t-J2-DAp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="jEV-o8-1OO" customClass="AVCamViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="byE-sj-std">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="J0J-uq-rob">
+                                <rect key="frame" x="0.0" y="416" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="LN3-4b-otN"/>
+                                    <barButtonItem title="Item" id="vLQ-rK-cjP">
+                                        <connections>
+                                            <action selector="toggleCamera:" destination="jEV-o8-1OO" id="sUD-qR-eTW"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="TlA-JW-bB2"/>
+                                    <barButtonItem title="Item" id="IRM-ec-Sis">
+                                        <connections>
+                                            <action selector="toggleRecording:" destination="jEV-o8-1OO" id="yso-DC-AHs"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="9kp-ts-BtR"/>
+                                    <barButtonItem title="Item" id="wR2-NN-MoZ">
+                                        <connections>
+                                            <action selector="captureStillImage:" destination="jEV-o8-1OO" id="a3J-pW-f0q"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="5rO-Nk-wzZ"/>
+                                </items>
+                            </toolbar>
+                            <view contentMode="scaleToFill" id="dEQ-yu-iG0">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="cameraToggleButton" destination="vLQ-rK-cjP" id="tef-dl-2XZ"/>
+                        <outlet property="recordButton" destination="IRM-ec-Sis" id="fvS-mE-Fuo"/>
+                        <outlet property="stillButton" destination="wR2-NN-MoZ" id="Yrw-af-mTo"/>
+                        <outlet property="videoPreviewView" destination="dEQ-yu-iG0" id="Hmn-eP-DsV"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="2034" y="866"/>
+        </scene>
         <!--Upload Image Controller-->
         <scene sceneID="hga-qi-Hck">
             <objects>
@@ -828,6 +883,19 @@
         <image name="profile_picture.jpg" width="50" height="50"/>
     </resources>
     <classes>
+        <class className="AVCamViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AVCamViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="captureStillImage:"/>
+                <relationship kind="action" name="toggleCamera:"/>
+                <relationship kind="action" name="toggleRecording:"/>
+                <relationship kind="outlet" name="cameraToggleButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="focusModeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="recordButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="stillButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="videoPreviewView" candidateClass="UIView"/>
+            </relationships>
+        </class>
         <class className="AnswerViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswerViewController.h"/>
             <relationships>
@@ -918,7 +986,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="0Jn-o9-eCO"/>
-        <segue reference="3Zq-Rg-m8G"/>
+        <segue reference="sEW-H8-cXr"/>
+        <segue reference="6Ql-kL-hnx"/>
     </inferredMetricsTieBreakers>
 </document>
