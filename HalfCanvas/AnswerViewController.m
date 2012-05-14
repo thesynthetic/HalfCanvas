@@ -34,18 +34,7 @@
 - (void)viewDidLoad
 {
     self.imageCache = [[NSMutableDictionary alloc] init];
-    
-    
     [super viewDidLoad];
-    
-    
-
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 
@@ -107,14 +96,10 @@
         {
             return 1;
         }
-        
     }
-    
     else 
     {
         //If not loaded yet (2 will fill the screen)
-        
-        
         return 1;
     }
 
@@ -122,15 +107,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     if ([answerCollection count] == 0 || 1 == indexPath.row){
         return 50;
     }
     else {
         return  236; 
-    }
-    
-    
+    }    
 }
 
 -  (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -164,8 +146,7 @@
         [userLabel setFont:[UIFont boldSystemFontOfSize:13.0]];
         [userLabel setText:[test username]];
         [myView addSubview:userLabel];
-        [myView addSubview:userImageView];
-        
+        [myView addSubview:userImageView];   
         return myView;
     }
     else {
@@ -175,14 +156,8 @@
         UILabel *userLabel = [[UILabel alloc] initWithFrame:CGRectMake(150, 10, 100, 20)];
         [userLabel setFont:[UIFont boldSystemFontOfSize:13.0]];
         [userLabel setText:@"No answers yet."];
-
-
-        
         return myView;
-
-        
     }
-   
 }
 
 
@@ -213,25 +188,18 @@
         [feedCell setDelegate:self];
         [feedCell setIndex:indexPath.section];
 
-        
         return feedCell;
     }
 }
-
-
-
-
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     if (indexPath.row == 1)
     {
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
         [self addAnswerClick];
-        
     }
 }
 
@@ -245,7 +213,6 @@
 
 - (void)loadData
 {
-    
     NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/answers/"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setPostValue:[NSString stringWithFormat:@"%d", question_id] forKey:@"question_id"];
@@ -322,15 +289,11 @@
         [viewController setQuestion_id:[self question_id]];
         [viewController setImageToUpload:[self imageToUpload]];
     }
-            
-    
 }
 
 
 -(void)handleMainImageClick:(int)indexNum
 {
-    
-   
     NSLog(@"Action for index: %d",indexNum);
     pictureViewerIndex = indexNum;
     [self performSegueWithIdentifier:@"PictureViewer" sender:nil];
@@ -345,8 +308,6 @@
     {    
         popup = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Upload from Album", nil];
         [popup showFromTabBar:self.tabBarController.tabBar];
-        
-        
     }
     else
     {

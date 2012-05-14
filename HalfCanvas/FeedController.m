@@ -411,11 +411,9 @@
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     if ([prefs boolForKey:@"logged_in"])
     {
-//        actionSheetQuestion = [[UIActionSheet alloc] initWithTitle:@"Choose Source for Question" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Upload from Album", nil];
-//        [actionSheetQuestion setTag:0];
-//        [actionSheetQuestion showFromTabBar:self.tabBarController.tabBar];
-        [self performSegueWithIdentifier:@"StartRecorder" sender:self];
-        
+        actionSheetQuestion = [[UIActionSheet alloc] initWithTitle:@"Choose Source for Question" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Upload from Album", nil];
+        [actionSheetQuestion setTag:0];
+        [actionSheetQuestion showFromTabBar:self.tabBarController.tabBar];
     }
     else
     {
@@ -438,7 +436,6 @@
     else {
         [self setAddingQuestion:true];
     }
-
 }
 
 
@@ -706,14 +703,18 @@
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     if ([prefs boolForKey:@"logged_in"])
     {
-        actionSheetAnswer = [[UIActionSheet alloc] initWithTitle:@"Post an answer (only half)" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Upload from Album", nil];
-        [actionSheetAnswer setTag:1];
-        [actionSheetAnswer showFromTabBar:self.tabBarController.tabBar];
+//        actionSheetAnswer = [[UIActionSheet alloc] initWithTitle:@"Post an answer (only half)" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Upload from Album", nil];
+//        [actionSheetAnswer setTag:1];
+//        [actionSheetAnswer showFromTabBar:self.tabBarController.tabBar];
+        
+        [self performSegueWithIdentifier:@"StartRecorder" sender:self];
     }
     else
     {
         [self performSegueWithIdentifier:@"SignUpPopUp" sender:self];
+        
     }
 }
+
 
 @end

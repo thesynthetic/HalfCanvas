@@ -750,6 +750,7 @@
                                 <rect key="frame" x="0.0" y="416" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
+                                    <barButtonItem systemItem="cancel" id="3ga-7L-g3r"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="LN3-4b-otN"/>
                                     <barButtonItem title="Item" id="vLQ-rK-cjP">
                                         <connections>
