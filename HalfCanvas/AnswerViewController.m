@@ -21,6 +21,7 @@
 @synthesize popup;
 @synthesize picker;
 @synthesize imageToUpload;
+@synthesize currentPlayer;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -297,6 +298,15 @@
     NSLog(@"Action for index: %d",indexNum);
     pictureViewerIndex = indexNum;
     [self performSegueWithIdentifier:@"PictureViewer" sender:nil];
+}
+
+- (void)setCurrentMovie:(MPMoviePlayerController*)player
+{
+    if ([self currentPlayer] != nil)
+    {
+        [[self currentPlayer] stop];
+    }
+    [self setCurrentMovie:player];
 }
 
 #pragma mark - Add Answer Functions

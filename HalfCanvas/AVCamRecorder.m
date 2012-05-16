@@ -89,6 +89,9 @@
 -(BOOL)recordsVideo
 {
 	AVCaptureConnection *videoConnection = [AVCamUtilities connectionWithMediaType:AVMediaTypeVideo fromConnections:[[self movieFileOutput] connections]];
+    if ([videoConnection isVideoMinFrameDurationSupported]){
+        [videoConnection setVideoMinFrameDuration:CMTimeMake(1,10)];
+    }
 	return [videoConnection isActive];
 }
 

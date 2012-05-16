@@ -522,7 +522,18 @@ bail:
 			[[self delegate] captureManagerRecordingFinished:self];
 		}
 	}
-	else {	
+	else {
+//        NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/create_video_answer/"];
+//        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+//        [request setFile:[outputFileURL absoluteString] withFileName:@"upload.mp4" andContentType:@"video/mp4" forKey:@"file"];
+//        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+//        NSString *access_token = [user objectForKey:@"access_token"];
+//        [request setPostValue:[NSString stringWithFormat:@"%d",24] forKey:@"question_id"];
+//        [request setPostValue:access_token forKey:@"access_token"];
+//        [request setDelegate:self];
+//        [request startAsynchronous];
+
+        
 		ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
 		[library writeVideoAtPathToSavedPhotosAlbum:outputFileURL
 									completionBlock:^(NSURL *assetURL, NSError *error) {

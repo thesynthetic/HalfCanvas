@@ -64,6 +64,7 @@
 - (IBAction)toggleRecording:(id)sender;
 - (IBAction)captureStillImage:(id)sender;
 - (IBAction)toggleCamera:(id)sender;
+- (IBAction)cancelButtonClick:(id)sender;
 
 @end
 

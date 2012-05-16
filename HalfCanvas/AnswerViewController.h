@@ -33,6 +33,7 @@
 
 }
 
+@property (retain) MPMoviePlayerController *currentPlayer;
 @property NSInteger question_id;
 @property (retain) NSMutableArray *answerCollection;
 @property (retain) NSMutableDictionary *imageCache;

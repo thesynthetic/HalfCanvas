@@ -750,27 +750,27 @@
                                 <rect key="frame" x="0.0" y="416" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem systemItem="cancel" id="3ga-7L-g3r"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="LN3-4b-otN"/>
-                                    <barButtonItem title="Item" id="vLQ-rK-cjP">
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="7Eh-w5-cnw"/>
+                                    <barButtonItem systemItem="cancel" id="3ga-7L-g3r">
                                         <connections>
-                                            <action selector="toggleCamera:" destination="jEV-o8-1OO" id="sUD-qR-eTW"/>
+                                            <action selector="cancelButtonClick:" destination="jEV-o8-1OO" id="5jo-UB-JiC"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="TlA-JW-bB2"/>
-                                    <barButtonItem title="Item" id="IRM-ec-Sis">
+                                    <barButtonItem title="Record" id="IRM-ec-Sis">
                                         <connections>
                                             <action selector="toggleRecording:" destination="jEV-o8-1OO" id="yso-DC-AHs"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="9kp-ts-BtR"/>
-                                    <barButtonItem title="Item" id="wR2-NN-MoZ">
+                                    <barButtonItem title="Photo" id="wR2-NN-MoZ">
                                         <connections>
                                             <action selector="captureStillImage:" destination="jEV-o8-1OO" id="a3J-pW-f0q"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="5rO-Nk-wzZ"/>
                                 </items>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </toolbar>
                             <view contentMode="scaleToFill" id="dEQ-yu-iG0">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
@@ -783,7 +783,6 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="cameraToggleButton" destination="vLQ-rK-cjP" id="tef-dl-2XZ"/>
                         <outlet property="recordButton" destination="IRM-ec-Sis" id="fvS-mE-Fuo"/>
                         <outlet property="stillButton" destination="wR2-NN-MoZ" id="Yrw-af-mTo"/>
                         <outlet property="videoPreviewView" destination="dEQ-yu-iG0" id="Hmn-eP-DsV"/>
@@ -887,6 +886,7 @@
         <class className="AVCamViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AVCamViewController.h"/>
             <relationships>
+                <relationship kind="action" name="cancelButtonClick:"/>
                 <relationship kind="action" name="captureStillImage:"/>
                 <relationship kind="action" name="toggleCamera:"/>
                 <relationship kind="action" name="toggleRecording:"/>

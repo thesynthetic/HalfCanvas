@@ -233,6 +233,12 @@ static void *AVCamFocusModeObserverContext = &AVCamFocusModeObserverContext;
      ];
 }
 
+- (IBAction)cancelButtonClick:(id)sender
+{
+    [self dismissModalViewControllerAnimated:YES];
+    
+}
+
 @end
 
 @implementation AVCamViewController (InternalMethods)

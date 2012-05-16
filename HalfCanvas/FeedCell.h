@@ -15,6 +15,8 @@
 - (void)handleMainImageClick:(int)indexNum;
 - (void)handleAnswerclick:(int)indexNum;
 - (void)handleAddAnswerClick:(int)indexNum;
+@required
+- (void)addCurrentMovie:(MPMoviePlayerController*)player;
 @end
 
 

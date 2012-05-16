@@ -9,9 +9,6 @@
 #import "FeedCell.h"
 #import "FeedController.h"
 
-
-
-
 @implementation FeedCell
 
 @synthesize imageView;
@@ -36,6 +33,8 @@
     }
     return self;
 }
+
+
 
 
 - (void)initExtras 
@@ -86,12 +85,14 @@
     NSURL *url = [NSURL URLWithString:@"http://s3.amazonaws.com/halfcanvas/video/Test-out.mp4"];
     mplayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
     AnswerViewController *answerview = (AnswerViewController*)[self delegate];
+    [answerview setCurrentPlayer:mplayer];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayBackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:mplayer];
     mplayer.view.frame = CGRectMake(0, 0, 310, 200);
-    mplayer.controlStyle = MPMovieControlStyleDefault;
+    mplayer.controlStyle = MPMovieControlStyleEmbedded;
     mplayer.shouldAutoplay = YES;
     [[self playButton] setHidden:TRUE];
     [self.movieCanvas addSubview:mplayer.view];
+    
 }
 
 -(void) moviePlayBackDidFinish:(NSNotification*)notification {
