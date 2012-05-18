@@ -530,6 +530,7 @@
     [[[self parentViewController] view] addSubview:nibView];
     loading = true;
     
+    
     [UIView animateWithDuration:0.25
      
                           delay: 0.0

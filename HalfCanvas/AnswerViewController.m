@@ -283,6 +283,7 @@
     {
         PictureViewController *pictureView = [segue destinationViewController];
         [pictureView setImage:[imageCache objectForKey:[[answerCollection objectAtIndex:pictureViewerIndex] image_url]]];
+       
     }
     if ([[segue identifier] isEqualToString:@"didcapturepicture2"])
     {
@@ -356,7 +357,6 @@
         
     }
 }
-
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {

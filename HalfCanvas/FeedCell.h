@@ -10,6 +10,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 
 @class FeedCell;
+
 @protocol FeedCellDelegate <NSObject>
 @optional
 - (void)handleMainImageClick:(int)indexNum;

@@ -8,115 +8,118 @@
 
 #import "PictureViewController.h"
 
+#define ZOOM_VIEW_TAG 100
+#define ZOOM_STEP 1.5
+
+@interface PictureViewController (UtilityMethods)
+- (CGRect)zoomRectForScale:(float)scale withCenter:(CGPoint)center;
+@end
+
+
 @implementation PictureViewController
 
-@synthesize navBar;
-@synthesize scrollView;
-@synthesize image;
-@synthesize imageView;
+@synthesize imageScrollView, imageView, image;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-
-    }
-    return self;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
+- (void)loadView {
+    [super loadView];
     
-    // Release any cached data, images, etc that aren't in use.
-}
-
-#pragma mark - View lifecycle
-
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-}
-*/
-
-
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
-{
-    
-    //[scrollView setUserInteractionEnabled:true];
-    //[imageView setUserInteractionEnabled:true];
-    [scrollView setContentSize:CGSizeMake(1000,1000)];
-    [scrollView setMinimumZoomScale:scrollView.frame.size.width / imageView.frame.size.width];
-  
-    [scrollView setDelegate:self];
-    [scrollView setMaximumZoomScale:2.0];
-    [scrollView setZoomScale:scrollView.minimumZoomScale];
-    [scrollView setPagingEnabled:false];
-    
-
+    // set the tag for the image view
     [imageView setImage:image];
-    [scrollView addSubview:imageView];
-    [super viewDidLoad];
+    [imageView setTag:ZOOM_VIEW_TAG];
+    
+    // add gesture recognizers to the image view
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
+    UITapGestureRecognizer *twoFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTwoFingerTap:)];
+    
+    [doubleTap setNumberOfTapsRequired:2];
+    [twoFingerTap setNumberOfTouchesRequired:2];
+    
+    [imageView addGestureRecognizer:singleTap];
+    [imageView addGestureRecognizer:doubleTap];
+    [imageView addGestureRecognizer:twoFingerTap];
+    
+    
+    
+    // calculate minimum scale to perfectly fit image width, and begin at that scale
+    float minimumScale = [imageScrollView frame].size.width  / [imageView frame].size.width;
+    [imageScrollView setMinimumZoomScale:minimumScale];
+    [imageScrollView setMaximumZoomScale:3.0f];
+    [imageScrollView setZoomScale:minimumScale];
+    [imageScrollView setDelegate:self];
+
 }
 
--(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
-    return imageView;
+
+- (void)viewDidUnload {
+	self.imageScrollView = nil;
+	self.imageView = nil;
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+
+
+#pragma mark UIScrollViewDelegate methods
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    return [imageScrollView viewWithTag:ZOOM_VIEW_TAG];
+    
+
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+/************************************** NOTE **************************************/
+/* The following delegate method works around a known bug in zoomToRect:animated: */
+/* In the next release after 3.0 this workaround will no longer be necessary      */
+/**********************************************************************************/
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale {
+    [scrollView setZoomScale:scale+0.01 animated:NO];
+    [scrollView setZoomScale:scale animated:NO];
 }
+
+#pragma mark TapDetectingImageViewDelegate methods
+
+- (void)handleSingleTap:(UIGestureRecognizer *)gestureRecognizer {
+    // single tap does nothing for now
+}
+
+- (void)handleDoubleTap:(UIGestureRecognizer *)gestureRecognizer {
+    // double tap zooms in
+    NSLog(@"Double tap");
+    float newScale = [imageScrollView zoomScale] * ZOOM_STEP;
+    NSLog(@"Zoom %f",[imageScrollView zoomScale]);
+    CGRect zoomRect = [self zoomRectForScale:newScale withCenter:[gestureRecognizer locationInView:gestureRecognizer.view]];
+    [imageScrollView zoomToRect:zoomRect animated:YES];
+}
+
+- (void)handleTwoFingerTap:(UIGestureRecognizer *)gestureRecognizer {
+    // two-finger tap zooms out
+    float newScale = [imageScrollView zoomScale] / ZOOM_STEP;
+    CGRect zoomRect = [self zoomRectForScale:newScale withCenter:[gestureRecognizer locationInView:gestureRecognizer.view]];
+    [imageScrollView zoomToRect:zoomRect animated:YES];
+}
+
+#pragma mark Utility methods
+
+- (CGRect)zoomRectForScale:(float)scale withCenter:(CGPoint)center {
+    
+    CGRect zoomRect;
+    
+    // the zoom rect is in the content view's coordinates. 
+    //    At a zoom scale of 1.0, it would be the size of the imageScrollView's bounds.
+    //    As the zoom scale decreases, so more content is visible, the size of the rect grows.
+    zoomRect.size.height = [imageScrollView frame].size.height / scale;
+    zoomRect.size.width  = [imageScrollView frame].size.width  / scale;
+    
+    // choose an origin so as to get the right center.
+    zoomRect.origin.x    = center.x - (zoomRect.size.width  / 2.0);
+    zoomRect.origin.y    = center.y - (zoomRect.size.height / 2.0);
+    
+    return zoomRect;
+}
+
 
 -(IBAction)closePictureViewer:(id)sender
 {
     [self dismissModalViewControllerAnimated:true];
 }
-
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    NSLog(@"uh");
-    UITouch *touch = [touches anyObject];
-    
-    if ([touch view] == [self scrollView])
-    {
-        if (touch.tapCount == 1) {
-        //    [self dismissModalViewControllerAnimated:true];
-            
-            if (hiddenEdges){
-                [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-                [UIView beginAnimations:nil context:NULL];
-                [UIView setAnimationDuration:0.5];
-                [navBar setAlpha:1.0];
-                [UIView commitAnimations];
-                hiddenEdges = false;
-            }
-            else 
-            {
-                [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
-                [UIView beginAnimations:nil context:NULL];
-                [UIView setAnimationDuration:0.5];
-                [navBar setAlpha:0.0];
-                [UIView commitAnimations];
-                
-                hiddenEdges = true;
-            }
-            
-        }
-    }
-    
-}
-
 
 @end

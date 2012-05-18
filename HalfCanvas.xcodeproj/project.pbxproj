@@ -461,24 +461,7 @@
 				70E2EF9214D442C300F02216 /* Snap a Picture */,
 				704431F014DF502300537505 /* Settings */,
 				700BB05C154DFE2F0072893B /* Activity */,
-				701881BF14C39D90002B07D8 /* QuestionCollection.h */,
-				701881C014C39D90002B07D8 /* QuestionCollection.m */,
-				70FB34AA14F92DDE00864FC2 /* Question.h */,
-				70FB34AB14F92DDE00864FC2 /* Question.m */,
-				70302B7B1516BEE1006492C8 /* Answer.h */,
-				70302B7C1516BEE1006492C8 /* Answer.m */,
-				70FB34A714F92DDD00864FC2 /* User.h */,
-				70FB34A814F92DDD00864FC2 /* User.m */,
-				70FB34A414F92DDD00864FC2 /* Image.h */,
-				70FB34A514F92DDD00864FC2 /* Image.m */,
-				7005AEB214C4602600CCE435 /* ComposeAnswerController.h */,
-				7005AEB314C4602600CCE435 /* ComposeAnswerController.m */,
-				7062EAEB14BA47290055A979 /* FirstViewController.h */,
-				7062EAEC14BA47290055A979 /* FirstViewController.m */,
-				7062EAEE14BA47290055A979 /* first.png */,
-				7062EAF014BA47290055A979 /* first@2x.png */,
-				7062EAF514BA47290055A979 /* second.png */,
-				7062EAF714BA47290055A979 /* second@2x.png */,
+				70F2DF991563EBB9001C3C4F /* Other Objects */,
 				70C9302814F12292009441BE /* External */,
 				70C92FAF14F121E2009441BE /* ASIHTTPRequest */,
 				70D0BEA014C4B7A000CBF56C /* MBProgress */,
@@ -491,6 +474,10 @@
 		7062EADD14BA47290055A979 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7062EAEE14BA47290055A979 /* first.png */,
+				7062EAF014BA47290055A979 /* first@2x.png */,
+				7062EAF514BA47290055A979 /* second.png */,
+				7062EAF714BA47290055A979 /* second@2x.png */,
 				70483A981544DD8200F7BAF9 /* halfcanvas-114.png */,
 				704786B615437491005638FC /* comment_64.png */,
 				70B4F75A154C93740041C67D /* NavBarBg@2x.png */,
@@ -629,6 +616,27 @@
 				70F1167B1530A312000CDFF0 /* SignUpEmailViewController.m */,
 			);
 			name = "Sign Up Sign In";
+			sourceTree = "<group>";
+		};
+		70F2DF991563EBB9001C3C4F /* Other Objects */ = {
+			isa = PBXGroup;
+			children = (
+				701881BF14C39D90002B07D8 /* QuestionCollection.h */,
+				701881C014C39D90002B07D8 /* QuestionCollection.m */,
+				70FB34AA14F92DDE00864FC2 /* Question.h */,
+				70FB34AB14F92DDE00864FC2 /* Question.m */,
+				70302B7B1516BEE1006492C8 /* Answer.h */,
+				70302B7C1516BEE1006492C8 /* Answer.m */,
+				70FB34A714F92DDD00864FC2 /* User.h */,
+				70FB34A814F92DDD00864FC2 /* User.m */,
+				70FB34A414F92DDD00864FC2 /* Image.h */,
+				70FB34A514F92DDD00864FC2 /* Image.m */,
+				7005AEB214C4602600CCE435 /* ComposeAnswerController.h */,
+				7005AEB314C4602600CCE435 /* ComposeAnswerController.m */,
+				7062EAEB14BA47290055A979 /* FirstViewController.h */,
+				7062EAEC14BA47290055A979 /* FirstViewController.m */,
+			);
+			name = "Other Objects";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
