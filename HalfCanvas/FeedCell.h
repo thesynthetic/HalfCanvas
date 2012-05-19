@@ -33,10 +33,12 @@
     UILabel *answerCountLabel;
     MPMoviePlayerController *mplayer;
     UIView *movieCanvas;
+    NSString *movieURL;
     id <FeedCellDelegate> delegate;
     int index;
 }
 
+@property (nonatomic, retain) NSString *movieURL;
 @property (nonatomic, retain) IBOutlet UIImageView *imageView;
 @property (nonatomic, retain) IBOutlet UIView *movieCanvas;
 @property (nonatomic, retain) IBOutlet UIImageView *playButton;

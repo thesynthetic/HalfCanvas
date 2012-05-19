@@ -186,9 +186,12 @@
         if (feedCell == nil) {
             feedCell = [[FeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
+        Answer *test = [answerCollection objectAtIndex:indexPath.section];
+        
         [feedCell setDelegate:self];
         [feedCell setIndex:indexPath.section];
-
+        [feedCell setMovieURL:[test image_url]];
+        
         return feedCell;
     }
 }

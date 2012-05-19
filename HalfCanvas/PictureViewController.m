@@ -9,7 +9,7 @@
 #import "PictureViewController.h"
 
 #define ZOOM_VIEW_TAG 100
-#define ZOOM_STEP 1.5
+#define ZOOM_STEP 2.0
 
 @interface PictureViewController (UtilityMethods)
 - (CGRect)zoomRectForScale:(float)scale withCenter:(CGPoint)center;
@@ -38,8 +38,6 @@
     [imageView addGestureRecognizer:singleTap];
     [imageView addGestureRecognizer:doubleTap];
     [imageView addGestureRecognizer:twoFingerTap];
-    
-    
     
     // calculate minimum scale to perfectly fit image width, and begin at that scale
     float minimumScale = [imageScrollView frame].size.width  / [imageView frame].size.width;

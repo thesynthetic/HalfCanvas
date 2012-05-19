@@ -43,8 +43,11 @@
     
     qc = [[NSMutableArray alloc] init];
     
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"NavBarBg.png"] forBarMetrics:UIBarMetricsDefault];
-
+    [self.navigationController.navigationBar setBackgroundColor:[UIColor clearColor]];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"UINavigationBarHeader@2x.png"] forBarMetrics:UIBarMetricsDefault];
+    UIImageView *headerFade = [[UIImageView alloc] initWithFrame:CGRectMake(0, 63, 320, 2)];
+    [headerFade setImage:[UIImage imageNamed:@"UINavigationBarHeaderFade@2x.png"]];
+    [[[self parentViewController] view] addSubview:headerFade];
     
     
     self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
@@ -144,9 +147,18 @@
     {
         CGRect  viewRect = CGRectMake(0, 0, 320, 40);
         UIView* myView = [[UIView alloc] initWithFrame:viewRect];
-        [myView setBackgroundColor:[UIColor whiteColor]];
-        UILabel *userLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 10, 100, 20)];
-        UIImageView *userImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5,5,30,30)];
+        [myView setBackgroundColor:[UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:229.0/255.0 alpha:1.0f]];
+        UILabel *userLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 4, 100, 20)];
+        [userLabel setTextColor:[UIColor colorWithRed:94.0/255.0 green:94.0/255.0 blue:94.0/255.0 alpha:1.0f]];
+        [userLabel setBackgroundColor:[UIColor clearColor]];
+        
+        UILabel *timestamp = [[UILabel alloc] initWithFrame:CGRectMake(50, 18, 100, 20)];
+        [timestamp setTextColor:[UIColor colorWithRed:150.0/255.0 green:150.0/255.0 blue:150.0/255.0 alpha:1.0f]];
+        [timestamp setBackgroundColor:[UIColor clearColor]];
+        [timestamp setFont:[UIFont systemFontOfSize:9]];
+        [timestamp setText:@"3 hours ago"];
+        
+        UIImageView *userImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15,5,30,30)];
         UIImage *tempImg = [imageCache objectForKey:[[qc objectAtIndex:section] user_profile_image_url]];
                                                      
         if (tempImg != nil)
@@ -171,6 +183,7 @@
         [userLabel setText:[test username]];
         [myView addSubview:userLabel];
         [myView addSubview:userImageView];
+        [myView addSubview:timestamp];
         
         return myView;
     }
@@ -239,6 +252,8 @@
             [networkQueue go];
             
         }
+        
+        
         
         return feedCell;
 
@@ -324,7 +339,8 @@
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //Load more pictures when at bottom of table (xth row)
-    
+    cell.backgroundColor = [UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:229.0/255.0 alpha:1.0f];
+
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data

@@ -22,6 +22,7 @@
 @synthesize messageBubble;
 @synthesize playButton;
 @synthesize movieCanvas;
+@synthesize movieURL;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -82,7 +83,7 @@
 
 -(IBAction)playMovie:(id)sender
 {
-    NSURL *url = [NSURL URLWithString:@"http://s3.amazonaws.com/halfcanvas/video/Test-out.mp4"];
+    NSURL *url = [NSURL URLWithString:movieURL];
     mplayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
     AnswerViewController *answerview = (AnswerViewController*)[self delegate];
     [answerview setCurrentPlayer:mplayer];
