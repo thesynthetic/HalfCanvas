@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
+#import "ActivityCell.h"
+#import "Action.h"
 
 @interface ActivityViewController : UITableViewController
+{
+    
+}
 
+@property (nonatomic, retain) NSMutableArray *activityArray;
 @end

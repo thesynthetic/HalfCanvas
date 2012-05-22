@@ -20,6 +20,7 @@
 @synthesize answerButton;
 @synthesize answerCountLabel;
 @synthesize messageBubble;
+@synthesize playButtonImage;
 @synthesize playButton;
 @synthesize movieCanvas;
 @synthesize movieURL;
@@ -44,6 +45,7 @@
     [answerCount setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
     [answerButton setBackgroundImage:[UIImage imageNamed:@"Answer-Button-Background.png"] forState:UIControlStateHighlighted];
     [answerCountButton setBackgroundImage:[UIImage imageNamed:@"Answer-Button-Background.png"] forState:UIControlStateHighlighted];
+    [playButton setBackgroundImage:[UIImage imageNamed:@"Answer-Button-Background.png"] forState:UIControlStateNormal];
 }
 
 - (void)awakeFromNib
@@ -88,10 +90,10 @@
     AnswerViewController *answerview = (AnswerViewController*)[self delegate];
     [answerview setCurrentPlayer:mplayer];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayBackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:mplayer];
-    mplayer.view.frame = CGRectMake(0, 0, 310, 200);
+    mplayer.view.frame = CGRectMake(0, 0, 290, 164);
     mplayer.controlStyle = MPMovieControlStyleEmbedded;
     mplayer.shouldAutoplay = YES;
-    [[self playButton] setHidden:TRUE];
+    [[self playButtonImage] setHidden:TRUE];
     [self.movieCanvas addSubview:mplayer.view];
     
 }

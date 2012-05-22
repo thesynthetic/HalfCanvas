@@ -18,6 +18,7 @@
 @synthesize imageToUpload;
 @synthesize qcol;
 @synthesize qc;
+@synthesize ac;
 @synthesize addingQuestion;
 @synthesize imageCache;
 
@@ -42,6 +43,7 @@
 {
     
     qc = [[NSMutableArray alloc] init];
+    ac = [[NSMutableArray alloc] init];
     
     [self.navigationController.navigationBar setBackgroundColor:[UIColor clearColor]];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"UINavigationBarHeader@2x.png"] forBarMetrics:UIBarMetricsDefault];
@@ -62,6 +64,12 @@
     [networkQueue setRequestDidFailSelector:@selector(imageFetchFailed:)];
     [networkQueue setShowAccurateProgress:true];
     [networkQueue setDelegate:self];
+    
+    NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:@"HCStatusBar" owner:self options:nil];
+    nibView = [nibObjects objectAtIndex:0];
+    nibView.frame = CGRectMake(0,400, 320, 35);
+    nibView.alpha = 0;
+    [[[self parentViewController] view] addSubview:nibView];
     
     //Turn on caching and set defaults
     [ASIHTTPRequest setDefaultCache:[ASIDownloadCache sharedCache]];
@@ -536,14 +544,7 @@
 //Load JSON Data from Server
 -(IBAction)loadData
 {
-    NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:@"HCStatusBar" owner:self options:nil];
-    
-    // assuming the view is the only top-level object in the nib file (besides File's Owner and First Responder)
-    nibView = [nibObjects objectAtIndex:0];
-    //320 35
-    nibView.frame = CGRectMake(0,400, 320, 35);
-    nibView.alpha = 0;
-    [[[self parentViewController] view] addSubview:nibView];
+
     loading = true;
     
     
@@ -561,23 +562,18 @@
                      }
                      completion:^(BOOL finished){
    
-                         if (loading == false)
-                         {
-                             [UIView animateWithDuration:0.25
-                                                   delay: 1.0
-                                                 options:UIViewAnimationOptionCurveEaseIn
-                                              animations:^{
-                                                  nibView.alpha = 0.0;
-                                              }
-                                              completion:nil];
-                             animationFinished = true;
-                         }
-                     }];
+                                              }];
     
     NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/questions/"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setPostValue:[NSString stringWithFormat:@"%d", 0] forKey:@"start"];
-    [request setPostValue:[NSString stringWithFormat:@"%d", questionEndIndex] forKey:@"end"];    
+    [request setPostValue:[NSString stringWithFormat:@"%d", questionEndIndex] forKey:@"end"];  
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    if ([prefs boolForKey:@"logged_in"])
+    {
+        NSLog(@"%@",[prefs valueForKey:@"access_token"]);
+        [request setPostValue:(NSString*)[prefs valueForKey:@"access_token"] forKey:@"access_token"];
+    }
     [request setDelegate:self];
     [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
     [request setCachePolicy:ASIFallbackToCacheIfLoadFailsCachePolicy];
@@ -601,14 +597,11 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-    if ([request didUseCachedResponse])
-    {
-  
-    }
     // Use when fetching text data
     NSString *responseString = [request responseString];
 
     [qc removeAllObjects];
+    [ac removeAllObjects];
     
     // Parse JSON Data and create question collection
     SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
@@ -620,6 +613,7 @@
         // treat as a dictionary, or reassign to a dictionary ivar
         NSArray *question_list = [jsonObjects objectForKey:@"question_list"];
         NSArray *action_list = [jsonObjects objectForKey:@"action_list"];
+        
         if (action_list != nil)
         {
             //Handle Action List
@@ -637,7 +631,28 @@
 
             [qc addObject:newQuestion];
         }
-        
+        for (NSDictionary *dict in action_list)
+        {
+            Action *newAction = [[Action alloc] init];
+            
+            [newAction setSenderImageURL:[dict objectForKey:@"sender_image_url"]];
+            [newAction setSenderUsername:[dict objectForKey:@"sender"]];
+            [newAction setQuestionID:[[dict objectForKey:@"question_id"] integerValue]];
+            [newAction setActionType:[dict objectForKey:@"type"]];
+            
+            [ac addObject:newAction];
+        }
+
+//        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+//        if ([prefs valueForKey:@"action_count"] == [ac count])
+//        {
+//            NSLog(@"%@",[prefs valueForKey:@"access_token"]);
+//            [request setPostValue:(NSString*)[prefs valueForKey:@"access_token"] forKey:@"access_token"];
+//        }
+        [[[[[self tabBarController] tabBar] items] objectAtIndex:1] setBadgeValue:@"1"];
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        [appDelegate setGlobalQuestions:qc];
+        [appDelegate setGlobalActions:ac];
     }
     else if ([jsonObjects isKindOfClass:[NSArray class]])
     {
@@ -646,25 +661,31 @@
     
     //[HUD hide:YES];
     loading = false;
-    if (!animationFinished)
-    {
-        [UIView animateWithDuration:0.25
-         
-                              delay: 0.0
-                            options:UIViewAnimationOptionCurveEaseOut
-                         animations:^{
-                             
-                             nibView.alpha = 0.0;
-                             
-                             // Create a nested animation that has a different
-                             // duration, timing curve, and configuration.
-                             
-                         }
-                         completion:^(BOOL finished){
-                             
-                         }];
-    }
+    
+    [self performSelector:@selector(removeLoadingBanner) withObject:self afterDelay:1.0];
+    
+    
     [[self tableView] reloadData];
+}
+
+-(void)removeLoadingBanner
+{
+    [UIView animateWithDuration:0.25
+     
+                          delay: 0.0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         
+                         nibView.alpha = 0.0;
+                         
+                         // Create a nested animation that has a different
+                         // duration, timing curve, and configuration.
+                         
+                     }
+                     completion:^(BOOL finished){
+                         
+                     }];
+    
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request

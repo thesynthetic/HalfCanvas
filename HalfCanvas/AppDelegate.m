@@ -18,6 +18,8 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 
 @synthesize window = _window;
 @synthesize receivedData;
+@synthesize globalQuestions;
+@synthesize globalActions;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

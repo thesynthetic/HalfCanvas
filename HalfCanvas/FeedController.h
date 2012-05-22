@@ -23,6 +23,8 @@
 #import "AnswerViewController.h"
 #import "ASIFormDataRequest.h"
 #import "GANTracker.h"
+#import "AppDelegate.h"
+#import "Action.h"
 
 @class ASINetworkQueue;
 
@@ -30,6 +32,7 @@
 {
     QuestionCollection *qcol;
     NSMutableArray *qc;
+    NSMutableArray *ac;
     
     NSArray *questions;
     MBProgressHUD *HUD;
@@ -66,6 +69,7 @@
 -(IBAction)addAnswer:(id)sender;
 
 @property (retain) NSMutableArray *qc;
+@property (retain) NSMutableArray *ac;
 @property (retain) QuestionCollection *qcol;
 @property (retain) NSMutableDictionary *imageCache;
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;

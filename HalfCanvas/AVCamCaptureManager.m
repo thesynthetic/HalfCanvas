@@ -52,7 +52,7 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <ImageIO/CGImageProperties.h>
 
-@interface AVCamCaptureManager (RecorderDelegate) <AVCamRecorderDelegate>
+@interface AVCamCaptureManager (RecorderDelegate) <AVCamRecorderDelegate, ASIHTTPRequestDelegate>
 @end
 
 
@@ -523,15 +523,22 @@ bail:
 		}
 	}
 	else {
-//        NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/create_video_answer/"];
-//        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-//        [request setFile:[outputFileURL absoluteString] withFileName:@"upload.mp4" andContentType:@"video/mp4" forKey:@"file"];
-//        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-//        NSString *access_token = [user objectForKey:@"access_token"];
-//        [request setPostValue:[NSString stringWithFormat:@"%d",24] forKey:@"question_id"];
-//        [request setPostValue:access_token forKey:@"access_token"];
-//        [request setDelegate:self];
-//        [request startAsynchronous];
+        
+        NSLog(@"Output file location: %@",[outputFileURL path]);
+        
+        NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/create_video_answer/"];
+        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+        
+        [request setFile:[outputFileURL path] withFileName:@"upload.mp4" andContentType:@"video/mp4" forKey:@"file"];
+        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+        NSString *access_token = [user objectForKey:@"access_token"];
+        [request setPostValue:[NSString stringWithFormat:@"%d",24] forKey:@"question_id"];
+        [request setPostValue:access_token forKey:@"access_token"];
+        [request setDelegate:self];
+        //[request startAsynchronous];
+        //NSLog(@"Finished asynchronous");
+        //field matlab/intex
+        
 
         
 		ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
@@ -553,6 +560,19 @@ bail:
 									}];
 		[library release];
 	}
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    // Use when fetching text data
+    NSString *responseString = [request responseString];
+    NSLog(@"Response String: %@",responseString);
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    NSError *error = [request error];
+    NSLog(@"Error: %@",[error localizedDescription]);
 }
 
 @end

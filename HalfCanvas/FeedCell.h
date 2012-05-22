@@ -25,8 +25,9 @@
 {
     
     UIImageView *imageView;
-    UIImageView *playButton;
+    UIImageView *playButtonImage;
     UIImageView *messageBubble;
+    UIButton *playButton;
     UIProgressView *imageProgressIndicator;
     UIButton *answerButton;
     UIButton *answerCountButton;
@@ -41,7 +42,8 @@
 @property (nonatomic, retain) NSString *movieURL;
 @property (nonatomic, retain) IBOutlet UIImageView *imageView;
 @property (nonatomic, retain) IBOutlet UIView *movieCanvas;
-@property (nonatomic, retain) IBOutlet UIImageView *playButton;
+@property (nonatomic, retain) IBOutlet UIImageView *playButtonImage;
+@property (nonatomic, retain) IBOutlet UIButton *playButton;
 @property (nonatomic, retain) IBOutlet UIImageView *messageBubble;
 @property (nonatomic, retain) IBOutlet UIProgressView *imageProgressIndicator;
 @property (nonatomic, retain) IBOutlet UIButton *answerCount;

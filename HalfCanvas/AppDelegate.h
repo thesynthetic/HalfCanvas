@@ -16,8 +16,12 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
     NSMutableData *receivedData;
+    NSMutableArray *globalQuestions;
+    NSMutableArray *globalActions;
 }
 
+@property (retain) NSMutableArray *globalQuestions;
+@property (retain) NSMutableArray *globalActions;
 @property (strong, nonatomic) UIWindow *window;
 @property (retain) NSMutableData *receivedData;
 

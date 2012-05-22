@@ -80,7 +80,7 @@
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
     
-    return [answerCollection count] == 0 ? 1 : [answerCollection count];
+    return [answerCollection count] == 0 ? 1 : [answerCollection count] + 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -91,7 +91,7 @@
     {
         if (section == [answerCollection count] - 1)
         {
-            return 2;
+            return 1;
         }
         else 
         {
@@ -108,21 +108,31 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([answerCollection count] == 0 || 1 == indexPath.row){
+    if ([answerCollection count] == 0 || [answerCollection count] == indexPath.section){
         return 50;
     }
     else {
-        return  236; 
+        return  209; 
     }    
 }
 
 -  (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if ([answerCollection count] > 0){
+        if (section < [answerCollection count] && [answerCollection count] > 0)
+        {
         CGRect  viewRect = CGRectMake(0, 0, 320, 40);
         UIView* myView = [[UIView alloc] initWithFrame:viewRect];
-        [myView setBackgroundColor:[UIColor whiteColor]];
-        UILabel *userLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 10, 100, 20)];
+        [myView setBackgroundColor:[UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:229.0/255.0 alpha:1.0f]];
+        UILabel *userLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 4, 100, 20)];
+        [userLabel setTextColor:[UIColor colorWithRed:94.0/255.0 green:94.0/255.0 blue:94.0/255.0 alpha:1.0f]];
+        [userLabel setBackgroundColor:[UIColor clearColor]];
+        
+        UILabel *timestamp = [[UILabel alloc] initWithFrame:CGRectMake(50, 18, 100, 20)];
+        [timestamp setTextColor:[UIColor colorWithRed:150.0/255.0 green:150.0/255.0 blue:150.0/255.0 alpha:1.0f]];
+        [timestamp setBackgroundColor:[UIColor clearColor]];
+        [timestamp setFont:[UIFont systemFontOfSize:9]];
+        [timestamp setText:@"3 hours ago"];
+
         UIImageView *userImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5,5,30,30)];
         UIImage *tempImg = [imageCache objectForKey:[[answerCollection objectAtIndex:section] user_profile_image_url]];
         
@@ -148,12 +158,13 @@
         [userLabel setText:[test username]];
         [myView addSubview:userLabel];
         [myView addSubview:userImageView];   
+        [myView addSubview:timestamp];
         return myView;
     }
     else {
         CGRect  viewRect = CGRectMake(0, 0, 320, 40);
         UIView* myView = [[UIView alloc] initWithFrame:viewRect];
-        [myView setBackgroundColor:[UIColor whiteColor]];
+        [myView setBackgroundColor:[UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:229.0/255.0 alpha:1.0f]];
         UILabel *userLabel = [[UILabel alloc] initWithFrame:CGRectMake(150, 10, 100, 20)];
         [userLabel setFont:[UIFont boldSystemFontOfSize:13.0]];
         [userLabel setText:@"No answers yet."];
@@ -164,7 +175,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (1 == indexPath.row || [answerCollection count] == 0)
+    if (indexPath.section == [answerCollection count])
     {
         static NSString *CellIdentifier = @"AddHalfAnswer";
         

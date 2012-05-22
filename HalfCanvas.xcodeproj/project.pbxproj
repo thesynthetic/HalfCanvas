@@ -46,6 +46,9 @@
 		702CB5B315676FF000148D5F /* UITableViewCellBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 702CB5B215676FF000148D5F /* UITableViewCellBackground.png */; };
 		702CB5B5156773B200148D5F /* UINavigationBarHeader@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 702CB5B4156773B200148D5F /* UINavigationBarHeader@2x.png */; };
 		702CB5BD1567795D00148D5F /* UINavigationBarHeaderFade@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 702CB5BC1567795D00148D5F /* UINavigationBarHeaderFade@2x.png */; };
+		702CB5BF1567DF3200148D5F /* AnswerCell-Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 702CB5BE1567DF3200148D5F /* AnswerCell-Background@2x.png */; };
+		702CB5C215694CB500148D5F /* Action.m in Sources */ = {isa = PBXBuildFile; fileRef = 702CB5C115694CB500148D5F /* Action.m */; };
+		702CB5C8156AC0DD00148D5F /* ActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 702CB5C7156AC0DD00148D5F /* ActivityCell.m */; };
 		702EB6A61501C19400B0BCB7 /* Untitled-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 702EB6A51501C19400B0BCB7 /* Untitled-1.png */; };
 		70302B7D1516BEE1006492C8 /* Answer.m in Sources */ = {isa = PBXBuildFile; fileRef = 70302B7C1516BEE1006492C8 /* Answer.m */; };
 		704431F314DF506F00537505 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 704431F214DF506F00537505 /* SettingsViewController.m */; };
@@ -183,6 +186,11 @@
 		702CB5B215676FF000148D5F /* UITableViewCellBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UITableViewCellBackground.png; sourceTree = "<group>"; };
 		702CB5B4156773B200148D5F /* UINavigationBarHeader@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UINavigationBarHeader@2x.png"; sourceTree = "<group>"; };
 		702CB5BC1567795D00148D5F /* UINavigationBarHeaderFade@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UINavigationBarHeaderFade@2x.png"; sourceTree = "<group>"; };
+		702CB5BE1567DF3200148D5F /* AnswerCell-Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AnswerCell-Background@2x.png"; sourceTree = "<group>"; };
+		702CB5C015694CB500148D5F /* Action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Action.h; sourceTree = "<group>"; };
+		702CB5C115694CB500148D5F /* Action.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Action.m; sourceTree = "<group>"; };
+		702CB5C6156AC0DD00148D5F /* ActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityCell.h; sourceTree = "<group>"; };
+		702CB5C7156AC0DD00148D5F /* ActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityCell.m; sourceTree = "<group>"; };
 		702EB6A51501C19400B0BCB7 /* Untitled-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Untitled-1.png"; path = "../Untitled-1.png"; sourceTree = "<group>"; };
 		70302B7B1516BEE1006492C8 /* Answer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Answer.h; sourceTree = "<group>"; };
 		70302B7C1516BEE1006492C8 /* Answer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Answer.m; sourceTree = "<group>"; };
@@ -351,6 +359,8 @@
 			children = (
 				700BB05E154DFE4F0072893B /* ActivityViewController.h */,
 				700BB05F154DFE4F0072893B /* ActivityViewController.m */,
+				702CB5C6156AC0DD00148D5F /* ActivityCell.h */,
+				702CB5C7156AC0DD00148D5F /* ActivityCell.m */,
 			);
 			name = Activity;
 			sourceTree = "<group>";
@@ -487,6 +497,7 @@
 				702CB5AF1567676B00148D5F /* UITableViewCellBackground@2x.png */,
 				702CB5B4156773B200148D5F /* UINavigationBarHeader@2x.png */,
 				702CB5BC1567795D00148D5F /* UINavigationBarHeaderFade@2x.png */,
+				702CB5BE1567DF3200148D5F /* AnswerCell-Background@2x.png */,
 				7062EAF014BA47290055A979 /* first@2x.png */,
 				7062EAF514BA47290055A979 /* second.png */,
 				7062EAF714BA47290055A979 /* second@2x.png */,
@@ -637,6 +648,8 @@
 				701881C014C39D90002B07D8 /* QuestionCollection.m */,
 				70FB34AA14F92DDE00864FC2 /* Question.h */,
 				70FB34AB14F92DDE00864FC2 /* Question.m */,
+				702CB5C015694CB500148D5F /* Action.h */,
+				702CB5C115694CB500148D5F /* Action.m */,
 				70302B7B1516BEE1006492C8 /* Answer.h */,
 				70302B7C1516BEE1006492C8 /* Answer.m */,
 				70FB34A714F92DDD00864FC2 /* User.h */,
@@ -740,6 +753,7 @@
 				702CB5B315676FF000148D5F /* UITableViewCellBackground.png in Resources */,
 				702CB5B5156773B200148D5F /* UINavigationBarHeader@2x.png in Resources */,
 				702CB5BD1567795D00148D5F /* UINavigationBarHeaderFade@2x.png in Resources */,
+				702CB5BF1567DF3200148D5F /* AnswerCell-Background@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -804,6 +818,8 @@
 				7005C34A156027440014B6AC /* AVCamCaptureManager.m in Sources */,
 				7005C34B156027440014B6AC /* AVCamRecorder.m in Sources */,
 				7005C34C156027440014B6AC /* AVCamUtilities.m in Sources */,
+				702CB5C215694CB500148D5F /* Action.m in Sources */,
+				702CB5C8156AC0DD00148D5F /* ActivityCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
