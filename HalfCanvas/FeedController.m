@@ -52,7 +52,7 @@
     [[[self parentViewController] view] addSubview:headerFade];
     
     
-    self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
+//    self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
     self.imageCache = [[NSMutableDictionary alloc] init];
     
     if (!networkQueue) {
@@ -649,7 +649,7 @@
 //            NSLog(@"%@",[prefs valueForKey:@"access_token"]);
 //            [request setPostValue:(NSString*)[prefs valueForKey:@"access_token"] forKey:@"access_token"];
 //        }
-        [[[[[self tabBarController] tabBar] items] objectAtIndex:1] setBadgeValue:@"1"];
+        [[[[[self tabBarController] tabBar] items] objectAtIndex:1] setBadgeValue:[NSString stringWithFormat:@"%d",[ac count]]];
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         [appDelegate setGlobalQuestions:qc];
         [appDelegate setGlobalActions:ac];

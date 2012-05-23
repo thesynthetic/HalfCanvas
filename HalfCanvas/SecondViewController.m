@@ -127,7 +127,7 @@
 {
     cameraStatus = 30;
     [picker dismissModalViewControllerAnimated:YES];
-    MainTabBarController *tabcontroller = self.navigationController.tabBarController;
+    MainTabBarController *tabcontroller = (MainTabBarController*)self.navigationController.tabBarController;
     [tabcontroller goToFirstTab];
 }
 

@@ -12,6 +12,8 @@
 @implementation ActivityViewController
 
 @synthesize activityArray;
+@synthesize imageCache;
+@synthesize networkQueue;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -39,12 +41,17 @@
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     activityArray = [appDelegate globalActions];
 
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.imageCache = [[NSMutableDictionary alloc] init];
+    if (!networkQueue) {
+        networkQueue = [[ASINetworkQueue alloc] init];
+    }
+    [networkQueue reset];
+    [networkQueue setDelegate:self];
+    [networkQueue setRequestDidFinishSelector:@selector(imageFetchComplete:)];
+    [networkQueue setRequestDidFailSelector:@selector(imageFetchFailed:)];
+    [networkQueue setShowAccurateProgress:true];
+
+    self.clearsSelectionOnViewWillAppear = NO;
 }
 
 - (void)viewDidUnload
@@ -95,6 +102,7 @@
     return [activityArray count];
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"ActivityCell";
@@ -104,8 +112,38 @@
         cell = [[ActivityCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    // Configure the cell...
     Action *action = [activityArray objectAtIndex:indexPath.row];
+    NSString *senderImageURL = [action senderImageURL];
+    UIImage *tempImg = [imageCache objectForKey:senderImageURL];    
+    
+    if (tempImg != nil)
+    {
+        [[cell imageView] setImage:tempImg];
+    }
+    else 
+    {
+        ASIHTTPRequest *request;
+        request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:senderImageURL]];
+        [request setDownloadCache:[ASIDownloadCache sharedCache]];
+        [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
+        [request setCachePolicy:ASIAskServerIfModifiedWhenStaleCachePolicy|ASIFallbackToCacheIfLoadFailsCachePolicy];
+        [request setSecondsToCache:60*60*24*7];
+        //[request setDownloadProgressDelegate:[feedCell imageProgressIndicator]];
+        
+        [networkQueue addOperation:request];
+        [networkQueue go];    
+    }
+
+    if ([action actionType] == @"like")
+    {
+        [[cell text] setText:@"likes your video"];
+    }
+    else if ([action actionType] == @"answer") 
+    {
+        [[cell text] setText:@"posted a video for you"];
+    }
+    
+    
     [[cell senderUsername] setText:[action senderUsername]];
     return cell;
 }
@@ -160,6 +198,20 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+#pragma mark - Network Queue callback
+
+- (void)imageFetchComplete:(ASIHTTPRequest *)request
+{
+	UIImage *img = [UIImage imageWithData:[request responseData]];
+    [imageCache setObject:img forKey:[[request url] absoluteString]];
+    [[self tableView] reloadData];
+}
+
+- (void)imageFetchFailed:(ASIHTTPRequest *)request
+{
+     //Incomplete Implementation: Handle failed image request
 }
 
 @end
