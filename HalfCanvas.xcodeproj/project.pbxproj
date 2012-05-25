@@ -49,6 +49,7 @@
 		702CB5BF1567DF3200148D5F /* AnswerCell-Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 702CB5BE1567DF3200148D5F /* AnswerCell-Background@2x.png */; };
 		702CB5C215694CB500148D5F /* Action.m in Sources */ = {isa = PBXBuildFile; fileRef = 702CB5C115694CB500148D5F /* Action.m */; };
 		702CB5C8156AC0DD00148D5F /* ActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 702CB5C7156AC0DD00148D5F /* ActivityCell.m */; };
+		702CB5CB156D277700148D5F /* QuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 702CB5CA156D277700148D5F /* QuestionViewController.m */; };
 		702EB6A61501C19400B0BCB7 /* Untitled-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 702EB6A51501C19400B0BCB7 /* Untitled-1.png */; };
 		70302B7D1516BEE1006492C8 /* Answer.m in Sources */ = {isa = PBXBuildFile; fileRef = 70302B7C1516BEE1006492C8 /* Answer.m */; };
 		704431F314DF506F00537505 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 704431F214DF506F00537505 /* SettingsViewController.m */; };
@@ -191,6 +192,8 @@
 		702CB5C115694CB500148D5F /* Action.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Action.m; sourceTree = "<group>"; };
 		702CB5C6156AC0DD00148D5F /* ActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityCell.h; sourceTree = "<group>"; };
 		702CB5C7156AC0DD00148D5F /* ActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityCell.m; sourceTree = "<group>"; };
+		702CB5C9156D277700148D5F /* QuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionViewController.h; sourceTree = "<group>"; };
+		702CB5CA156D277700148D5F /* QuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionViewController.m; sourceTree = "<group>"; };
 		702EB6A51501C19400B0BCB7 /* Untitled-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Untitled-1.png"; path = "../Untitled-1.png"; sourceTree = "<group>"; };
 		70302B7B1516BEE1006492C8 /* Answer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Answer.h; sourceTree = "<group>"; };
 		70302B7C1516BEE1006492C8 /* Answer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Answer.m; sourceTree = "<group>"; };
@@ -359,6 +362,8 @@
 			children = (
 				700BB05E154DFE4F0072893B /* ActivityViewController.h */,
 				700BB05F154DFE4F0072893B /* ActivityViewController.m */,
+				702CB5C9156D277700148D5F /* QuestionViewController.h */,
+				702CB5CA156D277700148D5F /* QuestionViewController.m */,
 				702CB5C6156AC0DD00148D5F /* ActivityCell.h */,
 				702CB5C7156AC0DD00148D5F /* ActivityCell.m */,
 			);
@@ -820,6 +825,7 @@
 				7005C34C156027440014B6AC /* AVCamUtilities.m in Sources */,
 				702CB5C215694CB500148D5F /* Action.m in Sources */,
 				702CB5C8156AC0DD00148D5F /* ActivityCell.m in Sources */,
+				702CB5CB156D277700148D5F /* QuestionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

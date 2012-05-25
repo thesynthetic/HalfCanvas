@@ -35,6 +35,7 @@
 - (void)viewDidLoad
 {
     self.imageCache = [[NSMutableDictionary alloc] init];
+    [[self tableView] setBackgroundColor:[UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:229.0/255.0 alpha:1.0f]];
     [super viewDidLoad];
 }
 

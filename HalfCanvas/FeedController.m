@@ -50,7 +50,7 @@
     UIImageView *headerFade = [[UIImageView alloc] initWithFrame:CGRectMake(0, 63, 320, 2)];
     [headerFade setImage:[UIImage imageNamed:@"UINavigationBarHeaderFade@2x.png"]];
     [[[self parentViewController] view] addSubview:headerFade];
-    
+    [[self tableView] setBackgroundColor:[UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:229.0/255.0 alpha:1.0f]];
     
 //    self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
     self.imageCache = [[NSMutableDictionary alloc] init];
