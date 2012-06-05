@@ -212,6 +212,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //Testing movie record
+    picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = true;
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    picker.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeMovie, nil];
+    [picker setVideoMaximumDuration:60.0f];
+    [picker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModeVideo];
+    [picker setVideoQuality:UIImagePickerControllerQualityTypeMedium];
+    [self presentModalViewController:picker animated:YES];
+    
+    
+    
     if (indexPath.row == 1)
     {
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -373,20 +386,37 @@
     }
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
+//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
+//{
+//    [self setImageToUpload:image];
+//    [picker dismissModalViewControllerAnimated:YES];
+//    [self performSegueWithIdentifier:@"didcapturepicture2" sender:self];
+//    
+//}
+//
+//- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+//{
+//    [picker dismissModalViewControllerAnimated:YES];
+//}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    [self setImageToUpload:image];
-    [picker dismissModalViewControllerAnimated:YES];
-    [self performSegueWithIdentifier:@"didcapturepicture2" sender:self];
+    NSURL *localURL = [info objectForKey:UIImagePickerControllerMediaURL];
+//    NSURL *localURL = [NSURL URLWithString:localURLString];
+    
+
+    
+    NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/create_video_answer/"];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSString *access_token = [user objectForKey:@"access_token"];
+    [request setPostValue:[NSString stringWithFormat:@"%d",24] forKey:@"question_id"];
+    [request setPostValue:access_token forKey:@"access_token"];
+    [request setDelegate:self];
+    [request setFile:[localURL path] withFileName:@"upload.mp4" andContentType:@"video/mp4" forKey:@"file"];        
+    [request startAsynchronous];
     
 }
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    [picker dismissModalViewControllerAnimated:YES];
-}
-
-
 
 
 

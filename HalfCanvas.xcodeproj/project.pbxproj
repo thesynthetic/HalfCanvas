@@ -57,6 +57,7 @@
 		704786B715437491005638FC /* comment_64.png in Resources */ = {isa = PBXBuildFile; fileRef = 704786B615437491005638FC /* comment_64.png */; };
 		70483A961544DD7300F7BAF9 /* halfcanvas-114.png in Resources */ = {isa = PBXBuildFile; fileRef = 70483A951544DD7300F7BAF9 /* halfcanvas-114.png */; };
 		70483A991544DD8200F7BAF9 /* halfcanvas-114.png in Resources */ = {isa = PBXBuildFile; fileRef = 70483A981544DD8200F7BAF9 /* halfcanvas-114.png */; };
+		704DF024157D97EE0069FEE0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70C9308C14F125E7009441BE /* MobileCoreServices.framework */; };
 		705E5A801510331E00249D4F /* AnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 705E5A7F1510331D00249D4F /* AnswerViewController.m */; };
 		7062EAD714BA47290055A979 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7062EAD614BA47290055A979 /* UIKit.framework */; };
 		7062EAD914BA47290055A979 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7062EAD814BA47290055A979 /* Foundation.framework */; };
@@ -108,7 +109,6 @@
 		70C9302F14F12292009441BE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C9302D14F12292009441BE /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		70C9308914F125CD009441BE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70C9308814F125CD009441BE /* CFNetwork.framework */; };
 		70C9308B14F125DD009441BE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70C9308A14F125DD009441BE /* SystemConfiguration.framework */; };
-		70C9308D14F125E8009441BE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70C9308C14F125E7009441BE /* MobileCoreServices.framework */; };
 		70C9308F14F12600009441BE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 70C9308E14F12600009441BE /* libz.dylib */; };
 		70C9309214F18635009441BE /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C9309114F18635009441BE /* SignInViewController.m */; };
 		70D0BE9714C4929000CBF56C /* SectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70D0BE9614C4929000CBF56C /* SectionHeader.xib */; };
@@ -313,13 +313,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				704DF024157D97EE0069FEE0 /* MobileCoreServices.framework in Frameworks */,
 				70C9308F14F12600009441BE /* libz.dylib in Frameworks */,
 				7005C34F156029770014B6AC /* libsqlite3.0.dylib in Frameworks */,
 				7005C35E15602B060014B6AC /* AssetsLibrary.framework in Frameworks */,
 				7005C35B15602AB10014B6AC /* ImageIO.framework in Frameworks */,
 				7005C34D1560293F0014B6AC /* AVFoundation.framework in Frameworks */,
 				7005C34E156029420014B6AC /* MediaPlayer.framework in Frameworks */,
-				70C9308D14F125E8009441BE /* MobileCoreServices.framework in Frameworks */,
 				70C9308B14F125DD009441BE /* SystemConfiguration.framework in Frameworks */,
 				70C9308914F125CD009441BE /* CFNetwork.framework in Frameworks */,
 				701881B714C38F9D002B07D8 /* CoreData.framework in Frameworks */,

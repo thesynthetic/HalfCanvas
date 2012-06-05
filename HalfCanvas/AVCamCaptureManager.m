@@ -202,6 +202,7 @@
     
     // Create session (use default AVCaptureSessionPresetHigh)
     AVCaptureSession *newCaptureSession = [[AVCaptureSession alloc] init];
+    [newCaptureSession setSessionPreset:AVCaptureSessionPresetMedium];
     
     
     // Add inputs and output to the capture session
@@ -524,41 +525,127 @@ bail:
 	}
 	else {
         
-        NSLog(@"Output file location: %@",[outputFileURL path]);
+//        NSURL *newURL = [NSURL URLWithString:[[outputFileURL path] stringByReplacingOccurrencesOfString:@".mov" withString:@"2"]];
+//        NSLog(@"New path is: %@",[newURL path]);
+        
+        
+
+        
+        
         
         NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/create_video_answer/"];
         ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-        
-        [request setFile:[outputFileURL path] withFileName:@"upload.mp4" andContentType:@"video/mp4" forKey:@"file"];
         NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
         NSString *access_token = [user objectForKey:@"access_token"];
         [request setPostValue:[NSString stringWithFormat:@"%d",24] forKey:@"question_id"];
         [request setPostValue:access_token forKey:@"access_token"];
         [request setDelegate:self];
-        //[request startAsynchronous];
-        //NSLog(@"Finished asynchronous");
-        //field matlab/intex
-        
 
         
-		ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-		[library writeVideoAtPathToSavedPhotosAlbum:outputFileURL
-									completionBlock:^(NSURL *assetURL, NSError *error) {
-										if (error) {
-											if ([[self delegate] respondsToSelector:@selector(captureManager:didFailWithError:)]) {
-												[[self delegate] captureManager:self didFailWithError:error];
-											}											
-										}
-										
-										if ([[UIDevice currentDevice] isMultitaskingSupported]) {
-											[[UIApplication sharedApplication] endBackgroundTask:[self backgroundRecordingID]];
-										}
-										
-										if ([[self delegate] respondsToSelector:@selector(captureManagerRecordingFinished:)]) {
-											[[self delegate] captureManagerRecordingFinished:self];
-										}
-									}];
-		[library release];
+        
+        
+        NSLog(@"%@",outputFileURL);
+        
+        NSURL *outputURL = [NSURL URLWithString:[[outputFileURL absoluteString] stringByReplacingOccurrencesOfString:@"output.mov" withString:@"output2.mov"]];
+        NSLog(@"%@",outputURL);
+        
+
+
+        if ([[NSFileManager defaultManager] fileExistsAtPath:[outputURL path]] ) {
+            [[NSFileManager defaultManager] removeItemAtURL:outputURL error:nil];   
+        }
+        
+        AVURLAsset *asset = [AVURLAsset URLAssetWithURL:outputFileURL options:nil];
+        
+        AVAssetExportSession *exportSession = [[AVAssetExportSession alloc] initWithAsset:asset presetName:AVAssetExportPreset640x480];
+        
+        
+        exportSession.outputURL = outputURL;
+        exportSession.outputFileType = AVFileTypeQuickTimeMovie;
+        exportSession.shouldOptimizeForNetworkUse = YES;
+        
+               
+        [exportSession exportAsynchronouslyWithCompletionHandler:^(void) {
+            if (exportSession.status == AVAssetExportSessionStatusCompleted) {
+                NSLog(@"It worked");
+                [request setFile:[outputFileURL path] withFileName:@"upload.mp4" andContentType:@"video/mp4" forKey:@"file"];        
+                [request startAsynchronous];
+                if ([[NSFileManager defaultManager] fileExistsAtPath:[outputURL path]] ) {
+                    NSLog(@"file is there...");
+                }
+                
+                
+                
+                
+                if ([[self delegate] respondsToSelector:@selector(captureManagerRecordingFinished:)]) {
+                    [[self delegate] captureManagerRecordingFinished:self];
+                }
+            } else {
+                NSLog(@"Nope");
+            }
+        }];
+        
+        
+/*        
+        // Testing AVAssetWriter
+        AVURLAsset *movieAsset = [[AVURLAsset alloc] initWithURL:outputFileURL options:nil];
+        AVAssetReader *assetReader = [[AVAssetReader alloc] initWithAsset:movieAsset error:nil];
+        NSArray* videoTracks = [movieAsset tracksWithMediaType:AVMediaTypeVideo]; 
+        NSArray* audioTracks = [movieAsset tracksWithMediaType:AVMediaTypeAudio];
+        AVAssetTrack* videoTrack = [videoTracks objectAtIndex:0];
+        AVAssetTrack* audioTrack = [audioTracks objectAtIndex:0];
+        AVAssetReaderTrackOutput *assetReaderOutput = [[AVAssetReaderTrackOutput alloc] initWithTrack:videoTrack outputSettings:nil];
+        if(![assetReader canAddOutput:assetReaderOutput])
+            NSLog(@"unable to add reader output");
+        else 
+            [assetReader addOutput:assetReaderOutput];
+        NSError *error = [[NSError alloc] init];
+        AVAssetWriter *videoWriter = [[AVAssetWriter alloc] initWithURL:outputURL 
+                                                               fileType:AVFileTypeQuickTimeMovie error:&error];
+        NSParameterAssert(videoWriter);
+        NSLog(@"asset writer %d %d", [videoWriter status], [error code]);
+        NSDictionary *videoCompressionProps = [NSDictionary dictionaryWithObjectsAndKeys:
+                                               [NSNumber numberWithDouble:128.0*1024.0], AVVideoAverageBitRateKey,
+                                               nil];
+        NSDictionary *videoSettings = [NSDictionary dictionaryWithObjectsAndKeys:
+                                       AVVideoCodecH264, AVVideoCodecKey,
+                                       [NSNumber numberWithInt:640], AVVideoWidthKey,
+                                       [NSNumber numberWithInt:480], AVVideoHeightKey,
+                                       //videoCompressionProps, AVVideoCompressionPropertiesKey,<- no difference at all
+                                       nil];
+        
+        AVAssetWriterInput* writerInput = [[AVAssetWriterInput
+                                            assetWriterInputWithMediaType:AVMediaTypeVideo
+                                            outputSettings:videoSettings] retain];
+        
+        // set preffered transform for output video
+        writerInput.transform = [videoTrack preferredTransform];
+        NSParameterAssert(writerInput);
+        NSParameterAssert([videoWriter canAddInput:writerInput]);
+        [videoWriter addInput:writerInput];
+        writerInput.expectsMediaDataInRealTime = NO;
+        [videoWriter startWriting];
+        
+*/        
+        
+//		ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+//		[library writeVideoAtPathToSavedPhotosAlbum:outputFileURL
+//									completionBlock:^(NSURL *assetURL, NSError *error) {
+//										if (error) {
+//											if ([[self delegate] respondsToSelector:@selector(captureManager:didFailWithError:)]) {
+//												[[self delegate] captureManager:self didFailWithError:error];
+//											}											
+//										}
+//										
+//										if ([[UIDevice currentDevice] isMultitaskingSupported]) {
+//											[[UIApplication sharedApplication] endBackgroundTask:[self backgroundRecordingID]];
+//										}
+//										
+//										if ([[self delegate] respondsToSelector:@selector(captureManagerRecordingFinished:)]) {
+//											[[self delegate] captureManagerRecordingFinished:self];
+//										}
+//									}];
+//		[library release];
 	}
 }
 

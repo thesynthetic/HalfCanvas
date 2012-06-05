@@ -92,6 +92,7 @@
     if ([videoConnection isVideoMinFrameDurationSupported]){
         [videoConnection setVideoMinFrameDuration:CMTimeMake(1,10)];
     }
+
 	return [videoConnection isActive];
 }
 
