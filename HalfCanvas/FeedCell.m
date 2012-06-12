@@ -86,25 +86,9 @@
 -(IBAction)playMovie:(id)sender
 {
     NSURL *url = [NSURL URLWithString:movieURL];
-    mplayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
-    AnswerViewController *answerview = (AnswerViewController*)[self delegate];
-    [answerview setCurrentPlayer:mplayer];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayBackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:mplayer];
-    mplayer.view.frame = CGRectMake(0, 0, 290, 164);
-    mplayer.controlStyle = MPMovieControlStyleEmbedded;
-    mplayer.shouldAutoplay = YES;
-    [[self playButtonImage] setHidden:TRUE];
-    [self.movieCanvas addSubview:mplayer.view];
-    
+    [delegate handlePlayMovie:url];
 }
 
--(void) moviePlayBackDidFinish:(NSNotification*)notification {
-    MPMoviePlayerController *player = [notification object];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:player];
-    if ([player respondsToSelector:@selector(setFullscreen:animated:)]){
-        [player.view removeFromSuperview];
-    }
-}
 
 
 @end

@@ -41,6 +41,7 @@
 @property (retain) UIActionSheet *popup;
 @property (retain) UIImagePickerController *picker;
 @property (retain) UIImage *imageToUpload;
+@property (retain) MPMoviePlayerViewController *mp;
 
 
 - (void)loadData;
@@ -48,7 +49,10 @@
 - (void)startCamera;
 - (void)startPictureChooser;
 - (void)handleMainImageClick:(int)indexNum;
+- (void)handlePlayMovie:(NSURL*)movieURL;
 
 -(IBAction)playbackMovie:(id)sender;
+
+
 
 @end

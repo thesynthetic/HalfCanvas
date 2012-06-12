@@ -16,6 +16,7 @@
 - (void)handleMainImageClick:(int)indexNum;
 - (void)handleAnswerclick:(int)indexNum;
 - (void)handleAddAnswerClick:(int)indexNum;
+- (void)handlePlayMovie:(NSURL*)movieURL;
 @required
 - (void)addCurrentMovie:(MPMoviePlayerController*)player;
 @end

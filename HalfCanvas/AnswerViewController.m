@@ -22,6 +22,7 @@
 @synthesize picker;
 @synthesize imageToUpload;
 @synthesize currentPlayer;
+@synthesize mp;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -71,7 +72,8 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    //return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return YES;
 }
 
 #pragma mark - Table view data source
@@ -386,39 +388,51 @@
     }
 }
 
-//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
-//{
-//    [self setImageToUpload:image];
-//    [picker dismissModalViewControllerAnimated:YES];
-//    [self performSegueWithIdentifier:@"didcapturepicture2" sender:self];
-//    
-//}
-//
-//- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-//{
-//    [picker dismissModalViewControllerAnimated:YES];
-//}
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     NSURL *localURL = [info objectForKey:UIImagePickerControllerMediaURL];
-//    NSURL *localURL = [NSURL URLWithString:localURLString];
-    
+  
 
-    
     NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/create_video_answer/"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
     NSString *access_token = [user objectForKey:@"access_token"];
-    [request setPostValue:[NSString stringWithFormat:@"%d",24] forKey:@"question_id"];
+    [request setPostValue:[NSString stringWithFormat:@"%d",question_id] forKey:@"question_id"];
     [request setPostValue:access_token forKey:@"access_token"];
     [request setDelegate:self];
-    [request setFile:[localURL path] withFileName:@"upload.mp4" andContentType:@"video/mp4" forKey:@"file"];        
-    [request startAsynchronous];
+    [request setFile:[localURL path] withFileName:@"upload.mp4" andContentType:@"video/mp4" forKey:@"file"]; 
+    UIProgressView *prog = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
+    prog.frame = CGRectMake(50,50,50,50);
+    [self.view addSubview:prog];
+    [request setDownloadProgressDelegate:prog];
     
+    [request startAsynchronous];
+    [picker dismissModalViewControllerAnimated:YES];
 }
 
 
+- (void)handlePlayMovie:(NSURL*)movieURL;
+{
+    NSLog(@"HANDLED");
 
+    
+    mp = [[MPMoviePlayerViewController alloc] initWithContentURL:movieURL];
+  
+    
+    [[mp moviePlayer] prepareToPlay];
+    [[mp moviePlayer] setUseApplicationAudioSession:NO];
+    [[mp moviePlayer] setShouldAutoplay:YES];
+    [[mp moviePlayer] setControlStyle:MPMovieControlStyleFullscreen];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayBackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
+    [self presentMoviePlayerViewControllerAnimated:mp];
+}
+
+-(void) moviePlayBackDidFinish:(NSNotification*)notification {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
+    [mp.moviePlayer stop];
+    mp = nil;
+    [self dismissMoviePlayerViewControllerAnimated];  
+}
 
 @end
