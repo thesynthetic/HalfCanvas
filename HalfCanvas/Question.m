@@ -16,5 +16,6 @@
 @synthesize description;
 @synthesize user_profile_image_url;
 @synthesize answer_count;
+@synthesize pub_life;
 
 @end

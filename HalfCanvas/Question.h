@@ -16,6 +16,7 @@
     NSString *description;
     NSString *user_profile_image_url;
     NSInteger answer_count;
+    
 }
 
 @property (retain) NSString *username;
@@ -24,5 +25,6 @@
 @property (retain) NSString *description;
 @property (retain) NSString *user_profile_image_url;
 @property NSInteger answer_count;
+@property (retain) NSString *pub_life;
 
 @end

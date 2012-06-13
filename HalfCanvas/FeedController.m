@@ -153,6 +153,7 @@
 {
     if ([qc count] > 0 && section < [qc count]) 
     {
+        Question *thisQuestion = [qc objectAtIndex:section];
         CGRect  viewRect = CGRectMake(0, 0, 320, 40);
         UIView* myView = [[UIView alloc] initWithFrame:viewRect];
         [myView setBackgroundColor:[UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:229.0/255.0 alpha:1.0f]];
@@ -164,7 +165,7 @@
         [timestamp setTextColor:[UIColor colorWithRed:150.0/255.0 green:150.0/255.0 blue:150.0/255.0 alpha:1.0f]];
         [timestamp setBackgroundColor:[UIColor clearColor]];
         [timestamp setFont:[UIFont systemFontOfSize:9]];
-        [timestamp setText:@"3 hours ago"];
+        [timestamp setText:[thisQuestion pub_life]];
         
         UIImageView *userImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15,5,30,30)];
         UIImage *tempImg = [imageCache objectForKey:[[qc objectAtIndex:section] user_profile_image_url]];
@@ -186,9 +187,9 @@
             [networkQueue go];
         }
         
-        Question *test = [qc objectAtIndex:section];
+        
         [userLabel setFont:[UIFont boldSystemFontOfSize:13.0]];
-        [userLabel setText:[test username]];
+        [userLabel setText:[thisQuestion username]];
         [myView addSubview:userLabel];
         [myView addSubview:userImageView];
         [myView addSubview:timestamp];
@@ -628,6 +629,7 @@
             [newQuestion setDescription:[dict objectForKey:@"description"]];
             [newQuestion setUser_profile_image_url:[dict objectForKey:@"user_profile_image_url"]];             
             [newQuestion setAnswer_count:[[dict objectForKey:@"answer_count"] integerValue]];
+            [newQuestion setPub_life:[dict objectForKey:@"pub_life"]];
 
             [qc addObject:newQuestion];
         }
