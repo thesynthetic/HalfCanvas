@@ -17,5 +17,10 @@
 
 
 }
+
+@property (retain) UIProgressView *progressView;
+
 -(void) goToFirstTab;
+-(UIProgressView*) setupProgressBar;
+-(void) removeProgressBar;
 @end

@@ -147,6 +147,7 @@
         {
             ASIHTTPRequest *request;
             request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[[answerCollection objectAtIndex:section] user_profile_image_url]]];
+            [request setTag:0];
             [request setDownloadCache:[ASIDownloadCache sharedCache]];
             [request setCachePolicy:ASIAskServerIfModifiedWhenStaleCachePolicy|ASIFallbackToCacheIfLoadFailsCachePolicy];
             [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
@@ -259,38 +260,44 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-    NSString *responseString = [request responseString];
-    NSLog(@"%@", responseString);
-    //
-    [answerCollection removeAllObjects];
-    
-    // Parse JSON Data and create question collection
-    SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
-    NSError *error = nil;
-    id jsonObjects = [jsonParser objectWithString:responseString error:&error];
-    
-    if ([jsonObjects isKindOfClass:[NSDictionary class]])
-    {
-        // treat as a dictionary, or reassign to a dictionary ivar
-    }
-    else if ([jsonObjects isKindOfClass:[NSArray class]])
-    {
-        //Load the server data into Core Data
+    if (request.tag == 0){
+        NSString *responseString = [request responseString];
+        NSLog(@"%@", responseString);
+        //
+        [answerCollection removeAllObjects];
         
-        for (NSDictionary *dict in jsonObjects)
+        // Parse JSON Data and create question collection
+        SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
+        NSError *error = nil;
+        id jsonObjects = [jsonParser objectWithString:responseString error:&error];
+        
+        if ([jsonObjects isKindOfClass:[NSDictionary class]])
         {
-            Answer *newAnswer = [[Answer alloc] init];
-            [newAnswer setUsername:[dict objectForKey:@"username"]];
-            [newAnswer setAnswer_id:[[dict objectForKey:@"answer_id"] integerValue]];
-            [newAnswer setImage_url:[dict objectForKey:@"image_url"]];
-            [newAnswer setDescription:[dict objectForKey:@"description"]];
-            [newAnswer setUser_profile_image_url:[dict objectForKey:@"user_profile_image_url"]];             
-            [answerCollection addObject:newAnswer];
+            // treat as a dictionary, or reassign to a dictionary ivar
         }
+        else if ([jsonObjects isKindOfClass:[NSArray class]])
+        {
+            //Load the server data into Core Data
+            
+            for (NSDictionary *dict in jsonObjects)
+            {
+                Answer *newAnswer = [[Answer alloc] init];
+                [newAnswer setUsername:[dict objectForKey:@"username"]];
+                [newAnswer setAnswer_id:[[dict objectForKey:@"answer_id"] integerValue]];
+                [newAnswer setImage_url:[dict objectForKey:@"image_url"]];
+                [newAnswer setDescription:[dict objectForKey:@"description"]];
+                [newAnswer setUser_profile_image_url:[dict objectForKey:@"user_profile_image_url"]];             
+                [answerCollection addObject:newAnswer];
+            }
+        }
+        
+        [[self tableView] reloadData];
+        [HUD hide:YES];
     }
-    
-    [[self tableView] reloadData];
-    [HUD hide:YES];
+    else {
+        MainTabBarController *mainTab = (MainTabBarController*)self.tabBarController;
+        [mainTab removeProgressBar];
+    }
 }
 
 - (void)imageFetchComplete:(ASIHTTPRequest *)request
@@ -393,19 +400,18 @@
 {
     NSURL *localURL = [info objectForKey:UIImagePickerControllerMediaURL];
   
-
     NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/create_video_answer/"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
     NSString *access_token = [user objectForKey:@"access_token"];
+    [request setTag:1];
     [request setPostValue:[NSString stringWithFormat:@"%d",question_id] forKey:@"question_id"];
     [request setPostValue:access_token forKey:@"access_token"];
     [request setDelegate:self];
     [request setFile:[localURL path] withFileName:@"upload.mp4" andContentType:@"video/mp4" forKey:@"file"]; 
-    UIProgressView *prog = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
-    prog.frame = CGRectMake(50,50,50,50);
-    [self.view addSubview:prog];
-    [request setDownloadProgressDelegate:prog];
+    
+    MainTabBarController *mainTab = (MainTabBarController*)self.tabBarController;
+    [request setDownloadProgressDelegate:[mainTab setupProgressBar]];
     
     [request startAsynchronous];
     [picker dismissModalViewControllerAnimated:YES];
@@ -414,12 +420,7 @@
 
 - (void)handlePlayMovie:(NSURL*)movieURL;
 {
-    NSLog(@"HANDLED");
-
-    
     mp = [[MPMoviePlayerViewController alloc] initWithContentURL:movieURL];
-  
-    
     [[mp moviePlayer] prepareToPlay];
     [[mp moviePlayer] setUseApplicationAudioSession:NO];
     [[mp moviePlayer] setShouldAutoplay:YES];
@@ -434,5 +435,9 @@
     mp = nil;
     [self dismissMoviePlayerViewControllerAnimated];  
 }
+
+#pragma mark - ASIHTTPDelegate
+
+
 
 @end

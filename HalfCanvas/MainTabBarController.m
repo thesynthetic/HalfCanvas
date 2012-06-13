@@ -12,7 +12,7 @@
 
 @implementation MainTabBarController
 
-//@synthesize managedObjectModel;
+@synthesize progressView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,18 +48,7 @@
     [super viewDidLoad];
          
 
-//    UIProgressView *prog = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar ];
-//    prog.frame = CGRectMake(0,490, 320,10);
-//    [[self view] addSubview:prog];
-//    
-//    [UIView animateWithDuration:0.5 delay:0.0 options:nil
-//                     animations:^{
-//                         prog.frame = CGRectMake(0,470, 320,10);
-//                         
-//                         CGRect test = self.tabBar.frame;
-//                         self.tabBar.frame = CGRectMake(test.origin.x, test.origin.y-10, test.size.width, test.size.height);
-//                     }
-//                     completion:nil];
+
 }
 
 
@@ -83,5 +72,35 @@
     
 }
 
+-(UIProgressView*) setupProgressBar
+{
+    progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar ];
+    progressView.frame = CGRectMake(0,490, 320,10);
+    [[self view] addSubview:progressView];
+    
+    [UIView animateWithDuration:0.5 delay:0.0 options:nil
+                     animations:^{
+                         progressView.frame = CGRectMake(0,470, 320,10);
+                         CGRect test = self.tabBar.frame;
+                         self.tabBar.frame = CGRectMake(test.origin.x, test.origin.y-10, test.size.width, test.size.height);
+                     }
+                     completion:nil];
+    
+    return progressView;
+}
+
+-(void) removeProgressBar
+{
+
+    [[self view] addSubview:progressView];
+    
+    [UIView animateWithDuration:0.5 delay:0.0 options:nil
+                     animations:^{
+                         progressView.frame = CGRectMake(0,480, 320,10);
+                         CGRect test = self.tabBar.frame;
+                         self.tabBar.frame = CGRectMake(test.origin.x, test.origin.y+10, test.size.width, test.size.height);
+                     }
+                     completion:nil];
+}
 
 @end

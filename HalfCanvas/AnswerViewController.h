@@ -17,6 +17,7 @@
 #import "FeedCell.h"
 #import "PictureViewController.h"
 #import "UploadImageController.h"
+#import "MainTabBarController.h"
 #import <MobileCoreServices/UTCoreTypes.h>
 
 
