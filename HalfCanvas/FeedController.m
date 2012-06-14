@@ -747,7 +747,7 @@
 //        [actionSheetAnswer setTag:1];
 //        [actionSheetAnswer showFromTabBar:self.tabBarController.tabBar];
         
-        //[self performSegueWithIdentifier:@"StartRecorder" sender:self];
+        [self performSegueWithIdentifier:@"StartRecorder" sender:self];
     }
     else
     {

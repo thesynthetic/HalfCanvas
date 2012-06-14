@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		7005AEB414C4602600CCE435 /* ComposeAnswerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7005AEB314C4602600CCE435 /* ComposeAnswerController.m */; };
 		7005AEBD14C47DB700CCE435 /* FeedSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7005AEBC14C47DB700CCE435 /* FeedSectionHeader.m */; };
+		7005C349156027440014B6AC /* AVCamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7026A35715600FFF00536155 /* AVCamViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7005C34A156027440014B6AC /* AVCamCaptureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7026A35115600FFF00536155 /* AVCamCaptureManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7005C34B156027440014B6AC /* AVCamRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7026A35315600FFF00536155 /* AVCamRecorder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7005C34C156027440014B6AC /* AVCamUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7026A35515600FFF00536155 /* AVCamUtilities.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7005C34D1560293F0014B6AC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7005C346156026A70014B6AC /* AVFoundation.framework */; };
 		7005C34E156029420014B6AC /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7005C344156026A20014B6AC /* MediaPlayer.framework */; };
 		7005C34F156029770014B6AC /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7005C342156026800014B6AC /* libsqlite3.0.dylib */; };
@@ -171,6 +175,14 @@
 		701D2CC314C4E63200C075A4 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		701D2CC414C4E63200C075A4 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		701D2CC714C4E63B00C075A4 /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark.png"; sourceTree = "<group>"; };
+		7026A35015600FFF00536155 /* AVCamCaptureManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AVCamCaptureManager.h; sourceTree = "<group>"; };
+		7026A35115600FFF00536155 /* AVCamCaptureManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AVCamCaptureManager.m; sourceTree = "<group>"; };
+		7026A35215600FFF00536155 /* AVCamRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AVCamRecorder.h; sourceTree = "<group>"; };
+		7026A35315600FFF00536155 /* AVCamRecorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AVCamRecorder.m; sourceTree = "<group>"; };
+		7026A35415600FFF00536155 /* AVCamUtilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AVCamUtilities.h; sourceTree = "<group>"; };
+		7026A35515600FFF00536155 /* AVCamUtilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AVCamUtilities.m; sourceTree = "<group>"; };
+		7026A35615600FFF00536155 /* AVCamViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AVCamViewController.h; sourceTree = "<group>"; };
+		7026A35715600FFF00536155 /* AVCamViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AVCamViewController.m; sourceTree = "<group>"; };
 		702CB5AF1567676B00148D5F /* UITableViewCellBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UITableViewCellBackground@2x.png"; sourceTree = "<group>"; };
 		702CB5B215676FF000148D5F /* UITableViewCellBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UITableViewCellBackground.png; sourceTree = "<group>"; };
 		702CB5B4156773B200148D5F /* UINavigationBarHeader@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UINavigationBarHeader@2x.png"; sourceTree = "<group>"; };
@@ -390,6 +402,21 @@
 			name = JSON;
 			sourceTree = "<group>";
 		};
+		7026A34D15600FD900536155 /* Recorder */ = {
+			isa = PBXGroup;
+			children = (
+				7026A35615600FFF00536155 /* AVCamViewController.h */,
+				7026A35715600FFF00536155 /* AVCamViewController.m */,
+				7026A35015600FFF00536155 /* AVCamCaptureManager.h */,
+				7026A35115600FFF00536155 /* AVCamCaptureManager.m */,
+				7026A35215600FFF00536155 /* AVCamRecorder.h */,
+				7026A35315600FFF00536155 /* AVCamRecorder.m */,
+				7026A35415600FFF00536155 /* AVCamUtilities.h */,
+				7026A35515600FFF00536155 /* AVCamUtilities.m */,
+			);
+			name = Recorder;
+			sourceTree = "<group>";
+		};
 		704431F014DF502300537505 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -450,6 +477,7 @@
 				7018811E14C3355F002B07D8 /* MainTabBarController.m */,
 				7062EAE514BA47290055A979 /* AppDelegate.h */,
 				7062EAE614BA47290055A979 /* AppDelegate.m */,
+				7026A34D15600FD900536155 /* Recorder */,
 				70F116781530A154000CDFF0 /* Sign Up Sign In */,
 				70866C3D155034020014688D /* Google Analytics */,
 				7005AEBA14C47D8600CCE435 /* FeedView */,
@@ -791,6 +819,10 @@
 				70735E39152F4A1C000F94B5 /* SignUpViewController.m in Sources */,
 				70F1167C1530A312000CDFF0 /* SignUpEmailViewController.m in Sources */,
 				700BB060154DFE4F0072893B /* ActivityViewController.m in Sources */,
+				7005C349156027440014B6AC /* AVCamViewController.m in Sources */,
+				7005C34A156027440014B6AC /* AVCamCaptureManager.m in Sources */,
+				7005C34B156027440014B6AC /* AVCamRecorder.m in Sources */,
+				7005C34C156027440014B6AC /* AVCamUtilities.m in Sources */,
 				702CB5C215694CB500148D5F /* Action.m in Sources */,
 				702CB5C8156AC0DD00148D5F /* ActivityCell.m in Sources */,
 				702CB5CB156D277700148D5F /* QuestionViewController.m in Sources */,
