@@ -36,6 +36,19 @@ class Tag(models.Model):
 class AnswerLike(models.Model):
      answer = models.ForeignKey(Answer)
      user = models.ForeignKey(User)
+     like_date = models.DateTimeField('date like')
 
+class Action(models.Model):
+	sender = models.ForeignKey(User,related_name='action_sender')
+	receiver = models.ForeignKey(User, related_name='action_receiver')
+	question = models.ForeignKey(Question)
+	answer = models.ForeignKey(Answer)
+	pub_date = models.DateTimeField('action date')
+	type = models.CharField(max_length=32)
 
+class ThankYou(models.Model):
+	answer = models.ForeignKey(Answer)
+	image_url = models.CharField(max_length=200,default='')
+	sender = models.ForeignKey(User,related_name='thankyou_sender')
+	receiver = models.ForeignKey(User,related_name='thankyou_receiver')
 

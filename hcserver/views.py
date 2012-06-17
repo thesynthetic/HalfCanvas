@@ -1,12 +1,13 @@
 import hashlib
 from django.http import HttpResponse
 from django.core import serializers
-from hcserver.models import Question, Answer, UserData
+from hcserver.models import Question, Answer, UserData, Action
 from django.contrib.auth.models import User
 from django.utils import simplejson
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate
 from django.db.models import Count
+from hcserver.util import *
 import boto
 import datetime
 from boto.s3.key import Key
@@ -25,13 +26,32 @@ from boto.s3.key import Key
 
 @csrf_exempt
 def index(request):
-	output = []
-	if(request.POST['start'] and request.POST['end']):
+	output = dict()
+	question_list = []
+	action_list = []
+
+	if('start' in request.POST and 'end' in request.POST):
 		start_index = request.POST['start']
 		end_index = request.POST['end']
 	else:
 		start_index = 0
 		end_index = 9
+
+	if('access_token' in request.POST):
+		user_data = UserData.objects.get(access_token = request.POST['access_token'])
+		if user_data is not None:
+			for i in Action.objects.filter(receiver=user_data.user).select_related('user__userdata'):
+				action = dict()
+				action['answer_id'] = i.answer.pk
+				action['question_id'] = i.question.pk
+				action['receiver'] = i.receiver.username
+				action['sender'] = i.sender.username
+				action['sender_image_url'] = i.sender.userdata.profile_image_url
+				action['type'] = i.type
+				action_list.append(action)
+			output['action_list'] = action_list
+		else:
+			output['action_list'] = None	
 	for i in Question.objects.select_related('user__userdata').all().order_by('-pub_date')[start_index:end_index].annotate(answer_count=Count('answer')):
 		question = dict()
 		question['image_url'] = i.image_url
@@ -40,10 +60,12 @@ def index(request):
 		question['user_profile_image_url'] = i.user.userdata.profile_image_url
 		question['question_id'] = i.pk
 		question['answer_count'] = i.answer_count
-		#question['pub_date'] = i.pub_date
-		output.append(question)
-	#json_output = data = serializers.serialize("json", Question.objects.all())
-	#return HttpResponse(json_output)
+		question['pub_life'] = pretty_date(i.pub_date)
+		question_list.append(question)
+	
+	output['question_list'] = question_list
+
+
 	return HttpResponse(
                	        simplejson.dumps(output),
                	        content_type = 'application/javascript; charset=utf8'
@@ -171,3 +193,87 @@ def create_question(request):
 		return HttpResponse(request.FILES[dict_keys[0]].read())
 	else:
 		return HttpResponse("Nothing, just nothing!")
+
+@csrf_exempt
+def create_answer(request):
+	if request.method == 'POST':
+                if request.FILES:
+                        access_token = request.POST['access_token']
+                        user_data = UserData.objects.get(access_token = access_token)
+			
+                        #Connect to S3
+                        conn= boto.connect_s3()
+                        bucket = conn.get_bucket('halfcanvas')
+                        k = Key(bucket)
+
+                        #Create filename for S3
+                        s3_key = datetime.datetime.now().strftime('%Y%m%d-%H%M%S-%f') + user_data.user.username +'.jpg'
+                        k.key = 'answers/' + s3_key
+                        k.set_metadata("Content-Type", 'image/jpeg')
+                        dict_keys = request.FILES.keys()
+                        k.set_contents_from_string(request.FILES[dict_keys[0]].read())
+			
+                        #Store Question metadata in DB
+                        image_url = 'https://s3.amazonaws.com/halfcanvas/' + k.key
+			text = ''
+                        if ('text' in request.POST):
+				text = request.POST['text']
+			if ('question_id' in request.POST):
+				question_id = request.POST['question_id']
+			else:
+				return HttpResponse('Question_id not found in post')
+			q = Question.objects.get(id=question_id)
+			a = Answer(question=q, text=text, user=user_data.user, image_url=image_url, pub_date=datetime.datetime.now())
+                        a.save()
+
+                return HttpResponse(request.FILES[dict_keys[0]].read())
+        else:
+                return HttpResponse("Nothing, just nothing!")
+
+@csrf_exempt
+def create_video_answer(request):
+        if request.method == 'POST':
+                if request.FILES:
+                        access_token = request.POST['access_token']
+                        user_data = UserData.objects.get(access_token = access_token)
+
+                        #Connect to S3
+                        conn= boto.connect_s3()
+                        bucket = conn.get_bucket('halfcanvas')
+                        k = Key(bucket)
+
+                        #Create filename for S3
+                        s3_key = datetime.datetime.now().strftime('%Y%m%d-%H%M%S-%f') + user_data.user.username +'.mp4'
+                        k.key = 'video/' + s3_key
+                        k.set_metadata("Content-Type", 'video/mp4')
+                        dict_keys = request.FILES.keys()
+                        k.set_contents_from_string(request.FILES[dict_keys[0]].read())
+
+                        #Store Question metadata in DB
+                        image_url = 'https://s3.amazonaws.com/halfcanvas/' + k.key
+                        text = ''
+                        if ('text' in request.POST):
+                                text = request.POST['text']
+                        if ('question_id' in request.POST):
+                                question_id = request.POST['question_id']
+                        else:
+                                return HttpResponse('Question_id not found in post')
+                        q = Question.objects.get(id=question_id)
+                        a = Answer(question=q, text=text, user=user_data.user, image_url=image_url, pub_date=datetime.datetime.now())
+                        a.save()
+
+                return HttpResponse(request.FILES[dict_keys[0]].read())
+        else:
+                return HttpResponse("Nothing, just nothing!")
+
+
+@csrf_exempt
+def like_answer(request):
+	if request.method = 'POST':
+		if 'question_id' in request.POST and 'user_id' in request.POST:
+			passs
+		else:
+			pass
+	else:
+		pass
+	
