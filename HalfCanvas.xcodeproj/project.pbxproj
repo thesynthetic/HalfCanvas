@@ -68,6 +68,8 @@
 		7062EAF414BA47290055A979 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7062EAF314BA47290055A979 /* SecondViewController.m */; };
 		7062EAF614BA47290055A979 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 7062EAF514BA47290055A979 /* second.png */; };
 		7062EAF814BA47290055A979 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7062EAF714BA47290055A979 /* second@2x.png */; };
+		70644FB71591E2F9007C034D /* Mascot3.png in Resources */ = {isa = PBXBuildFile; fileRef = 70644FB61591E2F9007C034D /* Mascot3.png */; };
+		70644FB91591E2FD007C034D /* Mascot3.png in Resources */ = {isa = PBXBuildFile; fileRef = 70644FB81591E2FD007C034D /* Mascot3.png */; };
 		706547F71507B3EB00AE909F /* 09-chat-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 706547F61507B3EB00AE909F /* 09-chat-2.png */; };
 		706547FA1507B3F900AE909F /* 12-eye.png in Resources */ = {isa = PBXBuildFile; fileRef = 706547F91507B3F900AE909F /* 12-eye.png */; };
 		70735E35152F3C95000F94B5 /* X-Large_278x44_glowy.png in Resources */ = {isa = PBXBuildFile; fileRef = 70735E34152F3C95000F94B5 /* X-Large_278x44_glowy.png */; };
@@ -242,6 +244,8 @@
 		7062EAF314BA47290055A979 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		7062EAF514BA47290055A979 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		7062EAF714BA47290055A979 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		70644FB61591E2F9007C034D /* Mascot3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mascot3.png; sourceTree = "<group>"; };
+		70644FB81591E2FD007C034D /* Mascot3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mascot3.png; sourceTree = "<group>"; };
 		706547F61507B3EB00AE909F /* 09-chat-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "09-chat-2.png"; sourceTree = "<group>"; };
 		706547F91507B3F900AE909F /* 12-eye.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "12-eye.png"; sourceTree = "<group>"; };
 		70735E34152F3C95000F94B5 /* X-Large_278x44_glowy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "X-Large_278x44_glowy.png"; sourceTree = "<group>"; };
@@ -443,6 +447,7 @@
 		7062EAC714BA47280055A979 = {
 			isa = PBXGroup;
 			children = (
+				70644FB81591E2FD007C034D /* Mascot3.png */,
 				707693681590B9C400D8AA8A /* CoreLocation.framework */,
 				707693661590B9B800D8AA8A /* MapKit.framework */,
 				70FC7BB1159021B100F89E6F /* Mascot2.png */,
@@ -515,6 +520,7 @@
 			children = (
 				70FC7BAB15901EF600F89E6F /* Mascot.png */,
 				70FC7BAF159021A400F89E6F /* Mascot2.png */,
+				70644FB61591E2F9007C034D /* Mascot3.png */,
 				7062EAEE14BA47290055A979 /* first.png */,
 				702CB5B215676FF000148D5F /* UITableViewCellBackground.png */,
 				702CB5AF1567676B00148D5F /* UITableViewCellBackground@2x.png */,
@@ -814,6 +820,8 @@
 				70FC7BAE15901F1200F89E6F /* Mascot.png in Resources */,
 				70FC7BB0159021A400F89E6F /* Mascot2.png in Resources */,
 				70FC7BB2159021B100F89E6F /* Mascot2.png in Resources */,
+				70644FB71591E2F9007C034D /* Mascot3.png in Resources */,
+				70644FB91591E2FD007C034D /* Mascot3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
