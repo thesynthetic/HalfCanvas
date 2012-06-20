@@ -565,7 +565,7 @@
    
                                               }];
     
-    NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/questions/"];
+    NSURL *url = [NSURL URLWithString:@"http://halfcanvas.com/questions/"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setPostValue:[NSString stringWithFormat:@"%d", 0] forKey:@"start"];
     [request setPostValue:[NSString stringWithFormat:@"%d", questionEndIndex] forKey:@"end"];  

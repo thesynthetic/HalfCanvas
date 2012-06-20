@@ -220,7 +220,7 @@
     
         if (state == 0) //Sign Up Handler
         {
-            NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/create_user/"];
+            NSURL *url = [NSURL URLWithString:@"http://halfcanvas.com/create_user/"];
             ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
             [request setDelegate:self];
             [request setPostValue:[username text] forKey:@"username"];
@@ -230,7 +230,7 @@
         }
         else //Sign In Handler
         {
-            NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/login/"];
+            NSURL *url = [NSURL URLWithString:@"http://halfcanvas.com/login/"];
             ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
             [request setDelegate:self];
             [request setPostValue:[username text] forKey:@"username"];

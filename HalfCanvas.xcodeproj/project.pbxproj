@@ -72,8 +72,9 @@
 		706547FA1507B3F900AE909F /* 12-eye.png in Resources */ = {isa = PBXBuildFile; fileRef = 706547F91507B3F900AE909F /* 12-eye.png */; };
 		70735E35152F3C95000F94B5 /* X-Large_278x44_glowy.png in Resources */ = {isa = PBXBuildFile; fileRef = 70735E34152F3C95000F94B5 /* X-Large_278x44_glowy.png */; };
 		70735E39152F4A1C000F94B5 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70735E38152F4A1B000F94B5 /* SignUpViewController.m */; };
+		707693671590B9B800D8AA8A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 707693661590B9B800D8AA8A /* MapKit.framework */; };
+		707693691590B9C400D8AA8A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 707693681590B9C400D8AA8A /* CoreLocation.framework */; };
 		70866C37154DE6C20014688D /* MessageBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 70866C36154DE6C20014688D /* MessageBubble.png */; };
-		70866C3F15503A920014688D /* libGoogleAnalytics_NoThumb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70866C3E15503A920014688D /* libGoogleAnalytics_NoThumb.a */; };
 		70866C4015503B7C0014688D /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70866C3C155033C10014688D /* libGoogleAnalytics.a */; };
 		70866C4215507A550014688D /* NavBarBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 70866C4115507A550014688D /* NavBarBg.png */; };
 		708E061114BA4FA0000C1876 /* FeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 708E061014BA4FA0000C1876 /* FeedCell.m */; };
@@ -88,6 +89,7 @@
 		70B4F762154D7DB20041C67D /* Answer-Button-(under-picture).png in Resources */ = {isa = PBXBuildFile; fileRef = 70B4F760154D7DB20041C67D /* Answer-Button-(under-picture).png */; };
 		70B4F763154D7DB20041C67D /* Answer-Button-(under-picture)@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 70B4F761154D7DB20041C67D /* Answer-Button-(under-picture)@2x.png */; };
 		70B4F767154D83230041C67D /* Answer-Button-Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 70B4F766154D83230041C67D /* Answer-Button-Background.png */; };
+		70C85D761591706300CD40B1 /* libQuickDialog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70C85D731591700C00CD40B1 /* libQuickDialog.a */; };
 		70C9300214F121E2009441BE /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C92FB114F121E2009441BE /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		70C9300314F121E2009441BE /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C92FB414F121E2009441BE /* ASIDataCompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		70C9300414F121E2009441BE /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C92FB614F121E2009441BE /* ASIDataDecompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -118,7 +120,35 @@
 		70FB34A614F92DDD00864FC2 /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FB34A514F92DDD00864FC2 /* Image.m */; };
 		70FB34A914F92DDE00864FC2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FB34A814F92DDD00864FC2 /* User.m */; };
 		70FB34AC14F92DDE00864FC2 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FB34AB14F92DDE00864FC2 /* Question.m */; };
+		70FC7BAC15901EF600F89E6F /* Mascot.png in Resources */ = {isa = PBXBuildFile; fileRef = 70FC7BAB15901EF600F89E6F /* Mascot.png */; };
+		70FC7BAE15901F1200F89E6F /* Mascot.png in Resources */ = {isa = PBXBuildFile; fileRef = 70FC7BAD15901F1200F89E6F /* Mascot.png */; };
+		70FC7BB0159021A400F89E6F /* Mascot2.png in Resources */ = {isa = PBXBuildFile; fileRef = 70FC7BAF159021A400F89E6F /* Mascot2.png */; };
+		70FC7BB2159021B100F89E6F /* Mascot2.png in Resources */ = {isa = PBXBuildFile; fileRef = 70FC7BB1159021B100F89E6F /* Mascot2.png */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		70C85D701591700C00CD40B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70C85D671591700C00CD40B1 /* QuickDialog.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D80B0E3313E052DF00FA85CA;
+			remoteInfo = QuickDialogExample;
+		};
+		70C85D721591700C00CD40B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70C85D671591700C00CD40B1 /* QuickDialog.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2C542393145ADEBD0026A152;
+			remoteInfo = QuickDialog;
+		};
+		70C85D741591705600CD40B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70C85D671591700C00CD40B1 /* QuickDialog.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C542392145ADEBD0026A152;
+			remoteInfo = QuickDialog;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		7005AEB214C4602600CCE435 /* ComposeAnswerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeAnswerController.h; sourceTree = "<group>"; };
@@ -217,6 +247,8 @@
 		70735E34152F3C95000F94B5 /* X-Large_278x44_glowy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "X-Large_278x44_glowy.png"; sourceTree = "<group>"; };
 		70735E37152F4A1B000F94B5 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		70735E38152F4A1B000F94B5 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		707693661590B9B800D8AA8A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		707693681590B9C400D8AA8A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		70866C36154DE6C20014688D /* MessageBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageBubble.png; sourceTree = "<group>"; };
 		70866C3B155033C10014688D /* GANTracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GANTracker.h; sourceTree = "<group>"; };
 		70866C3C155033C10014688D /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
@@ -238,6 +270,7 @@
 		70B4F760154D7DB20041C67D /* Answer-Button-(under-picture).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Answer-Button-(under-picture).png"; sourceTree = "<group>"; };
 		70B4F761154D7DB20041C67D /* Answer-Button-(under-picture)@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Answer-Button-(under-picture)@2x.png"; sourceTree = "<group>"; };
 		70B4F766154D83230041C67D /* Answer-Button-Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Answer-Button-Background.png"; sourceTree = "<group>"; };
+		70C85D671591700C00CD40B1 /* QuickDialog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickDialog.xcodeproj; path = QuickDialog/QuickDialog.xcodeproj; sourceTree = "<group>"; };
 		70C92FB014F121E2009441BE /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		70C92FB114F121E2009441BE /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		70C92FB214F121E2009441BE /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -294,6 +327,10 @@
 		70FB34A814F92DDD00864FC2 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		70FB34AA14F92DDE00864FC2 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
 		70FB34AB14F92DDE00864FC2 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
+		70FC7BAB15901EF600F89E6F /* Mascot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mascot.png; sourceTree = "<group>"; };
+		70FC7BAD15901F1200F89E6F /* Mascot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mascot.png; sourceTree = "<group>"; };
+		70FC7BAF159021A400F89E6F /* Mascot2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mascot2.png; sourceTree = "<group>"; };
+		70FC7BB1159021B100F89E6F /* Mascot2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mascot2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,6 +338,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70C85D761591706300CD40B1 /* libQuickDialog.a in Frameworks */,
+				707693691590B9C400D8AA8A /* CoreLocation.framework in Frameworks */,
+				707693671590B9B800D8AA8A /* MapKit.framework in Frameworks */,
 				704DF024157D97EE0069FEE0 /* MobileCoreServices.framework in Frameworks */,
 				70C9308F14F12600009441BE /* libz.dylib in Frameworks */,
 				7005C34F156029770014B6AC /* libsqlite3.0.dylib in Frameworks */,
@@ -318,7 +358,6 @@
 				7005C35715602A610014B6AC /* CoreMedia.framework in Frameworks */,
 				7005C35815602A610014B6AC /* QuartzCore.framework in Frameworks */,
 				70866C4015503B7C0014688D /* libGoogleAnalytics.a in Frameworks */,
-				70866C3F15503A920014688D /* libGoogleAnalytics_NoThumb.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +443,10 @@
 		7062EAC714BA47280055A979 = {
 			isa = PBXGroup;
 			children = (
+				707693681590B9C400D8AA8A /* CoreLocation.framework */,
+				707693661590B9B800D8AA8A /* MapKit.framework */,
+				70FC7BB1159021B100F89E6F /* Mascot2.png */,
+				70FC7BAD15901F1200F89E6F /* Mascot.png */,
 				7062EADC14BA47290055A979 /* HalfCanvas */,
 				7062EAD514BA47280055A979 /* Frameworks */,
 				7062EAD314BA47280055A979 /* Products */,
@@ -422,6 +465,7 @@
 			isa = PBXGroup;
 			children = (
 				70C9308E14F12600009441BE /* libz.dylib */,
+				70C85D671591700C00CD40B1 /* QuickDialog.xcodeproj */,
 				7005C342156026800014B6AC /* libsqlite3.0.dylib */,
 				7005C35C15602AFB0014B6AC /* AssetsLibrary.framework */,
 				7005C35915602A920014B6AC /* ImageIO.framework */,
@@ -469,6 +513,8 @@
 		7062EADD14BA47290055A979 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				70FC7BAB15901EF600F89E6F /* Mascot.png */,
+				70FC7BAF159021A400F89E6F /* Mascot2.png */,
 				7062EAEE14BA47290055A979 /* first.png */,
 				702CB5B215676FF000148D5F /* UITableViewCellBackground.png */,
 				702CB5AF1567676B00148D5F /* UITableViewCellBackground@2x.png */,
@@ -518,6 +564,15 @@
 				70866C3C155033C10014688D /* libGoogleAnalytics.a */,
 			);
 			name = "Google Analytics";
+			sourceTree = "<group>";
+		};
+		70C85D681591700C00CD40B1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				70C85D711591700C00CD40B1 /* QuickDialogExample.app */,
+				70C85D731591700C00CD40B1 /* libQuickDialog.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		70C92FAF14F121E2009441BE /* ASIHTTPRequest */ = {
@@ -655,6 +710,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				70C85D751591705600CD40B1 /* PBXTargetDependency */,
 			);
 			name = HalfCanvas;
 			productName = HalfCanvas;
@@ -679,12 +735,35 @@
 			mainGroup = 7062EAC714BA47280055A979;
 			productRefGroup = 7062EAD314BA47280055A979 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 70C85D681591700C00CD40B1 /* Products */;
+					ProjectRef = 70C85D671591700C00CD40B1 /* QuickDialog.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				7062EAD114BA47280055A979 /* HalfCanvas */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		70C85D711591700C00CD40B1 /* QuickDialogExample.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = QuickDialogExample.app;
+			remoteRef = 70C85D701591700C00CD40B1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		70C85D731591700C00CD40B1 /* libQuickDialog.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libQuickDialog.a;
+			remoteRef = 70C85D721591700C00CD40B1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		7062EAD014BA47280055A979 /* Resources */ = {
@@ -731,6 +810,10 @@
 				702CB5B5156773B200148D5F /* UINavigationBarHeader@2x.png in Resources */,
 				702CB5BD1567795D00148D5F /* UINavigationBarHeaderFade@2x.png in Resources */,
 				702CB5BF1567DF3200148D5F /* AnswerCell-Background@2x.png in Resources */,
+				70FC7BAC15901EF600F89E6F /* Mascot.png in Resources */,
+				70FC7BAE15901F1200F89E6F /* Mascot.png in Resources */,
+				70FC7BB0159021A400F89E6F /* Mascot2.png in Resources */,
+				70FC7BB2159021B100F89E6F /* Mascot2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -799,6 +882,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		70C85D751591705600CD40B1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = QuickDialog;
+			targetProxy = 70C85D741591705600CD40B1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		7062EADF14BA47290055A979 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
@@ -822,7 +913,7 @@
 		7062EAF914BA47290055A979 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -847,7 +938,7 @@
 		7062EAFA14BA47290055A979 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -869,13 +960,16 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HalfCanvas/HalfCanvas-Prefix.pch";
+				HEADER_SEARCH_PATHS = "";
 				"HEADER_SEARCH_PATHS[arch=*]" = "${SDK_DIR}/usr/include/libxml2";
 				INFOPLIST_FILE = "HalfCanvas/HalfCanvas-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/HalfCanvas\"",
 				);
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = "\"${PROJECT_DIR}/QuickDialog\"/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -885,13 +979,16 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HalfCanvas/HalfCanvas-Prefix.pch";
-				"HEADER_SEARCH_PATHS[arch=*]" = "${SDK_DIR}/usr/include/libxml2";
+				HEADER_SEARCH_PATHS = "";
+				"HEADER_SEARCH_PATHS[arch=*]" = "";
 				INFOPLIST_FILE = "HalfCanvas/HalfCanvas-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/HalfCanvas\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = "\"${PROJECT_DIR}/QuickDialog\"/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
