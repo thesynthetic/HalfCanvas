@@ -14,9 +14,23 @@
 
 @synthesize progressView;
 
+-(id)initWithCoder:(NSCoder *)aDecoder 
+{
+    
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        self.delegate = self;
+        NSLog(@"TabBar being initialized.");
+    }
+
+    return self;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self.delegate = self;
+
     if (self) {
         // Custom initialization
     }
@@ -46,7 +60,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-         
 
 
 }
@@ -102,5 +115,9 @@
                      }
                      completion:nil];
 }
+
+
+
+
 
 @end

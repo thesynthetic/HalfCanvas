@@ -549,6 +549,7 @@
     loading = true;
     
     
+    /*
     [UIView animateWithDuration:0.25
      
                           delay: 0.0
@@ -564,6 +565,7 @@
                      completion:^(BOOL finished){
    
                                               }];
+    */
     
     NSURL *url = [NSURL URLWithString:@"http://halfcanvas.com/questions/"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
@@ -581,19 +583,19 @@
     [request startAsynchronous];
     
     NSError *error;
-    //if (![[GANTracker sharedTracker] trackEvent:@"AppEvent" action:@"AppDidLaunch" label:@"" value:1 withError:&error]) {
-
-    //}
+    
     if (![[GANTracker sharedTracker] trackPageview:@"FeedView" withError:&error]) {
         
     }
     
     //Show HUD
-    //HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-	//[self.navigationController.view addSubview:HUD];
-    //HUD.delegate = self;
-    //HUD.labelText = @"Loading";
-    //[HUD show:YES];
+
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    HUD.removeFromSuperViewOnHide = YES;
+	[self.navigationController.view addSubview:HUD];
+    HUD.delegate = self;
+    HUD.labelText = @"Loading";
+    [HUD show:YES];
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
@@ -645,12 +647,6 @@
             [ac addObject:newAction];
         }
 
-//        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-//        if ([prefs valueForKey:@"action_count"] == [ac count])
-//        {
-//            NSLog(@"%@",[prefs valueForKey:@"access_token"]);
-//            [request setPostValue:(NSString*)[prefs valueForKey:@"access_token"] forKey:@"access_token"];
-//        }
         [[[[[self tabBarController] tabBar] items] objectAtIndex:1] setBadgeValue:[NSString stringWithFormat:@"%d",[ac count]]];
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         [appDelegate setGlobalQuestions:qc];
@@ -661,10 +657,10 @@
         //Load the server data into Core Data   
     }
     
-    //[HUD hide:YES];
-    loading = false;
+    [HUD hide:YES];
+    //loading = false;
     
-    [self performSelector:@selector(removeLoadingBanner) withObject:self afterDelay:1.0];
+    //[self performSelector:@selector(removeLoadingBanner) withObject:self afterDelay:1.0];
     
     
     [[self tableView] reloadData];
@@ -693,13 +689,19 @@
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
     NSError *error = [request error];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection" 
+    /*
+     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection" 
                                                     message:[error description]
                                                    delegate:nil 
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     [alert show];
-    //Todo: Display Error Message
+     */
+    
+    HUD.mode = MBProgressHUDModeCustomView;
+    HUD.labelText = @"Unable to connect.";
+    HUD.removeFromSuperViewOnHide = YES;
+    [HUD hide:YES afterDelay:3];
 }
 
 

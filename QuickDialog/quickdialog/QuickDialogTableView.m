@@ -25,7 +25,10 @@
 }
 
 - (QuickDialogTableView *)initWithController:(QuickDialogController *)controller {
-    self = [super initWithFrame:CGRectMake(0, 0, 0, 0) style:controller.root.grouped ? UITableViewStyleGrouped : UITableViewStylePlain];
+    
+    //self = [super initWithFrame:CGRectMake(0, 0, 0, 0) style:controller.root.grouped ? UITableViewStyleGrouped : UITableViewStylePlain];
+    //Ryan Changed the above line to:
+    self = [super initWithFrame:CGRectMake(0, 0, 0, 0) style:UITableViewStyleGrouped];
     if (self!=nil){
         _controller = controller;
         self.root = _controller.root;
