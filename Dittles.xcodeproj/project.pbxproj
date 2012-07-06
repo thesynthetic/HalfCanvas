@@ -48,6 +48,13 @@
 		702CB5CB156D277700148D5F /* QuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 702CB5CA156D277700148D5F /* QuestionViewController.m */; };
 		702EB6A61501C19400B0BCB7 /* Untitled-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 702EB6A51501C19400B0BCB7 /* Untitled-1.png */; };
 		70302B7D1516BEE1006492C8 /* Answer.m in Sources */ = {isa = PBXBuildFile; fileRef = 70302B7C1516BEE1006492C8 /* Answer.m */; };
+		7042AA5315A66F7D00554FBB /* DittlesLogoV1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7042AA5215A66F7D00554FBB /* DittlesLogoV1.png */; };
+		7042AA5815A67BEE00554FBB /* OtherButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7042AA5615A67BEE00554FBB /* OtherButton.png */; };
+		7042AA5915A67BEE00554FBB /* OtherButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7042AA5715A67BEE00554FBB /* OtherButton@2x.png */; };
+		7042AA5B15A67CA600554FBB /* Answer-Button-Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 7042AA5A15A67CA600554FBB /* Answer-Button-Background.png */; };
+		7042AA5E15A683F700554FBB /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 7042AA5C15A683F700554FBB /* LaunchScreen.png */; };
+		7042AA5F15A683F700554FBB /* LaunchScreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7042AA5D15A683F700554FBB /* LaunchScreen@2x.png */; };
+		7042AA6515A69CAF00554FBB /* Sign-Up-Page@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7042AA6415A69CAF00554FBB /* Sign-Up-Page@2x.png */; };
 		704431F314DF506F00537505 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 704431F214DF506F00537505 /* SettingsViewController.m */; };
 		704786B4154367E1005638FC /* plus_64.png in Resources */ = {isa = PBXBuildFile; fileRef = 704786B3154367E1005638FC /* plus_64.png */; };
 		704786B715437491005638FC /* comment_64.png in Resources */ = {isa = PBXBuildFile; fileRef = 704786B615437491005638FC /* comment_64.png */; };
@@ -69,11 +76,12 @@
 		7062EAF614BA47290055A979 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 7062EAF514BA47290055A979 /* second.png */; };
 		7062EAF814BA47290055A979 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7062EAF714BA47290055A979 /* second@2x.png */; };
 		70644FB71591E2F9007C034D /* Mascot3.png in Resources */ = {isa = PBXBuildFile; fileRef = 70644FB61591E2F9007C034D /* Mascot3.png */; };
-		70644FB91591E2FD007C034D /* Mascot3.png in Resources */ = {isa = PBXBuildFile; fileRef = 70644FB81591E2FD007C034D /* Mascot3.png */; };
 		706547F71507B3EB00AE909F /* 09-chat-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 706547F61507B3EB00AE909F /* 09-chat-2.png */; };
 		706547FA1507B3F900AE909F /* 12-eye.png in Resources */ = {isa = PBXBuildFile; fileRef = 706547F91507B3F900AE909F /* 12-eye.png */; };
 		70735E35152F3C95000F94B5 /* X-Large_278x44_glowy.png in Resources */ = {isa = PBXBuildFile; fileRef = 70735E34152F3C95000F94B5 /* X-Large_278x44_glowy.png */; };
 		70735E39152F4A1C000F94B5 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70735E38152F4A1B000F94B5 /* SignUpViewController.m */; };
+		7076569B15A20CA8008EA8F1 /* UITableViewCellBackgroundv2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7076569915A20CA8008EA8F1 /* UITableViewCellBackgroundv2.png */; };
+		7076569C15A20CA8008EA8F1 /* UITableViewCellBackgroundv2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7076569A15A20CA8008EA8F1 /* UITableViewCellBackgroundv2@2x.png */; };
 		707693671590B9B800D8AA8A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 707693661590B9B800D8AA8A /* MapKit.framework */; };
 		707693691590B9C400D8AA8A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 707693681590B9C400D8AA8A /* CoreLocation.framework */; };
 		70866C37154DE6C20014688D /* MessageBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 70866C36154DE6C20014688D /* MessageBubble.png */; };
@@ -217,6 +225,13 @@
 		702EB6A51501C19400B0BCB7 /* Untitled-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Untitled-1.png"; path = "../Untitled-1.png"; sourceTree = "<group>"; };
 		70302B7B1516BEE1006492C8 /* Answer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Answer.h; sourceTree = "<group>"; };
 		70302B7C1516BEE1006492C8 /* Answer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Answer.m; sourceTree = "<group>"; };
+		7042AA5215A66F7D00554FBB /* DittlesLogoV1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DittlesLogoV1.png; sourceTree = "<group>"; };
+		7042AA5615A67BEE00554FBB /* OtherButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OtherButton.png; sourceTree = "<group>"; };
+		7042AA5715A67BEE00554FBB /* OtherButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OtherButton@2x.png"; sourceTree = "<group>"; };
+		7042AA5A15A67CA600554FBB /* Answer-Button-Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Answer-Button-Background.png"; sourceTree = "<group>"; };
+		7042AA5C15A683F700554FBB /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen.png; sourceTree = "<group>"; };
+		7042AA5D15A683F700554FBB /* LaunchScreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LaunchScreen@2x.png"; sourceTree = "<group>"; };
+		7042AA6415A69CAF00554FBB /* Sign-Up-Page@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sign-Up-Page@2x.png"; sourceTree = "<group>"; };
 		704431F114DF506F00537505 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		704431F214DF506F00537505 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		704786B3154367E1005638FC /* plus_64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plus_64.png; path = Images/plus_64.png; sourceTree = "<group>"; };
@@ -225,14 +240,14 @@
 		70483A981544DD8200F7BAF9 /* halfcanvas-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "halfcanvas-114.png"; path = "../halfcanvas-114.png"; sourceTree = "<group>"; };
 		705E5A7E1510331D00249D4F /* AnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerViewController.h; sourceTree = "<group>"; };
 		705E5A7F1510331D00249D4F /* AnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerViewController.m; sourceTree = "<group>"; };
-		7062EAD214BA47280055A979 /* HalfCanvas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HalfCanvas.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7062EAD214BA47280055A979 /* Dittles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dittles.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7062EAD614BA47290055A979 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7062EAD814BA47290055A979 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7062EADA14BA47290055A979 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		7062EADE14BA47290055A979 /* HalfCanvas-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HalfCanvas-Info.plist"; sourceTree = "<group>"; };
+		7062EADE14BA47290055A979 /* Dittles-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Dittles-Info.plist"; sourceTree = "<group>"; };
 		7062EAE014BA47290055A979 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7062EAE214BA47290055A979 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		7062EAE414BA47290055A979 /* HalfCanvas-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HalfCanvas-Prefix.pch"; sourceTree = "<group>"; };
+		7062EAE414BA47290055A979 /* Dittles-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dittles-Prefix.pch"; sourceTree = "<group>"; };
 		7062EAE514BA47290055A979 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7062EAE614BA47290055A979 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		7062EAE914BA47290055A979 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -245,12 +260,13 @@
 		7062EAF514BA47290055A979 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		7062EAF714BA47290055A979 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		70644FB61591E2F9007C034D /* Mascot3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mascot3.png; sourceTree = "<group>"; };
-		70644FB81591E2FD007C034D /* Mascot3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mascot3.png; sourceTree = "<group>"; };
 		706547F61507B3EB00AE909F /* 09-chat-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "09-chat-2.png"; sourceTree = "<group>"; };
 		706547F91507B3F900AE909F /* 12-eye.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "12-eye.png"; sourceTree = "<group>"; };
 		70735E34152F3C95000F94B5 /* X-Large_278x44_glowy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "X-Large_278x44_glowy.png"; sourceTree = "<group>"; };
 		70735E37152F4A1B000F94B5 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		70735E38152F4A1B000F94B5 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		7076569915A20CA8008EA8F1 /* UITableViewCellBackgroundv2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UITableViewCellBackgroundv2.png; sourceTree = "<group>"; };
+		7076569A15A20CA8008EA8F1 /* UITableViewCellBackgroundv2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UITableViewCellBackgroundv2@2x.png"; sourceTree = "<group>"; };
 		707693661590B9B800D8AA8A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		707693681590B9C400D8AA8A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		70866C36154DE6C20014688D /* MessageBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageBubble.png; sourceTree = "<group>"; };
@@ -453,7 +469,7 @@
 		7062EAC714BA47280055A979 = {
 			isa = PBXGroup;
 			children = (
-				70644FB81591E2FD007C034D /* Mascot3.png */,
+				7042AA5215A66F7D00554FBB /* DittlesLogoV1.png */,
 				707693681590B9C400D8AA8A /* CoreLocation.framework */,
 				707693661590B9B800D8AA8A /* MapKit.framework */,
 				7062EADC14BA47290055A979 /* HalfCanvas */,
@@ -465,7 +481,7 @@
 		7062EAD314BA47280055A979 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7062EAD214BA47280055A979 /* HalfCanvas.app */,
+				7062EAD214BA47280055A979 /* Dittles.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -523,14 +539,22 @@
 			isa = PBXGroup;
 			children = (
 				70FC7BAB15901EF600F89E6F /* Mascot.png */,
+				7042AA6415A69CAF00554FBB /* Sign-Up-Page@2x.png */,
 				70FC7BAF159021A400F89E6F /* Mascot2.png */,
+				7042AA5C15A683F700554FBB /* LaunchScreen.png */,
+				7042AA5D15A683F700554FBB /* LaunchScreen@2x.png */,
 				70644FB61591E2F9007C034D /* Mascot3.png */,
+				7042AA5A15A67CA600554FBB /* Answer-Button-Background.png */,
+				7042AA5615A67BEE00554FBB /* OtherButton.png */,
+				7042AA5715A67BEE00554FBB /* OtherButton@2x.png */,
 				7062EAEE14BA47290055A979 /* first.png */,
 				702CB5B215676FF000148D5F /* UITableViewCellBackground.png */,
 				702CB5AF1567676B00148D5F /* UITableViewCellBackground@2x.png */,
 				702CB5B4156773B200148D5F /* UINavigationBarHeader@2x.png */,
 				702CB5BC1567795D00148D5F /* UINavigationBarHeaderFade@2x.png */,
 				702CB5BE1567DF3200148D5F /* AnswerCell-Background@2x.png */,
+				7076569915A20CA8008EA8F1 /* UITableViewCellBackgroundv2.png */,
+				7076569A15A20CA8008EA8F1 /* UITableViewCellBackgroundv2@2x.png */,
 				7062EAF014BA47290055A979 /* first@2x.png */,
 				7062EAF514BA47290055A979 /* second.png */,
 				7062EAF714BA47290055A979 /* second@2x.png */,
@@ -552,7 +576,7 @@
 				704786B3154367E1005638FC /* plus_64.png */,
 				7007726C14DD627300B91AAA /* Splined_Canvas.png */,
 				702EB6A51501C19400B0BCB7 /* Untitled-1.png */,
-				7062EADE14BA47290055A979 /* HalfCanvas-Info.plist */,
+				7062EADE14BA47290055A979 /* Dittles-Info.plist */,
 				70ECAA8614CC65EB00081EF3 /* 01-refresh.png */,
 				708E061D14BA9524000C1876 /* home.png */,
 				70ECAA8314CC60CC00081EF3 /* 02-redo.png */,
@@ -561,7 +585,7 @@
 				708E061714BA93FF000C1876 /* 168-upload-photo-2.png */,
 				7062EADF14BA47290055A979 /* InfoPlist.strings */,
 				7062EAE214BA47290055A979 /* main.m */,
-				7062EAE414BA47290055A979 /* HalfCanvas-Prefix.pch */,
+				7062EAE414BA47290055A979 /* Dittles-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -709,9 +733,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7062EAD114BA47280055A979 /* HalfCanvas */ = {
+		7062EAD114BA47280055A979 /* Dittles */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7062EAFB14BA47290055A979 /* Build configuration list for PBXNativeTarget "HalfCanvas" */;
+			buildConfigurationList = 7062EAFB14BA47290055A979 /* Build configuration list for PBXNativeTarget "Dittles" */;
 			buildPhases = (
 				7062EACE14BA47280055A979 /* Sources */,
 				7062EACF14BA47280055A979 /* Frameworks */,
@@ -722,9 +746,9 @@
 			dependencies = (
 				70C85D751591705600CD40B1 /* PBXTargetDependency */,
 			);
-			name = HalfCanvas;
+			name = Dittles;
 			productName = HalfCanvas;
-			productReference = 7062EAD214BA47280055A979 /* HalfCanvas.app */;
+			productReference = 7062EAD214BA47280055A979 /* Dittles.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -735,7 +759,7 @@
 			attributes = {
 				LastUpgradeCheck = 0430;
 			};
-			buildConfigurationList = 7062EACC14BA47280055A979 /* Build configuration list for PBXProject "HalfCanvas" */;
+			buildConfigurationList = 7062EACC14BA47280055A979 /* Build configuration list for PBXProject "Dittles" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -753,7 +777,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				7062EAD114BA47280055A979 /* HalfCanvas */,
+				7062EAD114BA47280055A979 /* Dittles */,
 			);
 		};
 /* End PBXProject section */
@@ -823,7 +847,15 @@
 				70FC7BAC15901EF600F89E6F /* Mascot.png in Resources */,
 				70FC7BB0159021A400F89E6F /* Mascot2.png in Resources */,
 				70644FB71591E2F9007C034D /* Mascot3.png in Resources */,
-				70644FB91591E2FD007C034D /* Mascot3.png in Resources */,
+				7076569B15A20CA8008EA8F1 /* UITableViewCellBackgroundv2.png in Resources */,
+				7076569C15A20CA8008EA8F1 /* UITableViewCellBackgroundv2@2x.png in Resources */,
+				7042AA5315A66F7D00554FBB /* DittlesLogoV1.png in Resources */,
+				7042AA5815A67BEE00554FBB /* OtherButton.png in Resources */,
+				7042AA5915A67BEE00554FBB /* OtherButton@2x.png in Resources */,
+				7042AA5B15A67CA600554FBB /* Answer-Button-Background.png in Resources */,
+				7042AA5E15A683F700554FBB /* LaunchScreen.png in Resources */,
+				7042AA5F15A683F700554FBB /* LaunchScreen@2x.png in Resources */,
+				7042AA6515A69CAF00554FBB /* Sign-Up-Page@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -971,16 +1003,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "HalfCanvas/HalfCanvas-Prefix.pch";
+				GCC_PREFIX_HEADER = "HalfCanvas/Dittles-Prefix.pch";
 				HEADER_SEARCH_PATHS = "";
 				"HEADER_SEARCH_PATHS[arch=*]" = "${SDK_DIR}/usr/include/libxml2";
-				INFOPLIST_FILE = "HalfCanvas/HalfCanvas-Info.plist";
+				INFOPLIST_FILE = "HalfCanvas/Dittles-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/HalfCanvas\"",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Dittles;
+				TARGETED_DEVICE_FAMILY = 1;
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = "\"${PROJECT_DIR}/QuickDialog\"/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -990,15 +1023,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "HalfCanvas/HalfCanvas-Prefix.pch";
+				GCC_PREFIX_HEADER = "HalfCanvas/Dittles-Prefix.pch";
 				HEADER_SEARCH_PATHS = "";
 				"HEADER_SEARCH_PATHS[arch=*]" = "";
-				INFOPLIST_FILE = "HalfCanvas/HalfCanvas-Info.plist";
+				INFOPLIST_FILE = "HalfCanvas/Dittles-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/HalfCanvas\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Dittles;
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = "\"${PROJECT_DIR}/QuickDialog\"/**";
 				WRAPPER_EXTENSION = app;
@@ -1008,7 +1042,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7062EACC14BA47280055A979 /* Build configuration list for PBXProject "HalfCanvas" */ = {
+		7062EACC14BA47280055A979 /* Build configuration list for PBXProject "Dittles" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7062EAF914BA47290055A979 /* Debug */,
@@ -1017,7 +1051,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7062EAFB14BA47290055A979 /* Build configuration list for PBXNativeTarget "HalfCanvas" */ = {
+		7062EAFB14BA47290055A979 /* Build configuration list for PBXNativeTarget "Dittles" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7062EAFC14BA47290055A979 /* Debug */,

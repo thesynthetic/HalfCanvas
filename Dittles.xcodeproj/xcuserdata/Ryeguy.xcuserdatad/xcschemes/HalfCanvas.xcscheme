@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7062EAD114BA47280055A979"
-               BuildableName = "HalfCanvas.app"
-               BlueprintName = "HalfCanvas"
-               ReferencedContainer = "container:HalfCanvas.xcodeproj">
+               BuildableName = "Dittles.app"
+               BlueprintName = "Dittles"
+               ReferencedContainer = "container:Dittles.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7062EAD114BA47280055A979"
-            BuildableName = "HalfCanvas.app"
-            BlueprintName = "HalfCanvas"
-            ReferencedContainer = "container:HalfCanvas.xcodeproj">
+            BuildableName = "Dittles.app"
+            BlueprintName = "Dittles"
+            ReferencedContainer = "container:Dittles.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -52,9 +52,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7062EAD114BA47280055A979"
-            BuildableName = "HalfCanvas.app"
-            BlueprintName = "HalfCanvas"
-            ReferencedContainer = "container:HalfCanvas.xcodeproj">
+            BuildableName = "Dittles.app"
+            BlueprintName = "Dittles"
+            ReferencedContainer = "container:Dittles.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -70,9 +70,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7062EAD114BA47280055A979"
-            BuildableName = "HalfCanvas.app"
-            BlueprintName = "HalfCanvas"
-            ReferencedContainer = "container:HalfCanvas.xcodeproj">
+            BuildableName = "Dittles.app"
+            BlueprintName = "Dittles"
+            ReferencedContainer = "container:Dittles.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

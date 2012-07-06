@@ -217,12 +217,12 @@
         [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
         return cell;
     }
-    else 
+    else
     {
         static NSString *CellIdentifier = @"FeedCell";
         
         FeedCell *feedCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
+    
         if (feedCell == nil) {
             feedCell = [[FeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
@@ -232,13 +232,25 @@
         UIImage *tempImg = [imageCache objectForKey:[[qc objectAtIndex:indexPath.section] image_url]];
         if ([[qc objectAtIndex:indexPath.section] answer_count] > 0)
         {
-            [[feedCell answerCountLabel] setText:[NSString stringWithFormat:@"%i", [[qc objectAtIndex:indexPath.section] answer_count]]];
-            [[feedCell messageBubble] setHidden:false];
+            [[feedCell answerCountLabel] setText:[NSString stringWithFormat:@"%i lessons posted", [[qc objectAtIndex:indexPath.section] answer_count]]];
+            [[feedCell answerCountLabel] setFont:[UIFont systemFontOfSize:13]];
+            [[feedCell answerCountLabel] setTextColor:[UIColor colorWithRed:0.0 green:146.0/255.0 blue:255.0/255.0 alpha:1.0]];
+            
+            [[feedCell answerCountButton] setUserInteractionEnabled:TRUE];
+            
+            [[feedCell createAnswerButton] setHidden:TRUE];
+            [[feedCell createAnswerButton] setUserInteractionEnabled:FALSE];
         }
         else
         {
-            [[feedCell messageBubble] setHidden:true];
-            [[feedCell answerCountLabel] setText:@""];
+            [[feedCell answerCountLabel] setText:@"No lessons posted"];
+            [[feedCell answerCountLabel] setFont:[UIFont systemFontOfSize:10]];
+            [[feedCell answerCountLabel] setTextColor:[UIColor grayColor]];
+            
+            [[feedCell answerCountButton] setUserInteractionEnabled:FALSE];
+            
+            [[feedCell createAnswerButton] setHidden:FALSE];
+            [[feedCell createAnswerButton] setUserInteractionEnabled:TRUE];
         }
         
        
@@ -745,11 +757,8 @@
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     if ([prefs boolForKey:@"logged_in"])
     {
-//        actionSheetAnswer = [[UIActionSheet alloc] initWithTitle:@"Post an answer (only half)" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Upload from Album", nil];
-//        [actionSheetAnswer setTag:1];
-//        [actionSheetAnswer showFromTabBar:self.tabBarController.tabBar];
-        
-        //[self performSegueWithIdentifier:@"StartRecorder" sender:self];
+        //Display instruction screen, with continue button to UIImagePickerController for recording
+        NSLog(@"isplay instruction screen.");
     }
     else
     {
