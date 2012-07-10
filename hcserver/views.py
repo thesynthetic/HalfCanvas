@@ -1,7 +1,7 @@
 import hashlib
 from django.http import HttpResponse
 from django.core import serializers
-from hcserver.models import Question, Answer, UserData, Action
+from hcserver.models import Question, Answer, UserData, Action, AnswerLike
 from django.contrib.auth.models import User
 from django.utils import simplejson
 from django.views.decorators.csrf import csrf_exempt
@@ -292,12 +292,34 @@ def like_answer(request):
 			access_token = request.POST['access_token']
 			user_data = UserData.objects.get(access_token = access_token)
 			answer_id = request.POST['answer_id']
-			like = AnswerLike(answer=answer_id,user=user_data.user)
+			answer = Answer.objects.get(pk=answer_id)
+			like = AnswerLike(answer=answer,user=user_data.user, like_date=datetime.datetime.now())
 			like.save()
+			action = Action(sender=user_data.user,receiver=answer.question.user, question=answer.question, answer=answer, pub_date=datetime.datetime.now(),type='like')
+			action.save() 
 			return HttpResponse('AnswerLike created')
 		else:
 			return HttpResponse('Answer_id and/or access_token not posted')
 	else:
 		return HttpResponse('Answer_id and/or access_token not posteod')
-	
-	
+
+@csrf_exempt
+def unlike_answer(request):
+	if request.method == 'POST':
+		if 'answer_id' in request.POST and 'access_token' in request.POST:
+			access_token = request.POST['access_token']
+			user_data = UserData.objects.get(access_token = access_token)
+			answer_id = request.POST['answer_id']
+			answer = Answer.objects.get(pk=answer_id)
+			try:
+				like = AnswerLike.objects.get(answer=answer, user=user_data.user)
+				like.delete()
+				action = Action.objects.get(sender=user_data.user,receiver=answer.question.user,question=answer.question, answer=answer, type='like')
+				action.delete()
+				return HttpResponse('AnswerLike deleted')
+			except DoesNotExist:
+				return HttpResponse('AnswerLike does not exist (cannot be unliked)')
+		else:
+			return HttpResponse('Answer_id and/or access_token not posted')
+	else:
+		return HttpResponse('Answer_id and/or access_token not posted')
