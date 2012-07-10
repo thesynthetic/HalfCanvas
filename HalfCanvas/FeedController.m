@@ -525,7 +525,7 @@
     {
         NSURL *localURL = [info objectForKey:UIImagePickerControllerMediaURL];
         
-        NSURL *url = [NSURL URLWithString:@"http://halfcanvas.com/create_video_answer/"];
+        NSURL *url = [NSURL URLWithString:@"http://askdittles.com/create_video_answer/"];
         ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
         NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
         NSString *access_token = [user objectForKey:@"access_token"];
@@ -606,7 +606,7 @@
                                               }];
     */
     
-    NSURL *url = [NSURL URLWithString:@"http://halfcanvas.com/questions/"];
+    NSURL *url = [NSURL URLWithString:@"http://askdittles.com/questions/"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setPostValue:[NSString stringWithFormat:@"%d", 0] forKey:@"start"];
     [request setPostValue:[NSString stringWithFormat:@"%d", questionEndIndex] forKey:@"end"];  

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SignInViewController.h"
+#import "MainTabBarController.h"
 
 @interface SettingsViewController : UITableViewController
 {

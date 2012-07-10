@@ -274,17 +274,18 @@
     
         if (state == 0) //Sign Up Handler
         {
-            NSURL *url = [NSURL URLWithString:@"http://halfcanvas.com/create_user/"];
+            NSURL *url = [NSURL URLWithString:@"http://askdittles.com/create_user/"];
             ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
             [request setDelegate:self];
             [request setPostValue:[username text] forKey:@"username"];
             [request setPostValue:[password text] forKey:@"password"];
+            [request setData:UIImageJPEGRepresentation([self profilePicture],0.35) withFileName:@"upload.jpg" andContentType:@"image/jpeg" forKey:@"file"];
             [request setPostValue:[email text] forKey:@"email"];
-            [request startAsynchronous];        
+            [request startAsynchronous];     
         }
         else //Sign In Handler
         {
-            NSURL *url = [NSURL URLWithString:@"http://halfcanvas.com/login/"];
+            NSURL *url = [NSURL URLWithString:@"http://askdittles.com/login/"];
             ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
             [request setDelegate:self];
             [request setPostValue:[username text] forKey:@"username"];
@@ -309,7 +310,7 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {    
-   
+    
     SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
     NSError *jsonError = nil;
     
@@ -346,7 +347,7 @@
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
     NSError *error = [request error];
-    NSLog(@"ERROR");
+    NSLog(@"ERROR: %@", [error debugDescription]);
 }
 
 //Gravitar URL - Retro Style Identicon http://www.gravatar.com/avatar/f778d4000d84e1434d04eb8526ec3de2?d=retro

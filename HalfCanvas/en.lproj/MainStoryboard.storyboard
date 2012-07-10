@@ -499,11 +499,11 @@
             </objects>
             <point key="canvasLocation" x="1104" y="2428"/>
         </scene>
-        <!--Table View Controller - Root View Controller-->
+        <!--Settings View Controller - Root View Controller-->
         <scene sceneID="L4j-bC-KkI">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sGO-l5-kEp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="2Y3-QA-hzV" sceneMemberID="viewController">
+                <tableViewController id="2Y3-QA-hzV" customClass="SettingsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="GPQ-Nz-nVr">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -521,7 +521,7 @@
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Questions you've asked" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="kqn-s3-cZY">
                                                     <rect key="frame" x="20" y="11" width="219" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
@@ -543,7 +543,7 @@
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Lessons you've created" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="4Ke-ls-XwR">
                                                     <rect key="frame" x="20" y="11" width="239" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
@@ -561,7 +561,7 @@
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Lessons you've liked" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="Bfm-0R-zog">
                                                     <rect key="frame" x="20" y="11" width="239" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
@@ -583,7 +583,7 @@
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Change profile picture" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="56i-Ah-Qsp">
                                                     <rect key="frame" x="20" y="11" width="222" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
@@ -601,7 +601,7 @@
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Log out" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="8DO-7d-py8">
                                                     <rect key="frame" x="20" y="11" width="229" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
@@ -1110,111 +1110,6 @@
         <image name="play_button.png" width="142" height="142"/>
         <image name="profile_picture.jpg" width="50" height="50"/>
     </resources>
-    <classes>
-        <class className="ActivityCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ActivityCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="senderImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="senderUsername" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="text" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ActivityViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ActivityViewController.h"/>
-        </class>
-        <class className="AnswerViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswerViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="playbackMovie:"/>
-            </relationships>
-        </class>
-        <class className="FeedCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedCell.h"/>
-            <relationships>
-                <relationship kind="action" name="answerButtonClick:"/>
-                <relationship kind="action" name="answerCountClick:"/>
-                <relationship kind="action" name="playMovie:"/>
-                <relationship kind="outlet" name="answerCount" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="answerCountButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="answerCountLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="createAnswerButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="imageProgressIndicator" candidateClass="UIProgressView"/>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="messageBubble" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="movieCanvas" candidateClass="UIView"/>
-                <relationship kind="outlet" name="otherButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="playButtonImage" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="FeedController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedController.h"/>
-            <relationships>
-                <relationship kind="action" name="addAnswer:"/>
-                <relationship kind="action" name="cameraButtonClick"/>
-                <relationship kind="action" name="imageClick:"/>
-                <relationship kind="action" name="loadData"/>
-            </relationships>
-        </class>
-        <class className="FeedSectionHeader" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedSectionHeader.h"/>
-            <relationships>
-                <relationship kind="outlet" name="user" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="MainTabBarController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainTabBarController.h"/>
-        </class>
-        <class className="PictureViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PictureViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="closePictureViewer:"/>
-                <relationship kind="outlet" name="imageScrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="ProfilePictureCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfilePictureCell.h"/>
-            <relationships>
-                <relationship kind="action" name="didTapPhoto:"/>
-                <relationship kind="outlet" name="button" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="mainLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="SettingsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
-        </class>
-        <class className="SignInViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SignInViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="signIn:"/>
-            </relationships>
-        </class>
-        <class className="SignUpEmailViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SignUpEmailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="test:"/>
-                <relationship kind="outlet" name="doneCell" candidateClass="UITableViewCell"/>
-            </relationships>
-        </class>
-        <class className="SignUpViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SignUpViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doneButtonClick:"/>
-                <relationship kind="action" name="useEmailAddress:"/>
-                <relationship kind="outlet" name="signUpButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="UploadImageController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UploadImageController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelButton:"/>
-                <relationship kind="action" name="doneButton:"/>
-                <relationship kind="outlet" name="comments" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="tags" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
