@@ -16,6 +16,10 @@
 @synthesize email;
 @synthesize segcontrol;
 @synthesize doneCell;
+@synthesize profilePicture;
+@synthesize usernameString;
+@synthesize passwordString;
+@synthesize emailString;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -104,6 +108,22 @@
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0 && indexPath.row == 3){
+        return 105.0f;
+    }
+    else {
+        return 45.0f;
+    }
+ 
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
@@ -125,6 +145,12 @@
             if (indexPath.row == 0)
             {
                 username = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
+                [username setReturnKeyType:UIReturnKeyDone];
+                [username setDelegate:self];
+                [username addTarget:self action:@selector(usernameDidChange:) forControlEvents:UIControlEventEditingDidEnd];
+                if (usernameString != nil){
+                    [username setText:usernameString];                    
+                }
                 [cellLabel setText:@"Username"];
                 [cellLabel setBackgroundColor:[UIColor clearColor]];
                 [cellLabel setFont:[UIFont boldSystemFontOfSize:16]];
@@ -136,6 +162,12 @@
             if (indexPath.row == 1)
             {
                 email = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
+                [email setReturnKeyType:UIReturnKeyDone];
+                [email setDelegate:self];
+                [email addTarget:self action:@selector(emailDidChange:) forControlEvents:UIControlEventEditingDidEnd];
+                if (emailString != nil){
+                    [email setText:emailString];        
+                }
                 [cellLabel setText:@"Email"];
                 [cellLabel setBackgroundColor:[UIColor clearColor]];
                 [cellLabel setFont:[UIFont boldSystemFontOfSize:16]];
@@ -147,6 +179,12 @@
             if (indexPath.row == 2)
             {
                 password = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
+                [password setReturnKeyType:UIReturnKeyDone];
+                [password setDelegate:self];
+                [password addTarget:self action:@selector(passwordDidChange:) forControlEvents:UIControlEventEditingDidEnd];
+                if (passwordString != nil){
+                    [password setText:passwordString];        
+                }
                 [cellLabel setText:@"Password"];
                 [cellLabel setFont:[UIFont boldSystemFontOfSize:16]];
                 [cellLabel setBackgroundColor:[UIColor clearColor]];
@@ -157,10 +195,14 @@
             }
             if (indexPath.row == 3)
             {
+                ProfilePictureCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProfilePictureCell"];
+                [cell setDelegate:self];
+                if ([self profilePicture] != nil){
+                    [[cell button] setBackgroundImage:[self profilePicture] forState:UIControlStateNormal];
+                }
                 
-                [cellLabel setText:@"Photo"];
-                [cellLabel setBackgroundColor:[UIColor clearColor]];
-                [cellLabel setFont:[UIFont boldSystemFontOfSize:16]];
+                return cell;
+
             }
         }
         else 
@@ -168,6 +210,12 @@
             if (indexPath.row == 0)
             {
                 username = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
+                [username setReturnKeyType:UIReturnKeyDone];
+                [username setDelegate:self];
+                [username addTarget:self action:@selector(usernameDidChange:) forControlEvents:UIControlEventEditingDidEnd];
+                if (usernameString != nil){
+                    [username setText:usernameString];                    
+                }
                 [cellLabel setText:@"Username"];
                 [cellLabel setBackgroundColor:[UIColor clearColor]];
                 [cellLabel setFont:[UIFont boldSystemFontOfSize:16]];
@@ -179,6 +227,12 @@
             if (indexPath.row == 1)
             {
                 password = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
+                [password setReturnKeyType:UIReturnKeyDone];
+                [password setDelegate:self];
+                [password addTarget:self action:@selector(passwordDidChange:) forControlEvents:UIControlEventEditingDidEnd];
+                if (passwordString != nil){
+                    [password setText:passwordString];        
+                }
                 [cellLabel setText:@"Password"];
                 [cellLabel setFont:[UIFont boldSystemFontOfSize:16]];
                 [cellLabel setBackgroundColor:[UIColor clearColor]];
@@ -297,5 +351,69 @@
 
 //Gravitar URL - Retro Style Identicon http://www.gravatar.com/avatar/f778d4000d84e1434d04eb8526ec3de2?d=retro
 
+#pragma mark - ProfilePictureDelegate Functions
+
+- (void)handleProfilePictureTap:(id)sender
+{
+    NSLog(@"received");
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Choose from Album", nil];
+    [actionSheet showInView:self.view];
+}
+
+#pragma mark - ActionSheetDelegate Functions
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = true;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        [self presentModalViewController:picker animated:YES];
+    }
+    else if (buttonIndex == 1) {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = true;
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentModalViewController:picker animated:YES];
+    } 
+}
+
+#pragma mark - UIImagePickerController Delegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
+{
+    [self setProfilePicture:image];
+    [picker dismissModalViewControllerAnimated:YES];
+    [[self tableView] reloadData];
+
+}
+
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark - UITextField Change
+
+- (void)usernameDidChange:(id)sender{
+    UITextField *temp = (UITextField*)sender;
+    [self setUsernameString:[temp text]];
+}
+
+- (void)passwordDidChange:(id)sender{
+    UITextField *temp = (UITextField*)sender;
+    [self setPasswordString:[temp text]];
+}
+
+- (void)emailDidChange:(id)sender{
+    UITextField *temp = (UITextField*)sender;
+    [self setEmailString:[temp text]];
+    
+    ASIHTTPRequest *request;
+    request = [ASIHTTPRequest requestWithURL:nil];
+    
+}
 
 @end

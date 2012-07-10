@@ -31,6 +31,48 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    QRootElement *root = [[QRootElement alloc] init];
+    root.title = @"Settings";
+    root.grouped = YES;
+    
+    QRootElement *test = [[QRootElement alloc] init];
+    QLabelElement *testElement = [[QLabelElement alloc] initWithTitle:@"Testing element" Value:@""];
+    test.title = @"Test";
+    test.grouped = YES;
+    QSection *testSection = [[QSection alloc] initWithTitle:@"Test section"];
+    
+    [test addSection:testSection];
+    [testSection addElement:testElement];
+    
+    
+    QSection *questionSection = [[QSection alloc] initWithTitle:@"Questions"];
+    QLabelElement *labelQ1 = [[QLabelElement alloc] initWithTitle:@"Questions you've asked" Value:@""];
+    
+    
+    [root addSection:questionSection];
+    [questionSection addElement:labelQ1];
+    [questionSection addElement:test];
+    
+    
+    QSection *lessonSection = [[QSection alloc] initWithTitle:@"Lessons"];
+    QLabelElement *labelL1 = [[QLabelElement alloc] initWithTitle:@"Lessons you've created" Value:@""];
+    
+    [root addSection:lessonSection];
+    [lessonSection addElement:labelL1];
+    
+    QSection *accountSection = [[QSection alloc] initWithTitle:@"Account"];
+    QLabelElement *labelA1 = [[QLabelElement alloc] initWithTitle:@"Edit Profile" Value:@""];
+    QLabelElement *labelA2 = [[QLabelElement alloc] initWithTitle:@"Change Profile Picture" Value:@""];
+    
+    [root addSection:accountSection];
+    [accountSection addElement:labelA1];  
+    [accountSection addElement:labelA2];
+    
+    
+    [self setRoot:root];
+    
+
 }
 
 -(void)viewWillAppear:(BOOL)animated 
@@ -39,18 +81,7 @@
     
    
     
-    QRootElement *root = [[QRootElement alloc] init];
-    root.title = @"Hello world";
-    root.grouped = YES;
-    QSection *section = [[QSection alloc] init];
-    QLabelElement *label = [[QLabelElement alloc] initWithTitle:@"Hello" Value:@"world!"];
-    
-    [root addSection:section];
-    [section addElement:label];
-                
-    [self setRoot:root];
-    
-}
+    }
 
 - (void)viewDidUnload
 {

@@ -48,7 +48,7 @@
 
 #pragma mark - View lifecycle
 
-/*
+/*s
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView
 {
@@ -116,8 +116,24 @@
                      completion:nil];
 }
 
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
+{
+   
+}
 
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+    if ([tabBarController selectedIndex] > 0)
+    {
+        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+        if (![prefs boolForKey:@"logged_in"])
+        {
+            [tabBarController setSelectedIndex:0];
+            [self performSegueWithIdentifier:@"SignUpPopup" sender:nil];
+        }
+    }
 
+}
 
 
 @end

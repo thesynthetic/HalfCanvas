@@ -129,6 +129,8 @@
 		70F2DF8B155E7DA0001C3C4F /* play_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 70F2DF8A155E7DA0001C3C4F /* play_button.png */; };
 		70F2DF8F155E85D6001C3C4F /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 70F2DF8D155E85D6001C3C4F /* heart.png */; };
 		70F2DF90155E85D6001C3C4F /* heart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 70F2DF8E155E85D6001C3C4F /* heart@2x.png */; };
+		70F5914F15ABA07400DF7DAE /* ProfilePictureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F5914E15ABA07400DF7DAE /* ProfilePictureCell.m */; };
+		70F5915C15ABAAB900DF7DAE /* Default_Profile_Picture.png in Resources */ = {isa = PBXBuildFile; fileRef = 70F5915B15ABAAB900DF7DAE /* Default_Profile_Picture.png */; };
 		70FB34A614F92DDD00864FC2 /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FB34A514F92DDD00864FC2 /* Image.m */; };
 		70FB34A914F92DDE00864FC2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FB34A814F92DDD00864FC2 /* User.m */; };
 		70FB34AC14F92DDE00864FC2 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FB34AB14F92DDE00864FC2 /* Question.m */; };
@@ -345,6 +347,9 @@
 		70F2DF8A155E7DA0001C3C4F /* play_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_button.png; sourceTree = "<group>"; };
 		70F2DF8D155E85D6001C3C4F /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
 		70F2DF8E155E85D6001C3C4F /* heart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart@2x.png"; sourceTree = "<group>"; };
+		70F5914D15ABA07400DF7DAE /* ProfilePictureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfilePictureCell.h; sourceTree = "<group>"; };
+		70F5914E15ABA07400DF7DAE /* ProfilePictureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfilePictureCell.m; sourceTree = "<group>"; };
+		70F5915B15ABAAB900DF7DAE /* Default_Profile_Picture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default_Profile_Picture.png; sourceTree = "<group>"; };
 		70FB34A414F92DDD00864FC2 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
 		70FB34A514F92DDD00864FC2 /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Image.m; sourceTree = "<group>"; };
 		70FB34A714F92DDD00864FC2 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -489,6 +494,7 @@
 		7062EAD514BA47280055A979 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				70D0BEA014C4B7A000CBF56C /* MBProgress */,
 				70C9308E14F12600009441BE /* libz.dylib */,
 				70C85D671591700C00CD40B1 /* QuickDialog.xcodeproj */,
 				7005C342156026800014B6AC /* libsqlite3.0.dylib */,
@@ -528,7 +534,6 @@
 				70F2DF991563EBB9001C3C4F /* Other Objects */,
 				70C9302814F12292009441BE /* External */,
 				70C92FAF14F121E2009441BE /* ASIHTTPRequest */,
-				70D0BEA014C4B7A000CBF56C /* MBProgress */,
 				7018814B14C36538002B07D8 /* JSON */,
 				7062EADD14BA47290055A979 /* Supporting Files */,
 			);
@@ -539,6 +544,7 @@
 			isa = PBXGroup;
 			children = (
 				70FC7BAB15901EF600F89E6F /* Mascot.png */,
+				70F5915B15ABAAB900DF7DAE /* Default_Profile_Picture.png */,
 				7042AA6415A69CAF00554FBB /* Sign-Up-Page@2x.png */,
 				70FC7BAF159021A400F89E6F /* Mascot2.png */,
 				7042AA5C15A683F700554FBB /* LaunchScreen.png */,
@@ -685,6 +691,7 @@
 				701D2CC114C4E62500C075A4 /* MBProgressHUD.m */,
 			);
 			name = MBProgress;
+			path = HalfCanvas;
 			sourceTree = "<group>";
 		};
 		70E2EF9214D442C300F02216 /* Snap a Picture */ = {
@@ -703,6 +710,8 @@
 				70735E38152F4A1B000F94B5 /* SignUpViewController.m */,
 				70F1167A1530A312000CDFF0 /* SignUpEmailViewController.h */,
 				70F1167B1530A312000CDFF0 /* SignUpEmailViewController.m */,
+				70F5914D15ABA07400DF7DAE /* ProfilePictureCell.h */,
+				70F5914E15ABA07400DF7DAE /* ProfilePictureCell.m */,
 			);
 			name = "Sign Up Sign In";
 			sourceTree = "<group>";
@@ -856,6 +865,7 @@
 				7042AA5E15A683F700554FBB /* LaunchScreen.png in Resources */,
 				7042AA5F15A683F700554FBB /* LaunchScreen@2x.png in Resources */,
 				7042AA6515A69CAF00554FBB /* Sign-Up-Page@2x.png in Resources */,
+				70F5915C15ABAAB900DF7DAE /* Default_Profile_Picture.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -921,6 +931,7 @@
 				702CB5CB156D277700148D5F /* QuestionViewController.m in Sources */,
 				70B048BB159907710013CFEA /* QuickTestViewController.m in Sources */,
 				70B048BE159909EA0013CFEA /* SettingsNavController.m in Sources */,
+				70F5914F15ABA07400DF7DAE /* ProfilePictureCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
