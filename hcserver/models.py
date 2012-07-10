@@ -38,6 +38,9 @@ class AnswerLike(models.Model):
      user = models.ForeignKey(User)
      like_date = models.DateTimeField('date like')
 
+     def __unicode__(self):
+         return self.user.username + ' likes answer ' + str(self.answer.pk)
+
 class Action(models.Model):
 	sender = models.ForeignKey(User,related_name='action_sender')
 	receiver = models.ForeignKey(User, related_name='action_receiver')

@@ -96,7 +96,7 @@ def answers(request):
 @csrf_exempt
 def create_user(request):
 	postdata = request.POST
-	if ('username' in postdata and 'email' in postdata and 'password' in postdata):
+	if ('username' in postdata and 'email' in postdata and 'password' in postdata and request.FILES): 
 		username = postdata['username']
 		email = postdata['email']
 		password = postdata['password']
@@ -110,12 +110,30 @@ def create_user(request):
                 	response['error_message'] = 'Email address is already being used'
         	else:                
 			user = User.objects.create_user(username, email, password)
-			
+
+
+                       
+
+                        #Connect to S3
+                        conn= boto.connect_s3()
+                        bucket = conn.get_bucket('halfcanvas')
+                        k = Key(bucket)
+
+                        #Create filename for S3
+                        s3_key = username +'.jpg'
+                        k.key = 'users/' + s3_key
+                        k.set_metadata("Content-Type", 'image/jpeg')
+                        dict_keys = request.FILES.keys()
+                        k.set_contents_from_string(request.FILES[dict_keys[0]].read())
+
+                        #Store Question metadata in DB
+                        image_url = 'https://s3.amazonaws.com/halfcanvas/' + k.key
+                       	
 			m = hashlib.md5()
 			m.update(username)
 			m.update('halfcanvasforkids')
 			access_token = m.hexdigest()
-			userData = UserData(user=user, access_token=access_token, profile_image_url='')
+			userData = UserData(user=user, access_token=access_token, profile_image_url=image_url)
 			userData.save()
 			response = dict()
 			response['errorcode'] = '0'
@@ -125,7 +143,7 @@ def create_user(request):
 			response['data'] = data
 	else:
 		response = dict()
-		response['errormessage'] = 'Username, email, or password not received'
+		response['errormessage'] = 'Username, email, password, or profile picture not received'
 		response['errorcode'] = '10.3'
 
 	return HttpResponse(
@@ -269,11 +287,17 @@ def create_video_answer(request):
 
 @csrf_exempt
 def like_answer(request):
-	if request.method = 'POST':
-		if 'question_id' in request.POST and 'user_id' in request.POST:
-			passs
+	if request.method == 'POST':
+		if 'answer_id' in request.POST and 'access_token' in request.POST:
+			access_token = request.POST['access_token']
+			user_data = UserData.objects.get(access_token = access_token)
+			answer_id = request.POST['answer_id']
+			like = AnswerLike(answer=answer_id,user=user_data.user)
+			like.save()
+			return HttpResponse('AnswerLike created')
 		else:
-			pass
+			return HttpResponse('Answer_id and/or access_token not posted')
 	else:
-		pass
+		return HttpResponse('Answer_id and/or access_token not posteod')
+	
 	
