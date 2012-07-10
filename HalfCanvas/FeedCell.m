@@ -17,13 +17,14 @@
 @synthesize index;
 @synthesize answerCount;
 @synthesize answerCountButton;
-@synthesize answerButton;
 @synthesize answerCountLabel;
 @synthesize messageBubble;
 @synthesize playButtonImage;
 @synthesize playButton;
 @synthesize movieCanvas;
 @synthesize movieURL;
+@synthesize createAnswerButton;
+@synthesize otherButton;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -43,9 +44,10 @@
 {
     [answerCount setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
     [answerCount setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
-    [answerButton setBackgroundImage:[UIImage imageNamed:@"Answer-Button-Background.png"] forState:UIControlStateHighlighted];
+    [otherButton setBackgroundImage:[UIImage imageNamed:@"Answer-Button-Background.png"] forState:UIControlStateHighlighted];
     [answerCountButton setBackgroundImage:[UIImage imageNamed:@"Answer-Button-Background.png"] forState:UIControlStateHighlighted];
     [playButton setBackgroundImage:[UIImage imageNamed:@"Answer-Button-Background.png"] forState:UIControlStateNormal];
+    [createAnswerButton setBackgroundImage:[UIImage imageNamed:@"Answer-Button-Background.png"] forState:UIControlStateHighlighted];
 }
 
 - (void)awakeFromNib

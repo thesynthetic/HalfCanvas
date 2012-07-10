@@ -24,18 +24,7 @@
 
 @interface FeedCell : UITableViewCell
 {
-    
-    UIImageView *imageView;
-    UIImageView *playButtonImage;
-    UIImageView *messageBubble;
-    UIButton *playButton;
-    UIProgressView *imageProgressIndicator;
-    UIButton *answerButton;
-    UIButton *answerCountButton;
-    UILabel *answerCountLabel;
     MPMoviePlayerController *mplayer;
-    UIView *movieCanvas;
-    NSString *movieURL;
     id <FeedCellDelegate> delegate;
     int index;
 }
@@ -48,9 +37,10 @@
 @property (nonatomic, retain) IBOutlet UIImageView *messageBubble;
 @property (nonatomic, retain) IBOutlet UIProgressView *imageProgressIndicator;
 @property (nonatomic, retain) IBOutlet UIButton *answerCount;
-@property (nonatomic, retain) IBOutlet UIButton *answerButton;
+@property (nonatomic, retain) IBOutlet UIButton *otherButton;
 @property (nonatomic, retain) IBOutlet UIButton *answerCountButton;
 @property (nonatomic, retain) IBOutlet UILabel *answerCountLabel;
+@property (nonatomic, retain) IBOutlet UIButton *createAnswerButton;
 @property (nonatomic, retain) id <FeedCellDelegate> delegate;
 @property (nonatomic) int index;
 

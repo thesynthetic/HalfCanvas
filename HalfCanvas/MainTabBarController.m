@@ -14,9 +14,23 @@
 
 @synthesize progressView;
 
+-(id)initWithCoder:(NSCoder *)aDecoder 
+{
+    
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        self.delegate = self;
+        NSLog(@"TabBar being initialized.");
+    }
+
+    return self;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self.delegate = self;
+
     if (self) {
         // Custom initialization
     }
@@ -34,7 +48,7 @@
 
 #pragma mark - View lifecycle
 
-/*
+/*s
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView
 {
@@ -46,7 +60,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-         
 
 
 }
@@ -102,5 +115,25 @@
                      }
                      completion:nil];
 }
+
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
+{
+   
+}
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+    if ([tabBarController selectedIndex] > 0)
+    {
+        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+        if (![prefs boolForKey:@"logged_in"])
+        {
+            [tabBarController setSelectedIndex:0];
+            [self performSegueWithIdentifier:@"SignUpPopup" sender:nil];
+        }
+    }
+
+}
+
 
 @end

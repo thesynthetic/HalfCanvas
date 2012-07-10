@@ -217,12 +217,12 @@
         [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
         return cell;
     }
-    else 
+    else
     {
         static NSString *CellIdentifier = @"FeedCell";
         
         FeedCell *feedCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
+    
         if (feedCell == nil) {
             feedCell = [[FeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
@@ -232,13 +232,25 @@
         UIImage *tempImg = [imageCache objectForKey:[[qc objectAtIndex:indexPath.section] image_url]];
         if ([[qc objectAtIndex:indexPath.section] answer_count] > 0)
         {
-            [[feedCell answerCountLabel] setText:[NSString stringWithFormat:@"%i", [[qc objectAtIndex:indexPath.section] answer_count]]];
-            [[feedCell messageBubble] setHidden:false];
+            [[feedCell answerCountLabel] setText:[NSString stringWithFormat:@"%i lessons posted", [[qc objectAtIndex:indexPath.section] answer_count]]];
+            [[feedCell answerCountLabel] setFont:[UIFont systemFontOfSize:13]];
+            [[feedCell answerCountLabel] setTextColor:[UIColor colorWithRed:0.0 green:146.0/255.0 blue:255.0/255.0 alpha:1.0]];
+            
+            [[feedCell answerCountButton] setUserInteractionEnabled:TRUE];
+            
+            [[feedCell createAnswerButton] setHidden:TRUE];
+            [[feedCell createAnswerButton] setUserInteractionEnabled:FALSE];
         }
         else
         {
-            [[feedCell messageBubble] setHidden:true];
-            [[feedCell answerCountLabel] setText:@""];
+            [[feedCell answerCountLabel] setText:@"No lessons posted"];
+            [[feedCell answerCountLabel] setFont:[UIFont systemFontOfSize:10]];
+            [[feedCell answerCountLabel] setTextColor:[UIColor grayColor]];
+            
+            [[feedCell answerCountButton] setUserInteractionEnabled:FALSE];
+            
+            [[feedCell createAnswerButton] setHidden:FALSE];
+            [[feedCell createAnswerButton] setUserInteractionEnabled:TRUE];
         }
         
        
@@ -507,6 +519,33 @@
     [picker dismissModalViewControllerAnimated:YES];
 }
 
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    if (picker.cameraCaptureMode == UIImagePickerControllerCameraCaptureModeVideo)
+    {
+        NSURL *localURL = [info objectForKey:UIImagePickerControllerMediaURL];
+        
+        NSURL *url = [NSURL URLWithString:@"http://askdittles.com/create_video_answer/"];
+        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+        NSString *access_token = [user objectForKey:@"access_token"];
+
+        
+        [request setPostValue:[NSString stringWithFormat:@"%d",answerViewerIndex] forKey:@"question_id"];
+        [request setPostValue:access_token forKey:@"access_token"];
+        [request setDelegate:self];
+        [request setFile:[localURL path] withFileName:@"upload.mp4" andContentType:@"video/mp4" forKey:@"file"]; 
+        
+        MainTabBarController *mainTab = (MainTabBarController*)self.tabBarController;
+        [request setDownloadProgressDelegate:[mainTab setupProgressBar]];
+        [request setDidFinishSelector:@selector(videoUploadingDidFinish:)];
+        [request setDidFailSelector:@selector(videoUploadingDidFail:)];
+        [request setTag:1];
+        [request startAsynchronous];
+        [picker dismissModalViewControllerAnimated:YES];
+    }
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Make sure your segue name in storyboard is the same as this line
@@ -549,6 +588,7 @@
     loading = true;
     
     
+    /*
     [UIView animateWithDuration:0.25
      
                           delay: 0.0
@@ -564,8 +604,9 @@
                      completion:^(BOOL finished){
    
                                               }];
+    */
     
-    NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/questions/"];
+    NSURL *url = [NSURL URLWithString:@"http://askdittles.com/questions/"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setPostValue:[NSString stringWithFormat:@"%d", 0] forKey:@"start"];
     [request setPostValue:[NSString stringWithFormat:@"%d", questionEndIndex] forKey:@"end"];  
@@ -578,22 +619,37 @@
     [request setDelegate:self];
     [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
     [request setCachePolicy:ASIFallbackToCacheIfLoadFailsCachePolicy];
+    [request setTag:0];
     [request startAsynchronous];
     
     NSError *error;
-    //if (![[GANTracker sharedTracker] trackEvent:@"AppEvent" action:@"AppDidLaunch" label:@"" value:1 withError:&error]) {
-
-    //}
+    
     if (![[GANTracker sharedTracker] trackPageview:@"FeedView" withError:&error]) {
         
     }
     
     //Show HUD
-    //HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-	//[self.navigationController.view addSubview:HUD];
-    //HUD.delegate = self;
-    //HUD.labelText = @"Loading";
-    //[HUD show:YES];
+
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    HUD.removeFromSuperViewOnHide = YES;
+	[self.navigationController.view addSubview:HUD];
+    HUD.delegate = self;
+    HUD.labelText = @"Loading";
+    [HUD show:YES];
+}
+
+
+- (void)videoUploadingDidFinish:(ASIHTTPRequest *)request
+{
+    [self loadData];
+}
+
+- (void)videoUploadDidFail:(ASIHTTPRequest *)request
+{
+    HUD.mode = MBProgressHUDModeCustomView;
+    HUD.labelText = @"Unable to connect.";
+    HUD.removeFromSuperViewOnHide = YES;
+    [HUD hide:YES afterDelay:2];
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
@@ -645,12 +701,6 @@
             [ac addObject:newAction];
         }
 
-//        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-//        if ([prefs valueForKey:@"action_count"] == [ac count])
-//        {
-//            NSLog(@"%@",[prefs valueForKey:@"access_token"]);
-//            [request setPostValue:(NSString*)[prefs valueForKey:@"access_token"] forKey:@"access_token"];
-//        }
         [[[[[self tabBarController] tabBar] items] objectAtIndex:1] setBadgeValue:[NSString stringWithFormat:@"%d",[ac count]]];
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         [appDelegate setGlobalQuestions:qc];
@@ -661,10 +711,10 @@
         //Load the server data into Core Data   
     }
     
-    //[HUD hide:YES];
-    loading = false;
+    [HUD hide:YES];
+    //loading = false;
     
-    [self performSelector:@selector(removeLoadingBanner) withObject:self afterDelay:1.0];
+    //[self performSelector:@selector(removeLoadingBanner) withObject:self afterDelay:1.0];
     
     
     [[self tableView] reloadData];
@@ -693,13 +743,19 @@
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
     NSError *error = [request error];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection" 
+    /*
+     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection" 
                                                     message:[error description]
                                                    delegate:nil 
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     [alert show];
-    //Todo: Display Error Message
+     */
+    
+    HUD.mode = MBProgressHUDModeCustomView;
+    HUD.labelText = @"Unable to connect.";
+    HUD.removeFromSuperViewOnHide = YES;
+    [HUD hide:YES afterDelay:2];
 }
 
 
@@ -743,11 +799,19 @@
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     if ([prefs boolForKey:@"logged_in"])
     {
-//        actionSheetAnswer = [[UIActionSheet alloc] initWithTitle:@"Post an answer (only half)" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Upload from Album", nil];
-//        [actionSheetAnswer setTag:1];
-//        [actionSheetAnswer showFromTabBar:self.tabBarController.tabBar];
+        //Display instruction screen, with continue button to UIImagePickerController for recording
+        NSLog(@"Display instruction screen.");
+        picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = true;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        picker.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeMovie, nil];
+        [picker setVideoMaximumDuration:120.0f];
+        [picker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModeVideo];
+        [picker setVideoQuality:UIImagePickerControllerQualityTypeMedium];
+        [self presentModalViewController:picker animated:YES];
         
-        //[self performSegueWithIdentifier:@"StartRecorder" sender:self];
+        
     }
     else
     {

@@ -15,6 +15,7 @@
 @synthesize imageCache;
 @synthesize networkQueue;
 
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -102,6 +103,11 @@
     return [activityArray count];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 48.0;
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -118,7 +124,7 @@
     
     if (tempImg != nil)
     {
-        [[cell imageView] setImage:tempImg];
+        [[cell senderImage] setImage:tempImg];
     }
     else 
     {
@@ -191,13 +197,25 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    
+    Action *action = [activityArray objectAtIndex:indexPath.row];
+    if ([[action actionType] isEqualToString:@"like"] || [[action actionType] isEqualToString:@"answer"])
+    {
+        //Load answer page
+        
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+        
+        AnswerViewController *answerView = [sb instantiateViewControllerWithIdentifier:@"AnswerViewController"];
+        [answerView setQuestion_id:24];
+        [self.navigationController pushViewController:answerView animated:YES];
+        
+    }
+    else 
+    {
+        //Other type (not handled)
+    }
+    
+    [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
 }
 
 #pragma mark - Network Queue callback
@@ -213,5 +231,7 @@
 {
      //Incomplete Implementation: Handle failed image request
 }
+
+
 
 @end

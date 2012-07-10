@@ -12,6 +12,7 @@
 #import "Action.h"
 #import "ASIHTTPRequest.h"
 #import "ASINetworkQueue.h"
+#import "AnswerViewController.h"
 
 
 @interface ActivityViewController : UITableViewController
@@ -22,5 +23,8 @@
 @property (nonatomic, retain) NSMutableArray *activityArray;
 @property (nonatomic, retain) NSMutableDictionary *imageCache;
 @property (nonatomic, retain) ASINetworkQueue *networkQueue;
+
+
+
 
 @end

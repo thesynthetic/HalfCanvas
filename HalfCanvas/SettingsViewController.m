@@ -89,76 +89,43 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 1;
-}
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+//{
+//#warning Potentially incomplete method implementation.
+//    // Return the number of sections.
+//    return 1;
+//}
+//
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//#warning Incomplete method implementation.
+//    // Return the number of rows in the section.
+//    if (loggedIn)
+//    {
+//        return 2;
+//    }
+//    else
+//    {
+//        return 1;
+//    }
+//}
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    if (loggedIn)
-    {
-        return 2;
-    }
-    else
-    {
-        return 1;
-    }
-}
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
-{
-    return @"Account";
-}
     
-    
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    
-    if (indexPath.section == 0)
-    {
-        if (indexPath.row == 0)
-        {
-            if (loggedIn)
-            {
-                NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-                [[cell textLabel] setText:[prefs objectForKey:@"username"]];
-            }
-            else 
-            {
-                [[cell textLabel] setText:@"Sign In"];
-            }
-        }
-        if (indexPath.row == 1)
-        {
-            if (loggedIn)
-            {
-                [[cell textLabel] setText:@"Sign Out"];
-            }
-        }
-            
-    }
-    else 
-    {
-        [[cell textLabel] setText:@"Other"];
-        
-    }
-    
-
-    // Configure the cell...
-    return cell;
-}
+//
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    static NSString *CellIdentifier = @"Cell";
+//    
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    if (cell == nil) {
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//    }
+//       
+//
+//    // Configure the cell...
+//    return cell;
+//}
 
 /*
 // Override to support conditional editing of the table view.
@@ -203,31 +170,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    if (indexPath.section == 0)
+    if (indexPath.section == 2 && indexPath.row == 1)
     {
-        if (indexPath.row == 0)
-        {
-            if (!loggedIn)
-            {
-                [self performSegueWithIdentifier:@"signin" sender:self];
-            }
-        }
-        if (indexPath.row == 1)
-        {
-            if (loggedIn)
-            {
-                NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-                [user setBool:false forKey:@"logged_in"];
-                [user setValue:nil forKey:@"access_token"];
-                [user setValue:nil forKey:@"username"];
-                [user synchronize];
-                loggedIn = false;
-                [tableView reloadData];
-            }
-        }
+     
+        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+        [user setBool:false forKey:@"logged_in"];
+        [user setValue:nil forKey:@"access_token"];
+        [user setValue:nil forKey:@"username"];
+        [user synchronize];
+        MainTabBarController *mainTab = (MainTabBarController*)self.tabBarController;
+        [mainTab setSelectedIndex:0];
+        
     }
-    
 }
 
 

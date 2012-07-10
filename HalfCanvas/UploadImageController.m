@@ -112,7 +112,7 @@
 
 -(void)uploadDataAsQuestion
 {
-    NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/create_question/"];
+    NSURL *url = [NSURL URLWithString:@"http://askdittles.com/create_question/"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setData:UIImageJPEGRepresentation(imageToUpload,0.35) withFileName:@"upload.jpg" andContentType:@"image/jpeg" forKey:@"file"];
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
@@ -125,7 +125,7 @@
 -(void)uploadDataAsAnswer
 {
     NSLog(@"%d",[self question_id]);
-    NSURL *url = [NSURL URLWithString:@"http://stripedcanvas.com/create_answer/"];
+    NSURL *url = [NSURL URLWithString:@"http://askdittles.com/create_answer/"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setData:UIImageJPEGRepresentation(imageToUpload,0.35) withFileName:@"upload.jpg" andContentType:@"image/jpeg" forKey:@"file"];
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];

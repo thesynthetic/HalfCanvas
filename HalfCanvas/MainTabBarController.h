@@ -11,7 +11,7 @@
 #import "Question.h"
 #import "QuestionCollection.h"
 
-@interface MainTabBarController : UITabBarController
+@interface MainTabBarController : UITabBarController <UITabBarControllerDelegate>
 {
 
 

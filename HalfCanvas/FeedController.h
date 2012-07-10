@@ -45,6 +45,7 @@
     UIImage *imageToUpload;
     NSMutableDictionary *imageCache;
     
+    
     //ASIHttp Variables
     ASINetworkQueue *networkQueue;
     
