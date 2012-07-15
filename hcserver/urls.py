@@ -31,4 +31,10 @@ urlpatterns = patterns('',
 
     # Create Video Answer
     url(r'^create_video_answer/','hcserver.views.create_video_answer'),
+
+    # Like Answer
+    url(r'^like_answer/','hcserver.views.like_answer'),
+
+    # Unlike Answer
+    url(r'^unlike_answer/','hcserver.views.unlike_answer'),
 )
