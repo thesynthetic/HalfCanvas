@@ -25,6 +25,9 @@
 @synthesize movieURL;
 @synthesize createAnswerButton;
 @synthesize otherButton;
+@synthesize heart;
+@synthesize likeCount;
+
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -91,6 +94,10 @@
     [delegate handlePlayMovie:url];
 }
 
+-(IBAction)toggleLike:(id)sender
+{
+    [delegate handleToggleLike:[self index]];
+}
 
 
 @end

@@ -17,6 +17,7 @@
 - (void)handleAnswerclick:(int)indexNum;
 - (void)handleAddAnswerClick:(int)indexNum;
 - (void)handlePlayMovie:(NSURL*)movieURL;
+- (void)handleToggleLike:(int)indexNum;
 @required
 - (void)addCurrentMovie:(MPMoviePlayerController*)player;
 @end
@@ -43,6 +44,8 @@
 @property (nonatomic, retain) IBOutlet UIButton *createAnswerButton;
 @property (nonatomic, retain) id <FeedCellDelegate> delegate;
 @property (nonatomic) int index;
+@property (nonatomic, retain) IBOutlet UILabel *likeCount;
+@property (nonatomic, retain) IBOutlet UIImageView *heart;
 
 -(IBAction)answerButtonClick:(id)sender;
 -(void)initExtras;

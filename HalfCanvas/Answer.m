@@ -15,5 +15,7 @@
 @synthesize image_url;
 @synthesize description;
 @synthesize user_profile_image_url;
+@synthesize likeCount;
+@synthesize likeToggle;
 
 @end

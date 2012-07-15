@@ -413,8 +413,31 @@
     [self setEmailString:[temp text]];
     
     ASIHTTPRequest *request;
-    request = [ASIHTTPRequest requestWithURL:nil];
     
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.gravatar.com/avatar/%@?d=identicon",[self md5HexDigest:[self emailString]]]];
+    request = [[ASIHTTPRequest alloc] initWithURL:url];
+    [request setDidFinishSelector:@selector(profilePictureRequestFinished:)];
+    [request setDelegate:self];
+    [request startAsynchronous];
+}
+
+-(void)profilePictureRequestFinished:(ASIHTTPRequest *)request
+ {
+     UIImage *img = [UIImage imageWithData:[request responseData]];
+     [self setProfilePicture:img];
+     [[self tableView] reloadData];
+ }
+
+- (NSString*)md5HexDigest:(NSString*)input {
+    const char* str = [input UTF8String];
+    unsigned char result[CC_MD5_DIGEST_LENGTH];
+    CC_MD5(str, strlen(str), result);
+    
+    NSMutableString *ret = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH*2];
+    for(int i = 0; i<CC_MD5_DIGEST_LENGTH; i++) {
+        [ret appendFormat:@"%02x",result[i]];
+    }
+    return ret;
 }
 
 @end

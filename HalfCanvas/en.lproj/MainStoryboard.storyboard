@@ -231,7 +231,7 @@
                                             <color key="textColor" red="0.0" green="0.57322080291970801" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="75f-oQ-yjq">
+                                        <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="75f-oQ-yjq">
                                             <rect key="frame" x="105" y="302" width="111" height="29"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
@@ -813,27 +813,27 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="208"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="AnswerCell-Background@2x.png" id="fa0-Qe-3rP">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="AnswerCell-Background-v2@2x.png" id="fa0-Qe-3rP">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="208"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <view contentMode="scaleToFill" id="lSN-28-krz">
+                                        <view alpha="0.80000000000000004" contentMode="scaleToFill" id="lSN-28-krz">
                                             <rect key="frame" x="15" y="9" width="290" height="164"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="play_button.png" id="6HB-wB-Mck">
+                                                <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFit" image="play_button.png" id="6HB-wB-Mck">
                                                     <rect key="frame" x="111" y="65" width="69" height="34"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cht-ad-3Th">
-                                                    <rect key="frame" x="123" y="60" width="45" height="43"/>
+                                                <button opaque="NO" alpha="0.20000000000000015" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cht-ad-3Th">
+                                                    <rect key="frame" x="0.0" y="0.0" width="290" height="164"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" size="button"/>
                                                     <state key="normal">
                                                         <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <state key="highlighted">
+                                                    <state key="highlighted" backgroundImage="white.png">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -843,10 +843,38 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Heart@2x.png" id="fiz-Ve-6fu">
+                                            <rect key="frame" x="20" y="177" width="20" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <button opaque="NO" alpha="0.50000000000000011" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZPp-w2-4p2">
+                                            <rect key="frame" x="9" y="171" width="55" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                            <state key="normal">
+                                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="highlighted" backgroundImage="Answer-Button-Background.png">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="toggleLike:" destination="Zr9-oj-XdE" eventType="touchUpInside" id="pYH-Ad-3DG"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="left" text="2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="M9W-Ri-euz" userLabel="Like Count">
+                                            <rect key="frame" x="46" y="177" width="32" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
+                                    <outlet property="heart" destination="fiz-Ve-6fu" id="5TU-6R-W68"/>
+                                    <outlet property="likeCount" destination="M9W-Ri-euz" id="1su-dp-gHf"/>
                                     <outlet property="movieCanvas" destination="lSN-28-krz" id="Go4-Tr-hVU"/>
                                     <outlet property="playButton" destination="cht-ad-3Th" id="H4R-NY-2PZ"/>
                                     <outlet property="playButtonImage" destination="6HB-wB-Mck" id="rTX-1E-MSi"/>
@@ -1099,8 +1127,10 @@
     </scenes>
     <resources>
         <image name="09-chat-2.png" width="24" height="22"/>
-        <image name="AnswerCell-Background@2x.png" width="640" height="413"/>
+        <image name="Answer-Button-Background.png" width="65" height="32"/>
+        <image name="AnswerCell-Background-v2@2x.png" width="320" height="207"/>
         <image name="Default_Profile_Picture.png" width="80" height="80"/>
+        <image name="Heart@2x.png" width="38" height="38"/>
         <image name="OtherButton.png" width="20" height="20"/>
         <image name="Sign-Up-Page@2x.png" width="640" height="960"/>
         <image name="UITableViewCellBackgroundv2@2x.png" width="640" height="674"/>
@@ -1109,14 +1139,122 @@
         <image name="home.png" width="22" height="22"/>
         <image name="play_button.png" width="142" height="142"/>
         <image name="profile_picture.jpg" width="50" height="50"/>
+        <image name="white.png" width="2" height="2"/>
     </resources>
+    <classes>
+        <class className="ActivityCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ActivityCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="senderImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="senderUsername" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="text" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="ActivityViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ActivityViewController.h"/>
+        </class>
+        <class className="AnswerViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswerViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="playbackMovie:"/>
+            </relationships>
+        </class>
+        <class className="FeedCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedCell.h"/>
+            <relationships>
+                <relationship kind="action" name="answerButtonClick:"/>
+                <relationship kind="action" name="answerCountClick:"/>
+                <relationship kind="action" name="playMovie:"/>
+                <relationship kind="outlet" name="answerCount" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="answerCountButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="answerCountLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="createAnswerButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="heart" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="imageProgressIndicator" candidateClass="UIProgressView"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="likeCount" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="messageBubble" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="movieCanvas" candidateClass="UIView"/>
+                <relationship kind="outlet" name="otherButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="playButtonImage" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="FeedController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedController.h"/>
+            <relationships>
+                <relationship kind="action" name="addAnswer:"/>
+                <relationship kind="action" name="cameraButtonClick"/>
+                <relationship kind="action" name="imageClick:"/>
+                <relationship kind="action" name="loadData"/>
+            </relationships>
+        </class>
+        <class className="FeedSectionHeader" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedSectionHeader.h"/>
+            <relationships>
+                <relationship kind="outlet" name="user" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="MainTabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainTabBarController.h"/>
+        </class>
+        <class className="PictureViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PictureViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="closePictureViewer:"/>
+                <relationship kind="outlet" name="imageScrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="ProfilePictureCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfilePictureCell.h"/>
+            <relationships>
+                <relationship kind="action" name="didTapPhoto:"/>
+                <relationship kind="outlet" name="button" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="mainLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SettingsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
+        </class>
+        <class className="SignInViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SignInViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="signIn:"/>
+            </relationships>
+        </class>
+        <class className="SignUpEmailViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SignUpEmailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="test:"/>
+                <relationship kind="outlet" name="doneCell" candidateClass="UITableViewCell"/>
+            </relationships>
+        </class>
+        <class className="SignUpViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SignUpViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="doneButtonClick:"/>
+                <relationship kind="action" name="useEmailAddress:"/>
+                <relationship kind="outlet" name="signUpButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="UploadImageController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UploadImageController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelButton:"/>
+                <relationship kind="action" name="doneButton:"/>
+                <relationship kind="outlet" name="comments" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="tags" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="6Ql-kL-hnx"/>
-        <segue reference="sEW-H8-cXr"/>
+        <segue reference="0Jn-o9-eCO"/>
+        <segue reference="3Zq-Rg-m8G"/>
     </inferredMetricsTieBreakers>
 </document>

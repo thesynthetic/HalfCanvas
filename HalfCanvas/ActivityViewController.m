@@ -39,8 +39,7 @@
 {
     [super viewDidLoad];
 
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    activityArray = [appDelegate globalActions];
+
 
     self.imageCache = [[NSMutableDictionary alloc] init];
     if (!networkQueue) {
@@ -65,6 +64,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    activityArray = [appDelegate globalActions];
+    [[self tableView] reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated

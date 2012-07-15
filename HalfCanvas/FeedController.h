@@ -80,6 +80,7 @@
 @property (retain) UIImagePickerController *picker;
 @property (retain) UIImage *imageToUpload;
 @property (nonatomic) BOOL addingQuestion;
+@property (nonatomic) BOOL takingPicture;
 
 
 

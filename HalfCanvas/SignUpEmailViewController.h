@@ -11,6 +11,7 @@
 #import "ASIHTTPRequest.h"
 #import "SBJson.h"
 #import "ProfilePictureCell.h"
+#import <CommonCrypto/CommonDigest.h>
 
 @interface SignUpEmailViewController : UITableViewController <ASIHTTPRequestDelegate, UITextFieldDelegate, ProfilePictureDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate>
 {
@@ -45,5 +46,6 @@
 - (void)passwordDidChange:(id)sender;
 - (void)emailDidChange:(id)sender;
 
-
+- (NSString*)md5HexDigest:(NSString*)input;
+- (void)profilePictureRequestFinished:(ASIHTTPRequest *)request;
 @end

@@ -21,6 +21,7 @@
 @synthesize ac;
 @synthesize addingQuestion;
 @synthesize imageCache;
+@synthesize takingPicture;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -445,6 +446,7 @@
 
 - (void)cameraButtonClick
 {
+    [self setTakingPicture:TRUE];
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     if ([prefs boolForKey:@"logged_in"])
     {
@@ -499,16 +501,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
-    [self setImageToUpload:image];
-    [picker dismissModalViewControllerAnimated:YES];
-    if ([self addingQuestion])
-    {
-        [self performSegueWithIdentifier:@"didcapturepicture1" sender:self];
-    }
-    else 
-    {
-        [self performSegueWithIdentifier:@"didcapturepicture2" sender:self];
-    }
+    
         
     
 }
@@ -521,15 +514,26 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    if (picker.cameraCaptureMode == UIImagePickerControllerCameraCaptureModeVideo)
+    
+    if ([self takingPicture])
     {
+        [self setImageToUpload:[info objectForKey:UIImagePickerControllerEditedImage]];
+        [picker dismissModalViewControllerAnimated:YES];
+        if ([self addingQuestion])
+        {
+            [self performSegueWithIdentifier:@"didcapturepicture1" sender:self];
+        }
+        else 
+        {
+            [self performSegueWithIdentifier:@"didcapturepicture2" sender:self];
+        }
+    }
+    else {
         NSURL *localURL = [info objectForKey:UIImagePickerControllerMediaURL];
-        
         NSURL *url = [NSURL URLWithString:@"http://askdittles.com/create_video_answer/"];
         ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
         NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
         NSString *access_token = [user objectForKey:@"access_token"];
-
         
         [request setPostValue:[NSString stringWithFormat:@"%d",answerViewerIndex] forKey:@"question_id"];
         [request setPostValue:access_token forKey:@"access_token"];
@@ -693,8 +697,10 @@
         {
             Action *newAction = [[Action alloc] init];
             
+            //Update needed for updated API
             [newAction setSenderImageURL:[dict objectForKey:@"sender_image_url"]];
             [newAction setSenderUsername:[dict objectForKey:@"sender"]];
+            
             [newAction setQuestionID:[[dict objectForKey:@"question_id"] integerValue]];
             [newAction setActionType:[dict objectForKey:@"type"]];
             
@@ -794,6 +800,7 @@
                                        
 - (void)handleAddAnswerClick:(int)indexNum
 {
+    [self setTakingPicture:FALSE];
     Question *question = [qc objectAtIndex:indexNum];
     answerViewerIndex = [question question_id];
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
@@ -810,7 +817,6 @@
         [picker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModeVideo];
         [picker setVideoQuality:UIImagePickerControllerQualityTypeMedium];
         [self presentModalViewController:picker animated:YES];
-        
         
     }
     else

@@ -24,6 +24,7 @@
 @synthesize currentPlayer;
 @synthesize mp;
 
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -83,29 +84,15 @@
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
     
-    return [answerCollection count] == 0 ? 1 : [answerCollection count] + 1;
+    return [answerCollection count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    if ([answerCollection count] > 0) 
-    {
-        if (section == [answerCollection count] - 1)
-        {
-            return 1;
-        }
-        else 
-        {
-            return 1;
-        }
-    }
-    else 
-    {
-        //If not loaded yet (2 will fill the screen)
-        return 1;
-    }
+    return 1;
+    
 
 }
 
@@ -206,6 +193,15 @@
         [feedCell setDelegate:self];
         [feedCell setIndex:indexPath.section];
         [feedCell setMovieURL:[test image_url]];
+        if ([test likeToggle])
+        {
+            [[feedCell heart] setImage:[UIImage imageNamed:@"Heart-Liked.png"]];
+        }
+        else 
+        {
+            [[feedCell heart] setImage:[UIImage imageNamed:@"Heart.png"]];
+        }
+        [[feedCell likeCount] setText:[NSString stringWithFormat:@"%d",[test likeCount]]];
         
         return feedCell;
     }
@@ -216,23 +212,31 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //Testing movie record
-    picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing = true;
-    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    picker.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeMovie, nil];
-    [picker setVideoMaximumDuration:60.0f];
-    [picker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModeVideo];
-    [picker setVideoQuality:UIImagePickerControllerQualityTypeMedium];
-    [self presentModalViewController:picker animated:YES];
-    
-    
-    
-    if (indexPath.row == 1)
-    {
-        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-        [self addAnswerClick];
-    }
+//    if (indexPath.section == [answerCollection count])
+//    {
+//        
+//        
+//    }
+//    
+//    
+//    
+//    if (index indexPath.row == 1)
+//    {
+//        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+//        picker = [[UIImagePickerController alloc] init];
+//        picker.delegate = self;
+//        picker.allowsEditing = true;
+//        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+//        picker.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeMovie, nil];
+//        [picker setVideoMaximumDuration:60.0f];
+//        [picker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModeVideo];
+//        [picker setVideoQuality:UIImagePickerControllerQualityTypeMedium];
+//        [self presentModalViewController:picker animated:YES];
+//        
+//        
+//        
+//        [self addAnswerClick];
+//    }
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -248,6 +252,12 @@
     NSURL *url = [NSURL URLWithString:@"http://askdittles.com/answers/"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setPostValue:[NSString stringWithFormat:@"%d", question_id] forKey:@"question_id"];
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    if ([prefs boolForKey:@"logged_in"])
+    { 
+        [request setPostValue:[NSString stringWithFormat:@"%@",[prefs objectForKey:@"access_token"]] forKey:@"access_token"];
+    }
+    
     NSLog(@"Question_id: %d", question_id);
     [request setDelegate:self];
     [request startAsynchronous];
@@ -286,7 +296,19 @@
                 [newAnswer setAnswer_id:[[dict objectForKey:@"answer_id"] integerValue]];
                 [newAnswer setImage_url:[dict objectForKey:@"image_url"]];
                 [newAnswer setDescription:[dict objectForKey:@"description"]];
-                [newAnswer setUser_profile_image_url:[dict objectForKey:@"user_profile_image_url"]];             
+                NSInteger likeToggle = [[dict objectForKey:@"like_toggle"] integerValue];
+
+                if (likeToggle == 1)
+                {
+                    [newAnswer setLikeToggle:TRUE];
+                }
+                else 
+                {
+                    [newAnswer setLikeToggle:FALSE];
+                }
+                [newAnswer setLikeCount:[[dict objectForKey:@"like_count"] integerValue]];
+                [newAnswer setUser_profile_image_url:[dict objectForKey:@"user_profile_image_url"]];
+                
                 [answerCollection addObject:newAnswer];
             }
         }
@@ -436,8 +458,54 @@
     [self dismissMoviePlayerViewControllerAnimated];  
 }
 
+-(void)handleToggleLike:(int)indexNum
+{
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+
+    if ([prefs boolForKey:@"logged_in"])
+    { 
+//        HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+//        [self.navigationController.view addSubview:HUD];
+        
+        // The sample image is based on the work by http://www.pixelpressicons.com, http://creativecommons.org/licenses/by/2.5/ca/
+        // Make the customViews 37 by 37 pixels for best results (those are the bounds of the build-in progress indicators)
+        //HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
+        Answer *test = [answerCollection objectAtIndex:indexNum];
+        NSURL *url;
+        if ([test likeToggle])
+        {
+            url = [NSURL URLWithString:@"http://askdittles.com/unlike_answer/"];
+        }
+        else 
+        {
+            url = [NSURL URLWithString:@"http://askdittles.com/like_answer/"];
+        }
+        
+        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+        [request setPostValue:[NSString stringWithFormat:@"%d", [test answer_id]] forKey:@"answer_id"];
+        [request setPostValue:[NSString stringWithFormat:@"%@",[prefs objectForKey:@"access_token"]] forKey:@"access_token"];
+        [request setDelegate:self];
+        [request setDidFinishSelector:@selector(likeDidFinish:)];
+        [request setDidFailSelector:@selector(likeDidFail:)];
+        [request startAsynchronous];
+    }
+    else
+    {
+        [self performSegueWithIdentifier:@"SignUpPopUp" sender:self];
+    }
+    
+    
+}
 #pragma mark - ASIHTTPDelegate
 
+- (void)likeDidFinish:(ASIHTTPRequest *)request
+{
+    [self loadData];
+}
 
+- (void)likeDidFail:(ASIHTTPRequest *)request
+{
+    
+}
 
 @end

@@ -45,6 +45,7 @@
 @property (retain) MPMoviePlayerViewController *mp;
 
 
+
 - (void)loadData;
 - (void)addAnswerClick;
 - (void)startCamera;
@@ -54,6 +55,7 @@
 
 -(IBAction)playbackMovie:(id)sender;
 
-
+- (void)likeDidFinish:(ASIHTTPRequest *)request;
+- (void)likeDidFail:(ASIHTTPRequest *)request;
 
 @end
