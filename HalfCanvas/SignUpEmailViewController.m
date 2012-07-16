@@ -337,6 +337,7 @@
             NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
             [user setValue:access_token forKey:@"access_token"];
             [user setValue:[username text] forKey:@"username"];
+            [user setValue:emailString forKey:@"email"];
             [user setBool:TRUE forKey:@"logged_in"];
 
             [self.navigationController dismissModalViewControllerAnimated:true];

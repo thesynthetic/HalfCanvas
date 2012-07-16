@@ -9,12 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "SignInViewController.h"
 #import "MainTabBarController.h"
+#import "ASIHTTPRequest.h"
+#import <CommonCrypto/CommonDigest.h>
 
-@interface SettingsViewController : UITableViewController
+@interface SettingsViewController : UITableViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate>
 {
     BOOL loggedIn;
     
 }
 
+@property (nonatomic, retain) UIImage *profilePicture;
 
 @end

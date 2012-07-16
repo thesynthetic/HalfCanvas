@@ -3,7 +3,7 @@
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1179"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
     </dependencies>
     <scenes>
         <!--Sign Up View Controller-->
@@ -719,12 +719,12 @@
             </objects>
             <point key="canvasLocation" x="617" y="2428"/>
         </scene>
-        <!--Navigation Controller - My Canvas-->
+        <!--Navigation Controller - Notifications-->
         <scene sceneID="cGW-iy-kuD">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w0q-rZ-Bb3" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="LET-Sv-zNu" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="1" title="My Canvas" image="09-chat-2.png" id="5aA-PU-fGZ"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Notifications" image="09-chat-2.png" id="5aA-PU-fGZ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Y03-Rb-gUH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

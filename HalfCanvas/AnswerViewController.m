@@ -123,7 +123,7 @@
         [timestamp setFont:[UIFont systemFontOfSize:9]];
         [timestamp setText:@"3 hours ago"];
 
-        UIImageView *userImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5,5,30,30)];
+        UIImageView *userImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15,5,30,30)];
         UIImage *tempImg = [imageCache objectForKey:[[answerCollection objectAtIndex:section] user_profile_image_url]];
         
         if (tempImg != nil)

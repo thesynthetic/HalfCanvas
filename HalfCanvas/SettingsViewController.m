@@ -11,6 +11,8 @@
 
 @implementation SettingsViewController
 
+@synthesize profilePicture;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -182,9 +184,115 @@
         [mainTab setSelectedIndex:0];
         
     }
+    
+    if (indexPath.section == 2 && indexPath.row == 0)
+    {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Choose from Album", @"Use default", nil];
+        [actionSheet showInView:self.view];        
+    }
+    [[self tableView] deselectRowAtIndexPath:indexPath animated:FALSE];
+}
+
+#pragma mark - Action Sheet Delegate
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) 
+    {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = true;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        [self presentModalViewController:picker animated:YES];
+    }
+    else if (buttonIndex == 1) 
+    {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = true;
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentModalViewController:picker animated:YES];
+    } 
+    else if (buttonIndex == 2) 
+    {
+        //Set Profile Picture to Default
+        
+        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+        NSString *email = [user objectForKey:@"email"];
+        
+        ASIHTTPRequest *request;
+        
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.gravatar.com/avatar/%@?d=identicon",[self md5HexDigest:email]]];
+        request = [[ASIHTTPRequest alloc] initWithURL:url];
+        [request setDidFinishSelector:@selector(profileGravatarRequestFinished:)];
+        [request setDelegate:self];
+        [request startAsynchronous];
+    }
+    
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
+{
+    [self setProfilePicture:image];
+    [self imageWithImage:image scaledToSize:CGSizeMake(150.0f, 150.0f)];
+
+    //Send to server
+    
+    NSURL *url = [NSURL URLWithString:@"http://askdittles.com/update_profile_picture/"];
+    ASIFormDataRequest *request = [[ASIFormDataRequest alloc] initWithURL:url];
+    
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSString *access_token = [user objectForKey:@"access_token"];
+    
+    [request setPostValue:access_token forKey:@"access_token"];
+    [request setData:UIImageJPEGRepresentation([self profilePicture],1.0) withFileName:@"upload.jpg" andContentType:@"image/jpeg" forKey:@"file"];
+    
+    [request setDidFinishSelector:@selector(profilePictureUpdateFinished:)];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    [self dismissModalViewControllerAnimated:true];
 }
 
 
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissModalViewControllerAnimated:true];
+}
+
+-(void)profileGravatarRequestFinished:(ASIHTTPRequest *)request
+{
+    UIImage *img = [UIImage imageWithData:[request responseData]];
+    [self setProfilePicture:[self imageWithImage:img scaledToSize:CGSizeMake(150.0f, 150.0f)]];
+    //Send to server
+}
+
+- (void)profilePictureUpdateFinished:(ASIHTTPRequest *)request
+{
+    NSLog(@"Profile updated");
+
+}
+
+
+
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize
+{
+    UIGraphicsBeginImageContext(newSize);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();    
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
+- (NSString*)md5HexDigest:(NSString*)input {
+    const char* str = [input UTF8String];
+    unsigned char result[CC_MD5_DIGEST_LENGTH];
+    CC_MD5(str, strlen(str), result);
+    
+    NSMutableString *ret = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH*2];
+    for(int i = 0; i<CC_MD5_DIGEST_LENGTH; i++) {
+        [ret appendFormat:@"%02x",result[i]];
+    }
+    return ret;
+}
 
 
 @end
