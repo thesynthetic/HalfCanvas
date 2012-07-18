@@ -237,7 +237,7 @@
 
     //Send to server
     
-    NSURL *url = [NSURL URLWithString:@"http://askdittles.com/update_profile_picture/"];
+    NSURL *url = [NSURL URLWithString:@"http://askdittles.com/change_profile_picture/"];
     ASIFormDataRequest *request = [[ASIFormDataRequest alloc] initWithURL:url];
     
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
@@ -268,6 +268,7 @@
 - (void)profilePictureUpdateFinished:(ASIHTTPRequest *)request
 {
     NSLog(@"Profile updated");
+    //Flush profile picture cache
 
 }
 

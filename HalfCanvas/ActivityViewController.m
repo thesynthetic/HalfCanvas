@@ -142,13 +142,13 @@
         [networkQueue go];    
     }
 
-    if ([action actionType] == @"like")
+    if ([[action actionType] isEqualToString:@"like"])
     {
-        [[cell text] setText:@"likes your video"];
+        [[cell text] setText:@"likes your lesson"];
     }
-    else if ([action actionType] == @"answer") 
+    else if ([[action actionType] isEqualToString:@"answer"]) 
     {
-        [[cell text] setText:@"posted a video for you"];
+        [[cell text] setText:@"posted a lesson for you"];
     }
     
     

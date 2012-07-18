@@ -81,18 +81,20 @@
 
 - (void)handleDoubleTap:(UIGestureRecognizer *)gestureRecognizer {
     // double tap zooms in
-    NSLog(@"Double tap");
     float newScale = [imageScrollView zoomScale] * ZOOM_STEP;
-    NSLog(@"Zoom %f",[imageScrollView zoomScale]);
     CGRect zoomRect = [self zoomRectForScale:newScale withCenter:[gestureRecognizer locationInView:gestureRecognizer.view]];
     [imageScrollView zoomToRect:zoomRect animated:YES];
 }
 
 - (void)handleTwoFingerTap:(UIGestureRecognizer *)gestureRecognizer {
     // two-finger tap zooms out
-    float newScale = [imageScrollView zoomScale] / ZOOM_STEP;
-    CGRect zoomRect = [self zoomRectForScale:newScale withCenter:[gestureRecognizer locationInView:gestureRecognizer.view]];
-    [imageScrollView zoomToRect:zoomRect animated:YES];
+    if ([imageScrollView zoomScale] != 1.0f)
+    {
+        float newScale = [imageScrollView zoomScale] / ZOOM_STEP;
+        CGRect zoomRect = [self zoomRectForScale:newScale withCenter:[gestureRecognizer locationInView:gestureRecognizer.view]];
+        [imageScrollView zoomToRect:zoomRect animated:YES];
+    }
+    
 }
 
 #pragma mark Utility methods
