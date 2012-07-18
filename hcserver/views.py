@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.utils import simplejson
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate
-from django.db.models import Count
+from django.db.models import Count, Q
 from hcserver.util import *
 import boto
 import datetime
@@ -40,11 +40,15 @@ def index(request):
 	if('access_token' in request.POST):
 		user_data = UserData.objects.get(access_token = request.POST['access_token'])
 		if user_data is not None:
-			for i in Action.objects.filter(receiver=user_data.user).select_related('user__userdata'):
+			for i in Action.objects.filter( Q(question__user=user_data.user) | Q(answer__user=user_data.user)  ).select_related('user__userdata'):
 				action = dict()
 				action['answer_id'] = i.answer.pk
-				action['question_id'] = i.question.pk
-				action['receiver'] = i.receiver.username
+				action['question_id'] = i.answer.question.pk
+
+				if (i.question is not None):
+					action['receiver'] = i.question.user.username
+				else:
+					action['receiver'] = i.answer.user.username
 				action['sender'] = i.sender.username
 				action['sender_image_url'] = i.sender.userdata.profile_image_url
 				action['type'] = i.type
@@ -75,14 +79,28 @@ def index(request):
 def answers(request):
 	if request.POST['question_id']:
 		output = []
-		for i in Answer.objects.filter(question__pk=request.POST['question_id']).order_by('pub_date').select_related('user__userdata'):
-                	answer = dict()
+		userlikes = []
+		if ('access_token' in request.POST):
+			user_data = UserData.objects.get(access_token=request.POST['access_token'])
+			if user_data is not None:
+				q = Question.objects.get(pk=request.POST['question_id'])
+				fn = lambda x: x.answer
+				userlikes = map(fn, AnswerLike.objects.filter(Q(answer__user=user_data.user) & Q(answer__question=q)))
+				
+		for i in Answer.objects.filter(question__pk=request.POST['question_id']).order_by('pub_date').select_related('user__userdata').select_related('answer_answerlike').annotate(like_count=Count('answerlike')):
+
+			answer = dict()
                		answer['image_url'] = i.image_url
                 	answer['username'] = i.user.username
                 	answer['text'] = i.text
                 	answer['user_profile_image_url'] = i.user.userdata.profile_image_url
                 	answer['answer_id'] = i.pk
-                	#answer['pub_date'] = i.pub_date
+                	answer['like_count'] = i.like_count
+			if i in userlikes:
+				answer['like_toggle'] = 1
+			else:
+				answer['like_toggle'] = 0
+			#answer['pub_date'] = i.pub_date
                 	output.append(answer)
         	return HttpResponse(
                 	        simplejson.dumps(output),
@@ -116,7 +134,7 @@ def create_user(request):
 
                         #Connect to S3
                         conn= boto.connect_s3()
-                        bucket = conn.get_bucket('halfcanvas')
+                        bucket = conn.get_bucket('dittles')
                         k = Key(bucket)
 
                         #Create filename for S3
@@ -127,7 +145,7 @@ def create_user(request):
                         k.set_contents_from_string(request.FILES[dict_keys[0]].read())
 
                         #Store Question metadata in DB
-                        image_url = 'https://s3.amazonaws.com/halfcanvas/' + k.key
+                        image_url = 'https://s3.amazonaws.com/dittles/' + k.key
                        	
 			m = hashlib.md5()
 			m.update(username)
@@ -193,7 +211,7 @@ def create_question(request):
 			
 			#Connect to S3
 			conn= boto.connect_s3()
-			bucket = conn.get_bucket('halfcanvas')
+			bucket = conn.get_bucket('dittles')
 			k = Key(bucket)
 
 			#Create filename for S3
@@ -204,7 +222,7 @@ def create_question(request):
 			k.set_contents_from_string(request.FILES[dict_keys[0]].read())
 			
 			#Store Question metadata in DB
-			image_url = 'https://s3.amazonaws.com/halfcanvas/' + k.key 
+			image_url = 'https://s3.amazonaws.com/dittles/' + k.key 
 			q = Question(user=user_data.user, image_url=image_url, pub_date=datetime.datetime.now())
 			q.save()
 			
@@ -221,7 +239,7 @@ def create_answer(request):
 			
                         #Connect to S3
                         conn= boto.connect_s3()
-                        bucket = conn.get_bucket('halfcanvas')
+                        bucket = conn.get_bucket('dittles')
                         k = Key(bucket)
 
                         #Create filename for S3
@@ -232,7 +250,7 @@ def create_answer(request):
                         k.set_contents_from_string(request.FILES[dict_keys[0]].read())
 			
                         #Store Question metadata in DB
-                        image_url = 'https://s3.amazonaws.com/halfcanvas/' + k.key
+                        image_url = 'https://s3.amazonaws.com/dittles/' + k.key
 			text = ''
                         if ('text' in request.POST):
 				text = request.POST['text']
@@ -243,6 +261,8 @@ def create_answer(request):
 			q = Question.objects.get(id=question_id)
 			a = Answer(question=q, text=text, user=user_data.user, image_url=image_url, pub_date=datetime.datetime.now())
                         a.save()
+			action = Action(sender=user_data.user, question=q, answer=a, action_date=datetime.datetime.now(), type='answer')
+			action.save()
 
                 return HttpResponse(request.FILES[dict_keys[0]].read())
         else:
@@ -257,7 +277,7 @@ def create_video_answer(request):
 
                         #Connect to S3
                         conn= boto.connect_s3()
-                        bucket = conn.get_bucket('halfcanvas')
+                        bucket = conn.get_bucket('dittles')
                         k = Key(bucket)
 
                         #Create filename for S3
@@ -268,7 +288,7 @@ def create_video_answer(request):
                         k.set_contents_from_string(request.FILES[dict_keys[0]].read())
 
                         #Store Question metadata in DB
-                        image_url = 'https://s3.amazonaws.com/halfcanvas/' + k.key
+                        image_url = 'https://s3.amazonaws.com/dittles/' + k.key
                         text = ''
                         if ('text' in request.POST):
                                 text = request.POST['text']
@@ -295,7 +315,7 @@ def like_answer(request):
 			answer = Answer.objects.get(pk=answer_id)
 			like = AnswerLike(answer=answer,user=user_data.user, like_date=datetime.datetime.now())
 			like.save()
-			action = Action(sender=user_data.user,receiver=answer.question.user, question=answer.question, answer=answer, pub_date=datetime.datetime.now(),type='like')
+			action = Action(sender=user_data.user, question=answer.question, answer=answer, pub_date=datetime.datetime.now(),type='like')
 			action.save() 
 			return HttpResponse('AnswerLike created')
 		else:
@@ -314,7 +334,7 @@ def unlike_answer(request):
 			try:
 				like = AnswerLike.objects.get(answer=answer, user=user_data.user)
 				like.delete()
-				action = Action.objects.get(sender=user_data.user,receiver=answer.question.user,question=answer.question, answer=answer, type='like')
+				action = Action.objects.get(sender=user_data.user,question=answer.question, answer=answer, type='like')
 				action.delete()
 				return HttpResponse('AnswerLike deleted')
 			except DoesNotExist:

@@ -43,9 +43,8 @@ class AnswerLike(models.Model):
 
 class Action(models.Model):
 	sender = models.ForeignKey(User,related_name='action_sender')
-	receiver = models.ForeignKey(User, related_name='action_receiver')
-	question = models.ForeignKey(Question)
-	answer = models.ForeignKey(Answer)
+	question = models.ForeignKey(Question,null=True,blank=True)
+	answer = models.ForeignKey(Answer,null=True,blank=True)
 	pub_date = models.DateTimeField('action date')
 	type = models.CharField(max_length=32)
 
