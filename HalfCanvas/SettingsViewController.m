@@ -188,7 +188,8 @@
     if (indexPath.section == 2 && indexPath.row == 0)
     {
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Choose from Album", @"Use default", nil];
-        [actionSheet showInView:self.view];        
+        [actionSheet showFromTabBar:self.tabBarController.tabBar];
+   
     }
     [[self tableView] deselectRowAtIndexPath:indexPath animated:FALSE];
 }
@@ -221,7 +222,7 @@
         
         ASIHTTPRequest *request;
         
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.gravatar.com/avatar/%@?d=identicon",[self md5HexDigest:email]]];
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.gravatar.com/avatar/%@?d=identicon",[self md5HexDigest:@"ryeguy_24@yahoo.com"]]];
         request = [[ASIHTTPRequest alloc] initWithURL:url];
         [request setDidFinishSelector:@selector(profileGravatarRequestFinished:)];
         [request setDelegate:self];
@@ -244,11 +245,13 @@
     NSString *access_token = [user objectForKey:@"access_token"];
     
     [request setPostValue:access_token forKey:@"access_token"];
-    [request setData:UIImageJPEGRepresentation([self profilePicture],1.0) withFileName:@"upload.jpg" andContentType:@"image/jpeg" forKey:@"file"];
+    UIImage *scaledImage = [self imageWithImage:profilePicture scaledToSize:CGSizeMake(100.0,100.0)];
+    [request setData:UIImageJPEGRepresentation(scaledImage,1.0) withFileName:@"upload.jpg" andContentType:@"image/jpeg" forKey:@"file"];
     
     [request setDidFinishSelector:@selector(profilePictureUpdateFinished:)];
     [request setDelegate:self];
     [request startAsynchronous];
+    
     [self dismissModalViewControllerAnimated:true];
 }
 
@@ -262,7 +265,24 @@
 {
     UIImage *img = [UIImage imageWithData:[request responseData]];
     [self setProfilePicture:[self imageWithImage:img scaledToSize:CGSizeMake(150.0f, 150.0f)]];
-    //Send to server
+    
+    NSURL *url = [NSURL URLWithString:@"http://askdittles.com/change_profile_picture/"];
+    ASIFormDataRequest *newRequest = [[ASIFormDataRequest alloc] initWithURL:url];
+    
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSString *access_token = [user objectForKey:@"access_token"];
+    
+    [newRequest setPostValue:access_token forKey:@"access_token"];
+    UIImage *scaledImage = [self imageWithImage:profilePicture scaledToSize:CGSizeMake(100.0,100.0)];
+    [newRequest setData:UIImageJPEGRepresentation(scaledImage,1.0) withFileName:@"upload.jpg" andContentType:@"image/jpeg" forKey:@"file"];
+    
+    [newRequest setDidFinishSelector:@selector(profilePictureUpdateFinished:)];
+    [newRequest setDelegate:self];
+    [newRequest startAsynchronous];
+    
+    [self dismissModalViewControllerAnimated:true];
+
+    
 }
 
 - (void)profilePictureUpdateFinished:(ASIHTTPRequest *)request

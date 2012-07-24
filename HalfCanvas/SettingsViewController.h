@@ -20,4 +20,6 @@
 
 @property (nonatomic, retain) UIImage *profilePicture;
 
+- (NSString*)md5HexDigest:(NSString*)input;
+
 @end

@@ -3,7 +3,7 @@
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1179"/>
     </dependencies>
     <scenes>
         <!--Sign Up View Controller-->
@@ -160,7 +160,13 @@
                             <outlet property="delegate" destination="gJS-tC-9nL" id="3iP-ju-PsW"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Yb3-Jw-QJx"/>
+                    <navigationItem key="navigationItem" id="Yb3-Jw-QJx">
+                        <barButtonItem key="rightBarButtonItem" title="Submit" id="rW0-su-adp">
+                            <connections>
+                                <action selector="submitClick:" destination="gJS-tC-9nL" id="hRr-gd-hsb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="3116" y="-1944"/>
@@ -1226,6 +1232,7 @@
         <class className="SignUpEmailViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SignUpEmailViewController.h"/>
             <relationships>
+                <relationship kind="action" name="submitClick:"/>
                 <relationship kind="action" name="test:"/>
                 <relationship kind="outlet" name="doneCell" candidateClass="UITableViewCell"/>
             </relationships>

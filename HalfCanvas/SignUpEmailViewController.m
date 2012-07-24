@@ -86,7 +86,13 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 2;
+    if (state == 0){
+        return 1;
+    }
+    else 
+    {
+        return 2;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -104,7 +110,14 @@
     }
     else
     {
-        return 1;
+        if (state == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return 1;
+        }
     }
 }
 
@@ -248,13 +261,17 @@
     }
     else 
     {   
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cellLabel = [[UILabel alloc] initWithFrame:CGRectMake(129, 11, 42, 21)];
-        [cellLabel setTextAlignment:UITextAlignmentCenter];
-        [cellLabel setFont:[UIFont boldSystemFontOfSize:16]];
-        [cellLabel setBackgroundColor:[UIColor clearColor]];
-        [cellLabel setText:@"Done"];
-        [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
+        if (state == 1){
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            cellLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 11, 300, 21)];
+            [cellLabel setTextAlignment:UITextAlignmentCenter];
+            [cellLabel setFont:[UIFont boldSystemFontOfSize:16]];
+            [cellLabel setBackgroundColor:[UIColor clearColor]];
+            [cellLabel setText:@"Forgot Password"];
+            
+            [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
+        }
+      
     }
         
     [cell addSubview:cellLabel];
@@ -271,27 +288,7 @@
     
     if (indexPath.section == 1 && indexPath.row == 0)
     {
-    
-        if (state == 0) //Sign Up Handler
-        {
-            NSURL *url = [NSURL URLWithString:@"http://askdittles.com/create_user/"];
-            ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-            [request setDelegate:self];
-            [request setPostValue:[username text] forKey:@"username"];
-            [request setPostValue:[password text] forKey:@"password"];
-            [request setData:UIImageJPEGRepresentation([self profilePicture],0.35) withFileName:@"upload.jpg" andContentType:@"image/jpeg" forKey:@"file"];
-            [request setPostValue:[email text] forKey:@"email"];
-            [request startAsynchronous];     
-        }
-        else //Sign In Handler
-        {
-            NSURL *url = [NSURL URLWithString:@"http://askdittles.com/login/"];
-            ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-            [request setDelegate:self];
-            [request setPostValue:[username text] forKey:@"username"];
-            [request setPostValue:[password text] forKey:@"password"];
-            [request startAsynchronous];
-        }
+         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://askdittles.com/password_reset/"]];
     }
 }
 
@@ -302,8 +299,37 @@
     UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;    
     state = [segmentedControl selectedSegmentIndex];
     NSLog(@"State = %d",state);
-    //[[self tableView] reloadData];
-    [[self tableView] reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    [[self tableView] reloadData];
+    
+    //NSIndexSet *test = [[NSIndexSet alloc] initWithIndex:0];
+    //[[self tableView] reloadSections:test withRowAnimation:UITableViewRowAnimationFade];
+    
+
+}
+
+-(IBAction)submitClick:(id)sender
+{
+    if (state == 0) //Sign Up Handler
+    {
+        NSURL *url = [NSURL URLWithString:@"http://askdittles.com/create_user/"];
+        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+        [request setDelegate:self];
+        [request setPostValue:[username text] forKey:@"username"];
+        [request setPostValue:[password text] forKey:@"password"];
+        [request setData:UIImageJPEGRepresentation([self profilePicture],0.35) withFileName:@"upload.jpg" andContentType:@"image/jpeg" forKey:@"file"];
+        [request setPostValue:[email text] forKey:@"email"];
+        [request startAsynchronous];     
+    }
+    else //Sign In Handler
+    {
+        NSURL *url = [NSURL URLWithString:@"http://askdittles.com/login/"];
+        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+        [request setDelegate:self];
+        [request setPostValue:[username text] forKey:@"username"];
+        [request setPostValue:[password text] forKey:@"password"];
+        [request startAsynchronous];
+    }
+    
 }
 
 #pragma mark - ASI HTTP Request Callback

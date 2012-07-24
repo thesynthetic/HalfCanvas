@@ -40,6 +40,8 @@
 @property (nonatomic, retain) UIImage *profilePicture;
 
 -(IBAction)test:(id)sender;
+-(IBAction)submitClick:(id)sender;
+
 
 - (void)handleProfilePictureTap:(id)sender;
 - (void)usernameDidChange:(id)sender;

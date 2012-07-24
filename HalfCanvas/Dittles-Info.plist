@@ -13,7 +13,7 @@
 		<string>Untitled-2.png</string>
 		<string>Default.png</string>
 		<string>Default@2x.png</string>
-		<string>DittlesLogoV2.png</string>
+		<string>CrazyProfessor_LO_Icon_FF.png</string>
 	</array>
 	<key>CFBundleIcons</key>
 	<dict>
@@ -24,7 +24,7 @@
 				<string>Untitled-2.png</string>
 				<string>Default.png</string>
 				<string>Default@2x.png</string>
-				<string>DittlesLogoV2.png</string>
+				<string>CrazyProfessor_LO_Icon_FF.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<true/>
