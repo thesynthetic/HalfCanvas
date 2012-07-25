@@ -10,7 +10,11 @@
 #import "SignInViewController.h"
 #import "MainTabBarController.h"
 #import "ASIHTTPRequest.h"
+#import "ASIDownloadCache.h"
 #import <CommonCrypto/CommonDigest.h>
+#import "FeedController.h"
+#import "MainTabBarController.h"
+#import "ActivityViewController.h"
 
 @interface SettingsViewController : UITableViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate>
 {

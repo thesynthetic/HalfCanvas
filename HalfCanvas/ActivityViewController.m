@@ -234,6 +234,9 @@
      //Incomplete Implementation: Handle failed image request
 }
 
+-(void)removeCacheForURL:(NSString*)url{
+    [imageCache removeObjectForKey:url];
+}
 
 
 @end

@@ -25,6 +25,6 @@
 @property (nonatomic, retain) ASINetworkQueue *networkQueue;
 
 
-
+-(void)removeCacheForURL:(NSString*)url;
 
 @end

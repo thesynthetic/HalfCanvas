@@ -180,9 +180,10 @@
             ASIHTTPRequest *request;
             request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[[qc objectAtIndex:section] user_profile_image_url]]];
             [request setDownloadCache:[ASIDownloadCache sharedCache]];
-            [request setCachePolicy:ASIAskServerIfModifiedWhenStaleCachePolicy|ASIFallbackToCacheIfLoadFailsCachePolicy];
+            //[request setCachePolicy:ASIAskServerIfModifiedWhenStaleCachePolicy|ASIFallbackToCacheIfLoadFailsCachePolicy];
+            [request setCachePolicy:ASIFallbackToCacheIfLoadFailsCachePolicy];
             [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
-            [request setSecondsToCache:60*60*24*7];
+            [request setSecondsToCache:60*60*24];
 
             [networkQueue addOperation:request];
             [networkQueue go];
@@ -826,5 +827,9 @@
     }
 }
 
+
+-(void)removeCacheForURL:(NSString*)url{
+    [imageCache removeObjectForKey:url];
+}
 
 @end

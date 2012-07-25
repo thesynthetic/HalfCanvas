@@ -87,6 +87,7 @@
 -(void)startCamera;
 -(void)startPictureChooser;
 
+-(void)removeCacheForURL:(NSString*)url;
 
 - (void)imageFetchComplete:(ASIHTTPRequest *)request;
 - (void)imageFetchFailed:(ASIHTTPRequest *)request;

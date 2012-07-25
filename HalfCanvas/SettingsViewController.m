@@ -288,8 +288,19 @@
 - (void)profilePictureUpdateFinished:(ASIHTTPRequest *)request
 {
     NSLog(@"Profile updated");
-    //Flush profile picture cache
-
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSString *username = [user objectForKey:@"username"];
+    NSString *url = [NSString stringWithFormat:@"https://s3.amazonaws.com/dittles/users/%@.jpg",username];
+    [[ASIDownloadCache sharedCache] removeCachedDataForURL:[NSURL URLWithString:url]];
+    MainTabBarController *tabcontroller = (MainTabBarController*)self.navigationController.tabBarController;
+    UINavigationController *nc = (UINavigationController*)[[tabcontroller viewControllers] objectAtIndex:0];
+    FeedController *fc = (FeedController*)[[nc viewControllers] objectAtIndex:0];
+    [fc removeCacheForURL:url];
+    [[fc tableView] reloadData];
+    nc = (UINavigationController*)[[tabcontroller viewControllers] objectAtIndex:1];
+    ActivityViewController *ac = [[nc viewControllers] objectAtIndex:0];
+    [ac removeCacheForURL:url];
+    [[ac tableView] reloadData];
 }
 
 
