@@ -47,13 +47,14 @@
 
 
 - (void)loadData;
-- (void)addAnswerClick;
+
 - (void)startCamera;
 - (void)startPictureChooser;
 - (void)handleMainImageClick:(int)indexNum;
 - (void)handlePlayMovie:(NSURL*)movieURL;
 
 -(IBAction)playbackMovie:(id)sender;
+- (IBAction)addAnswerClick:(id)sender;
 
 - (void)likeDidFinish:(ASIHTTPRequest *)request;
 - (void)likeDidFail:(ASIHTTPRequest *)request;

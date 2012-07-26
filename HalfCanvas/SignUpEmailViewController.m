@@ -288,7 +288,7 @@
     
     if (indexPath.section == 1 && indexPath.row == 0)
     {
-         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://askdittles.com/password_reset/"]];
+         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://api.askdittles.com/password_reset/"]];
     }
 }
 
@@ -311,7 +311,7 @@
 {
     if (state == 0) //Sign Up Handler
     {
-        NSURL *url = [NSURL URLWithString:@"http://askdittles.com/create_user/"];
+        NSURL *url = [NSURL URLWithString:@"http://api.askdittles.com/create_user/"];
         ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
         [request setDelegate:self];
         [request setPostValue:[username text] forKey:@"username"];
@@ -322,7 +322,7 @@
     }
     else //Sign In Handler
     {
-        NSURL *url = [NSURL URLWithString:@"http://askdittles.com/login/"];
+        NSURL *url = [NSURL URLWithString:@"http://api.askdittles.com/login/"];
         ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
         [request setDelegate:self];
         [request setPostValue:[username text] forKey:@"username"];

@@ -238,7 +238,7 @@
 
     //Send to server
     
-    NSURL *url = [NSURL URLWithString:@"http://askdittles.com/change_profile_picture/"];
+    NSURL *url = [NSURL URLWithString:@"http://api.askdittles.com/change_profile_picture/"];
     ASIFormDataRequest *request = [[ASIFormDataRequest alloc] initWithURL:url];
     
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
@@ -266,7 +266,7 @@
     UIImage *img = [UIImage imageWithData:[request responseData]];
     [self setProfilePicture:[self imageWithImage:img scaledToSize:CGSizeMake(150.0f, 150.0f)]];
     
-    NSURL *url = [NSURL URLWithString:@"http://askdittles.com/change_profile_picture/"];
+    NSURL *url = [NSURL URLWithString:@"http://api.askdittles.com/change_profile_picture/"];
     ASIFormDataRequest *newRequest = [[ASIFormDataRequest alloc] initWithURL:url];
     
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];

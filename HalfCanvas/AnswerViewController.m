@@ -249,7 +249,7 @@
 
 - (void)loadData
 {
-    NSURL *url = [NSURL URLWithString:@"http://askdittles.com/answers/"];
+    NSURL *url = [NSURL URLWithString:@"http://api.askdittles.com/answers/"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setPostValue:[NSString stringWithFormat:@"%d", question_id] forKey:@"question_id"];
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
@@ -371,13 +371,24 @@
 
 #pragma mark - Add Answer Functions
 
-- (void)addAnswerClick
+- (IBAction)addAnswerClick:(id)sender
 {
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     if ([prefs boolForKey:@"logged_in"])
     {    
-        popup = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Upload from Album", nil];
-        [popup showFromTabBar:self.tabBarController.tabBar];
+        //Display instruction screen, with continue button to UIImagePickerController for recording
+        NSLog(@"Display instruction screen.");
+        picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = true;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        picker.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeMovie, nil];
+        [picker setVideoMaximumDuration:120.0f];
+        [picker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModeVideo];
+        [picker setVideoQuality:UIImagePickerControllerQualityTypeMedium];
+        [self presentModalViewController:picker animated:YES];
+  
+    
     }
     else
     {
@@ -420,23 +431,24 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    
     NSURL *localURL = [info objectForKey:UIImagePickerControllerMediaURL];
-  
-    NSURL *url = [NSURL URLWithString:@"http://askdittles.com/create_video_answer/"];
+    NSURL *url = [NSURL URLWithString:@"http://api.askdittles.com/create_video_answer/"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
     NSString *access_token = [user objectForKey:@"access_token"];
-    [request setTag:1];
     [request setPostValue:[NSString stringWithFormat:@"%d",question_id] forKey:@"question_id"];
     [request setPostValue:access_token forKey:@"access_token"];
     [request setDelegate:self];
     [request setFile:[localURL path] withFileName:@"upload.mp4" andContentType:@"video/mp4" forKey:@"file"]; 
-    
     MainTabBarController *mainTab = (MainTabBarController*)self.tabBarController;
     [request setDownloadProgressDelegate:[mainTab setupProgressBar]];
-    
+    [request setDidFinishSelector:@selector(videoUploadingDidFinish:)];
+    [request setDidFailSelector:@selector(videoUploadingDidFail:)];
+    [request setTag:1];
     [request startAsynchronous];
     [picker dismissModalViewControllerAnimated:YES];
+
 }
 
 
@@ -474,11 +486,11 @@
         NSURL *url;
         if ([test likeToggle])
         {
-            url = [NSURL URLWithString:@"http://askdittles.com/unlike_answer/"];
+            url = [NSURL URLWithString:@"http://api.askdittles.com/unlike_answer/"];
         }
         else 
         {
-            url = [NSURL URLWithString:@"http://askdittles.com/like_answer/"];
+            url = [NSURL URLWithString:@"http://api.askdittles.com/like_answer/"];
         }
         
         ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
@@ -507,5 +519,19 @@
 {
     
 }
+
+- (void)videoUploadingDidFinish:(ASIHTTPRequest *)request
+{
+    [self loadData];
+}
+
+- (void)videoUploadDidFail:(ASIHTTPRequest *)request
+{
+    HUD.mode = MBProgressHUDModeCustomView;
+    HUD.labelText = @"Unable to connect.";
+    HUD.removeFromSuperViewOnHide = YES;
+    [HUD hide:YES afterDelay:2];
+}
+
 
 @end

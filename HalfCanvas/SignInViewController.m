@@ -226,7 +226,7 @@
 - (IBAction)signIn:(id)sender
 {
     
-    NSURL *url = [NSURL URLWithString:@"http://askdittles.com/login/"];
+    NSURL *url = [NSURL URLWithString:@"http://api.askdittles.com/login/"];
 	
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setPostValue:[username text] forKey:@"username"];

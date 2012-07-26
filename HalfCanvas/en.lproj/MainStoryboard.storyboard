@@ -911,7 +911,13 @@
                             <outlet property="delegate" destination="agB-vk-Yf8" id="UQc-Fu-hOL"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="S9N-4B-e8c"/>
+                    <navigationItem key="navigationItem" id="S9N-4B-e8c">
+                        <barButtonItem key="rightBarButtonItem" title="Create Lesson" id="p5r-nr-fXl">
+                            <connections>
+                                <action selector="addAnswerClick:" destination="agB-vk-Yf8" id="2C0-AZ-824"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="yuc-WI-7dQ" kind="modal" identifier="PictureViewer" modalTransitionStyle="coverVertical" id="VTb-Sj-C4n"/>
                         <segue destination="dKJ-4J-4Uh" kind="push" identifier="didcapturepicture2" id="0Jn-o9-eCO"/>
@@ -1162,6 +1168,7 @@
         <class className="AnswerViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AnswerViewController.h"/>
             <relationships>
+                <relationship kind="action" name="addAnswerClick:"/>
                 <relationship kind="action" name="playbackMovie:"/>
             </relationships>
         </class>
