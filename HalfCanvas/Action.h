@@ -19,5 +19,7 @@
 @property (retain) NSString *senderImageURL;
 @property (nonatomic) NSInteger questionID;
 @property (retain) NSString *actionType;
+@property (retain) NSString *pubLife;
+@property (retain, nonatomic) NSNumber *timestamp;
 
 @end

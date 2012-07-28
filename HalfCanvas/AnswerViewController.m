@@ -214,32 +214,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //Testing movie record
-//    if (indexPath.section == [answerCollection count])
-//    {
-//        
-//        
-//    }
-//    
-//    
-//    
-//    if (index indexPath.row == 1)
-//    {
-//        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-//        picker = [[UIImagePickerController alloc] init];
-//        picker.delegate = self;
-//        picker.allowsEditing = true;
-//        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-//        picker.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeMovie, nil];
-//        [picker setVideoMaximumDuration:60.0f];
-//        [picker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModeVideo];
-//        [picker setVideoQuality:UIImagePickerControllerQualityTypeMedium];
-//        [self presentModalViewController:picker animated:YES];
-//        
-//        
-//        
-//        [self addAnswerClick];
-//    }
+
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

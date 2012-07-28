@@ -14,6 +14,7 @@
 @synthesize activityArray;
 @synthesize imageCache;
 @synthesize networkQueue;
+@synthesize question_id;
 
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -144,11 +145,11 @@
 
     if ([[action actionType] isEqualToString:@"like"])
     {
-        [[cell text] setText:@"likes your lesson"];
+        [[cell text] setText:[NSString stringWithFormat:@"liked your lesson %@",[action pubLife]]];
     }
     else if ([[action actionType] isEqualToString:@"answer"]) 
     {
-        [[cell text] setText:@"posted a lesson for you"];
+        [[cell text] setText:[NSString stringWithFormat:@"posted a lesson for you %@",[action pubLife]]];
     }
     
     
@@ -208,7 +209,8 @@
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
         
         AnswerViewController *answerView = [sb instantiateViewControllerWithIdentifier:@"AnswerViewController"];
-        [answerView setQuestion_id:24];
+        NSLog(@"Question ID: %d",[action questionID]);
+        [answerView setQuestion_id:[action questionID]];
         [self.navigationController pushViewController:answerView animated:YES];
         
     }

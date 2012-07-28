@@ -688,10 +688,25 @@
     [ac removeAllObjects];
     
     // Parse JSON Data and create question collection
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSNumber *latest_timestamp_loaded;
+    NSNumber *max_timestamp;
+    if ([user objectForKey:@"latest_timestamp_loaded"] != nil){
+        latest_timestamp_loaded =  [[NSNumber alloc] initWithLongLong:((long long)[user objectForKey:@"latest_timestamp_loaded"])];
+        max_timestamp = [[NSNumber alloc] initWithLongLong:((long long)[user objectForKey:@"latest_timestamp_loaded"])];
+    }
+    else {
+        latest_timestamp_loaded =  [[NSNumber alloc] initWithLongLong:0];
+        max_timestamp =  [[NSNumber alloc] initWithLongLong:0];
+    }
+
+    
+    
+    
     SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
     NSError *error = nil;
     id jsonObjects = [jsonParser objectWithString:responseString error:&error];
-    
+    int new_action_count = 0;
     if ([jsonObjects isKindOfClass:[NSDictionary class]])
     {
         // treat as a dictionary, or reassign to a dictionary ivar
@@ -716,6 +731,7 @@
 
             [qc addObject:newQuestion];
         }
+
         for (NSDictionary *dict in action_list)
         {
             Action *newAction = [[Action alloc] init];
@@ -724,12 +740,26 @@
             [newAction setSenderImageURL:[dict objectForKey:@"sender_image_url"]];
             [newAction setSenderUsername:[dict objectForKey:@"sender"]];
             
+            [newAction setPubLife:[dict objectForKey:@"pub_life"]];
+            [newAction setTimestamp:[NSNumber numberWithLongLong:[[dict objectForKey:@"pub_date"] longLongValue]]];
+            
             [newAction setQuestionID:[[dict objectForKey:@"question_id"] integerValue]];
             [newAction setActionType:[dict objectForKey:@"type"]];
             
             [ac addObject:newAction];
+            
+            if ([newAction timestamp] > latest_timestamp_loaded){
+                new_action_count += 1;
+            }
+            
+            if ([newAction timestamp] > max_timestamp){
+                max_timestamp = [newAction timestamp];
+            }
         }
-
+        
+        NSLog(@"New Action Count: %d",new_action_count);
+        [user setObject:latest_timestamp_loaded forKey:@"latest_timestamp_loaded"];
+        
         [[[[[self tabBarController] tabBar] items] objectAtIndex:1] setBadgeValue:[NSString stringWithFormat:@"%d",[ac count]]];
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         [appDelegate setGlobalQuestions:qc];

@@ -23,6 +23,8 @@
 @property (nonatomic, retain) NSMutableArray *activityArray;
 @property (nonatomic, retain) NSMutableDictionary *imageCache;
 @property (nonatomic, retain) ASINetworkQueue *networkQueue;
+@property (nonatomic) int question_id;
+
 
 
 -(void)removeCacheForURL:(NSString*)url;

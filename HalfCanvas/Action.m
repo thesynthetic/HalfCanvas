@@ -14,5 +14,7 @@
 @synthesize senderImageURL;
 @synthesize questionID;
 @synthesize actionType;
+@synthesize pubLife;
+@synthesize timestamp;
 
 @end
