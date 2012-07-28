@@ -22,6 +22,7 @@
 @synthesize addingQuestion;
 @synthesize imageCache;
 @synthesize takingPicture;
+@synthesize localURL;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -530,25 +531,37 @@
         }
     }
     else {
-        NSURL *localURL = [info objectForKey:UIImagePickerControllerMediaURL];
-        NSURL *url = [NSURL URLWithString:@"http://api.askdittles.com/create_video_answer/"];
-        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-        NSString *access_token = [user objectForKey:@"access_token"];
-        
-        [request setPostValue:[NSString stringWithFormat:@"%d",answerViewerIndex] forKey:@"question_id"];
-        [request setPostValue:access_token forKey:@"access_token"];
-        [request setDelegate:self];
-        [request setFile:[localURL path] withFileName:@"upload.mp4" andContentType:@"video/mp4" forKey:@"file"]; 
-        
-        MainTabBarController *mainTab = (MainTabBarController*)self.tabBarController;
-        [request setDownloadProgressDelegate:[mainTab setupProgressBar]];
-        [request setDidFinishSelector:@selector(videoUploadingDidFinish:)];
-        [request setDidFailSelector:@selector(videoUploadingDidFail:)];
-        [request setTag:1];
-        [request startAsynchronous];
+        localURL = [info objectForKey:UIImagePickerControllerMediaURL];
+        [self setupVideoUploadRequest];
         [picker dismissModalViewControllerAnimated:YES];
     }
+}
+
+-(void)setupVideoUploadRequest
+{
+    NSURL *url = [NSURL URLWithString:@"http://api.askdittles.com/create_video_answer/"];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSString *access_token = [user objectForKey:@"access_token"];
+    
+    [request setPostValue:[NSString stringWithFormat:@"%d",answerViewerIndex] forKey:@"question_id"];
+    [request setPostValue:access_token forKey:@"access_token"];
+    [request setDelegate:self];
+    [request setFile:[localURL path] withFileName:@"upload.mp4" andContentType:@"video/mp4" forKey:@"file"];
+    [request setShowAccurateProgress:YES];
+    [request setDidFinishSelector:@selector(videoUploadingDidFinish:)];
+    [request setDidFailSelector:@selector(videoUploadingDidFail:)];
+    [request setTag:1];
+    
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    HUD.removeFromSuperViewOnHide = YES;
+    HUD.mode = MBProgressHUDModeIndeterminate;
+    HUD.delegate = self;
+    HUD.labelText = @"Uploading";
+    [HUD show:YES];
+    
+    [request startAsynchronous];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -589,27 +602,7 @@
 //Load JSON Data from Server
 -(IBAction)loadData
 {
-
     loading = true;
-    
-    
-    /*
-    [UIView animateWithDuration:0.25
-     
-                          delay: 0.0
-                        options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{
-                         
-                         nibView.alpha = 0.8;
-                         
-                         // Create a nested animation that has a different
-                         // duration, timing curve, and configuration.
-                         
-                     }
-                     completion:^(BOOL finished){
-   
-                                              }];
-    */
     
     NSURL *url = [NSURL URLWithString:@"http://api.askdittles.com/questions/"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
@@ -626,9 +619,9 @@
     [request setCachePolicy:ASIFallbackToCacheIfLoadFailsCachePolicy];
     [request setTag:0];
     [request startAsynchronous];
+
     
     NSError *error;
-    
     if (![[GANTracker sharedTracker] trackPageview:@"FeedView" withError:&error]) {
         
     }
@@ -646,15 +639,44 @@
 
 - (void)videoUploadingDidFinish:(ASIHTTPRequest *)request
 {
+    HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+	HUD.mode = MBProgressHUDModeCustomView;
+	HUD.labelText = @"Completed";
+    [HUD hide:YES afterDelay:1];
     [self loadData];
 }
 
-- (void)videoUploadDidFail:(ASIHTTPRequest *)request
+- (void)videoUploadingDidFail:(ASIHTTPRequest *)request
 {
-    HUD.mode = MBProgressHUDModeCustomView;
-    HUD.labelText = @"Unable to connect.";
-    HUD.removeFromSuperViewOnHide = YES;
-    [HUD hide:YES afterDelay:2];
+//    HUD.mode = MBProgressHUDModeCustomView;
+//    HUD.labelText = @"Unable to upload.";
+//    HUD.removeFromSuperViewOnHide = YES;
+//    [HUD hide:YES afterDelay:2];
+    [HUD hide:YES];
+
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Unable to upload."
+                                                      message:@"Would you like to retry?"
+                                                     delegate:self
+                                            cancelButtonTitle:@"Cancel"
+                                            otherButtonTitles:@"Retry",nil];
+    [message show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    
+    if([title isEqualToString:@"Cancel"])
+    {
+        //Cancel
+        [HUD hide:YES];
+    }
+    else if([title isEqualToString:@"Retry"])
+    {
+        //Retry upload
+        [HUD hide:YES];
+        [self setupVideoUploadRequest];
+    }
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
@@ -818,7 +840,6 @@
         [picker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModeVideo];
         [picker setVideoQuality:UIImagePickerControllerQualityTypeMedium];
         [self presentModalViewController:picker animated:YES];
-        
     }
     else
     {

@@ -28,7 +28,7 @@
 
 @class ASINetworkQueue;
 
-@interface FeedController : UITableViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, MBProgressHUDDelegate, FeedCellDelegate>
+@interface FeedController : UITableViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, MBProgressHUDDelegate, FeedCellDelegate, ASIProgressDelegate,UIAlertViewDelegate>
 {
     QuestionCollection *qcol;
     NSMutableArray *qc;
@@ -81,6 +81,7 @@
 @property (retain) UIImage *imageToUpload;
 @property (nonatomic) BOOL addingQuestion;
 @property (nonatomic) BOOL takingPicture;
+@property (nonatomic, retain) NSURL *localURL;
 
 
 
@@ -95,5 +96,7 @@
 - (void)handleAnswerclick:(int)indexNum;
 - (void)handleMainImageClick:(int)indexNum;
 - (void)handleAddAnswerClick:(int)indexNum;
+
+-(void)setupVideoUploadRequest;
 
 @end

@@ -21,7 +21,7 @@
 #import <MobileCoreServices/UTCoreTypes.h>
 
 
-@interface AnswerViewController : UITableViewController <MBProgressHUDDelegate, FeedCellDelegate, UIImagePickerControllerDelegate>
+@interface AnswerViewController : UITableViewController <MBProgressHUDDelegate, FeedCellDelegate, UIImagePickerControllerDelegate, ASIHTTPRequestDelegate, UIAlertViewDelegate>
 {
     NSInteger question_id;
     NSMutableArray *answerCollection;   
@@ -43,10 +43,11 @@
 @property (retain) UIImagePickerController *picker;
 @property (retain) UIImage *imageToUpload;
 @property (retain) MPMoviePlayerViewController *mp;
-
+@property (nonatomic, retain) NSURL *localURL;
 
 
 - (void)loadData;
+-(void)setupVideoUploadRequest;
 
 - (void)startCamera;
 - (void)startPictureChooser;
