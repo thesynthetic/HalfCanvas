@@ -85,7 +85,7 @@ def answers(request):
 			if user_data is not None:
 				q = Question.objects.get(pk=request.POST['question_id'])
 				fn = lambda x: x.answer
-				userlikes = map(fn, AnswerLike.objects.filter(Q(answer__user=user_data.user) & Q(answer__question=q)))
+				userlikes = map(fn, AnswerLike.objects.filter(Q(user=user_data.user) & Q(answer__question=q)))
 				
 		for i in Answer.objects.filter(question__pk=request.POST['question_id']).order_by('pub_date').select_related('user__userdata').select_related('answer_answerlike').annotate(like_count=Count('answerlike')):
 
