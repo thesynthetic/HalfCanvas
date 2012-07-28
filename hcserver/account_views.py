@@ -116,6 +116,7 @@ def login(request):
 def change_profile_picture(request):
 	postdata = request.POST
 	response = dict()
+	userdata = None
 	if ('access_token' in postdata):
 		access_token = postdata['access_token']
 		userdata = UserData.objects.get(access_token=access_token)
@@ -135,32 +136,26 @@ def change_profile_picture(request):
 		
 		#Connect to S3
 		conn= boto.connect_s3()
-                bucket = conn.get_bucket('halfcanvas')
+                bucket = conn.get_bucket('dittles')
                 k = Key(bucket)
-
+		
                 #Create filename for S3
-                s3_key = username +'.jpg'
+                s3_key = userdata.user.username +'.jpg'
                 k.key = 'users/' + s3_key
                 k.set_metadata("Content-Type", 'image/jpeg')
                 dict_keys = request.FILES.keys()
-                k.set_contents_from_string(request.FILES[dict_keys[0]].read())
+                k.set_contents_from_string(request.FILES[dict_keys[0]].read(),replace=True)
 
                 #Store Question metadata in DB
-                image_url = 'https://s3.amazonaws.com/halfcanvas/' + k.key
+                image_url = 'https://s3.amazonaws.com/dittles/' + k.key
 
-                m = hashlib.md5()
-                m.update(username)
-                m.update('halfcanvasforkids')
-                access_token = m.hexdigest()
-                userData = UserData(user=user, access_token=access_token, profile_image_url=image_url)
-                userData.save()
                 response = dict()
-                response['errorcode'] = '0'
+                response['new_image_url'] = image_url
+		response['errorcode'] = '0'
                 response['errormesssage'] = ''
-                data = dict()
-                data['access_token'] = access_token
-                response['data'] = data		
 	else:
 		response['errorcode'] = '10.4'
 		response['error_message'] = 'Profile picture not provided'
-		
+	return HttpResponse(
+			simplejson.dumps(response),
+			content_type = 'application/javascript; charset=utf8')	

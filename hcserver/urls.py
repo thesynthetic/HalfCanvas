@@ -2,9 +2,17 @@ from django.conf.urls.defaults import patterns, include, url
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^password_reset/$', auth_views.password_reset, name='password_reset'),
+   url (r'^password_reset_done/$', auth_views.password_reset_done,name='password_reset_done'),
+   url (r'^password_reset_confirm/(?P<uidb36>[0-9A-Za-z]+)/(?P<token>.+)/$', auth_views.password_reset_confirm, name='password_reset_confirm'),
+    url(r'^password_reset_complete/$', auth_views.password_reset_complete, name='password_reset_complete'),
+)
+
+urlpatterns += patterns('',
     # Examples:
     # url(r'^$', 'hcserver.views.home', name='home'),
     # url(r'^hcserver/', include('hcserver.foo.urls')),
@@ -17,8 +25,9 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     # Create User
-    url(r'^create_user/','hcserver.views.create_user'),
-    url(r'^login/','hcserver.views.login'),
+    url(r'^create_user/','hcserver.account_views.create_user'),
+    url(r'^login/','hcserver.account_views.login'),
+    url(r'^change_profile_picture','hcserver.account_views.change_profile_picture'),
     
     # Post Question
     url(r'^create_question/','hcserver.views.create_question'),
@@ -37,4 +46,5 @@ urlpatterns = patterns('',
 
     # Unlike Answer
     url(r'^unlike_answer/','hcserver.views.unlike_answer'),
+
 )

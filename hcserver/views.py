@@ -112,96 +112,6 @@ def answers(request):
 
 
 @csrf_exempt
-def create_user(request):
-	postdata = request.POST
-	if ('username' in postdata and 'email' in postdata and 'password' in postdata and request.FILES): 
-		username = postdata['username']
-		email = postdata['email']
-		password = postdata['password']
-	        if (User.objects.filter(username=username).count() > 0):
-                	response = dict()
-                	response['error_code'] = '10.1'
-                	response['error_message'] = 'Username is already being used'
-        	elif (User.objects.filter(email=email).count() > 0):
-                	response = dict()
-                	response['error_code'] = '10.2'
-                	response['error_message'] = 'Email address is already being used'
-        	else:                
-			user = User.objects.create_user(username, email, password)
-
-
-                       
-
-                        #Connect to S3
-                        conn= boto.connect_s3()
-                        bucket = conn.get_bucket('dittles')
-                        k = Key(bucket)
-
-                        #Create filename for S3
-                        s3_key = username +'.jpg'
-                        k.key = 'users/' + s3_key
-                        k.set_metadata("Content-Type", 'image/jpeg')
-                        dict_keys = request.FILES.keys()
-                        k.set_contents_from_string(request.FILES[dict_keys[0]].read())
-
-                        #Store Question metadata in DB
-                        image_url = 'https://s3.amazonaws.com/dittles/' + k.key
-                       	
-			m = hashlib.md5()
-			m.update(username)
-			m.update('halfcanvasforkids')
-			access_token = m.hexdigest()
-			userData = UserData(user=user, access_token=access_token, profile_image_url=image_url)
-			userData.save()
-			response = dict()
-			response['errorcode'] = '0'
-			response['errormesssage'] = ''
-			data = dict()
-			data['access_token'] = access_token
-			response['data'] = data
-	else:
-		response = dict()
-		response['errormessage'] = 'Username, email, password, or profile picture not received'
-		response['errorcode'] = '10.3'
-
-	return HttpResponse(
-        		simplejson.dumps(response),
-       			content_type = 'application/javascript; charset=utf8'
-    		)
-
-@csrf_exempt
-def login(request):
-	postdata = request.POST
-        if ('username' in postdata and 'password' in postdata):
-                username = postdata['username']
-                password = postdata['password']
-                user = authenticate(username=username, password=password)
-		if user is not None:
-			if user.is_active:
-				userData = UserData.objects.get(user=user)
-				response = dict()
-				response['errorcode'] = '0'
-				response['errormessage'] = ''
-				data = dict()
-				data['access_token'] = userData.access_token
-				response['data'] = data
-			else:
-				response = dict()
-                                response['errorcode'] = '9.2'
-                                response['errormessage'] = 'User is not active'
-		else:
-			response = dict()
-                       	response['errorcode'] = '9.1'
-                      	response['errormessage'] = 'Username and password incorrect'
-        else:
-                response = dict()
-                response['errormessage'] = 'Username and password not received'
-                response['errorcode'] = '9.3'
-	return HttpResponse(
-			simplejson.dumps(response),
-                        content_type = 'application/javascript; charset=utf8'
-                )
-@csrf_exempt
 def create_question(request):
 	#Many more validation steps must be implemented here
 	if request.method == 'POST':
@@ -261,7 +171,7 @@ def create_answer(request):
 			q = Question.objects.get(id=question_id)
 			a = Answer(question=q, text=text, user=user_data.user, image_url=image_url, pub_date=datetime.datetime.now())
                         a.save()
-			action = Action(sender=user_data.user, question=q, answer=a, action_date=datetime.datetime.now(), type='answer')
+			action = Action(sender=user_data.user, question=q, answer=a, pub_date=datetime.datetime.now(), type='answer')
 			action.save()
 
                 return HttpResponse(request.FILES[dict_keys[0]].read())
@@ -297,9 +207,10 @@ def create_video_answer(request):
                         else:
                                 return HttpResponse('Question_id not found in post')
                         q = Question.objects.get(id=question_id)
-                        a = Answer(question=q, text=text, user=user_data.user, image_url=image_url, pub_date=datetime.datetime.now())
+			a = Answer(question=q, text=text, user=user_data.user, image_url=image_url, pub_date=datetime.datetime.now())
                         a.save()
-
+			action = Action(sender=user_data.user,question=q, answer=a, pub_date=datetime.datetime.now(), type='answer')
+			action.save()
                 return HttpResponse(request.FILES[dict_keys[0]].read())
         else:
                 return HttpResponse("Nothing, just nothing!")
