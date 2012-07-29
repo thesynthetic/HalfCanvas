@@ -20,6 +20,6 @@
 @property (nonatomic) NSInteger questionID;
 @property (retain) NSString *actionType;
 @property (retain) NSString *pubLife;
-@property (retain, nonatomic) NSNumber *timestamp;
+@property (retain, nonatomic) NSDate *timestamp;
 
 @end

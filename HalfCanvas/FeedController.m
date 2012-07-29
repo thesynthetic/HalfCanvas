@@ -689,24 +689,26 @@
     
     // Parse JSON Data and create question collection
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    NSNumber *latest_timestamp_loaded;
-    NSNumber *max_timestamp;
+    NSDate *latest_timestamp_loaded;
+    NSDate *max_timestamp;
+    
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"yyyy-MM-dd HH:mm:ss:SSS"];
+    NSDate *date = [df dateFromString:@"2012-07-24 21:17:46:121426"];
+    
     if ([user objectForKey:@"latest_timestamp_loaded"] != nil){
-        latest_timestamp_loaded =  [[NSNumber alloc] initWithLongLong:((long long)[user objectForKey:@"latest_timestamp_loaded"])];
-        max_timestamp = [[NSNumber alloc] initWithLongLong:((long long)[user objectForKey:@"latest_timestamp_loaded"])];
+        latest_timestamp_loaded =  [user objectForKey:@"latest_timestamp_loaded"];
+        max_timestamp = [user objectForKey:@"latest_timestamp_loaded"];
     }
     else {
-        latest_timestamp_loaded =  [[NSNumber alloc] initWithLongLong:0];
-        max_timestamp =  [[NSNumber alloc] initWithLongLong:0];
+        latest_timestamp_loaded = [df dateFromString:@"1900-01-01 00:00:00:000000"];
+        max_timestamp = [df dateFromString:@"1900-01-01 00:00:00:000000"];
     }
-
-    
-    
+    int new_action_count = 0;
     
     SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
     NSError *error = nil;
     id jsonObjects = [jsonParser objectWithString:responseString error:&error];
-    int new_action_count = 0;
     if ([jsonObjects isKindOfClass:[NSDictionary class]])
     {
         // treat as a dictionary, or reassign to a dictionary ivar
@@ -741,26 +743,33 @@
             [newAction setSenderUsername:[dict objectForKey:@"sender"]];
             
             [newAction setPubLife:[dict objectForKey:@"pub_life"]];
-            [newAction setTimestamp:[NSNumber numberWithLongLong:[[dict objectForKey:@"pub_date"] longLongValue]]];
+            [newAction setTimestamp:[df dateFromString:[dict objectForKey:@"pub_date"]]];
             
             [newAction setQuestionID:[[dict objectForKey:@"question_id"] integerValue]];
             [newAction setActionType:[dict objectForKey:@"type"]];
             
             [ac addObject:newAction];
             
-            if ([newAction timestamp] > latest_timestamp_loaded){
+            if ([[newAction timestamp] compare:latest_timestamp_loaded] == NSOrderedDescending)
+            {
                 new_action_count += 1;
             }
             
-            if ([newAction timestamp] > max_timestamp){
+            if ([[newAction timestamp] compare:max_timestamp] == NSOrderedDescending){
                 max_timestamp = [newAction timestamp];
             }
         }
         
-        NSLog(@"New Action Count: %d",new_action_count);
-        [user setObject:latest_timestamp_loaded forKey:@"latest_timestamp_loaded"];
+        if ([max_timestamp compare:latest_timestamp_loaded] == NSOrderedDescending){
+            [user setObject:max_timestamp forKey:@"latest_timestamp_loaded"];
+        }
         
-        [[[[[self tabBarController] tabBar] items] objectAtIndex:1] setBadgeValue:[NSString stringWithFormat:@"%d",[ac count]]];
+        if (new_action_count > 0){
+            [[[[[self tabBarController] tabBar] items] objectAtIndex:1] setBadgeValue:[NSString stringWithFormat:@"%d",new_action_count]];
+        }
+        
+        
+        
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         [appDelegate setGlobalQuestions:qc];
         [appDelegate setGlobalActions:ac];
