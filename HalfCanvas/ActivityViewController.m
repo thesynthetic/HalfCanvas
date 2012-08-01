@@ -40,7 +40,7 @@
 {
     [super viewDidLoad];
 
-
+    self.title = @"Notifications";
 
     self.imageCache = [[NSMutableDictionary alloc] init];
     if (!networkQueue) {

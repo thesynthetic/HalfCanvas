@@ -34,7 +34,7 @@
 
 - (void)viewDidLoad
 {
-    
+    self.title = @"Account";
     
     [super viewDidLoad];
     

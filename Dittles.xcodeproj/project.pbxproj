@@ -99,7 +99,6 @@
 		70A27BE815ABCCB0009DE1C8 /* Default_Profile_Picture.png in Resources */ = {isa = PBXBuildFile; fileRef = 70A27BE715ABCCB0009DE1C8 /* Default_Profile_Picture.png */; };
 		70AE0B4C1502E9A70045EDB8 /* PictureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AE0B4B1502E9A60045EDB8 /* PictureViewController.m */; };
 		70AE0B501503E7690045EDB8 /* UploadImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AE0B4F1503E7690045EDB8 /* UploadImageController.m */; };
-		70B048BB159907710013CFEA /* QuickTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B048BA159907710013CFEA /* QuickTestViewController.m */; };
 		70B048BE159909EA0013CFEA /* SettingsNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B048BD159909EA0013CFEA /* SettingsNavController.m */; };
 		70B132ED15B207F100B0744E /* AnswerCell-Background-v2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 70B132EB15B207F100B0744E /* AnswerCell-Background-v2@2x.png */; };
 		70B132EE15B207F100B0744E /* AnswerCell-Background-v2.png in Resources */ = {isa = PBXBuildFile; fileRef = 70B132EC15B207F100B0744E /* AnswerCell-Background-v2.png */; };
@@ -111,7 +110,6 @@
 		70B4F763154D7DB20041C67D /* Answer-Button-(under-picture)@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 70B4F761154D7DB20041C67D /* Answer-Button-(under-picture)@2x.png */; };
 		70B4F767154D83230041C67D /* Answer-Button-Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 70B4F766154D83230041C67D /* Answer-Button-Background.png */; };
 		70B9037C15B1F34C00B13179 /* DittlesLogoV2.png in Resources */ = {isa = PBXBuildFile; fileRef = 70B9037B15B1F34C00B13179 /* DittlesLogoV2.png */; };
-		70C85D761591706300CD40B1 /* libQuickDialog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70C85D731591700C00CD40B1 /* libQuickDialog.a */; };
 		70C9300214F121E2009441BE /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C92FB114F121E2009441BE /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		70C9300314F121E2009441BE /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C92FB414F121E2009441BE /* ASIDataCompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		70C9300414F121E2009441BE /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C92FB614F121E2009441BE /* ASIDataDecompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -144,30 +142,6 @@
 		70FC7BAC15901EF600F89E6F /* Mascot.png in Resources */ = {isa = PBXBuildFile; fileRef = 70FC7BAB15901EF600F89E6F /* Mascot.png */; };
 		70FC7BB0159021A400F89E6F /* Mascot2.png in Resources */ = {isa = PBXBuildFile; fileRef = 70FC7BAF159021A400F89E6F /* Mascot2.png */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		70C85D701591700C00CD40B1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 70C85D671591700C00CD40B1 /* QuickDialog.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D80B0E3313E052DF00FA85CA;
-			remoteInfo = QuickDialogExample;
-		};
-		70C85D721591700C00CD40B1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 70C85D671591700C00CD40B1 /* QuickDialog.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2C542393145ADEBD0026A152;
-			remoteInfo = QuickDialog;
-		};
-		70C85D741591705600CD40B1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 70C85D671591700C00CD40B1 /* QuickDialog.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 2C542392145ADEBD0026A152;
-			remoteInfo = QuickDialog;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		7005AEB214C4602600CCE435 /* ComposeAnswerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeAnswerController.h; sourceTree = "<group>"; };
@@ -299,8 +273,6 @@
 		70AE0B4B1502E9A60045EDB8 /* PictureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureViewController.m; sourceTree = "<group>"; };
 		70AE0B4E1503E7690045EDB8 /* UploadImageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadImageController.h; sourceTree = "<group>"; };
 		70AE0B4F1503E7690045EDB8 /* UploadImageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadImageController.m; sourceTree = "<group>"; };
-		70B048B9159907710013CFEA /* QuickTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickTestViewController.h; sourceTree = "<group>"; };
-		70B048BA159907710013CFEA /* QuickTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickTestViewController.m; sourceTree = "<group>"; };
 		70B048BC159909EA0013CFEA /* SettingsNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsNavController.h; sourceTree = "<group>"; };
 		70B048BD159909EA0013CFEA /* SettingsNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsNavController.m; sourceTree = "<group>"; };
 		70B132EB15B207F100B0744E /* AnswerCell-Background-v2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AnswerCell-Background-v2@2x.png"; sourceTree = "<group>"; };
@@ -313,7 +285,6 @@
 		70B4F761154D7DB20041C67D /* Answer-Button-(under-picture)@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Answer-Button-(under-picture)@2x.png"; sourceTree = "<group>"; };
 		70B4F766154D83230041C67D /* Answer-Button-Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Answer-Button-Background.png"; sourceTree = "<group>"; };
 		70B9037B15B1F34C00B13179 /* DittlesLogoV2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DittlesLogoV2.png; sourceTree = "<group>"; };
-		70C85D671591700C00CD40B1 /* QuickDialog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickDialog.xcodeproj; path = QuickDialog/QuickDialog.xcodeproj; sourceTree = "<group>"; };
 		70C92FB014F121E2009441BE /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		70C92FB114F121E2009441BE /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		70C92FB214F121E2009441BE /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -379,7 +350,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70C85D761591706300CD40B1 /* libQuickDialog.a in Frameworks */,
 				707693691590B9C400D8AA8A /* CoreLocation.framework in Frameworks */,
 				707693671590B9B800D8AA8A /* MapKit.framework in Frameworks */,
 				704DF024157D97EE0069FEE0 /* MobileCoreServices.framework in Frameworks */,
@@ -477,8 +447,6 @@
 				704431F214DF506F00537505 /* SettingsViewController.m */,
 				70C9309014F18635009441BE /* SignInViewController.h */,
 				70C9309114F18635009441BE /* SignInViewController.m */,
-				70B048B9159907710013CFEA /* QuickTestViewController.h */,
-				70B048BA159907710013CFEA /* QuickTestViewController.m */,
 				70B048BC159909EA0013CFEA /* SettingsNavController.h */,
 				70B048BD159909EA0013CFEA /* SettingsNavController.m */,
 			);
@@ -512,7 +480,6 @@
 			children = (
 				70D0BEA014C4B7A000CBF56C /* MBProgress */,
 				70C9308E14F12600009441BE /* libz.dylib */,
-				70C85D671591700C00CD40B1 /* QuickDialog.xcodeproj */,
 				7005C342156026800014B6AC /* libsqlite3.0.dylib */,
 				7005C35C15602AFB0014B6AC /* AssetsLibrary.framework */,
 				7005C35915602A920014B6AC /* ImageIO.framework */,
@@ -625,15 +592,6 @@
 				70866C3C155033C10014688D /* libGoogleAnalytics.a */,
 			);
 			name = "Google Analytics";
-			sourceTree = "<group>";
-		};
-		70C85D681591700C00CD40B1 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				70C85D711591700C00CD40B1 /* QuickDialogExample.app */,
-				70C85D731591700C00CD40B1 /* libQuickDialog.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		70C92FAF14F121E2009441BE /* ASIHTTPRequest */ = {
@@ -774,7 +732,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				70C85D751591705600CD40B1 /* PBXTargetDependency */,
 			);
 			name = Dittles;
 			productName = HalfCanvas;
@@ -799,35 +756,12 @@
 			mainGroup = 7062EAC714BA47280055A979;
 			productRefGroup = 7062EAD314BA47280055A979 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 70C85D681591700C00CD40B1 /* Products */;
-					ProjectRef = 70C85D671591700C00CD40B1 /* QuickDialog.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				7062EAD114BA47280055A979 /* Dittles */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		70C85D711591700C00CD40B1 /* QuickDialogExample.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = QuickDialogExample.app;
-			remoteRef = 70C85D701591700C00CD40B1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		70C85D731591700C00CD40B1 /* libQuickDialog.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libQuickDialog.a;
-			remoteRef = 70C85D721591700C00CD40B1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		7062EAD014BA47280055A979 /* Resources */ = {
@@ -957,21 +891,12 @@
 				702CB5C215694CB500148D5F /* Action.m in Sources */,
 				702CB5C8156AC0DD00148D5F /* ActivityCell.m in Sources */,
 				702CB5CB156D277700148D5F /* QuestionViewController.m in Sources */,
-				70B048BB159907710013CFEA /* QuickTestViewController.m in Sources */,
 				70B048BE159909EA0013CFEA /* SettingsNavController.m in Sources */,
 				70F5914F15ABA07400DF7DAE /* ProfilePictureCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		70C85D751591705600CD40B1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = QuickDialog;
-			targetProxy = 70C85D741591705600CD40B1 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		7062EADF14BA47290055A979 /* InfoPlist.strings */ = {

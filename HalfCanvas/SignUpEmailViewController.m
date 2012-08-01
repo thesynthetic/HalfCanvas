@@ -311,14 +311,29 @@
 {
     if (state == 0) //Sign Up Handler
     {
-        NSURL *url = [NSURL URLWithString:@"http://api.askdittles.com/create_user/"];
-        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-        [request setDelegate:self];
-        [request setPostValue:[username text] forKey:@"username"];
-        [request setPostValue:[password text] forKey:@"password"];
-        [request setData:UIImageJPEGRepresentation([self profilePicture],0.35) withFileName:@"upload.jpg" andContentType:@"image/jpeg" forKey:@"file"];
-        [request setPostValue:[email text] forKey:@"email"];
-        [request startAsynchronous];     
+        NSString *usernameTr = [[[self username] text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        NSString *emailTr = [[[self email] text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        NSString *passwordTr = [[[self password] text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        
+        
+        if (usernameTr.length == 0 || emailTr.length == 0 || passwordTr.length == 0){
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"All fields are required"
+                                                              message:@""
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles:nil];
+            [message show];
+        }
+        else {
+            NSURL *url = [NSURL URLWithString:@"http://api.askdittles.com/create_user/"];
+            ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+            [request setDelegate:self];
+            [request setPostValue:[username text] forKey:@"username"];
+            [request setPostValue:[password text] forKey:@"password"];
+            [request setData:UIImageJPEGRepresentation([self profilePicture],0.35) withFileName:@"upload.jpg" andContentType:@"image/jpeg" forKey:@"file"];
+            [request setPostValue:[email text] forKey:@"email"];
+            [request startAsynchronous];
+        }
     }
     else //Sign In Handler
     {
@@ -344,8 +359,8 @@
     
     if ([jsonObjects isKindOfClass:[NSDictionary class]])
     {
-        NSString *errorcode = [jsonObjects objectForKey:@"errorcode"];
-        NSString *errormessage = [jsonObjects objectForKey:@"errormessage"];
+        NSString *errorcode = [jsonObjects objectForKey:@"error_code"];
+        NSString *errormessage = [jsonObjects objectForKey:@"error_message"];
         if ([errorcode doubleValue] != 0)
         {
             UIAlertView *message = [[UIAlertView alloc] initWithTitle:errormessage
