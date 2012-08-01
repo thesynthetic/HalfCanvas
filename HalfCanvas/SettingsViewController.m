@@ -172,6 +172,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 0 && indexPath.row == 0)
+    {
+            [self performSegueWithIdentifier:@"AccountToQuestionsAsked" sender:nil];
+        
+        
+    }
+    
     if (indexPath.section == 2 && indexPath.row == 1)
     {
      

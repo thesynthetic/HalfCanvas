@@ -587,6 +587,9 @@
                         </sections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="8C0-oj-0I3"/>
+                    <connections>
+                        <segue destination="N2g-PF-UB6" kind="push" identifier="AccountToQuestionsAsked" id="gbw-Lo-vzj"/>
+                    </connections>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="1202" y="1301"/>
@@ -596,7 +599,7 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KE3-2L-PbE" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="GYj-xN-EZK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="2" title="Account" image="gears.png" id="IjR-sa-M16"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Account" image="111-user.png" id="IjR-sa-M16"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" barStyle="blackTranslucent" id="bQv-FM-mzI">
                         <rect key="frame" x="0.0" y="-44" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -630,12 +633,12 @@
             </objects>
             <point key="canvasLocation" x="88" y="216"/>
         </scene>
-        <!--Navigation Controller - Notifications-->
+        <!--Navigation Controller - Activity-->
         <scene sceneID="cGW-iy-kuD">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w0q-rZ-Bb3" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="LET-Sv-zNu" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="1" title="Notifications" image="09-chat-2.png" id="5aA-PU-fGZ"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Activity" image="09-chat-2.png" id="5aA-PU-fGZ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Y03-Rb-gUH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -986,36 +989,36 @@
             <point key="canvasLocation" x="2104" y="-1934"/>
         </scene>
         <!--Feed Controller-->
-        <scene sceneID="has-TB-zJk">
+        <scene sceneID="TcE-oO-9xi">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="frX-TT-ePO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController storyboardIdentifier="" id="3PY-ZY-iQk" customClass="FeedController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="450" sectionHeaderHeight="40" sectionFooterHeight="22" id="cCj-bS-aAU">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wxj-5R-Dmf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController storyboardIdentifier="feedcontroller" id="N2g-PF-UB6" customClass="FeedController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="450" sectionHeaderHeight="40" sectionFooterHeight="22" id="ZMd-Ve-a7Q">
+                        <rect key="frame" x="0.0" y="20" width="320" height="411"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FeedCell" rowHeight="360" id="PvJ-7i-Bt9" customClass="FeedCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FeedCell" rowHeight="360" id="pYE-Eh-A58" customClass="FeedCell">
                                 <rect key="frame" x="0.0" y="40" width="320" height="360"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="359"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="UITableViewCellBackgroundv2@2x.png" id="7N0-Fe-lRq">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="UITableViewCellBackgroundv2@2x.png" id="ykg-5R-nDc">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="339"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <progressView opaque="NO" contentMode="scaleToFill" id="xKv-7e-YdD">
+                                        <progressView opaque="NO" contentMode="scaleToFill" id="hNa-K7-8kC">
                                             <rect key="frame" x="85" y="150" width="150" height="9"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="progressTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </progressView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="Yw2-tF-FFK">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="LsJ-N8-qle">
                                             <rect key="frame" x="15" y="10" width="290" height="290"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" id="E94-LG-iBD" userLabel="Answer Count Button">
+                                        <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" id="KUP-rM-8w1" userLabel="Answer Count Button">
                                             <rect key="frame" x="13" y="301" width="125" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -1029,10 +1032,10 @@
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <action selector="answerCountClick:" destination="PvJ-7i-Bt9" eventType="touchUpInside" id="K0T-da-Tja"/>
+                                                <action selector="answerCountClick:" destination="pYE-Eh-A58" eventType="touchUpInside" id="iT8-Wj-4VB"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kNp-jM-vNN" userLabel="Other Button">
+                                        <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hFu-uY-UBV" userLabel="Other Button">
                                             <rect key="frame" x="272" y="300" width="34" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
@@ -1044,14 +1047,14 @@
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="12" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="xz3-8L-ew7" userLabel="Label - Answer Count">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="12" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="RQw-Dm-vnp" userLabel="Label - Answer Count">
                                             <rect key="frame" x="16" y="301" width="168" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                             <color key="textColor" red="0.0" green="0.57322080289999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oIi-BE-Mg8">
+                                        <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ovY-Iq-mBq">
                                             <rect key="frame" x="105" y="302" width="111" height="29"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
@@ -1066,10 +1069,10 @@
                                                 <color key="titleColor" red="0.0" green="0.57254901960000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <connections>
-                                                <action selector="addAnswerClick:" destination="PvJ-7i-Bt9" eventType="touchUpInside" id="hwz-mY-Zp6"/>
+                                                <action selector="addAnswerClick:" destination="pYE-Eh-A58" eventType="touchUpInside" id="FmJ-nu-khB"/>
                                             </connections>
                                         </button>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="OtherButton.png" id="6K2-ha-oLk">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="OtherButton.png" id="ltZ-xq-X4u">
                                             <rect key="frame" x="279" y="307" width="20" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -1077,22 +1080,22 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <outlet property="answerCountButton" destination="E94-LG-iBD" id="gLy-K2-I1S"/>
-                                    <outlet property="answerCountLabel" destination="xz3-8L-ew7" id="dsB-1u-6te"/>
-                                    <outlet property="createAnswerButton" destination="oIi-BE-Mg8" id="6Vc-q4-DK8"/>
-                                    <outlet property="imageProgressIndicator" destination="xKv-7e-YdD" id="Uji-U1-pde"/>
-                                    <outlet property="imageView" destination="Yw2-tF-FFK" id="tT7-VH-lYF"/>
-                                    <outlet property="otherButton" destination="kNp-jM-vNN" id="cEQ-WT-xrc"/>
+                                    <outlet property="answerCountButton" destination="KUP-rM-8w1" id="saA-hZ-0lQ"/>
+                                    <outlet property="answerCountLabel" destination="RQw-Dm-vnp" id="Oof-yf-Kte"/>
+                                    <outlet property="createAnswerButton" destination="ovY-Iq-mBq" id="xUN-60-4tw"/>
+                                    <outlet property="imageProgressIndicator" destination="hNa-K7-8kC" id="wiv-8G-oxd"/>
+                                    <outlet property="imageView" destination="LsJ-N8-qle" id="pZY-rr-0S8"/>
+                                    <outlet property="otherButton" destination="hFu-uY-UBV" id="OdE-fJ-Ae9"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="LoadMoreCell" textLabel="2v0-0t-Xn4" rowHeight="50" style="IBUITableViewCellStyleDefault" id="BoQ-ZU-WQe">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="LoadMoreCell" textLabel="IDx-Jo-QXL" rowHeight="50" style="IBUITableViewCellStyleDefault" id="XHD-ub-cGN">
                                 <rect key="frame" x="0.0" y="400" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Load More..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2v0-0t-Xn4">
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Load More..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IDx-Jo-QXL">
                                             <rect key="frame" x="10" y="0.0" width="300" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -1105,31 +1108,26 @@
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="3PY-ZY-iQk" id="vRB-iN-0xO"/>
-                            <outlet property="delegate" destination="3PY-ZY-iQk" id="BQX-Jg-bhV"/>
+                            <outlet property="dataSource" destination="N2g-PF-UB6" id="7Ef-0C-wXs"/>
+                            <outlet property="delegate" destination="N2g-PF-UB6" id="CNJ-u1-sax"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="v9m-jR-99B">
-                        <barButtonItem key="leftBarButtonItem" systemItem="compose" id="igz-j8-jhL">
+                    <navigationItem key="navigationItem" id="87q-Z3-cLn">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="cod-8e-SJa">
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="cameraButtonClick" destination="3PY-ZY-iQk" id="gY0-wl-vT9"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="bGn-lg-8RM">
-                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="loadData" destination="3PY-ZY-iQk" id="vFt-Xw-ofe"/>
+                                <action selector="loadData" destination="N2g-PF-UB6" id="bGe-2o-HlY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="1820" y="1301"/>
+            <point key="canvasLocation" x="1724" y="1188"/>
         </scene>
     </scenes>
     <resources>
         <image name="09-chat-2.png" width="24" height="22"/>
+        <image name="111-user.png" width="24" height="21"/>
         <image name="Answer-Button-Background.png" width="65" height="32"/>
         <image name="AnswerCell-Background-v2@2x.png" width="320" height="207"/>
         <image name="Default_Profile_Picture.png" width="80" height="80"/>
@@ -1138,7 +1136,6 @@
         <image name="Sign-Up-Page@2x.png" width="640" height="960"/>
         <image name="UITableViewCellBackgroundv2@2x.png" width="640" height="674"/>
         <image name="X-Large_278x44_glowy.png" width="280" height="47"/>
-        <image name="gears.png" width="26" height="28"/>
         <image name="home.png" width="22" height="22"/>
         <image name="play_button.png" width="142" height="142"/>
         <image name="profile_picture.jpg" width="50" height="50"/>
@@ -1166,9 +1163,11 @@
         <class className="FeedCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedCell.h"/>
             <relationships>
+                <relationship kind="action" name="addAnswerClick:"/>
                 <relationship kind="action" name="answerButtonClick:"/>
                 <relationship kind="action" name="answerCountClick:"/>
                 <relationship kind="action" name="playMovie:"/>
+                <relationship kind="action" name="toggleLike:"/>
                 <relationship kind="outlet" name="answerCount" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="answerCountButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="answerCountLabel" candidateClass="UILabel"/>

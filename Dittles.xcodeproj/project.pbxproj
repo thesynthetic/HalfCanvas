@@ -40,6 +40,7 @@
 		701D2CC514C4E63200C075A4 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 701D2CC314C4E63200C075A4 /* Icon.png */; };
 		701D2CC614C4E63200C075A4 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 701D2CC414C4E63200C075A4 /* Icon@2x.png */; };
 		701D2CC814C4E63B00C075A4 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 701D2CC714C4E63B00C075A4 /* 37x-Checkmark.png */; };
+		701E913015C8D08600E01428 /* 111-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 701E912F15C8D08600E01428 /* 111-user.png */; };
 		702CB5B01567676B00148D5F /* UITableViewCellBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 702CB5AF1567676B00148D5F /* UITableViewCellBackground@2x.png */; };
 		702CB5B315676FF000148D5F /* UITableViewCellBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 702CB5B215676FF000148D5F /* UITableViewCellBackground.png */; };
 		702CB5B5156773B200148D5F /* UINavigationBarHeader@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 702CB5B4156773B200148D5F /* UINavigationBarHeader@2x.png */; };
@@ -196,6 +197,7 @@
 		701D2CC314C4E63200C075A4 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		701D2CC414C4E63200C075A4 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		701D2CC714C4E63B00C075A4 /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark.png"; sourceTree = "<group>"; };
+		701E912F15C8D08600E01428 /* 111-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "111-user.png"; sourceTree = "<group>"; };
 		702CB5AF1567676B00148D5F /* UITableViewCellBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UITableViewCellBackground@2x.png"; sourceTree = "<group>"; };
 		702CB5B215676FF000148D5F /* UITableViewCellBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UITableViewCellBackground.png; sourceTree = "<group>"; };
 		702CB5B4156773B200148D5F /* UINavigationBarHeader@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UINavigationBarHeader@2x.png"; sourceTree = "<group>"; };
@@ -526,6 +528,7 @@
 		7062EADD14BA47290055A979 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				701E912F15C8D08600E01428 /* 111-user.png */,
 				70FC7BAB15901EF600F89E6F /* Mascot.png */,
 				70B132FA15B2162B00B0744E /* white.png */,
 				70A27BE715ABCCB0009DE1C8 /* Default_Profile_Picture.png */,
@@ -828,6 +831,7 @@
 				7008CEAD15B232EE00318CC9 /* Heart.png in Resources */,
 				7008CEAE15B232EE00318CC9 /* Heart@2x.png in Resources */,
 				703A408415BE1768006B1B9D /* CrazyProfessor_LO_Icon_FF.png in Resources */,
+				701E913015C8D08600E01428 /* 111-user.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
