@@ -38,6 +38,12 @@
     
     [super viewDidLoad];
     
+    [self.navigationController.navigationBar setBackgroundColor:[UIColor clearColor]];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"UINavigationBarHeader"] forBarMetrics:UIBarMetricsDefault];
+    UIImageView *headerFade = [[UIImageView alloc] initWithFrame:CGRectMake(0, 63, 320, 2)];
+    [headerFade setImage:[UIImage imageNamed:@"UINavigationBarHeaderFade@2x.png"]];
+    [[[self parentViewController] view] addSubview:headerFade];
+    [[self tableView] setBackgroundColor:[UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:229.0/255.0 alpha:1.0f]];
     
 
     // Uncomment the following line to preserve selection between presentations.
@@ -175,8 +181,6 @@
     if (indexPath.section == 0 && indexPath.row == 0)
     {
             [self performSegueWithIdentifier:@"AccountToQuestionsAsked" sender:nil];
-        
-        
     }
     
     if (indexPath.section == 2 && indexPath.row == 1)
@@ -198,7 +202,36 @@
         [actionSheet showFromTabBar:self.tabBarController.tabBar];
    
     }
+    
+    if (indexPath.section == 1 && indexPath.row == 0)
+    {
+        [self performSegueWithIdentifier:@"LessonsCreatedToAnswers" sender:nil];
+    }
+    if (indexPath.section == 1 && indexPath.row == 1)
+    {
+        [self performSegueWithIdentifier:@"LessonsLikedToAnswers" sender:nil];
+    }
+    
     [[self tableView] deselectRowAtIndexPath:indexPath animated:FALSE];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Make sure your segue name in storyboard is the same as this line
+    if ([[segue identifier] isEqualToString:@"LessonsCreatedToAnswers"])
+    {
+        GenericAnswerViewController *viewController = [segue destinationViewController];
+        [viewController setTitle:@"My Lessons"];
+        [viewController setInstanceURL:@"http://api.askdittles.com/user_answers/"];
+    }
+    if ([[segue identifier] isEqualToString:@"LessonsLikedToAnswers"])
+    {
+        GenericAnswerViewController *viewController = [segue destinationViewController];
+        [viewController setTitle:@"Likes"];
+        [viewController setInstanceURL:@"http://api.askdittles.com/user_answer_likes/"];
+    }
+    
+    
 }
 
 #pragma mark - Action Sheet Delegate
@@ -295,18 +328,20 @@
 - (void)profilePictureUpdateFinished:(ASIHTTPRequest *)request
 {
     NSLog(@"Profile updated");
+    NSLog(@"Response string: %@",[request responseString]);
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
     NSString *username = [user objectForKey:@"username"];
     NSString *url = [NSString stringWithFormat:@"https://s3.amazonaws.com/dittles/users/%@.jpg",username];
     [[ASIDownloadCache sharedCache] removeCachedDataForURL:[NSURL URLWithString:url]];
+    
     MainTabBarController *tabcontroller = (MainTabBarController*)self.navigationController.tabBarController;
     UINavigationController *nc = (UINavigationController*)[[tabcontroller viewControllers] objectAtIndex:0];
     FeedController *fc = (FeedController*)[[nc viewControllers] objectAtIndex:0];
-    [fc removeCacheForURL:url];
+    [fc removeCacheForURL:[url lowercaseString]];
     [[fc tableView] reloadData];
     nc = (UINavigationController*)[[tabcontroller viewControllers] objectAtIndex:1];
     ActivityViewController *ac = [[nc viewControllers] objectAtIndex:0];
-    [ac removeCacheForURL:url];
+    [ac removeCacheForURL:[url lowercaseString]];
     [[ac tableView] reloadData];
 }
 

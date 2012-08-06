@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "FeedController.h"
+#import "QuestionsAskedViewController.h"
 
-@implementation FeedController
+@implementation QuestionsAskedViewController    
 
 @synthesize imageDownloadsInProgress;
 @synthesize questions;
@@ -48,14 +48,16 @@
     ac = [[NSMutableArray alloc] init];
     
     [self.navigationController.navigationBar setBackgroundColor:[UIColor clearColor]];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"Header"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"UINavigationBarHeader"] forBarMetrics:UIBarMetricsDefault];
     UIImageView *headerFade = [[UIImageView alloc] initWithFrame:CGRectMake(0, 63, 320, 2)];
     [headerFade setImage:[UIImage imageNamed:@"UINavigationBarHeaderFade@2x.png"]];
     [[[self parentViewController] view] addSubview:headerFade];
     [[self tableView] setBackgroundColor:[UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:229.0/255.0 alpha:1.0f]];
 
+        
     
-//    self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
+    
+    //    self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
     self.imageCache = [[NSMutableDictionary alloc] init];
     
     if (!networkQueue) {
@@ -120,31 +122,31 @@
 {
     //if ([qc count] > 0)
     //{
-    //    return [qc count] + 1;       
+    //    return [qc count] + 1;
     //}
-    //else 
+    //else
     //{
-        return [qc count];
+    return [qc count];
     //}
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    if ([qc count] > 0) 
+    if ([qc count] > 0)
     {
         if (section == [qc count] - 1)
         {
             return 2;
         }
-        else 
+        else
         {
-            return 1;            
+            return 1;
         }
-
+        
     }
     
-    else 
+    else
     {
         //If not loaded yet (2 will fill the screen)
         return 2;
@@ -154,7 +156,7 @@
 
 -  (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if ([qc count] > 0 && section < [qc count]) 
+    if ([qc count] > 0 && section < [qc count])
     {
         Question *thisQuestion = [qc objectAtIndex:section];
         CGRect  viewRect = CGRectMake(0, 0, 320, 40);
@@ -172,13 +174,12 @@
         
         UIImageView *userImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15,5,30,30)];
         UIImage *tempImg = [imageCache objectForKey:[[qc objectAtIndex:section] user_profile_image_url]];
-                                
-        NSLog(@"Profile image: %@",[[qc objectAtIndex:section] user_profile_image_url]);
+        
         if (tempImg != nil)
         {
             [userImageView setImage:tempImg];
         }
-        else 
+        else
         {
             ASIHTTPRequest *request;
             request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[[qc objectAtIndex:section] user_profile_image_url]]];
@@ -187,7 +188,7 @@
             [request setCachePolicy:ASIFallbackToCacheIfLoadFailsCachePolicy];
             [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
             [request setSecondsToCache:60*60*24];
-
+            
             [networkQueue addOperation:request];
             [networkQueue go];
         }
@@ -227,7 +228,7 @@
         static NSString *CellIdentifier = @"FeedCell";
         
         FeedCell *feedCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+        
         if (feedCell == nil) {
             feedCell = [[FeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
@@ -258,17 +259,16 @@
             [[feedCell createAnswerButton] setUserInteractionEnabled:TRUE];
         }
         
-       
+        
         
         if (tempImg != nil)
         {
             [[feedCell imageView] setImage:tempImg];
         }
-        else 
+        else
         {
             ASIHTTPRequest *request;
             request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[[qc objectAtIndex:indexPath.section] image_url]]];
-            NSLog(@"image url: %@",[[qc objectAtIndex:indexPath.section] image_url]);
             [request setDownloadCache:[ASIDownloadCache sharedCache]];
             [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
             [request setCachePolicy:ASIAskServerIfModifiedWhenStaleCachePolicy|ASIFallbackToCacheIfLoadFailsCachePolicy];
@@ -283,7 +283,7 @@
         
         
         return feedCell;
-
+        
     }
 }
 
@@ -293,55 +293,55 @@
         return 50;
     }
     else {
-        return  356; 
+        return  356;
     }
-
+    
 }
--(IBAction)imageClick:(id)sender 
+-(IBAction)imageClick:(id)sender
 {
-
+    
 }
 
 
 
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ }
+ else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+ {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 #pragma mark - Table view delegate
 
@@ -367,7 +367,7 @@
 {
     //Load more pictures when at bottom of table (xth row)
     cell.backgroundColor = [UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:229.0/255.0 alpha:1.0f];
-
+    
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -381,7 +381,7 @@
 {
     // release the connection, and the data object
     // inform the user
-  
+    
 }
 
 
@@ -389,7 +389,7 @@
 //- (void)startImageDownload:(Question *)question forIndexPath:(NSIndexPath *)indexPath
 //{
 //    IconDownloader *iconDownloader = [imageDownloadsInProgress objectForKey:indexPath];
-//    if (iconDownloader == nil) 
+//    if (iconDownloader == nil)
 //    {
 //        iconDownloader = [[IconDownloader alloc] init];
 //        iconDownloader.question = [[QuestionCollection questions] objectAtIndex:indexPath.section];
@@ -408,7 +408,7 @@
 //    if (iconDownloader != nil)
 //    {
 //        FeedCell *feedCell = [self.tableView cellForRowAtIndexPath:indexPath];
-//        
+//
 //        // Display the newly loaded image
 //        [[[QuestionCollection questions] objectAtIndex:indexPath.section] setImage:iconDownloader.question.image];
 //        feedCell.imageView.image = iconDownloader.question.image;
@@ -424,7 +424,7 @@
 //        for (NSIndexPath *indexPath in visiblePaths)
 //        {
 //            Question *question = [[QuestionCollection questions] objectAtIndex:indexPath.section];
-//            
+//
 //            if (!question.image) // avoid the app icon download if the app already has an icon
 //            {
 //                [self startImageDownload:question forIndexPath:indexPath];
@@ -451,18 +451,18 @@
 
 - (void)cameraButtonClick
 {
-    [self setTakingPicture:TRUE];
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    if ([prefs boolForKey:@"logged_in"])
-    {
-        actionSheetQuestion = [[UIActionSheet alloc] initWithTitle:@"Choose Source for Question" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Upload from Album", nil];
-        [actionSheetQuestion setTag:0];
-        [actionSheetQuestion showFromTabBar:self.tabBarController.tabBar];
-    }
-    else
-    {
-        [self performSegueWithIdentifier:@"SignUpPopUp" sender:self];
-    }
+//    [self setTakingPicture:TRUE];
+//    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+//    if ([prefs boolForKey:@"logged_in"])
+//    {
+//        actionSheetQuestion = [[UIActionSheet alloc] initWithTitle:@"Choose Source for Question" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Upload from Album", nil];
+//        [actionSheetQuestion setTag:0];
+//        [actionSheetQuestion showFromTabBar:self.tabBarController.tabBar];
+//    }
+//    else
+//    {
+//        //[self performSegueWithIdentifier:@"SignUpPopUp" sender:self];
+//    }
 }
 
 
@@ -472,7 +472,7 @@
         [self startCamera];
     } else if (buttonIndex == 1) {
         [self startPictureChooser];
-    } 
+    }
     if ([actionSheet tag] == 1)
     {
         [self setAddingQuestion:false];
@@ -507,7 +507,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
     
-        
+    
     
 }
 
@@ -528,7 +528,7 @@
         {
             [self performSegueWithIdentifier:@"didcapturepicture1" sender:self];
         }
-        else 
+        else
         {
             [self performSegueWithIdentifier:@"didcapturepicture2" sender:self];
         }
@@ -584,7 +584,7 @@
         [viewController setImageToUpload:[self imageToUpload]];
     }
     
-    if ([[segue identifier] isEqualToString:@"PictureViewer"])
+    if ([[segue identifier] isEqualToString:@"QuestionsAskedToPictureViewer"])
     {
         // Get reference to the destination view controller
         PictureViewController *pictureView = [segue destinationViewController];
@@ -593,7 +593,7 @@
         [pictureView setImage:[imageCache objectForKey:[[qc objectAtIndex:pictureViewerIndex] image_url]]];
     }
     
-    if ([[segue identifier] isEqualToString:@"AnswerViewer"])
+    if ([[segue identifier] isEqualToString:@"QuestionsAskedToAnswer"])
     {
         AnswerViewController *answerView = [segue destinationViewController];
         [answerView setQuestion_id:answerViewerIndex];
@@ -607,10 +607,10 @@
 {
     loading = true;
     
-    NSURL *url = [NSURL URLWithString:@"http://api.askdittles.com/questions/"];
+    NSURL *url = [NSURL URLWithString:@"http://api.askdittles.com/user_questions/"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     [request setPostValue:[NSString stringWithFormat:@"%d", 0] forKey:@"start"];
-    [request setPostValue:[NSString stringWithFormat:@"%d", questionEndIndex] forKey:@"end"];  
+    [request setPostValue:[NSString stringWithFormat:@"%d", questionEndIndex] forKey:@"end"];
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     if ([prefs boolForKey:@"logged_in"])
     {
@@ -622,7 +622,7 @@
     [request setCachePolicy:ASIFallbackToCacheIfLoadFailsCachePolicy];
     [request setTag:0];
     [request startAsynchronous];
-
+    
     
     NSError *error;
     if (![[GANTracker sharedTracker] trackPageview:@"FeedView" withError:&error]) {
@@ -630,7 +630,7 @@
     }
     
     //Show HUD
-
+    
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     HUD.removeFromSuperViewOnHide = YES;
 	[self.navigationController.view addSubview:HUD];
@@ -651,12 +651,12 @@
 
 - (void)videoUploadingDidFail:(ASIHTTPRequest *)request
 {
-//    HUD.mode = MBProgressHUDModeCustomView;
-//    HUD.labelText = @"Unable to upload.";
-//    HUD.removeFromSuperViewOnHide = YES;
-//    [HUD hide:YES afterDelay:2];
+    //    HUD.mode = MBProgressHUDModeCustomView;
+    //    HUD.labelText = @"Unable to upload.";
+    //    HUD.removeFromSuperViewOnHide = YES;
+    //    [HUD hide:YES afterDelay:2];
     [HUD hide:YES];
-
+    
     UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Unable to upload."
                                                       message:@"Would you like to retry?"
                                                      delegate:self
@@ -686,7 +686,7 @@
 {
     // Use when fetching text data
     NSString *responseString = [request responseString];
-
+    
     [qc removeAllObjects];
     [ac removeAllObjects];
     
@@ -695,19 +695,6 @@
     NSDate *latest_timestamp_loaded;
     NSDate *max_timestamp;
     
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:@"yyyy-MM-dd HH:mm:ss:SSS"];
-    NSDate *date = [df dateFromString:@"2012-07-24 21:17:46:121426"];
-    
-    if ([user objectForKey:@"latest_timestamp_loaded"] != nil){
-        latest_timestamp_loaded =  [user objectForKey:@"latest_timestamp_loaded"];
-        max_timestamp = [user objectForKey:@"latest_timestamp_loaded"];
-    }
-    else {
-        latest_timestamp_loaded = [df dateFromString:@"1900-01-01 00:00:00:000000"];
-        max_timestamp = [df dateFromString:@"1900-01-01 00:00:00:000000"];
-    }
-    int new_action_count = 0;
     
     SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
     NSError *error = nil;
@@ -721,7 +708,7 @@
         if (action_list != nil)
         {
             //Handle Action List
-        }        
+        }
         for (NSDictionary *dict in question_list)
         {
             Question *newQuestion = [[Question alloc] init];
@@ -730,57 +717,18 @@
             [newQuestion setQuestion_id:[[dict objectForKey:@"question_id"] integerValue]];
             [newQuestion setImage_url:[dict objectForKey:@"image_url"]];
             [newQuestion setDescription:[dict objectForKey:@"description"]];
-            [newQuestion setUser_profile_image_url:[dict objectForKey:@"user_profile_image_url"]];             
+            [newQuestion setUser_profile_image_url:[dict objectForKey:@"user_profile_image_url"]];
             [newQuestion setAnswer_count:[[dict objectForKey:@"answer_count"] integerValue]];
             [newQuestion setPub_life:[dict objectForKey:@"pub_life"]];
-
+            
             [qc addObject:newQuestion];
         }
-
-        for (NSDictionary *dict in action_list)
-        {
-            Action *newAction = [[Action alloc] init];
-            
-            //Update needed for updated API
-            [newAction setSenderImageURL:[dict objectForKey:@"sender_image_url"]];
-            [newAction setSenderUsername:[dict objectForKey:@"sender"]];
-            
-            [newAction setPubLife:[dict objectForKey:@"pub_life"]];
-            [newAction setTimestamp:[df dateFromString:[dict objectForKey:@"pub_date"]]];
-            
-            [newAction setQuestionID:[[dict objectForKey:@"question_id"] integerValue]];
-            [newAction setActionType:[dict objectForKey:@"type"]];
-            
-            [ac addObject:newAction];
-            
-            if ([[newAction timestamp] compare:latest_timestamp_loaded] == NSOrderedDescending)
-            {
-                new_action_count += 1;
-            }
-            
-            if ([[newAction timestamp] compare:max_timestamp] == NSOrderedDescending){
-                max_timestamp = [newAction timestamp];
-            }
-        }
         
-        if ([max_timestamp compare:latest_timestamp_loaded] == NSOrderedDescending){
-            [user setObject:max_timestamp forKey:@"latest_timestamp_loaded"];
-            [user synchronize];
-        }
-        
-        if (new_action_count > 0){
-            [[[[[self tabBarController] tabBar] items] objectAtIndex:1] setBadgeValue:[NSString stringWithFormat:@"%d",new_action_count]];
-        }
-        
-        
-        
-        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        [appDelegate setGlobalQuestions:qc];
-        [appDelegate setGlobalActions:ac];
+            
     }
     else if ([jsonObjects isKindOfClass:[NSArray class]])
     {
-        //Load the server data into Core Data   
+        //Load the server data into Core Data
     }
     
     [HUD hide:YES];
@@ -816,12 +764,12 @@
 {
     NSError *error = [request error];
     /*
-     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection" 
-                                                    message:[error description]
-                                                   delegate:nil 
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
+     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
+     message:[error description]
+     delegate:nil
+     cancelButtonTitle:@"OK"
+     otherButtonTitles:nil];
+     [alert show];
      */
     
     HUD.mode = MBProgressHUDModeCustomView;
@@ -840,35 +788,32 @@
 
 - (void)imageFetchFailed:(ASIHTTPRequest *)request
 {
-    NSLog(@"Error: %@",[[request error] description]);
 	/*
      if (!failed) {
-		if ([[request error] domain] != NetworkRequestErrorDomain || [[request error] code] != ASIRequestCancelledErrorType) {
-			UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Download failed" message:@"Failed to download images" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-			[alertView show];
-		}
-		failed = YES;
-	}
+     if ([[request error] domain] != NetworkRequestErrorDomain || [[request error] code] != ASIRequestCancelledErrorType) {
+     UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Download failed" message:@"Failed to download images" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+     [alertView show];
+     }
+     failed = YES;
+     }
      */
 }
 
 -(void)handleMainImageClick:(int)indexNum
 {
     pictureViewerIndex = indexNum;
-    [self performSegueWithIdentifier:@"PictureViewer" sender:nil];
+    [self performSegueWithIdentifier:@"QuestionsAskedToPictureViewer" sender:nil];
 }
 
 - (void)handleAnswerclick:(int)indexNum
 {
     Question *question = [qc objectAtIndex:indexNum];
     answerViewerIndex = [question question_id];
-    [self performSegueWithIdentifier:@"AnswerViewer" sender:nil];
+    [self performSegueWithIdentifier:@"QuestionsAskedToAnswer" sender:nil];
 }
-                                       
+
 - (void)handleAddAnswerClick:(int)indexNum
 {
-
-    
     [self setTakingPicture:FALSE];
     Question *question = [qc objectAtIndex:indexNum];
     answerViewerIndex = [question question_id];

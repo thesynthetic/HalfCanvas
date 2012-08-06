@@ -17,5 +17,6 @@
 @synthesize user_profile_image_url;
 @synthesize likeCount;
 @synthesize likeToggle;
+@synthesize pub_life;
 
 @end

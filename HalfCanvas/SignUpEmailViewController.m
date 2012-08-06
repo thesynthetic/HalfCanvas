@@ -351,7 +351,7 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {    
-    
+    NSLog(@"Response: %@",[request responseString]);
     SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
     NSError *jsonError = nil;
     
@@ -380,8 +380,14 @@
             [user setValue:[username text] forKey:@"username"];
             [user setValue:emailString forKey:@"email"];
             [user setBool:TRUE forKey:@"logged_in"];
-
-            [self.navigationController dismissModalViewControllerAnimated:true];
+            
+            
+            
+            UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard"
+                                                                     bundle: nil];
+            RulesViewController *rules = (RulesViewController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"RulesViewController"];
+            
+            [self.navigationController pushViewController:rules animated:YES];
         }
     }
 }

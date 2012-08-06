@@ -14,6 +14,7 @@
 		<string>Default.png</string>
 		<string>Default@2x.png</string>
 		<string>CrazyProfessor_LO_Icon_FF.png</string>
+		<string>CrazyProfessor_LO_Icon_FF@2x.png</string>
 	</array>
 	<key>CFBundleIcons</key>
 	<dict>
@@ -25,6 +26,7 @@
 				<string>Default.png</string>
 				<string>Default@2x.png</string>
 				<string>CrazyProfessor_LO_Icon_FF.png</string>
+				<string>CrazyProfessor_LO_Icon_FF@2x.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<true/>

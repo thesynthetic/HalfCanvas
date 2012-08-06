@@ -254,8 +254,8 @@
     if ([jsonObjects isKindOfClass:[NSDictionary class]])
     {
         // treat as a dictionary, or reassign to a dictionary ivar
-        NSString *errorcode = [jsonObjects objectForKey:@"errorcode"];
-        NSString *errormessage = [jsonObjects objectForKey:@"errormessage"];
+        NSString *errorcode = [jsonObjects objectForKey:@"error_code"];
+        NSString *errormessage = [jsonObjects objectForKey:@"error_message"];
         if ([errorcode doubleValue] != 0)
         {
             UIAlertView *message = [[UIAlertView alloc] initWithTitle:errormessage

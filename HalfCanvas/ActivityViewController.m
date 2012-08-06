@@ -39,8 +39,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.title = @"Notifications";
+    
+    [self.navigationController.navigationBar setBackgroundColor:[UIColor clearColor]];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"UINavigationBarHeader"] forBarMetrics:UIBarMetricsDefault];
+    UIImageView *headerFade = [[UIImageView alloc] initWithFrame:CGRectMake(0, 63, 320, 2)];
+    [headerFade setImage:[UIImage imageNamed:@"UINavigationBarHeaderFade"]];
+    [[[self parentViewController] view] addSubview:headerFade];
+    [[self tableView] setBackgroundColor:[UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:229.0/255.0 alpha:1.0f]];
+    
+    
+    self.title = @"Activity";
+    
 
     self.imageCache = [[NSMutableDictionary alloc] init];
     if (!networkQueue) {
@@ -103,7 +112,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [activityArray count];
+    return MAX(1,[activityArray count]);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -114,12 +123,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ActivityCell";
     
-    ActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if ([activityArray count] > 1)
+    {
+    ActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ActivityCell"];
     if (cell == nil) {
-        cell = [[ActivityCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[ActivityCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ActivityCell"];
     }
+    
+    
     
     Action *action = [activityArray objectAtIndex:indexPath.row];
     NSString *senderImageURL = [action senderImageURL];
@@ -155,6 +168,15 @@
     
     [[cell senderUsername] setText:[action senderUsername]];
     return cell;
+        
+    }
+    else{
+        ActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NoActivityCell"];
+        if (cell == nil) {
+            cell = [[ActivityCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"//NoActivityCell"];
+        }
+        return cell;
+    }
 }
 
 /*

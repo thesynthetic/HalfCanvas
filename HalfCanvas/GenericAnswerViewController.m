@@ -6,14 +6,14 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "AnswerViewController.h"
+#import "GenericAnswerViewController.h"
 
-@interface AnswerViewController ()
+@interface GenericAnswerViewController()
 
 
 @end
 
-@implementation AnswerViewController
+@implementation GenericAnswerViewController
 
 @synthesize question_id;
 @synthesize answerCollection;
@@ -24,6 +24,8 @@
 @synthesize currentPlayer;
 @synthesize mp;
 @synthesize localURL;
+@synthesize instanceURL;
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -36,11 +38,21 @@
 
 - (void)viewDidLoad
 {
-
+    
     [super viewDidLoad];
     
     self.imageCache = [[NSMutableDictionary alloc] init];
     [[self tableView] setBackgroundColor:[UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:229.0/255.0 alpha:1.0f]];
+    
+    [self.navigationController.navigationBar setBackgroundColor:[UIColor clearColor]];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"UINavigationBarHeader"] forBarMetrics:UIBarMetricsDefault];
+    UIImageView *headerFade = [[UIImageView alloc] initWithFrame:CGRectMake(0, 63, 320, 2)];
+    [headerFade setImage:[UIImage imageNamed:@"UINavigationBarHeaderFade@2x.png"]];
+    [[[self parentViewController] view] addSubview:headerFade];
+    [[self tableView] setBackgroundColor:[UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:229.0/255.0 alpha:1.0f]];
+    
+    
+
     
     answerCollection = [[NSMutableArray alloc] init];
     NSLog(@"Answer count: %d",[answerCollection count]);
@@ -70,8 +82,8 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     
-        [super viewWillAppear:animated];
-
+    [super viewWillAppear:animated];
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -96,7 +108,7 @@
     // Return the number of rows in the section.
     return 1;
     
-
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -105,14 +117,14 @@
         return 50;
     }
     else {
-        return  209; 
+        return  209;
     }
 }
 
 -  (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-        if (section < [answerCollection count] && [answerCollection count] > 0)
-        {
+    if (section < [answerCollection count] && [answerCollection count] > 0)
+    {
         CGRect  viewRect = CGRectMake(0, 0, 320, 40);
         UIView* myView = [[UIView alloc] initWithFrame:viewRect];
         [myView setBackgroundColor:[UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:229.0/255.0 alpha:1.0f]];
@@ -125,7 +137,7 @@
         [timestamp setBackgroundColor:[UIColor clearColor]];
         [timestamp setFont:[UIFont systemFontOfSize:9]];
         [timestamp setText:[[answerCollection objectAtIndex:section] pub_life]];
-
+        
         UIImageView *userImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15,5,30,30)];
         UIImage *tempImg = [imageCache objectForKey:[[answerCollection objectAtIndex:section] user_profile_image_url]];
         
@@ -133,7 +145,7 @@
         {
             [userImageView setImage:tempImg];
         }
-        else 
+        else
         {
             ASIHTTPRequest *request;
             request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[[answerCollection objectAtIndex:section] user_profile_image_url]]];
@@ -151,7 +163,7 @@
         [userLabel setFont:[UIFont boldSystemFontOfSize:13.0]];
         [userLabel setText:[test username]];
         [myView addSubview:userLabel];
-        [myView addSubview:userImageView];   
+        [myView addSubview:userImageView];
         [myView addSubview:timestamp];
         return myView;
     }
@@ -182,8 +194,8 @@
         [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
         return cell;
     }
-    else 
-    {   
+    else
+    {
         static NSString *CellIdentifier = @"AnswerFeedCell";
         
         FeedCell *feedCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -200,7 +212,7 @@
         {
             [[feedCell heart] setImage:[UIImage imageNamed:@"Heart-Liked.png"]];
         }
-        else 
+        else
         {
             [[feedCell heart] setImage:[UIImage imageNamed:@"Heart.png"]];
         }
@@ -214,7 +226,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -227,27 +239,28 @@
 
 - (void)loadData
 {
-    NSURL *url = [NSURL URLWithString:@"http://api.askdittles.com/answers/"];
+    
+    NSURL *url = [NSURL URLWithString:instanceURL];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-    [request setPostValue:[NSString stringWithFormat:@"%d", question_id] forKey:@"question_id"];
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     if ([prefs boolForKey:@"logged_in"])
-    { 
+    {
         [request setPostValue:[NSString stringWithFormat:@"%@",[prefs objectForKey:@"access_token"]] forKey:@"access_token"];
+        NSLog(@"Question_id: %d", question_id);
+        [request setDelegate:self];
+        [request startAsynchronous];
+        
+        //Show HUD
+        
+        HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+        HUD.removeFromSuperViewOnHide = YES;
+        [self.navigationController.view addSubview:HUD];
+        HUD.delegate = self;
+        HUD.labelText = @"Loading";
+        [HUD show:YES];
     }
     
-    NSLog(@"Question_id: %d", question_id);
-    [request setDelegate:self];
-    [request startAsynchronous];
-
-    //Show HUD
     
-    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-    HUD.removeFromSuperViewOnHide = YES;
-	[self.navigationController.view addSubview:HUD];
-    HUD.delegate = self;
-    HUD.labelText = @"Loading";
-    [HUD show:YES];
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
@@ -280,12 +293,12 @@
                 [newAnswer setPub_life:[dict objectForKey:@"pub_life"]];
                 [newAnswer setDescription:[dict objectForKey:@"description"]];
                 NSInteger likeToggle = [[dict objectForKey:@"like_toggle"] integerValue];
-
+                
                 if (likeToggle == 1)
                 {
                     [newAnswer setLikeToggle:TRUE];
                 }
-                else 
+                else
                 {
                     [newAnswer setLikeToggle:FALSE];
                 }
@@ -314,7 +327,7 @@
 
 - (void)imageFetchFailed:(ASIHTTPRequest *)request
 {
-
+    
 }
 
 #pragma mark - Image Viewer
@@ -324,7 +337,7 @@
     {
         PictureViewController *pictureView = [segue destinationViewController];
         [pictureView setImage:[imageCache objectForKey:[[answerCollection objectAtIndex:pictureViewerIndex] image_url]]];
-       
+        
     }
     if ([[segue identifier] isEqualToString:@"didcapturepicture2"])
     {
@@ -357,7 +370,7 @@
 {
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     if ([prefs boolForKey:@"logged_in"])
-    {    
+    {
         //Display instruction screen, with continue button to UIImagePickerController for recording
         NSLog(@"Display instruction screen.");
         picker = [[UIImagePickerController alloc] init];
@@ -369,8 +382,8 @@
         [picker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModeVideo];
         [picker setVideoQuality:UIImagePickerControllerQualityTypeMedium];
         [self presentModalViewController:picker animated:YES];
-  
-    
+        
+        
     }
     else
     {
@@ -404,7 +417,7 @@
         [self startCamera];
     } else if (buttonIndex == 1) {
         [self startPictureChooser];
-    } 
+    }
     else if (buttonIndex == 2) {
         
     }
@@ -440,17 +453,17 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
     [mp.moviePlayer stop];
     mp = nil;
-    [self dismissMoviePlayerViewControllerAnimated];  
+    [self dismissMoviePlayerViewControllerAnimated];
 }
 
 -(void)handleToggleLike:(int)indexNum
 {
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-
+    
     if ([prefs boolForKey:@"logged_in"])
-    { 
-//        HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-//        [self.navigationController.view addSubview:HUD];
+    {
+        //        HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+        //        [self.navigationController.view addSubview:HUD];
         
         // The sample image is based on the work by http://www.pixelpressicons.com, http://creativecommons.org/licenses/by/2.5/ca/
         // Make the customViews 37 by 37 pixels for best results (those are the bounds of the build-in progress indicators)
@@ -461,7 +474,7 @@
         {
             url = [NSURL URLWithString:@"http://api.askdittles.com/unlike_answer/"];
         }
-        else 
+        else
         {
             url = [NSURL URLWithString:@"http://api.askdittles.com/like_answer/"];
         }

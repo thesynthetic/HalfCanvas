@@ -15,6 +15,7 @@
 #import "FeedController.h"
 #import "MainTabBarController.h"
 #import "ActivityViewController.h"
+#import "GenericAnswerViewController.h"
 
 @interface SettingsViewController : UITableViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate>
 {

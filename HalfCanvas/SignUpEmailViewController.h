@@ -12,6 +12,7 @@
 #import "SBJson.h"
 #import "ProfilePictureCell.h"
 #import <CommonCrypto/CommonDigest.h>
+#import "RulesViewController.h"
 
 @interface SignUpEmailViewController : UITableViewController <ASIHTTPRequestDelegate, UITextFieldDelegate, ProfilePictureDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate>
 {

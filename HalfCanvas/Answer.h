@@ -24,5 +24,7 @@
 @property (retain) NSString *user_profile_image_url;
 @property NSInteger likeCount;
 @property bool likeToggle;
+@property (retain) NSString *pub_life;
+
 
 @end

@@ -25,11 +25,10 @@
 #import "GANTracker.h"
 #import "AppDelegate.h"
 #import "Action.h"
-#import "RulesViewController.h"
 
 @class ASINetworkQueue;
 
-@interface FeedController : UITableViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, MBProgressHUDDelegate, FeedCellDelegate, ASIProgressDelegate,UIAlertViewDelegate>
+@interface QuestionsAskedViewController : UITableViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, MBProgressHUDDelegate, FeedCellDelegate, ASIProgressDelegate,UIAlertViewDelegate>
 {
     QuestionCollection *qcol;
     NSMutableArray *qc;
@@ -37,7 +36,7 @@
     
     NSArray *questions;
     MBProgressHUD *HUD;
-    NSMutableData *receivedData;   
+    NSMutableData *receivedData;
     BOOL questionsLoaded;
     NSMutableDictionary *imageDownloadsInProgress;
     UIActionSheet *actionSheetQuestion;

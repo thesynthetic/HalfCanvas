@@ -118,6 +118,8 @@
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
     NSString *access_token = [user objectForKey:@"access_token"];
     [request setPostValue:access_token forKey:@"access_token"];
+    [request setPostValue:[tags text] forKey:@"tag_string"];
+    [request setPostValue:[comments text] forKey:@"comments"];
     [request setDelegate:self];
     [request startAsynchronous];
 }
