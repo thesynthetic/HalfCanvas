@@ -3,10 +3,11 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
 class Question(models.Model):
-    description = models.CharField(max_length=200)
+    comments = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
     image_url = models.CharField(max_length=200)
     user = models.ForeignKey(User)
+    tag_string = models.CharField(max_length=200)
 
     def __unicode__(self):
 	return str(self.pk)

@@ -29,8 +29,8 @@ from boto.s3.key import Key
 def create_user(request):
 	postdata = request.POST
 	if ('username' in postdata and 'email' in postdata and 'password' in postdata and request.FILES): 
-		username = postdata['username']
-		email = postdata['email']
+		username = postdata['username'].lower()
+		email = postdata['email'].lower()
 		password = postdata['password']
 	        if (User.objects.filter(username=username).count() > 0):
                 	response = dict()
@@ -65,15 +65,15 @@ def create_user(request):
 			userData = UserData(user=user, access_token=access_token, profile_image_url=image_url)
 			userData.save()
 			response = dict()
-			response['errorcode'] = '0'
-			response['errormesssage'] = ''
+			response['error_code'] = '0'
+			response['error_messsage'] = ''
 			data = dict()
 			data['access_token'] = access_token
 			response['data'] = data
 	else:
 		response = dict()
-		response['errormessage'] = 'Username, email, password, or profile picture not received'
-		response['errorcode'] = '10.3'
+		response['error_message'] = 'Username, email, password, or profile picture not received'
+		response['error_code'] = '10.3'
 
 	return HttpResponse(
         		simplejson.dumps(response),
@@ -84,30 +84,30 @@ def create_user(request):
 def login(request):
 	postdata = request.POST
         if ('username' in postdata and 'password' in postdata):
-                username = postdata['username']
+                username = postdata['username'].lower()
                 password = postdata['password']
                 user = authenticate(username=username, password=password)
 		if user is not None:
 			if user.is_active:
 				userData = UserData.objects.get(user=user)
 				response = dict()
-				response['errorcode'] = '0'
-				response['errormessage'] = ''
+				response['error_code'] = '0'
+				response['error_message'] = ''
 				data = dict()
 				data['access_token'] = userData.access_token
 				response['data'] = data
 			else:
 				response = dict()
-                                response['errorcode'] = '9.2'
-                                response['errormessage'] = 'User is not active'
+                                response['error_code'] = '9.2'
+                                response['error_message'] = 'User is not active'
 		else:
 			response = dict()
-                       	response['errorcode'] = '9.1'
-                      	response['errormessage'] = 'Username and password incorrect'
+                       	response['error_code'] = '9.1'
+                      	response['error_message'] = 'Username and password incorrect'
         else:
                 response = dict()
-                response['errormessage'] = 'Username and password not received'
-                response['errorcode'] = '9.3'
+                response['error_message'] = 'Username and password not received'
+                response['error_code'] = '9.3'
 	return HttpResponse(
 			simplejson.dumps(response),
                         content_type = 'application/javascript; charset=utf8')
@@ -123,12 +123,12 @@ def change_profile_picture(request):
 		if userdata is not None:
 			user = userdata.user
 		else:
-			response['errorcode'] = '9.2'
+			response['error_code'] = '9.2'
                 	response['error_message'] = 'User is not active'   
                 	return HttpResponse(simplejson.dumps(response),
                                     content_type = 'application/javascript; charset=utf8')
 	else:
-		response['errorcode'] = '9.4'
+		response['error_code'] = '9.4'
 		response['error_message'] = 'Access token not received'
 		return HttpResponse(simplejson.dumps(response), 
 		                    content_type = 'application/javascript; charset=utf8')
@@ -151,10 +151,10 @@ def change_profile_picture(request):
 
                 response = dict()
                 response['new_image_url'] = image_url
-		response['errorcode'] = '0'
-                response['errormesssage'] = ''
+		response['error_code'] = '0'
+                response['error_messsage'] = ''
 	else:
-		response['errorcode'] = '10.4'
+		response['error_code'] = '10.4'
 		response['error_message'] = 'Profile picture not provided'
 	return HttpResponse(
 			simplejson.dumps(response),

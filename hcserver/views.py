@@ -40,19 +40,22 @@ def index(request):
 	if('access_token' in request.POST):
 		user_data = UserData.objects.get(access_token = request.POST['access_token'])
 		if user_data is not None:
-			for i in Action.objects.filter( Q(question__user=user_data.user) | Q(answer__user=user_data.user)  ).select_related('user__userdata'):
+			for i in Action.objects.filter( Q(question__user=user_data.user) | Q(answer__user=user_data.user)  ).select_related('user__userdata').order_by('-pub_date'):
 				action = dict()
-				action['answer_id'] = i.answer.pk
-				action['question_id'] = i.answer.question.pk
+				if (i.sender != user_data.user):
+					action['answer_id'] = i.answer.pk
+					action['question_id'] = i.answer.question.pk
 
-				if (i.question is not None):
-					action['receiver'] = i.question.user.username
-				else:
-					action['receiver'] = i.answer.user.username
-				action['sender'] = i.sender.username
-				action['sender_image_url'] = i.sender.userdata.profile_image_url
-				action['type'] = i.type
-				action_list.append(action)
+					if (i.question is not None):
+						action['receiver'] = i.question.user.username
+					else:
+						action['receiver'] = i.answer.user.username
+					action['sender'] = i.sender.username
+					action['sender_image_url'] = i.sender.userdata.profile_image_url
+					action['type'] = i.type
+					action['pub_date'] = i.pub_date.strftime("%Y-%m-%d %H:%M:%S:%f")
+					action['pub_life'] = pretty_date(i.pub_date).lower()
+					action_list.append(action)
 			output['action_list'] = action_list
 		else:
 			output['action_list'] = None	
@@ -60,7 +63,8 @@ def index(request):
 		question = dict()
 		question['image_url'] = i.image_url
 		question['username'] = i.user.username
-		question['description'] = i.description
+		question['tag_string'] = i.tag_string
+		question['comments'] = i.comments
 		question['user_profile_image_url'] = i.user.userdata.profile_image_url
 		question['question_id'] = i.pk
 		question['answer_count'] = i.answer_count
@@ -74,6 +78,44 @@ def index(request):
                	        simplejson.dumps(output),
                	        content_type = 'application/javascript; charset=utf8'
                	)
+
+
+@csrf_exempt
+def user_questions(request):
+        output = dict()
+        question_list = []
+        action_list = []
+
+        if('start' in request.POST and 'end' in request.POST):
+                start_index = request.POST['start']
+                end_index = request.POST['end']
+        else:
+                start_index = 0
+                end_index = 9
+
+        if('access_token' in request.POST):
+                user_data = UserData.objects.get(access_token = request.POST['access_token'])
+                if user_data is not None:
+        		for i in Question.objects.filter(user=user_data.user).select_related('user__userdata').all().order_by('-pub_date')[start_index:end_index].annotate(answer_count=Count('answer')):
+                		question = dict()
+                		question['image_url'] = i.image_url
+                		question['username'] = i.user.username
+                		question['tag_string'] = i.tag_string
+				question['comments'] = i.comments
+                		question['user_profile_image_url'] = i.user.userdata.profile_image_url
+              		  	question['question_id'] = i.pk
+                		question['answer_count'] = i.answer_count
+                		question['pub_life'] = pretty_date(i.pub_date)
+                		question_list.append(question)
+
+        	output['question_list'] = question_list
+
+
+        return HttpResponse(
+                        simplejson.dumps(output),
+                        content_type = 'application/javascript; charset=utf8'
+                )
+
 	
 @csrf_exempt
 def answers(request):
@@ -96,6 +138,7 @@ def answers(request):
                 	answer['user_profile_image_url'] = i.user.userdata.profile_image_url
                 	answer['answer_id'] = i.pk
                 	answer['like_count'] = i.like_count
+			answer['pub_life'] = pretty_date(i.pub_date)
 			if i in userlikes:
 				answer['like_toggle'] = 1
 			else:
@@ -109,6 +152,61 @@ def answers(request):
 	else:
 		#Todo: Handle error
 		return HttpResponse()
+
+@csrf_exempt
+def user_answers(request):
+	output = []
+	userlikes = []
+
+	if ('access_token' in request.POST):
+		user_data = UserData.objects.get(access_token=request.POST['access_token'])
+		if user_data is not None:
+			fn = lambda x: x.answer
+			userlikes = map(fn, AnswerLike.objects.filter(user=user_data.user))
+
+	for i in Answer.objects.filter(user=user_data.user).order_by('-pub_date').select_related('user__userdata').select_related('answer_answerlike').annotate(like_count=Count('answerlike')):
+
+		answer = dict()
+		answer['image_url'] = i.image_url
+		answer['username'] = i.user.username
+		answer['text'] = i.text
+		answer['user_profile_image_url'] = i.user.userdata.profile_image_url
+		answer['answer_id'] = i.pk
+		answer['like_count'] = i.like_count
+		answer['pub_life'] = pretty_date(i.pub_date)
+		if i in userlikes:
+			answer['like_toggle'] = 1
+		else:
+			answer['like_toggle'] = 0
+		output.append(answer)
+	return HttpResponse(
+			simplejson.dumps(output),
+			content_type = 'application/javascript; charset=utf8'
+		)
+
+
+@csrf_exempt
+def user_answer_likes(request):
+        output = []
+        userlikes = []
+        if ('access_token' in request.POST):
+                user_data = UserData.objects.get(access_token=request.POST['access_token'])
+                if user_data is not None:
+			for i in Answer.objects.select_related('answer__answerlike').annotate(like_count=Count('answerlike')).filter(answerlike__user=user_data.user).order_by('-pub_date'):
+				answer = dict()
+				answer['image_url'] = i.image_url
+				answer['username'] = i.user.username
+				answer['text'] = i.text
+				answer['user_profile_image_url'] = i.user.userdata.profile_image_url
+				answer['answer_id'] = i.pk
+				answer['like_count'] = i.like_count
+				answer['pub_life'] = pretty_date(i.pub_date)
+				answer['like_toggle'] = 1
+				output.append(answer)
+	return HttpResponse(
+		simplejson.dumps(output),
+		content_type = 'application/javascript; charset=utf8'
+	)
 
 
 @csrf_exempt
@@ -133,7 +231,18 @@ def create_question(request):
 			
 			#Store Question metadata in DB
 			image_url = 'https://s3.amazonaws.com/dittles/' + k.key 
-			q = Question(user=user_data.user, image_url=image_url, pub_date=datetime.datetime.now())
+			
+
+
+			tags_string = ''
+                        comments = ''
+                        if ('tag_string' in request.POST):
+                                tag_string = request.POST['tag_string']
+                        if ('comments' in request.POST):
+                                comments = request.POST['comments']
+
+
+			q = Question(user=user_data.user, image_url=image_url, pub_date=datetime.datetime.now(),tag_string=tag_string,comments=comments)
 			q.save()
 			
 		return HttpResponse(request.FILES[dict_keys[0]].read())

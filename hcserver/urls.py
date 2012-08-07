@@ -47,4 +47,12 @@ urlpatterns += patterns('',
     # Unlike Answer
     url(r'^unlike_answer/','hcserver.views.unlike_answer'),
 
+    # Questions Asked by a Certain User
+    url(r'user_questions/','hcserver.views.user_questions'),
+
+    # Answers Asked by a Ceratin User
+    url(r'user_answers/','hcserver.views.user_answers'),
+
+    # Answers Liked by a Certain User
+    url(r'user_answer_likes/','hcserver.views.user_answer_likes'),
 )
