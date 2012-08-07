@@ -120,14 +120,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    //if ([qc count] > 0)
-    //{
-    //    return [qc count] + 1;
-    //}
-    //else
-    //{
-    return [qc count];
-    //}
+    return MAX([qc count],1);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -149,7 +142,7 @@
     else
     {
         //If not loaded yet (2 will fill the screen)
-        return 2;
+        return 1;
     }
     
 }
@@ -223,6 +216,15 @@
         [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
         return cell;
     }
+    else if ([qc count] == 0)
+    {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NoQuestionsAskedCell"];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NoQuestionsAskedCell"];
+        }
+        return cell;
+    }
+        
     else
     {
         static NSString *CellIdentifier = @"FeedCell";
@@ -289,14 +291,33 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (1 == indexPath.row){
+    if ([qc count] == 0)
+    {
         return 50;
     }
     else {
-        return  356;
+        if (1 == indexPath.row){
+            return 50;
+        }
+        else {
+            return  356;
+        }
     }
     
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if ([qc count] == 0)
+    {
+        return 0;
+    }
+    else{
+        return 40;
+    }
+}
+
+
 -(IBAction)imageClick:(id)sender
 {
     

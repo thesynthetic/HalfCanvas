@@ -95,6 +95,8 @@
 		708E061C14BA950A000C1876 /* gears.png in Resources */ = {isa = PBXBuildFile; fileRef = 708E061B14BA950A000C1876 /* gears.png */; };
 		708E061E14BA9524000C1876 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 708E061D14BA9524000C1876 /* home.png */; };
 		709159C115CF63C1003E4F90 /* Rules.png in Resources */ = {isa = PBXBuildFile; fileRef = 709159C015CF63C1003E4F90 /* Rules.png */; };
+		709159CB15D0A916003E4F90 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 709159CA15D0A916003E4F90 /* Default.png */; };
+		709159CD15D0A91E003E4F90 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 709159CC15D0A91E003E4F90 /* Default@2x.png */; };
 		70A27BE815ABCCB0009DE1C8 /* Default_Profile_Picture.png in Resources */ = {isa = PBXBuildFile; fileRef = 70A27BE715ABCCB0009DE1C8 /* Default_Profile_Picture.png */; };
 		70AE0B4C1502E9A70045EDB8 /* PictureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AE0B4B1502E9A60045EDB8 /* PictureViewController.m */; };
 		70AE0B501503E7690045EDB8 /* UploadImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AE0B4F1503E7690045EDB8 /* UploadImageController.m */; };
@@ -277,6 +279,8 @@
 		708E061B14BA950A000C1876 /* gears.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gears.png; sourceTree = "<group>"; };
 		708E061D14BA9524000C1876 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		709159C015CF63C1003E4F90 /* Rules.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Rules.png; sourceTree = "<group>"; };
+		709159CA15D0A916003E4F90 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		709159CC15D0A91E003E4F90 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		70A27BE715ABCCB0009DE1C8 /* Default_Profile_Picture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default_Profile_Picture.png; sourceTree = "<group>"; };
 		70AE0B4A1502E9A60045EDB8 /* PictureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureViewController.h; sourceTree = "<group>"; };
 		70AE0B4B1502E9A60045EDB8 /* PictureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureViewController.m; sourceTree = "<group>"; };
@@ -559,6 +563,8 @@
 				7042AA5A15A67CA600554FBB /* Answer-Button-Background.png */,
 				70B132EC15B207F100B0744E /* AnswerCell-Background-v2.png */,
 				70B132EB15B207F100B0744E /* AnswerCell-Background-v2@2x.png */,
+				709159CC15D0A91E003E4F90 /* Default@2x.png */,
+				709159CA15D0A916003E4F90 /* Default.png */,
 				702CB5BE1567DF3200148D5F /* AnswerCell-Background@2x.png */,
 				70E0A47615CF5CF300BAB8F8 /* D-Touch.png */,
 				70E0A47715CF5CF300BAB8F8 /* D.png */,
@@ -860,6 +866,8 @@
 				70E0A48515CF5CF500BAB8F8 /* A-Touch.png in Resources */,
 				70E0A48615CF5CF500BAB8F8 /* A.png in Resources */,
 				709159C115CF63C1003E4F90 /* Rules.png in Resources */,
+				709159CB15D0A916003E4F90 /* Default.png in Resources */,
+				709159CD15D0A91E003E4F90 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1022,6 +1030,8 @@
 		7062EAFD14BA47290055A979 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ryan Hittner";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ryan Hittner";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HalfCanvas/Dittles-Prefix.pch";
 				HEADER_SEARCH_PATHS = "";
@@ -1033,6 +1043,8 @@
 					"\"$(SRCROOT)/HalfCanvas/External/facebook-ios-sdk\"",
 				);
 				PRODUCT_NAME = Dittles;
+				PROVISIONING_PROFILE = "06DD5BD6-4126-4E96-91C7-9B47E1B2CB98";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "06DD5BD6-4126-4E96-91C7-9B47E1B2CB98";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = "\"${PROJECT_DIR}/QuickDialog\"/**";

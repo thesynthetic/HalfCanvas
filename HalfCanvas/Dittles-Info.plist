@@ -10,7 +10,6 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>Untitled-2.png</string>
 		<string>Default.png</string>
 		<string>Default@2x.png</string>
 		<string>CrazyProfessor_LO_Icon_FF.png</string>
@@ -22,7 +21,6 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>Untitled-2.png</string>
 				<string>Default.png</string>
 				<string>Default@2x.png</string>
 				<string>CrazyProfessor_LO_Icon_FF.png</string>
@@ -33,7 +31,7 @@
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>Hitt.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>com.askdittles.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -59,8 +57,8 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
 	</array>
 </dict>
 </plist>

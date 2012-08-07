@@ -16,8 +16,9 @@
 #import "MainTabBarController.h"
 #import "ActivityViewController.h"
 #import "GenericAnswerViewController.h"
+#import "MBProgressHUD.h"
 
-@interface SettingsViewController : UITableViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate>
+@interface SettingsViewController : UITableViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, MBProgressHUDDelegate>
 {
     BOOL loggedIn;
     

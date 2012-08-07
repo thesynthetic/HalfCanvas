@@ -381,7 +381,7 @@
             [user setValue:emailString forKey:@"email"];
             [user setBool:TRUE forKey:@"logged_in"];
             
-            
+          
             
             UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard"
                                                                      bundle: nil];
@@ -394,8 +394,13 @@
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
-    NSError *error = [request error];
-    NSLog(@"ERROR: %@", [error debugDescription]);
+        MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+        HUD.removeFromSuperViewOnHide = YES;
+        [self.navigationController.view addSubview:HUD];
+        HUD.delegate = self;
+        HUD.labelText = @"Unable to connect";
+        [HUD show:YES];
+        [HUD hide:YES afterDelay:1];
 }
 
 //Gravitar URL - Retro Style Identicon http://www.gravatar.com/avatar/f778d4000d84e1434d04eb8526ec3de2?d=retro

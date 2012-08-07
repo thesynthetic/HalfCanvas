@@ -99,7 +99,7 @@
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
     
-    return [answerCollection count];
+    return MAX([answerCollection count],1);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -118,6 +118,17 @@
     }
     else {
         return  209;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if ([answerCollection count] == 0)
+    {
+        return 0;
+    }
+    else{
+        return 40;
     }
 }
 
@@ -181,18 +192,29 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == [answerCollection count])
+    if (0 == [answerCollection count])
     {
-        static NSString *CellIdentifier = @"AddHalfAnswer";
+//        static NSString *CellIdentifier = @"AddHalfAnswer";
+//        
+//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//        
+//        if (cell == nil) {
+//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//        }
+//        //cell.contentView.backgroundColor = [UIColor grayColor];
+//        [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
+//        return cell;
         
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NoLessonsPostedCell"];
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NoLessonsPostedCell"];
         }
-        //cell.contentView.backgroundColor = [UIColor grayColor];
-        [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
         return cell;
+        
+        
+        
+        
     }
     else
     {

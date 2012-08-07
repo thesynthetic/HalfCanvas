@@ -147,11 +147,9 @@
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
-    [HUD hide:YES];
-    HUD.labelText = @"Could not upload.";
-    
+    HUD.labelText = @"Unable to connect";
     [HUD show:YES];
-	[HUD hide:YES afterDelay:3];
+    [HUD hide:YES afterDelay:1];
 }
 
 

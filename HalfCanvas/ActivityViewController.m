@@ -125,7 +125,7 @@
 {
     
     
-    if ([activityArray count] > 1)
+    if ([activityArray count] > 0)
     {
     ActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ActivityCell"];
     if (cell == nil) {

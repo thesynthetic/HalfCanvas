@@ -13,8 +13,10 @@
 #import "ProfilePictureCell.h"
 #import <CommonCrypto/CommonDigest.h>
 #import "RulesViewController.h"
+#import "MainTabBarController.h"
+#import "FeedController.h"
 
-@interface SignUpEmailViewController : UITableViewController <ASIHTTPRequestDelegate, UITextFieldDelegate, ProfilePictureDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate>
+@interface SignUpEmailViewController : UITableViewController <ASIHTTPRequestDelegate, UITextFieldDelegate, ProfilePictureDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, MBProgressHUDDelegate>
 {
     UISegmentedControl *segcontrol;    
     UITextField *username;

@@ -190,7 +190,16 @@
         [user setBool:false forKey:@"logged_in"];
         [user setValue:nil forKey:@"access_token"];
         [user setValue:nil forKey:@"username"];
+        [user setObject:nil forKey:@"latest_timestamp_loaded"];
         [user synchronize];
+        
+        MainTabBarController *tabcontroller = (MainTabBarController*)self.navigationController.tabBarController;
+        UINavigationController *nc = (UINavigationController*)[[tabcontroller viewControllers] objectAtIndex:0];
+        nc = (UINavigationController*)[[tabcontroller viewControllers] objectAtIndex:1];
+        ActivityViewController *ac = [[nc viewControllers] objectAtIndex:0];
+        [[ac activityArray] removeAllObjects];
+        [[ac tableView] reloadData];
+        
         MainTabBarController *mainTab = (MainTabBarController*)self.tabBarController;
         [mainTab setSelectedIndex:0];
         
@@ -265,6 +274,7 @@
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.gravatar.com/avatar/%@?d=identicon",[self md5HexDigest:@"ryeguy_24@yahoo.com"]]];
         request = [[ASIHTTPRequest alloc] initWithURL:url];
         [request setDidFinishSelector:@selector(profileGravatarRequestFinished:)];
+        [request setDidFailSelector:@selector(requestFailed:)];
         [request setDelegate:self];
         [request startAsynchronous];
     }
@@ -289,6 +299,7 @@
     [request setData:UIImageJPEGRepresentation(scaledImage,1.0) withFileName:@"upload.jpg" andContentType:@"image/jpeg" forKey:@"file"];
     
     [request setDidFinishSelector:@selector(profilePictureUpdateFinished:)];
+    [request setDidFailSelector:@selector(requestFailed:)];
     [request setDelegate:self];
     [request startAsynchronous];
     
@@ -317,12 +328,11 @@
     [newRequest setData:UIImageJPEGRepresentation(scaledImage,1.0) withFileName:@"upload.jpg" andContentType:@"image/jpeg" forKey:@"file"];
     
     [newRequest setDidFinishSelector:@selector(profilePictureUpdateFinished:)];
+    [newRequest setDidFailSelector:@selector(requestFailed:)];
     [newRequest setDelegate:self];
     [newRequest startAsynchronous];
     
     [self dismissModalViewControllerAnimated:true];
-
-    
 }
 
 - (void)profilePictureUpdateFinished:(ASIHTTPRequest *)request
@@ -345,6 +355,16 @@
     [[ac tableView] reloadData];
 }
 
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    HUD.removeFromSuperViewOnHide = YES;
+    [self.navigationController.view addSubview:HUD];
+    HUD.delegate = self;
+    HUD.labelText = @"Unable to connect";
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:1];
+}
 
 
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize

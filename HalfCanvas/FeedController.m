@@ -827,7 +827,7 @@
     HUD.mode = MBProgressHUDModeCustomView;
     HUD.labelText = @"Unable to connect.";
     HUD.removeFromSuperViewOnHide = YES;
-    [HUD hide:YES afterDelay:2];
+    [HUD hide:YES afterDelay:1];
 }
 
 
