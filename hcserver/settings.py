@@ -23,7 +23,7 @@ DATABASES = {
 # Email Settings
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'do_not_reply@askdittles.com'
-EMAIL_HOST_PASSWORD = 'django4336'
+EMAIL_HOST_PASSWORD = 'dittlesdjango'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
