@@ -9,6 +9,7 @@ from django.contrib.auth import authenticate
 from django.db.models import Count, Q
 from hcserver.util import *
 import boto
+import re
 import datetime
 from boto.s3.key import Key
 
@@ -24,6 +25,7 @@ from boto.s3.key import Key
 #Error 10.2 - Email address is already being used
 #Error 10.3 - Username, email, or password not received
 #Error 10.4 - Profile Picture not provided
+#Error 10.5 - Username can only contain letters, numbers, or underscore (no spaces)
 
 @csrf_exempt
 def create_user(request):
@@ -40,12 +42,16 @@ def create_user(request):
                 	response = dict()
                 	response['error_code'] = '10.2'
                 	response['error_message'] = 'Email address is already being used'
-        	else:                
+        	elif not re.match('^\w+$',username):
+			response = dict()
+			response['error_code'] = '10.5'
+			response['error_message'] = 'Username can only contain letters, numbers, or underscore (no spaces)'
+		else:                
 			user = User.objects.create_user(username, email, password)
 
                         #Connect to S3
                         conn= boto.connect_s3()
-                        bucket = conn.get_bucket('halfcanvas')
+                        bucket = conn.get_bucket('dittles')
                         k = Key(bucket)
 
                         #Create filename for S3
@@ -56,7 +62,7 @@ def create_user(request):
                         k.set_contents_from_string(request.FILES[dict_keys[0]].read())
 
                         #Store Question metadata in DB
-                        image_url = 'https://s3.amazonaws.com/halfcanvas/' + k.key
+                        image_url = 'https://s3.amazonaws.com/dittles/' + k.key
                        	
 			m = hashlib.md5()
 			m.update(username)
